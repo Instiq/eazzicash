@@ -1,0 +1,189 @@
+<template>
+  <div>
+      
+          <div class="main-container">
+                 <form  @submit.prevent="validateBeforeSubmit"> 
+                     <div class="form-row first">
+                             <div class="col-md-5 mb-3">
+                                <label for="validationCustomUsername">Investment Amount</label>
+                                <div class="input-group mt-n1">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
+                                    </div>
+                                    <input type="text" v-model.number="investPrincipal" class="form-control"  placeholder="Enter Amount" v-validate="'required|min_value:100000|max_value:30000000'"  name="Investment Amount"  >
+                                    <div class="mt-3" >
+                                    <i v-show="errors.has('Investment Amount')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                    <span class="text-warning" v-show="errors.has('Investment Amount')">{{ errors.first('Investment Amount') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2"></div>
+
+                             <div class="col-md-5">
+                                <span class="m">Investment Tenor</span>
+                                <select class="browser-default custom-select" v-model="investTenor" required>
+                                <option value="1">1 month</option>
+                                <option value="3">3 months</option>
+                                <option value="6">6 months</option>
+                                <option value="12">12 months</option>
+                                </select>
+                            </div>
+                     </div>
+
+
+                     <div class="form-row second">
+                        <div class="col-md-5 mt-4"> 
+                             <span class="m">Source of Income</span>
+                                <select class="browser-default custom-select" v-model="incomeSource" v-validate="'required|included:Salary,Gift,Business,Inheritance'" name="Source of income">
+                                <option value="Salary">Salary</option>
+                                <option value="Gift">Gift</option>
+                                <option value="Business">Business proceeds</option>
+                                <option value="Inheritance">Inheritance</option>
+                                </select>
+                                 <div class="mt-3" >
+                                    <i v-show="errors.has('Source of income')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                    <span class="text-warning" v-show="errors.has('Source of income')">{{ errors.first('Source of income') }}</span>
+                                </div>
+                        </div>
+
+                         <div class="col-md-2"></div>
+
+                        <div class="col-md-5 mb-3">
+                            <label for="exampleFormControlTextarea1">Other Information</label>
+                            <textarea style="background:whitesmoke" v-model="otherInfo"   name="Loan Indebtedness" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                        </div>    
+                     </div>
+
+                     <div class="">
+                         <div class="form-row">
+                        <div class="col-md-5">
+                        <div class="mb-3">Evidence of Payment</div>
+                        <div class="mb-3" style="height:25vh; border:2px solid gray"> </div>
+                        <div class="custom-file mb-3">
+                            <input type="file" class="custom-file-input"  name="Payment Evidence" v-validate="'required'" id="validatedCustomFile" >
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            <div class="mt-2" >
+                            <i v-show="errors.has('Payment Evidence')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('Payment Evidence')">{{ errors.first('Payment Evidence') }}</span>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="col-md-2"></div>
+
+                        <div class="col-md-5">
+                        <div class="mb-3">ID Attachment</div>
+                        <div class="mb-3" style="height:25vh; border:2px solid gray"> </div>
+                        <div class="custom-file mb-3">
+                            <input type="file" class="custom-file-input"   name="ID" v-validate="'required'" id="validatedCustomFile" >
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            <div class="mt-2" >
+                            <i v-show="errors.has('ID')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('ID')">{{ errors.first('ID') }}</span>
+                            </div>
+                        </div>
+                        </div>
+                     </div>
+                     </div>
+
+                     <div class="form-row">
+                         <div class="col-md-5"></div>
+                         <div class="col-md-2"></div>
+                         <div class="col-md-5">
+                              <mdb-btn type="submit" class="float-right btn-green mt-5"  style="font-size:15px; border-radius:5px"> Next</mdb-btn>
+                          </div>
+                     </div>
+
+                 </form>
+               
+              
+          </div>
+     
+  </div>
+</template>
+
+<script>
+import{mdbNavbar,mdbInput, mdbBtn, mdbNumericInput, mdbJumbotron, mdbContainer,mdbRow, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue';
+
+export default {
+    name:'guarantor',
+    components:{
+    mdbNavbar,
+    mdbBtn,
+    mdbNavItem, 
+    mdbNavbarNav,
+    mdbNavbarToggler, 
+    mdbNavbarBrand,
+    mdbIcon,
+    mdbRow,
+    mdbCol,
+    mdbJumbotron,
+    mdbInput,
+    mdbNumericInput
+    },
+    
+    data () {
+        return {
+            selected:''
+        }
+    }, 
+    methods: {
+    validateBeforeSubmit() {
+    this.$validator.validateAll().then((result) => {
+        if (result) {
+        alert('sucess')
+        this.$router.push('/profile/investment/investdetails/settlement')
+        }
+        else {
+            alert('Please Correct the errors!');
+        }
+    })
+    }    
+  },
+
+  computed : {
+       investTenor : {
+          get () {
+                return this.$store.getters.investTenor
+            },
+          set (value) {
+                this.$store.dispatch('updateInvestTenor', value )
+            }
+       },
+       investPrincipal : {
+            get () {
+                return this.$store.getters.investPrincipal
+            },
+            set (value) {
+                this.$store.dispatch('updateInvestPrincipal', value )
+            }
+       },
+    },
+    mounted () {
+        this.$store.dispatch('updateIsActive1I')
+    }
+}
+</script>
+
+<style scoped>
+
+ .main-container {
+    border:2px solid blac;
+    /* margin-left:3vw; */
+    height: auto;
+    width:auto;
+    margin:0vh 0vw
+ }
+
+ input:focus, select:focus {
+     border-color: rgba(75, 148, 8, 0.8);
+     box-shadow: 0 0 5px rgb(75, 148, 8, 1);
+     outline: 0 none;
+ }
+
+ 
+
+ 
+
+</style>
