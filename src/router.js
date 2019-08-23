@@ -23,6 +23,13 @@ import pawninfo from "./components/pawnshop/pawninfo.vue";
 import pawndetails from "./components/pawnshop/pawndetails.vue";
 import ownership from "./components/pawnshop/ownership.vue";
 import signatureP from "./components/pawnshop/signatureP.vue";
+import finPrecheck from "./components/finance/finPrecheck.vue";
+import findetails from "./components/finance/findetails.vue";
+import fininfo from "./components/finance/fininfo.vue";
+import finworkinfo from "./components/finance/finworkinfo.vue";
+import finguarantor from "./components/finance/finguarantor.vue";
+import collateral from "./components/finance/collateral.vue";
+import signatureF from "./components/finance/signatureF.vue";
 
 Vue.use(Router);
 
@@ -149,6 +156,40 @@ export default new Router({
             {
               path: "/profile/pawnshop/pawndetails/success",
               component: thankyou
+            }
+          ]
+        },
+        {
+          path: "/profile/finance/precheck", //Finance Route
+          component: finPrecheck
+        },
+        {
+          path: "/profile/finance/loandetails", //Finance Route
+          component: findetails,
+          children: [
+            {
+              path: "/",
+              redirect: "/profile/finance/loandetails/loaninfo"
+            },
+            {
+              path: "/profile/finance/loandetails/loaninfo",
+              component: fininfo
+            },
+            {
+              path: "/profile/finance/loandetails/workinfo",
+              component: finworkinfo
+            },
+            {
+              path: "/profile/finance/loandetails/guarantor",
+              component: finguarantor
+            },
+            {
+              path: "/profile/finance/loandetails/signature",
+              component: signatureF
+            },
+            {
+              path: "/profile/finance/loandetails/collateral",
+              component: collateral
             }
           ]
         }

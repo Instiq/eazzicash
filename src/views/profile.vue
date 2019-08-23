@@ -39,7 +39,7 @@
             <a href="/profile/dashboard"> <i class="fas fa-home sidenav-icon1"></i> <span class="sidenav-items">Dashboard</span></a>
             <a href="/profile/loan/apply"> <i class="far fa-money-bill-alt sidenav-icon1"></i> <span class="sidenav-items">Loan</span></a>
             <a href="/profile/investment/precheck"> <span class="h5 sidenav-icon"> &#8358;</span> <span class="sidenav-items">Investment</span></a>
-            <a href="#"> <i class="fas fa-chart-line sidenav-icon"></i> <span class="sidenav-items">Finance</span></a>
+            <a href="/profile/finance/precheck"> <i class="fas fa-chart-line sidenav-icon"></i> <span class="sidenav-items">Finance</span></a>
             <a href="/profile/pawnshop/precheck"> <i class="fas fa-chess-bishop sidenav-icon01"></i> <span class="sidenav-items">Pawnshop</span></a>
         </section>
 

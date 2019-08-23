@@ -5,15 +5,15 @@
                <mdb-jumbotron class="jumbotron-fluid" style="height:auto; width:auto">
                    <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Investment Application Form</span></div>
                    <router-link to="/profile/investment/precheck">
-                       <div class="back-arrow-div">
+                       <div class="back-arrow-div small-screen-nav">
                          <i class="fas fa-arrow-left text-white"></i>   
                        </div>
                    </router-link>
-                   <div class="loan-navigation container row">
-                       <router-link class="col-md-3 text-dark " to='/profile/investment/investdetails/investinfo'><div class="nav-items" @click="isActiveOne" :class="{ active: isActive1I }" >Investment Details</div></router-link>
-                       <router-link class="col-md-3 text-dark" to="/profile/investment/investdetails/settlement"><div class=" nav-items" @click="isActiveTwo" :class="{ active: isActive2I }" style="padding-left:2px" >Settlement Account</div></router-link>
-                       <router-link class="col-md-3 text-dark"  to="/profile/investment/investdetails/nextofkin" ><div class="nav-items ml-0" @click="isActiveThree" :class="{ active: isActive3I }" >Next of Kin Details</div></router-link>
-                       <router-link class="link col-md-3 text-dark" to="/profile/investment/investdetails/signature"> <div class="nav-items" @click="isActiveFour" :class="{ active: isActive4I }" >Signature</div></router-link>        
+                   <div class="loan-navigation container row small-screen-nav">
+                       <router-link class="col-md-3 text-dark " to='/profile/investment/investdetails/investinfo'><div class="nav-items small-screen-nav" @click="isActiveOne" :class="{ active: isActive1I }" >Investment Details</div></router-link>
+                       <router-link class="col-md-3 text-dark" to="/profile/investment/investdetails/settlement"><div class=" nav-items small-screen-nav" @click="isActiveTwo" :class="{ active: isActive2I }" style="padding-left:2px" >Settlement Account</div></router-link>
+                       <router-link class="col-md-3 text-dark"  to="/profile/investment/investdetails/nextofkin" ><div class="nav-items ml-0 small-screen-nav" @click="isActiveThree" :class="{ active: isActive3I }" >Next of Kin Details</div></router-link>
+                       <router-link class="link col-md-3 text-dark" to="/profile/investment/investdetails/signature"> <div class="nav-items small-screen-nav" @click="isActiveFour" :class="{ active: isActive4I }" >Signature</div></router-link>        
                    </div>
 
                    <div class="containe">
@@ -149,5 +149,11 @@ export default {
      margin:5vh 8vw;
      width: auto
  }
+
+  @media (max-width:767px){
+   .small-screen-nav{
+      display: none
+    }
+}
 
 </style>

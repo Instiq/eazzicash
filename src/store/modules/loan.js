@@ -4,6 +4,7 @@ const state = {
   isActive2: null,
   isActive3: null,
   isActive4: null,
+  isActive5: null,
   //state for loandetails
   tenor: 1,
   principal: 100000,
@@ -42,6 +43,9 @@ const mutations = {
   },
   setIsActive4(state, payload) {
     state.isActive4 = payload;
+  },
+  setIsActive5(state, payload) {
+    state.isActive5 = payload;
   },
   //Mutations for Loandetails
   addTenor(state, payload) {
@@ -124,24 +128,35 @@ const actions = {
     commit("setIsActive2", false);
     commit("setIsActive3", false);
     commit("setIsActive4", false);
+    commit("setIsActive5", false);
   },
   updateIsActive2({ commit }) {
     commit("setIsActive1", false);
     commit("setIsActive2", true);
     commit("setIsActive3", false);
     commit("setIsActive4", false);
+    commit("setIsActive5", false);
   },
   updateIsActive3({ commit }) {
     commit("setIsActive1", false);
     commit("setIsActive2", false);
     commit("setIsActive3", true);
     commit("setIsActive4", false);
+    commit("setIsActive5", false);
   },
   updateIsActive4({ commit }) {
     commit("setIsActive1", false);
     commit("setIsActive2", false);
     commit("setIsActive3", false);
     commit("setIsActive4", true);
+    commit("setIsActive5", false);
+  },
+  updateIsActive5({ commit }) {
+    commit("setIsActive1", false);
+    commit("setIsActive2", false);
+    commit("setIsActive3", false);
+    commit("setIsActive4", false);
+    commit("setIsActive5", true);
   },
   //Actions for Loandetails
   increment({ commit, state }) {
@@ -235,6 +250,9 @@ const getters = {
   },
   isActive4: state => {
     return state.isActive4;
+  },
+  isActive5: state => {
+    return state.isActive5;
   },
   // getters for Loandetails
   tenor: state => {

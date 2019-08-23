@@ -5,14 +5,14 @@
                <mdb-jumbotron class="jumbotron-fluid" style="height:auto; width:auto">
                    <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Pawn Application Form</span></div>
                    <router-link to="/profile/pawnshop/precheck">
-                       <div class="back-arrow-div">
+                       <div class="back-arrow-div small-screen-nav">
                          <i class="fas fa-arrow-left text-white"></i>   
                        </div>
                    </router-link>
-                   <div class="loan-navigation container row">
-                       <router-link class="col-md-4 text-dark " to='/profile/pawnshop/pawndetails/pawninfo'><div class="nav-items" @click="isActiveOne" :class="{ active: isActive1P }"> Pawn Details</div></router-link>
-                       <router-link class="col-md-4 text-dark"  to="/profile/pawnshop/pawndetails/ownership"><div class=" nav-items" @click="isActiveTwo" :class="{ active: isActive2P }" style="padding-left:2px" >Proof of Ownership</div></router-link>
-                       <router-link class="col-md-4 text-dark"  to="/profile/pawnshop/pawndetails/signature" ><div class="nav-items ml-0" @click="isActiveThree" :class="{ active: isActive3P }" >Signature</div></router-link>
+                   <div class="loan-navigation container row small-screen-nav">
+                       <router-link class="col-md-4 text-dark " to='/profile/pawnshop/pawndetails/pawninfo'><div class="nav-items small-screen-nav" @click="isActiveOne" :class="{ active: isActive1P }"> Pawn Details</div></router-link>
+                       <router-link class="col-md-4 text-dark"  to="/profile/pawnshop/pawndetails/ownership"><div class=" nav-items small-screen-nav" @click="isActiveTwo" :class="{ active: isActive2P }" style="padding-left:2px" >Proof of Ownership</div></router-link>
+                       <router-link class="col-md-4 text-dark"  to="/profile/pawnshop/pawndetails/signature" ><div class="nav-items ml-0 small-screen-nav" @click="isActiveThree" :class="{ active: isActive3P }" >Signature</div></router-link>
                    </div>
 
                    <div class="">
@@ -143,4 +143,9 @@ export default {
      width: auto
  }
 
+ @media (max-width:767px){
+   .small-screen-nav{
+      display: none
+    }
+}
 </style>

@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="col-md-6 mt-2 text-white float-right apply-btn" >
-                          <router-link to="/profile/loan/loandetails"><button class="btn text-white " style="background:rgb(0, 85, 0); font-size:18px; border-radius:5px">APPLY FOR LOAN</button></router-link>  
+                          <router-link to="/profile/finance/loandetails"><button class="btn text-white " style="background:rgb(0, 85, 0); font-size:18px; border-radius:5px">Book Finance</button></router-link>  
                         </div>
                      </section>  
 
@@ -194,20 +194,6 @@ export default {
         },
         tenor (newval) {
              this.calculate()
-        //     if (newval>6) {
-        //        this.$store.dispatch('updateTenor', 6 ) 
-        //        this.calculate()   
-        //     }
-
-        //      else  if (newval<0) {
-        //        this.$store.dispatch('updateTenor', 1 ) 
-        //        this.calculate()
-        //      }
-
-        //     else  {
-        //         this.$store.dispatch('updateTenor', newval) 
-        //         this.calculate() 
-        //     }
         }
     },
 

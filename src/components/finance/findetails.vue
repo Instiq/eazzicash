@@ -3,17 +3,18 @@
       <div class="container">
           <div class="containe main-container">
                <mdb-jumbotron class="jumbotron-fluid" style="height:auto; width:auto">
-                   <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Loan Application Form</span></div>
+                   <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Finance Application Form</span></div>
                    <router-link to="/profile/loan/apply">
-                       <div class="back-arrow-div small-screen-nav">
+                       <div class="back-arrow-div ml-lg-4 ml-xl-5 ml-md-4 small-screen-nav">
                          <i class="fas fa-arrow-left text-white"></i>   
                        </div>
                    </router-link>
-                   <div class="loan-navigation container row small-screen-nav">
-                       <router-link class="col-md-3 text-dark " to='/profile/loan/loandetails/loaninformation'><div class="nav-items small-screen-nav" @click="isActiveOne" :class="{ active: isActive1 }" >Loan Details</div></router-link>
-                       <router-link class="col-md-3 text-dark" to="/profile/loan/loandetails/workinfo"><div class=" nav-items small-screen-nav" @click="isActiveTwo" :class="{ active: isActive2 }" style="padding-left:2px" >Work Information</div></router-link>
-                       <router-link class="col-md-3 text-dark"  to="/profile/loan/loandetails/guarantor" ><div class="nav-items small-screen-nav ml-0 " @click="isActiveThree" :class="{ active: isActive3 }" >Guarantor Details</div></router-link>
-                       <router-link class="link col-md-3 text-dark" to="/profile/loan/loandetails/signature"> <div class="nav-items small-screen-nav " @click="isActiveFour" :class="{ active: isActive4 }" >Signature</div></router-link>        
+                   <div class="loan-navigation row small-screen-nav">
+                       <router-link class="col-md-2 ml-n1  ml-xl-3  text-dark  loan-nav " to='/profile/finance/loandetails/loaninfo' style="padding-left:3px"><div class="nav-items px-n3 small-screen-nav" style="border:2px solid blu; width:120px;" @click="isActiveOne" :class="{ active: isActive1 }" >Finance Details</div></router-link>
+                       <router-link class="col-md-2 ml-4  text-dark  loan-nav" style="padding-left:20px" to="/profile/finance/loandetails/workinfo"><div class=" nav-items  small-screen-nav" @click="isActiveTwo" :class="{ active: isActive2 }"  style="border:2px solid blu; width:80px" >Work Info</div></router-link>
+                       <router-link class="col-md-2 ml-3  text-dark  loan-nav"  to="/profile/finance/loandetails/guarantor" style="padding:0"><div class="nav-items ml-0 small-screen-nav"  style="border:2px solid blu; width:130px" @click="isActiveThree" :class="{ active: isActive3 }" >Guarantor Details</div></router-link>
+                        <router-link class="col-md-2  text-dark ml-lg-4 ml-xl-4 pl-lg-4 loan-nav"  to="/profile/finance/loandetails/collateral" style="margin-left:30px; padding-left:18px" ><div class="nav-items ml-0 small-screen-nav"  style="border:2px solid blu; width:80px" @click="isActiveFive" :class="{ active: isActive5 }" >Collateral</div></router-link>
+                       <router-link class="link col-md-2 ml-md-0 ml-lg-4 text-dark  loan-nav" to="/profile/finance/loandetails/signature"> <div class="nav-items small-screen-nav"  style="border:2px solid blu; width:80px" @click="isActiveFour" :class="{ active: isActive4 }" >Signature</div></router-link>        
                    </div>
 
                    <div class="containe">
@@ -71,6 +72,9 @@ export default {
         },
         isActiveFour () {
            this.$store.dispatch('updateIsActive4')
+        },
+         isActiveFive () {
+           this.$store.dispatch('updateIsActive5')
         }
     },
     
@@ -86,6 +90,9 @@ export default {
        },
        isActive4 () {
          return this.$store.getters.isActive4
+       },
+       isActive5 () {
+         return this.$store.getters.isActive5
        }
    },
     // mounted () {
@@ -117,8 +124,9 @@ export default {
      border-bottom : 2px solid gainsboro;
      position: relative;
      height: 6vh;
-     margin:0px 9vw;
-     width:50vw
+     margin:0px 8vw;
+     margin-left: 7vw;
+     width:auto
  }
 
  .back-arrow-div {
@@ -131,7 +139,7 @@ export default {
      border-radius:60px;
      text-align: center;
      padding:-7vh;
-     top:13.5vh
+     top:13vh
      
  }
 
@@ -156,11 +164,25 @@ export default {
      width: auto
  }
 
- @media (max-width:767px){
+  .loan-nav {
+     border : 2px solid blac;
+     position: relative;
+     top:13px;
+     /* height: 6vh; */
+     /* margin:0px 9vw;  */
+    
+ }
+
+ .small-screen-nav {
+    margin-top:0vh;
+    /* position: relative; */
+ }
+
+
+  @media (max-width:890px){
    .small-screen-nav{
       display: none
     }
 }
-
 
 </style>
