@@ -10,36 +10,53 @@
 
                           <div class="col-md-5 mb-3">
                             <span class="m">Item Category</span>
-                            <select class="browser-default custom-select" v-model="itemCategoryr" required>
-                            <option value="New">New</option>
-                            <option value="Used">Used</option>
-                            <option value="Refurbished">Refurbished</option>
-                            <option value="Inheritance">Inheritance</option>
+                            <select class="browser-default custom-select" v-model="itemCategory" v-validate="'required'" name="Item Category" >
+                            <option value="Mobile Phones">Mobile Phones</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                            <option value="Jewelries">Jewelries (pure Gold & Silver)</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                            <option value="Camera">Digital Camera</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                            <option value="Cars">Cars</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                              <option value="Laptops">Laptops</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                              <option value="TV">TV</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                              <option value="Generators">Moveable Generators</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                              <option value="Smart Watches">Smart Watches</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                              <option value="Game Console">Game Console (Xbox/PS4)</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                             <option value="Wrist Watch">Wrist Watch</option>
+                             <option disabled="disabled">-------------------------------------------------------- </option>
+                            
                             </select>
                           </div>
 
 
                         <div class="col-md-5 mb-3">
-                            <span class="m">Specify the worth</span>
+                            <span class="m">Pawn Amount (the amount you want to borrow)</span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
                             <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text"> &#8358;</div>
                             </div>
-                            <input type="number"  v-model="itemWorth" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
+                            <input type="text"  v-model.number="pawnAmount" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
                             </div>
                             <span class="text-danger" style="font-size:14px">Please Note: All pawn items are to be redeemed within 30 days. Failure to do so, will result in forfeiture of the item.  </span>
                         </div>
 
                       
                          <div class="col-md-5">
-                            <span class="m">Expected Repayment Amount</span>
+                            <span class="m">Estimated Repayment Amount</span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
                             <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text"> &#8358;</div>
                             </div>
-                            <input type="number" disabled v-model="pawnAmount" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
+                            <input type="text" disabled v-model.number="pawnMra" class="form-control font-weight-bold py-0" id="inlineFormInputGroup" placeholder="amount">
                             </div>
                         </div>
 
@@ -93,34 +110,11 @@ export default {
 
     methods :{
     calculate () {
-        let r = 18;
-
-        let tenor = this.investTenor;
-        let principal = this.investPrincipal
-
-        if (tenor==1) {
-             let mra = Math.round((principal * (r/100) * (30/360)) + principal);
-             let formattedMra = this.formatAmount(mra)   
-             this.$store.dispatch('updateInvestMra',formattedMra)
-        }
-    
-        if (tenor==3) {
-            let mra = Math.round((principal * (r/100) * (90/360)) + principal);
-             let formattedMra = this.formatAmount(mra)   
-             this.$store.dispatch('updateInvestMra',formattedMra)
-        }
-
-        if (tenor==6) {
-             let mra = Math.round((principal * (r/100) * (180/360)) + principal);
-             let formattedMra = this.formatAmount(mra)   
-             this.$store.dispatch('updateInvestMra',formattedMra) 
-        }
-
-        if (tenor==12) {
-              let mra = Math.round((principal * (r/100) )+principal);
-             let formattedMra = this.formatAmount(mra)   
-             this.$store.dispatch('updateInvestMra',formattedMra)
-        }   
+        let r = 12.5;
+        let pawnAmount = this.pawnAmount
+        let mra = Math.round((pawnAmount * (r/100) )+ pawnAmount);
+        let formattedMra = this.formatAmount(mra)   
+        this.$store.dispatch('updatePawnMra',formattedMra)     
     },
     formatAmount (x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
@@ -128,34 +122,31 @@ export default {
 
     },  
     computed : {
-       investTenor : {
+       itemCategory : {
           get () {
-                return this.$store.getters.investTenor
+                return this.$store.getters.itemCategory
             },
           set (value) {
-                this.$store.dispatch('updateInvestTenor', value )
+                this.$store.dispatch('updateItemCategory', value )
             }
        },
-       investPrincipal : {
+       pawnAmount : {
             get () {
-                return this.$store.getters.investPrincipal
+                return this.$store.getters.pawnAmount
             },
             set (value) {
-                this.$store.dispatch('updateInvestPrincipal', value )
+                this.$store.dispatch('updatePawnAmount', value )
             }
        },
-       investMra () {
-           return this.$store.getters.investMra
+       pawnMra () {
+           return this.$store.getters.pawnMra
        }
     },
 
     watch :  {
-        investPrincipal (newval) {
+       pawnAmount (newval) {
             this.calculate()
         },
-        investTenor () {
-             this.calculate()
-        }
     },
 
     mounted () {

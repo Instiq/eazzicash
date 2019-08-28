@@ -6,7 +6,7 @@
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
                                 <span class="m">Collateral Type <span class="text-danger">*</span></span>
-                                <select class="browser-default custom-select" v-model="collateralType" v-validate="'required'" name="Employment-Type">
+                                <select class="browser-default custom-select" v-model="collateralType" v-validate="'required'" name="Collateral Type">
                                 <option value="LPO Finance">LPO Finance</option>
                                 <option disabled="disabled">-------------------------------------------------------- </option>
                                 <option value="Asset" >Asset</option>
@@ -14,8 +14,8 @@
                                 <option value="Contract">Contract</option>
                                 </select>
                                 <div class="mt-3" >
-                                    <i v-show="errors.has('>Collateral Type')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('>Collateral Type')">{{ errors.first('>Collateral Type') }}</span>
+                                    <i v-show="errors.has('Collateral Type')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                    <span class="text-warning" v-show="errors.has('Collateral Type')">{{ errors.first('Collateral Type') }}</span>
                                 </div>
                         </div>  
 

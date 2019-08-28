@@ -5,14 +5,14 @@
                <mdb-jumbotron class="jumbotron-fluid" style="height:auto; width:auto">
                    <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Pawn Application Form</span></div>
                    <router-link to="/profile/pawnshop/precheck">
-                       <div class="back-arrow-div small-screen-nav">
+                       <div class="back-arrow-div  ml-lg-4 ml-xl-5 ml-md-4 small-screen-nav">
                          <i class="fas fa-arrow-left text-white"></i>   
                        </div>
                    </router-link>
                    <div class="loan-navigation container row small-screen-nav">
-                       <router-link class="col-md-4 text-dark " to='/profile/pawnshop/pawndetails/pawninfo'><div class="nav-items small-screen-nav" @click="isActiveOne" :class="{ active: isActive1P }"> Pawn Details</div></router-link>
-                       <router-link class="col-md-4 text-dark"  to="/profile/pawnshop/pawndetails/ownership"><div class=" nav-items small-screen-nav" @click="isActiveTwo" :class="{ active: isActive2P }" style="padding-left:2px" >Proof of Ownership</div></router-link>
-                       <router-link class="col-md-4 text-dark"  to="/profile/pawnshop/pawndetails/signature" ><div class="nav-items ml-0 small-screen-nav" @click="isActiveThree" :class="{ active: isActive3P }" >Signature</div></router-link>
+                       <router-link class="col-md-4 text-center  text-dark p-0  loan-nav " to='/profile/pawnshop/pawndetails/pawninfo'><div class="nav-items small-screen-nav" style="border:2px solid blu; width:100px;" @click="isActiveOne" :class="{ active: isActive1P }"> Pawn Details</div></router-link>
+                       <router-link class="col-md-4 text-center  text-dark ml-n4 ml-lg-n3 p-0 loan-nav"  to="/profile/pawnshop/pawndetails/ownership"><div class=" nav-items ml-4 ml-lg-5 small-screen-nav" style="border:2px solid blu; width:150px;" @click="isActiveTwo" :class="{ active: isActive2P }">Proof of Ownership</div></router-link>
+                       <router-link class="col-md-4  text-center text-dark ml-3 ml-lg-3  loan-nav"  to="/profile/pawnshop/pawndetails/signature" ><div class="nav-items ml-md-5 signature small-screen-nav" style="border:2px solid blu; width:80px;" @click="isActiveThree" :class="{ active: isActive3P }" >Signature</div></router-link>
                    </div>
 
                    <div class="">
@@ -118,7 +118,7 @@ export default {
      border-radius:60px;
      text-align: center;
      padding:-7vh;
-     top:13.5vh
+     top:13vh
      
  }
 
@@ -143,7 +143,41 @@ export default {
      width: auto
  }
 
- @media (max-width:767px){
+ .loan-nav {
+     border : 2px solid blac;
+     position: relative;
+     top:-1px;
+    
+ } 
+
+
+@media (min-width:800px){
+   
+    .loan-nav {
+     border : 2px solid blac;
+     position: relative;
+     top:3px;
+     /* height: 6vh; */
+     /* margin:0px 9vw;  */ 
+ }
+}
+
+
+@media (min-width:1170px){
+    .signature {
+        margin-left: 100px !important
+
+    }
+    .loan-nav {
+     border : 2px solid blac;
+     position: relative;
+     top:-1px;
+     /* height: 6vh; */
+     /* margin:0px 9vw;  */ 
+ }
+}
+
+ @media (max-width:800px){
    .small-screen-nav{
       display: none
     }

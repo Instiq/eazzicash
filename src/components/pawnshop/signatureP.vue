@@ -5,7 +5,7 @@
                
             <form   @submit.prevent="validateBeforeSubmit">
 
-                <div class="form-row"> <div class="mb-3">Applicant's Signature</div> </div>
+                <div class="form-row"> <div class="mb-3">Applicant's Signature <span class="text-danger">*</span></div> </div>
                 <div class="form-row third">
                         <div class="col-md-4 mb-3 " style="height:25vh; border:2px solid gray"> </div>
                 </div>
@@ -123,18 +123,28 @@ export default {
          }
      },    
 
-     validateBeforeSubmit() {
-    this.$validator.validateAll().then((result) => {
-        if (result) {
-        this.$router.push("/profile/pawnshop/pawndetails/success")
-        }
-     })
+    validateBeforeSubmit() {
+        this.$validator.validateAll().then((result) => {
+            if (result) {
+                 this.promise()
+                    .then(res=>{
+                        this.$router.push("/profile/pawnshop/pawndetails/success")
+                    })
+            }
+        })
     },
+
+     promise ()  {
+       return new Promise ((res,rej)=> {
+          setTimeout(_=>res(90), 3000)
+       })
+       
+    }
   
   },
 
     mounted () {
-        this.$store.dispatch('updateIsActive3P')
+        this.$store.dispatch('updateIsActive3P');
     }
     
 }

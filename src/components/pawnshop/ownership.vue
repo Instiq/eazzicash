@@ -5,13 +5,8 @@
                  <form  @submit.prevent="validateBeforeSubmit"> 
                      <div class="form-row first">
                           <div class="col-md-5 mb-3">
-                            <span class="m">Date of Purchase</span>
-                            <select class="browser-default custom-select" v-model="itemDate" v-validate="'required'" name="Date of Purchase" >
-                            <option value="New">New</option>
-                            <option value="Used">Used</option>
-                            <option value="Refurbished">Refurbished</option>
-                            <option value="Inheritance">Inheritance</option>
-                            </select>
+                            <span class="m">Date of Purchase <span class="text-danger">*</span></span>
+                             <input type="date" v-model="itemDate" class="form-control">
                              <div class="mt-3" >
                                 <i v-show="errors.has('Date of Purchase')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('Date of Purchase')">{{ errors.first('Date of Purchase') }}</span>
@@ -21,8 +16,8 @@
 
                         <div class="col-md-2"></div>
                             <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Purchase Location</label>
-                                    <input type="text" v-model="nokRelationship" class="form-control mt-n2"  placeholder="" v-validate="'required'"  name="Purchase Location"  >
+                                <label for="validationCustomUsername">Purchase Location <span class="text-danger">*</span></label>
+                                    <input type="text" v-model="purchaseLocation" class="form-control mt-n2"  placeholder="" v-validate="'required'"  name="Purchase Location"  >
                                     <div class="mt-3" >
                                         <i v-show="errors.has('Purchase Location')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                         <span class="text-warning" v-show="errors.has('Purchase Location')">{{ errors.first('Purchase Location') }}</span>
@@ -37,7 +32,7 @@
 
                      <div class="form-row">
                          <div class="col-md-5 mt-4"> 
-                              Sworn Affidavit done?
+                              Sworn Affidavit done? <span class="text-danger">*</span>
                             <div class="custom-control custom-radio ml-2 d-inline"> 
                                 <input type="radio" v-model="isSworn" value="yes" class="custom-control-input form-check-input" id="invalidCheck" name="radio-stack" v-validate="'required|included:yes,no'" >
                                  <label class="custom-control-label" for="invalidCheck">Yes</label> 
@@ -112,7 +107,30 @@ export default {
   },
 
   computed : {
-       
+        itemDate : {
+            get () {
+                return this.$store.getters.itemDate
+            },
+            set (value) {
+                this.$store.dispatch('updateItemDate', value )
+            }
+       },
+       purchaseLocation : {
+            get () {
+                return this.$store.getters.purchaseLocation
+            },
+            set (value) {
+                this.$store.dispatch('updatePurchaseLocation', value )
+            }
+       },
+       isSworn : {
+            get () {
+                return this.$store.getters.isSworn
+            },
+            set (value) {
+                this.$store.dispatch('updateIsSworn', value )
+            }
+       },
     },
     mounted () {
         this.$store.dispatch('updateIsActive2P')

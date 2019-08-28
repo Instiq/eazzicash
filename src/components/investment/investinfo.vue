@@ -5,7 +5,7 @@
                  <form  @submit.prevent="validateBeforeSubmit"> 
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Investment Amount</label>
+                                <label for="validationCustomUsername">Investment Amount <span class="text-danger">*</span></label>
                                 <div class="input-group mt-n1">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
@@ -21,7 +21,7 @@
                             <div class="col-md-2"></div>
 
                              <div class="col-md-5">
-                                <span class="m">Investment Tenor</span>
+                                <span class="m">Investment Tenor <span class="text-danger">*</span></span>
                                 <select class="browser-default custom-select" v-model="investTenor" required>
                                 <option value="1">1 month</option>
                                 <option value="3">3 months</option>
@@ -34,7 +34,7 @@
 
                      <div class="form-row second">
                         <div class="col-md-5 mt-4"> 
-                             <span class="m">Source of Income</span>
+                             <span class="m">Source of Income <span class="text-danger">*</span></span>
                                 <select class="browser-default custom-select" v-model="incomeSource" v-validate="'required|included:Salary,Gift,Business,Inheritance'" name="Source of income">
                                 <option value="Salary">Salary</option>
                                 <option value="Gift">Gift</option>
@@ -58,7 +58,7 @@
                      <div class="">
                          <div class="form-row">
                         <div class="col-md-5">
-                        <div class="mb-3">Evidence of Payment</div>
+                        <div class="mb-3">Evidence of Payment <span class="text-danger">*</span></div>
                         <div class="mb-3" style="height:25vh; border:2px solid gray"> </div>
                         <div class="custom-file mb-3">
                             <input type="file" class="custom-file-input"  name="Payment Evidence" v-validate="'required'" id="validatedCustomFile" >
@@ -73,7 +73,7 @@
                         <div class="col-md-2"></div>
 
                         <div class="col-md-5">
-                        <div class="mb-3">ID Attachment</div>
+                        <div class="mb-3">ID Attachment <span class="text-danger">*</span></div>
                         <div class="mb-3" style="height:25vh; border:2px solid gray"> </div>
                         <div class="custom-file mb-3">
                             <input type="file" class="custom-file-input"   name="ID" v-validate="'required'" id="validatedCustomFile" >
@@ -157,6 +157,22 @@ export default {
             },
             set (value) {
                 this.$store.dispatch('updateInvestPrincipal', value )
+            }
+       },
+        incomeSource : {
+            get () {
+                return this.$store.getters.incomeSource
+            },
+            set (value) {
+                this.$store.dispatch('updateIncomeSource', value )
+            }
+        },   
+        otherInfo: {
+            get () {
+                return this.$store.getters.otherInfo
+            },
+            set (value) {
+                this.$store.dispatch('updateOtherInfo', value )
             }
        },
     },

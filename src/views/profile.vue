@@ -12,7 +12,7 @@
               
               <a href="#" class="mr-5  text-white"><i class="fas fa-comments mr-1"></i><span class="d-none d-sm-inline-block"> Support</span></a>
               
-              <a href="#" class="mr-5  text-white"><i class="fas fa-user mr-1"></i><span class="d-none d-sm-inline-block"> Account</span></a>
+              <a href="#" class="mr-5   text-white" ><i class="fas fa-user mr-1"></i><span class="d-none d-sm-inline-block"> Account</span></a>
             </div>       
         </section>
 

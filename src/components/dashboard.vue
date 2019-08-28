@@ -5,7 +5,7 @@
       <div class="container">
           <div class="container main-container">
               <div class="row">
-                  <div class="col-md-8 major-col-1">
+                  <div class="col-lg-8 col-md-12 major-col-1">
                       <div class="row">
                           <div class="col-md-6">
                               <mdb-card class="borde mb-5" style="height:25vh">
@@ -71,7 +71,7 @@
                   </div>
 
                   
-                  <div class="col-md-4 major-col-2">
+                  <div class="col-lg-4 col-12 major-col-2">
                       <mdb-card class="mt-3 mt-md-0" style="height:auto">
                             <div class=" " >
                                 <mdb-list-group>
@@ -87,7 +87,7 @@
                       
                   </div>
 
-                   <div class="col-12 major-col-2 mt-4" style="">
+                   <div class="col-md-12 major-col-2 mt-4" style="">
                         <mdb-card class="bg-">
                             <mdb-card-title class="borde bg-danger py-2 text-white text-center pending">Pending Requests <mdb-badge :pill="true" color="danger">03</mdb-badge></mdb-card-title>
 

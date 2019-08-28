@@ -7,7 +7,19 @@ const state = {
   //state for investinfo
   investTenor: 1,
   investPrincipal: 10000,
-  investMra: 0
+  investMra: 0,
+  incomeSource: "",
+  otherInfo: "",
+  //state for settlement
+  accountNumber: "",
+  accountName: "",
+  bankName: "",
+  //state for Nextofkin
+  nokName: "",
+  nokAddress: "",
+  nokRelationship: "",
+  nokPhone: "",
+  nokState: ""
 };
 
 const mutations = {
@@ -33,6 +45,38 @@ const mutations = {
   },
   setInvestMra(state, payload) {
     state.investMra = payload;
+  },
+  setIncomeSource(state, payload) {
+    state.incomeSource = payload;
+  },
+  setOtherInfo(state, payload) {
+    state.otherInfo = payload;
+  },
+  // Mutations for Settlement
+  setAccountNumber(state, payload) {
+    state.accountNumber = payload;
+  },
+  setAccountName(state, payload) {
+    state.accountName = payload;
+  },
+  setBankName(state, payload) {
+    state.bankName = payload;
+  },
+  // Mutations for NextofKin
+  setNokName(state, payload) {
+    state.nokName = payload;
+  },
+  setNokAddress(state, payload) {
+    state.nokAddress = payload;
+  },
+  setNokRelationship(state, payload) {
+    state.nokRelationship = payload;
+  },
+  setNokPhone(state, payload) {
+    state.nokPhone = payload;
+  },
+  setNokState(state, payload) {
+    state.nokState = payload;
   }
 };
 const actions = {
@@ -70,6 +114,38 @@ const actions = {
   },
   updateInvestTenor({ commit }, value) {
     commit("setInvestTenor", value);
+  },
+  updateIncomeSource({ commit }, value) {
+    commit("setIncomeSource", value);
+  },
+  updateOtherInfo({ commit }, value) {
+    commit("setOtherInfo", value);
+  },
+  //Actions for settlement
+  updateAccountNumber({ commit }, value) {
+    commit("setAccountNumber", value);
+  },
+  updateAccountName({ commit }, value) {
+    commit("setAccountName", value);
+  },
+  updateBankName({ commit }, value) {
+    commit("setBankName", value);
+  },
+  //Actions for NextofKin
+  updateNokName({ commit }, value) {
+    commit("setNokName", value);
+  },
+  updateNokAddress({ commit }, value) {
+    commit("setNokAddress", value);
+  },
+  updateNokRelationship({ commit }, value) {
+    commit("setNokRelationship", value);
+  },
+  updateNokPhone({ commit }, value) {
+    commit("setNokPhone", value);
+  },
+  updateNokState({ commit }, value) {
+    commit("setNokState", value);
   }
 };
 const getters = {
@@ -95,6 +171,38 @@ const getters = {
   },
   investTenor: state => {
     return state.investTenor;
+  },
+  incomeSource: state => {
+    return state.incomeSource;
+  },
+  otherInfo: state => {
+    return state.otherInfo;
+  },
+  //getters for settlement
+  accountName: state => {
+    return state.accountName;
+  },
+  accountNumber: state => {
+    return state.accountNumber;
+  },
+  bankName: state => {
+    return state.bankName;
+  },
+  //getters for NextofKin
+  nokName: state => {
+    return state.nokName;
+  },
+  nokAddress: state => {
+    return state.nokAddress;
+  },
+  nokRelationship: state => {
+    return state.nokRelationship;
+  },
+  nokPhone: state => {
+    return state.nokPhone;
+  },
+  nokState: state => {
+    return state.nokState;
   }
 };
 

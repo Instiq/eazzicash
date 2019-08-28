@@ -5,12 +5,29 @@
                  <form  @submit.prevent="validateBeforeSubmit"> 
                      <div class="form-row first">
                           <div class="col-md-5 mb-3">
-                            <span class="m">Item Category</span>
-                            <select class="browser-default custom-select" v-model="itemCategoryr" v-validate="'required'" name="Item Category" >
-                            <option value="New">New</option>
-                            <option value="Used">Used</option>
-                            <option value="Refurbished">Refurbished</option>
-                            <option value="Inheritance">Inheritance</option>
+                            <span class="m">Item Category  <span class="text-danger">*</span></span>
+                            <select class="browser-default custom-select" v-model="itemCategory" v-validate="'required'" name="Item Category" >
+                            <option value="Mobile Phones">Mobile Phones</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                            <option value="Jewelries">Jewelries (pure Gold & Silver)</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                            <option value="Camera">Digital Camera</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                            <option value="Cars">Cars</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                              <option value="Laptops">Laptops</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                              <option value="TV">TV</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                              <option value="Generators">Moveable Generators</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                              <option value="Smart Watches">Smart Watches</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                              <option value="Game Console">Game Console (Xbox/PS4)</option>
+                            <option disabled="disabled">-------------------------------------------------------- </option>
+                             <option value="Wrist Watch">Wrist Watch</option>
+                             <option disabled="disabled">-------------------------------------------------------- </option>
+                            
                             </select>
                              <div class="mt-3" >
                                 <i v-show="errors.has('Item Category')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -22,13 +39,11 @@
                             <div class="col-md-2"></div>
 
                             <div class="col-md-5">
-                                <span class="m">Model</span>
-                                <select class="browser-default custom-select" v-model="itemModel" v-validate="'required'" name="Item Model">
-                                <option value="1">pending</option>
-                                </select>
+                                <span class="m">Item Description  <span class="text-danger">*</span> </span>
+                                <input type="text"  name="Item Description" v-model="itemDescription" v-validate="'required'" style="font-size:13px;" placeholder="e.g Samsung Galaxy S9" class="form-control">
                                 <div class="mt-3" >
-                                    <i v-show="errors.has('Item Model')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('Item Model')">{{ errors.first('Item Model') }}</span>
+                                    <i v-show="errors.has('Item Description')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('Item Description')">{{ errors.first('Item Description') }}</span>
                              </div>
                             </div>
                      </div>
@@ -36,10 +51,21 @@
 
                      <div class="form-row second">
                           <div class="col-md-5 mb-3">
-                            <span class="m">Year of Release</span>
-                            <select class="browser-default custom-select" v-model="itemRelease" v-validate="'required'" name="Year of Release" >
-                                <option value="1">pending</option>
-                            </select>
+                            <span class="m">Year of Release  <span class="text-danger">*</span></span>
+                            <select class="browser-default custom-select" v-model="releaseYear" v-validate="'required'" name="Year of Release" >
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option> 
+                                <option value="2012">2012</option> 
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>  
+                                <option value="2009">2009</option>    
+
+                        </select>
                             <div class="mt-3" >
                                  <i v-show="errors.has('Year of Release')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('Year of Release')">{{ errors.first('Year of Release') }}</span>
@@ -50,7 +76,7 @@
                             <div class="col-md-2"></div>
 
                             <div class="col-md-5">
-                                <span class="m">Condition of Item</span>
+                                <span class="m">Condition of Item  <span class="text-danger">*</span></span>
                                 <select class="browser-default custom-select" v-model="itemCondition" v-validate="'required'" name="Condition of Item">
                                 <option value="New">New</option>
                                 <option value="Used">Used</option>
@@ -68,13 +94,11 @@
                      
                      <div class="form-row second">
                           <div class="col-md-5 mb-3">
-                            <span class="m">Loan Amount</span>
-                            <select class="browser-default custom-select" v-model="loanAmount" v-validate="'required'" name="Loan Amount" >
-                                <option value="1">pending</option>
-                            </select>
+                            <span class="m">Pawn Amount <span class="text-danger">*</span> </span>
+                            <input type="text"  v-model="pawnAmount" name='Pawn Amount' class="form-control">
                             <div class="mt-3" >
-                                <i v-show="errors.has('Loan Amount')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('Loan Amount')">{{ errors.first('Loan Amount') }}</span>
+                                <i v-show="errors.has('Pawn Amount')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('Pawn Amount')">{{ errors.first('Pawn Amount') }}</span>
                             </div>
                           </div>
                           
@@ -83,13 +107,7 @@
 
                             <div class="col-md-5">
                                 <span class="m">Tenor</span>
-                                <select class="browser-default custom-select" v-model="loanTenor" v-validate="'required'" name="Loan Tenor" >
-                                 <option value="1">pending</option>
-                                </select>
-                                <div class="mt-3" >
-                                    <i v-show="errors.has('Loan Tenor')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Loan Tenor')">{{ errors.first('Loan Tenor') }}</span>
-                                </div>
+                                <input type="text"  v-model="pawnTenor" name='Tenor' disabled class="form-control">
                             </div>
                      </div>
 
@@ -97,7 +115,7 @@
                      <div class="">
                         <div class="form-row">
                         <div class="col-md-5">
-                        <div class="mb-3">Receipt of Item</div>
+                        <div class="mb-3">Receipt of Item <span class="text-danger">*</span></div>
                         <div class="mb-3" style="height:25vh; border:2px solid gray"> </div>
                         <div class="custom-file mb-3">
                             <input type="file" class="custom-file-input"  name="Payment Evidence" v-validate="'required'" id="validatedCustomFile" >
@@ -169,7 +187,49 @@ export default {
   },
 
   computed : {
-       
+        itemCategory : {
+          get () {
+                return this.$store.getters.itemCategory
+            },
+          set (value) {
+                this.$store.dispatch('updateItemCategory', value )
+            }
+       },
+       pawnAmount : {
+            get () {
+                return this.$store.getters.pawnAmount
+            },
+            set (value) {
+                this.$store.dispatch('updatePawnAmount', value )
+            }
+       },
+       pawnTenor () {
+           return this.$store.getters.pawnTenor
+       },
+       itemDescription : {
+            get () {
+                return this.$store.getters.itemDescription
+            },
+            set (value) {
+                this.$store.dispatch('updateItemDescription', value )
+            }
+       },
+       releaseYear : {
+            get () {
+                return this.$store.getters.releaseYear
+            },
+            set (value) {
+                this.$store.dispatch('updateReleaseYear', value )
+            }
+       },
+       itemCondition : {
+            get () {
+                return this.$store.getters.itemCondition
+            },
+            set (value) {
+                this.$store.dispatch('updateItemCondition', value )
+            }
+       },
     },
     mounted () {
         this.$store.dispatch('updateIsActive1P')

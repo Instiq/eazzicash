@@ -5,15 +5,15 @@
                <mdb-jumbotron class="jumbotron-fluid" style="height:auto; width:auto">
                    <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Investment Application Form</span></div>
                    <router-link to="/profile/investment/precheck">
-                       <div class="back-arrow-div small-screen-nav">
+                       <div class="back-arrow-div ml-lg-4 ml-xl-5 ml-md-4 small-screen-nav">
                          <i class="fas fa-arrow-left text-white"></i>   
                        </div>
                    </router-link>
                    <div class="loan-navigation container row small-screen-nav">
-                       <router-link class="col-md-3 text-dark " to='/profile/investment/investdetails/investinfo'><div class="nav-items small-screen-nav" @click="isActiveOne" :class="{ active: isActive1I }" >Investment Details</div></router-link>
-                       <router-link class="col-md-3 text-dark" to="/profile/investment/investdetails/settlement"><div class=" nav-items small-screen-nav" @click="isActiveTwo" :class="{ active: isActive2I }" style="padding-left:2px" >Settlement Account</div></router-link>
-                       <router-link class="col-md-3 text-dark"  to="/profile/investment/investdetails/nextofkin" ><div class="nav-items ml-0 small-screen-nav" @click="isActiveThree" :class="{ active: isActive3I }" >Next of Kin Details</div></router-link>
-                       <router-link class="link col-md-3 text-dark" to="/profile/investment/investdetails/signature"> <div class="nav-items small-screen-nav" @click="isActiveFour" :class="{ active: isActive4I }" >Signature</div></router-link>        
+                       <router-link class="col-md-3 ml-lg-n2  text-dark loan-nav p-0 " to='/profile/investment/investdetails/investinfo'><div class="nav-items text-center small-screen-nav" style="border:2px solid blu; width:140px;" @click="isActiveOne" :class="{ active: isActive1I }" >Investment Details</div></router-link>
+                       <router-link class="col-md-3 text-dark loan-nav " to="/profile/investment/investdetails/settlement"><div class=" nav-items text-center ml-xl-3  small-screen-nav" style="border:2px solid blu; width:150px;" @click="isActiveTwo" :class="{ active: isActive2I }"  >Settlement Account</div></router-link>
+                       <router-link class="col-md-3 text-dark loan-nav"  to="/profile/investment/investdetails/nextofkin" ><div class="nav-items text-center nok small-screen-nav" style="border:2px solid blu; width:136px;" @click="isActiveThree" :class="{ active: isActive3I }" >Next of Kin Details</div></router-link>
+                       <router-link class="ml- col-md-3 text-dark loan-nav" to="/profile/investment/investdetails/signature"> <div class="nav-items text-center ml-lg-5 signature small-screen-nav" style="border:2px solid blu; width:77px;" @click="isActiveFour" :class="{ active: isActive4I }" >Signature</div></router-link>        
                    </div>
 
                    <div class="containe">
@@ -125,7 +125,7 @@ export default {
      border-radius:60px;
      text-align: center;
      padding:-7vh;
-     top:13.5vh
+     top:13vh
      
  }
 
@@ -150,7 +150,48 @@ export default {
      width: auto
  }
 
-  @media (max-width:767px){
+  .loan-nav {
+     border : 2px solid blac;
+     position: relative;
+     top:-1px;
+    
+ } 
+
+
+
+@media (min-width:990px){
+   
+     .loan-navigation {
+     margin:0px 9vw;
+     width:51vw
+ }
+
+ .nok {
+     margin-left:30px
+ }
+ }
+
+ @media (min-width:1200px){
+   
+     .loan-navigation {
+     margin:0px 9vw;
+     width:51vw
+ }
+
+ .nok {
+     margin-left:50px
+ }
+
+ .signature {
+     margin-left: 80px !important
+ }
+ }
+
+ 
+
+
+
+  @media (max-width:991px){
    .small-screen-nav{
       display: none
     }

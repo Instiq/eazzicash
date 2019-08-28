@@ -5,15 +5,15 @@
                <mdb-jumbotron class="jumbotron-fluid" style="height:auto; width:auto">
                    <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Loan Application Form</span></div>
                    <router-link to="/profile/loan/apply">
-                       <div class="back-arrow-div small-screen-nav">
+                       <div class="back-arrow-div  ml-lg-4 ml-xl-5 small-screen-nav">
                          <i class="fas fa-arrow-left text-white"></i>   
                        </div>
                    </router-link>
                    <div class="loan-navigation container row small-screen-nav">
-                       <router-link class="col-md-3 text-dark " to='/profile/loan/loandetails/loaninformation'><div class="nav-items small-screen-nav" @click="isActiveOne" :class="{ active: isActive1 }" >Loan Details</div></router-link>
-                       <router-link class="col-md-3 text-dark" to="/profile/loan/loandetails/workinfo"><div class=" nav-items small-screen-nav" @click="isActiveTwo" :class="{ active: isActive2 }" style="padding-left:2px" >Work Information</div></router-link>
-                       <router-link class="col-md-3 text-dark"  to="/profile/loan/loandetails/guarantor" ><div class="nav-items small-screen-nav ml-0 " @click="isActiveThree" :class="{ active: isActive3 }" >Guarantor Details</div></router-link>
-                       <router-link class="link col-md-3 text-dark" to="/profile/loan/loandetails/signature"> <div class="nav-items small-screen-nav " @click="isActiveFour" :class="{ active: isActive4 }" >Signature</div></router-link>        
+                       <router-link class="col-md-3 ml-n2 text-dark p-0 loan-nav " to='/profile/loan/loandetails/loaninformation'><div class="nav-items text-center small-screen-nav"  style=" width:100px;" @click="isActiveOne" :class="{ active: isActive1 }" >Loan Details</div></router-link>
+                       <router-link class="col-md-3 text-dark p-0 loan-nav" to="/profile/loan/loandetails/workinfo"><div class=" nav-items  small-screen-nav ml-n1 ml-xl-1 text-center" style=" width:140px;" @click="isActiveTwo" :class="{ active: isActive2 }">Work Information</div></router-link>
+                       <router-link class="col-md-3 text-dark  loan-nav"  to="/profile/loan/loandetails/guarantor" ><div class="nav-items text-center nok text-center small-screen-nav " style=" width:135px;" @click="isActiveThree" :class="{ active: isActive3 }" >Guarantor Details</div></router-link>
+                       <router-link class="col-md-3 text-dark  loan-nav" to="/profile/loan/loandetails/signature"> <div class="nav-items  text-center signature small-screen-nav "  style=" width:80px;" @click="isActiveFour" :class="{ active: isActive4 }" >Signature</div></router-link>        
                    </div>
 
                    <div class="containe">
@@ -131,7 +131,7 @@ export default {
      border-radius:60px;
      text-align: center;
      padding:-7vh;
-     top:13.5vh
+     top:13vh
      
  }
 
@@ -156,7 +156,55 @@ export default {
      width: auto
  }
 
- @media (max-width:767px){
+.loan-nav {
+     border : 2px solid blac;
+     position: relative; 
+ } 
+
+ 
+@media (min-width:992px){
+   
+    .loan-navigation {
+     margin:0px 9vw;
+     width:51vw
+ }
+
+ .nok {
+     margin-left:10px
+ }
+
+ .signature {
+     margin-left: 40px
+ }
+ 
+  .loan-nav {
+     top:1.5px;
+  }
+ }
+
+ @media (min-width:1200px){
+   
+     .loan-navigation {
+     margin:0px 9vw;
+     width:51vw
+ }
+
+ .nok {
+     margin-left:30px
+ }
+
+ .signature {
+     margin-left: 70px
+ }
+
+  .loan-nav {
+     top:0;
+    
+ } 
+ }
+
+
+ @media (max-width:991px){
    .small-screen-nav{
       display: none
     }

@@ -5,7 +5,7 @@
                  <form  @submit.prevent="validateBeforeSubmit"> 
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Account Number</label>
+                                <label for="validationCustomUsername">Account Number <span class="text-danger">*</span></label>
                                     <input type="text" v-model="accountNumber" class="form-control"  placeholder="" v-validate="'required|min:10|max:10|numeric'"  name="Account Number"  >
                                     <div class="mt-3" >
                                     <i v-show="errors.has('Account Number')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -16,7 +16,7 @@
 
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Account Name</label>
+                                <label for="validationCustomUsername">Account Name <span class="text-danger">*</span></label>
                                     <input type="text" v-model="accountName" class="form-control"  placeholder="" v-validate="'required'"  name="Account Name"  >
                                     <div class="mt-3" >
                                     <i v-show="errors.has('Account Name')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -27,7 +27,7 @@
 
                      <div class="form-row">
                          <div class="col-md-5">
-                                <span class="m">Bank Name</span>
+                                <span class="m">Bank Name <span class="text-danger">*</span></span>
                                 <select class="browser-default custom-select" name="Bank Name" v-validate="'required'" v-model="bankName">
                                 <option value="Access">Access Bank</option>
                                 <option value="Zenith">Zenith Bank</option>
@@ -92,7 +92,30 @@ export default {
   },
 
   computed : {
-      
+         accountNumber : {
+          get () {
+                return this.$store.getters.accountNumber
+            },
+          set (value) {
+                this.$store.dispatch('updateAccountNumber', value )
+            }
+       },
+       accountName : {
+          get () {
+                return this.$store.getters.accountName
+            },
+          set (value) {
+                this.$store.dispatch('updateAccountName', value )
+            }
+       },
+       bankName : {
+          get () {
+                return this.$store.getters.bankName
+            },
+          set (value) {
+                this.$store.dispatch('updateBankName', value )
+            }
+       },
     },
     mounted () {
         this.$store.dispatch('updateIsActive2I')

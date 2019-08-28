@@ -5,7 +5,7 @@
                  <form  @submit.prevent="validateBeforeSubmit"> 
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Loan Amount (min:100k max:3m)</label>
+                                <label for="validationCustomUsername">Loan Amount (min:100k max:3m) <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
@@ -21,7 +21,7 @@
                             <div class="col-md-2"></div>
 
                             <div class="col-md-5 mb-3">
-                                <label for="validationCustom02">Loan Tenor</label>
+                                <label for="validationCustom02">Loan Tenor <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" style="cursor:pointer" v-on:click="minus" id="inputGroupPrepend">-</span>
@@ -37,9 +37,9 @@
 
                      <div class="form-row second">
                         <div class="col-md-5 mt-4"> 
-                               Any Indebtedness?
+                               Any Indebtedness? 
                             <div class="custom-control custom-radio ml-2 d-inline"> 
-                                <input type="radio" v-model="isPicked" value="yes" class="custom-control-input form-check-input" id="invalidCheck" name="radio-stack" v-validate="'required|included:yes,no'" >
+                                <input type="radio" v-model="isPicked" value="yes" class="custom-control-input form-check-input" id="invalidCheck" name="radio-stack" v-validate="'included:yes,no'" >
                                  <label class="custom-control-label" for="invalidCheck">Yes</label> 
                             </div>
 
@@ -55,26 +55,12 @@
                         </div>
 
                          <div class="col-md-2"></div>
-
-                        <div class="col-md-5 mb-3">
-                            <span class="m">Repayment mode</span>
-                            <select class="browser-default custom-select" v-validate="'required|included:1,2,3'" name="mode" v-model="selected">
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            </select>
-
-                            <div class="mt-3" >
-                                <i v-show="errors.has('mode')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('mode')">{{ errors.first('mode') }}</span>
-                            </div>
-                        </div>         
                      </div>
 
                     <div class="form-row third">
                          <div class="col-md-5 mb-3">
-                            <label for="exampleFormControlTextarea1">List Indebtednes</label>
-                            <textarea style="background:whitesmoke" v-model="loanIndebtedness" v-validate="'required'"  name="Loan Indebtedness" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                            <label for="exampleFormControlTextarea1">List Indebtednes </label>
+                            <textarea style="background:whitesmoke" v-model="loanIndebtedness" v-validate="''"  name="Loan Indebtedness" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
                          <div class="mt-3" >
                             <i v-show="errors.has('Loan Indebtedness')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                             <span class="text-warning" v-show="errors.has('Loan Indebtedness')">{{ errors.first('Loan Indebtedness') }}</span>
@@ -85,11 +71,12 @@
                          <div class="col-md-2"></div>
 
                         <div class="col-md-5">
+                             <div class="" style="height:25vh; border:2px solid gray"> </div>
 
                             <div class="input-group mr-2 mt-5">
                                 <div class="custom-file">
                                 <input type="file" class="custom-file-input" v-validate="'required'"  name="id" id="inputGroupFile02">
-                                <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Upload valid Id</label>
+                                <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Upload valid Id <span class="text-danger">*</span></label>
                                 </div>
                             </div>
 
@@ -101,8 +88,8 @@
                     </div>
 
                     <div class="form-row fourth">
-                        <div class="col-md-5">
-                            <label for="exampleFormControlTextarea1">Loan Purpose</label>
+                        <div class="col-md-5" style="margin-top:-100px">
+                            <label for="exampleFormControlTextarea1">Loan Purpose <span class="text-danger">*</span></label>
                             <textarea style="background:whitesmoke" v-model="loanPurpose" v-validate="'required'"  name="Loanpurpose" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                             <div class="mt-3" >
                                     <i v-show="errors.has('Loanpurpose')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 

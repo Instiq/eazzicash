@@ -5,7 +5,7 @@
                  <form  @submit.prevent="validateBeforeSubmit"> 
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Next of kin Name</label>
+                                <label for="validationCustomUsername">Next of kin Name <span class="text-danger">*</span></label>
                                     <input type="text" v-model="nokName" class="form-control"  placeholder="" v-validate="'required|max:50'"  name="Next of kin Name"  >
                                     <div class="mt-3" >
                                     <i v-show="errors.has('Next of kin Name')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -16,7 +16,7 @@
                              <div class="col-md-2"></div>
 
                               <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Relationship with Next of kin</label>
+                                <label for="validationCustomUsername">Relationship with Next of kin <span class="text-danger">*</span></label>
                                     <input type="text" v-model="nokRelationship" class="form-control"  placeholder="" v-validate="'required'"  name="Relationship with Next of kin"  >
                                     <div class="mt-3" >
                                     <i v-show="errors.has('Relationship with Next of kin')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -27,7 +27,7 @@
 
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Next of kin Address</label>
+                                <label for="validationCustomUsername">Next of kin Address <span class="text-danger">*</span></label>
                                     <input type="text" v-model="nokAddress" class="form-control"  placeholder="" v-validate="'required'"  name="Next of kin Address"  >
                                     <div class="mt-3" >
                                     <i v-show="errors.has('Next of kin Address')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -38,7 +38,7 @@
                              <div class="col-md-2"></div>
 
                               <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">State</label>
+                                <label for="validationCustomUsername">State <span class="text-danger">*</span></label>
                                     <input type="text" v-model="nokState" class="form-control"  placeholder="" v-validate="'required'"  name="State"  >
                                     <div class="mt-3" >
                                     <i v-show="errors.has('State')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -49,8 +49,8 @@
 
                      <div class="form-row">
                           <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Phone Number</label>
-                                    <input type="text" v-model="nokPhonenum" class="form-control"  placeholder="" v-validate="'required|min:11|max:11|numeric'"  name="Phone Number"  >
+                                <label for="validationCustomUsername">Phone Number <span class="text-danger">*</span></label>
+                                    <input type="text" v-model="nokPhone" class="form-control"  placeholder="" v-validate="'required|min:11|max:11|numeric'"  name="Phone Number"  >
                                     <div class="mt-3" >
                                     <i v-show="errors.has('Phone Number')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('Phone Number')">{{ errors.first('Phone Number') }}</span>
@@ -110,7 +110,46 @@ export default {
   },
 
   computed : {
-      
+      nokName : {
+          get () {
+                return this.$store.getters.nokName
+            },
+          set (value) {
+                this.$store.dispatch('updateNokName', value )
+            }
+       },
+        nokAddress : {
+          get () {
+                return this.$store.getters.nokAddress
+            },
+          set (value) {
+                this.$store.dispatch('updateNokAddress', value )
+            }
+       },
+        nokRelationship : {
+          get () {
+                return this.$store.getters.nokRelationship
+            },
+          set (value) {
+                this.$store.dispatch('updateNokRelationship', value )
+            }
+       },
+        nokPhone : {
+          get () {
+                return this.$store.getters.nokPhone
+            },
+          set (value) {
+                this.$store.dispatch('updateNokPhone', value )
+            }
+       },
+        nokState : {
+          get () {
+                return this.$store.getters.nokState
+            },
+          set (value) {
+                this.$store.dispatch('updateNokState', value )
+            }
+       },
     },
     mounted () {
         this.$store.dispatch('updateIsActive3I')

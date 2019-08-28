@@ -6,7 +6,7 @@
                     <span class="mb-3" style="color:blue; font-weight:400">Guarantor 1</span>
                     <div class="form-row one mt-3">
                         <div class="col-md-5 mb-3">
-                                <span class="m">Title</span>
+                                <span class="m">Title <span class="text-danger">*</span></span>
                                 <select class="browser-default custom-select" v-model="title" name="title" v-validate="'required|included:Mr,Mrs,Miss'">
                                 <option selected value="Mr">Mr</option>
                                 <option value="Miss">Miss</option>
@@ -21,7 +21,7 @@
                             <div class="col-md-2"></div>
 
                             <div class="col-md-5 mb-3">
-                                <span class="m">Phone Number</span>
+                                <span class="m">Phone Number <span class="text-danger">*</span></span>
                                 <input type="text"  v-model="phone" name="phone" class="form-control" v-validate="'required|min:11|max:11|numeric'" placeholder="">
                                 <div class="mt-3" >
                                     <i v-show="errors.has('phone')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -32,7 +32,7 @@
 
                     <div class="form-row two">
                             <div class="col-md-5 mb-3">
-                                <span class="m">First Name</span>
+                                <span class="m">First Name <span class="text-danger">*</span></span>
                                 <input type="text"  v-model="firstname" class="form-control" v-validate="'required|alpha|max:50'" name="firstname"  placeholder="" require>
                                 <div class="mt-3" >
                                     <i v-show="errors.has('firstname')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -43,7 +43,7 @@
                             <div class="col-md-2"></div>
 
                             <div class="col-md-5 mb-3">
-                                <span class="m">Email Address</span>
+                                <span class="m">Email Address <span class="text-danger">*</span></span>
                                <div class="input-group">
                                     <input type="text"  v-model="email" class="form-control"  placeholder=""   name='email' v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('email') }">
                                      <div class="input-group-append">
@@ -60,7 +60,7 @@
                     <div class="form-row three">
                         
                             <div class="col-md-5 mb-3">
-                                <span class="m">Last Name</span>
+                                <span class="m">Last Name <span class="text-danger">*</span></span>
                                 <input type="text"  v-model="lastname" class="form-control" name="lastname" v-validate="'required|alpha|max:50'" placeholder="">
                                  <div class="mt-3" >
                                     <i v-show="errors.has('lastname')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -71,7 +71,7 @@
                             <div class="col-md-2"></div>
 
                             <div class="col-md-5 mb-3">
-                                <span class="m">Home Address</span>
+                                <span class="m">Home Address <span class="text-danger">*</span></span>
                                 <input type="text"  v-model="address" name="address" v-validate="'required|max:50'" class="form-control"  placeholder="">
                                 <div class="mt-3" >
                                     <i v-show="errors.has('address')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -88,7 +88,7 @@
                     <div class="form-row one mt-3">
                         <div class="col-md-5 mb-3">
                                 <span class="m">Title</span>
-                                <select class="browser-default custom-select" v-model="title1" name="title1" v-validate="'required|included:Mr,Mrs,Miss'">
+                                <select class="browser-default custom-select" v-model="title1" name="title1" v-validate="'included:Mr,Mrs,Miss'">
                                 <option value="Mr">Mr</option>
                                 <option value="Miss">Miss</option>
                                 <option value="Mrs">Mrs</option>
@@ -103,7 +103,7 @@
 
                             <div class="col-md-5 mb-3">
                                 <span class="m">Phone Number</span>
-                                <input type="text"  v-model="phone1" name="phone1" class="form-control" v-validate="'required|min:11|max:11|numeric'"   placeholder="" >
+                                <input type="text"  v-model="phone1" name="phone1" class="form-control" v-validate="'min:11|max:11|numeric'"   placeholder="" >
                                  <div class="mt-3" >
                                     <i v-show="errors.has('phone1')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('phone1')">{{ errors.first('phone1') }}</span>
@@ -114,7 +114,7 @@
                     <div class="form-row two">
                             <div class="col-md-5 mb-3">
                                 <span class="m">First Name</span>
-                                <input type="text"  v-model="firstname1" class="form-control" v-validate="'required|alpha|max:50'" name="firstname1" placeholder="" require> 
+                                <input type="text"  v-model="firstname1" class="form-control" v-validate="'alpha|max:50'" name="firstname1" placeholder="" require> 
                                 <div class="mt-3" >
                                     <i v-show="errors.has('firstname1')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('firstname1')">{{ errors.first('firstname1') }}</span>
@@ -126,7 +126,7 @@
                             <div class="col-md-5 mb-3">
                                 <span class="m">Email Address</span>
                                  <div class="input-group">
-                                    <input type="text"  v-model="email1" class="form-control"  placeholder=""   name='email1' v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('email') }">
+                                    <input type="text"  v-model="email1" class="form-control"  placeholder=""   name='email1' v-validate="'email'" :class="{'input': true, 'is-danger': errors.has('email') }">
                                      <div class="input-group-append">
                                        <span class="input-group-text" id="inputGroupAppend">@example.com</span>
                                     </div>
@@ -142,7 +142,7 @@
                         
                             <div class="col-md-5 mb-3">
                                 <span class="m">Last Name</span>
-                                <input type="text"   v-model="lastname1" class="form-control" name="lastname1" v-validate="'required|alpha|max:50'" placeholder="" require>
+                                <input type="text"   v-model="lastname1" class="form-control" name="lastname1" v-validate="'alpha|max:50'" placeholder="" require>
                                   <div class="mt-3" >
                                     <i v-show="errors.has('lastname1')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('lastname1')">{{ errors.first('lastname1') }}</span>
@@ -153,7 +153,7 @@
 
                             <div class="col-md-5 mb-3">
                                 <span class="m">Home Address</span>
-                                <input type="text" v-model="address2" name="address1" class="form-control" v-validate="'required|max:50'" placeholder="">
+                                <input type="text" v-model="address2" name="address1" class="form-control" v-validate="'max:50'" placeholder="">
                                   <div class="mt-3" >
                                     <i v-show="errors.has('address1')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('address1')">{{ errors.first('address1') }}</span>

@@ -5,7 +5,7 @@
               <form  @submit.prevent="validateBeforeSubmit"> 
                   <div class="form-row">
                        <div class="col-md-5 mb-3">
-                            <span class="m">Employment Type</span>
+                            <span class="m">Employment Type <span class="text-danger">*</span></span>
                             <select class="browser-default custom-select" v-model="employmentType" v-validate="'required|included:Self-Employed,Private-Sector,Public-Sector'" name="Employment-Type">
                             <option value="Self-Employed">Self Employed</option>
                             <option value="Private-Sector">Private Sector</option>
@@ -20,7 +20,7 @@
 
                   <div class="form-row">
                         <div class="col-md-5 mb-3">
-                            <label for="validationCompanyName">Company Name</label>
+                            <label for="validationCompanyName">Company Name <span class="text-danger">*</span></label>
                             <input type="text"  v-model="companyName" class="form-control" v-validate="'required'" name="Company-name" id="validationCompanyName" placeholder=""  >
                             <div class="mt-3" >
                                 <i v-show="errors.has('Company-name')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
