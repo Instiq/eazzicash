@@ -203,11 +203,7 @@ export default {
       validateBeforeSubmit() {
         this.$validator.validateAll().then((result) => {
             if (result) {
-            alert('sucess')
             this.$router.push('/profile/loan/loandetails/signature')
-            }
-            else {
-                alert('Please Correct the errors!');
             }
         })
       }

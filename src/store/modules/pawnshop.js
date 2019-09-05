@@ -5,8 +5,8 @@ const state = {
   isActive3P: null,
   //state for pawnprecheck
   itemCategory: null,
-  pawnAmount: 10000,
-  pawnMra: 0,
+  pawnAmount: 0.00,
+  pawnMra: 0.00,
   //state for pawninfo
   itemCondition: "",
   pawnTenor: 30,

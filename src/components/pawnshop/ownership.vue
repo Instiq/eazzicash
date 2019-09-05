@@ -6,7 +6,7 @@
                      <div class="form-row first">
                           <div class="col-md-5 mb-3">
                             <span class="m">Date of Purchase <span class="text-danger">*</span></span>
-                             <input type="date" v-model="itemDate" class="form-control">
+                             <input type="date" v-validate="'required'" v-model="itemDate" class="form-control">
                              <div class="mt-3" >
                                 <i v-show="errors.has('Date of Purchase')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('Date of Purchase')">{{ errors.first('Date of Purchase') }}</span>

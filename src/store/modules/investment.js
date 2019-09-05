@@ -6,8 +6,8 @@ const state = {
   isActive4I: null,
   //state for investinfo
   investTenor: 1,
-  investPrincipal: 10000,
-  investMra: 0,
+  investPrincipal: 0.00,
+  investMra: 0.00,
   incomeSource: "",
   otherInfo: "",
   //state for settlement

@@ -58,6 +58,10 @@ export default new Router({
       component: profile,
       children: [
         {
+          path: "/",
+          redirect: "/profile/dashboard"
+        },
+        {
           path: "/profile/dashboard",
           component: dashboard
         },

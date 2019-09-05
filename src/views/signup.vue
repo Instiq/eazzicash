@@ -8,50 +8,88 @@
                 </mdb-navbar>
             </section>
          
+         
+
             <mdb-jumbotron  style=" box-shadow:0px 0px; height:100%; background:whitesmoke">
                 <section class="sec2 container">
+                  <form  @submit.prevent="validateBeforeSubmit">   
+
+                      <mdb-alert color="danger" v-if="isEmailRegistered"  leaveAnimation="fadeOut"  @closeAlert="retfalse" dismiss> <i  class="fa fa-exclamation-triangle text-danger ml-2 mr-2"></i> Oopss...User already registered </mdb-alert>
+                   
                     <mdb-row>
-                        <mdb-col class="col-md-6 col-12 ">   
-                            <mdb-input type="text" size="lg"  label="First name" style="background:white" outline />      
+                        <mdb-col class="col-sm-6 col-12 ">   
+                            <mdb-input type="text" size="lg" v-model='userFirstname' v-validate="'required'" name='firstname' label="First name" style="background:white" outline />      
+                             <div class="mt-3" >
+                                <i v-show="errors.has('firstname')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('firstname')">{{ errors.first('firstname') }}</span>
+                             </div>
                         </mdb-col>
 
-                        <mdb-col class="col-md-6 col-12">
-                            <mdb-input type="text" size="lg" label="Last name"  style="background:white" outline />
+                        <mdb-col class="col-sm-6 col-12">
+                            <mdb-input type="text" size="lg" v-model="userLastname" v-validate="'required'" label="Last name" name='lastname' style="background:white" outline />
+                             <div class="mt-3" >
+                                <i v-show="errors.has('lastname')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('lastname')">{{ errors.first('lastname') }}</span>
+                             </div>
                         </mdb-col>
                     </mdb-row>
 
 
                     <mdb-row>
-                        <mdb-col class="col-md-6 col-12">
-                            <mdb-input type="text" size="lg"  label="User name"  style="background:white" outline /> 
+                        <mdb-col class="col-sm-6 col-12">
+                            <mdb-input type="text" size="lg" name='username' v-validate="'required'" v-model="userName" label="User name"  style="background:white" outline /> 
+                            <div class="mt-3" >
+                                <i v-show="errors.has('username')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('username')">{{ errors.first('username') }}</span>
+                             </div>
                         </mdb-col>
-                        <mdb-col class="col-md-6 col-12" >
-                            <mdb-input type="number" size="lg"  label="phone number"  style="background:white" outline /> 
+                        <mdb-col class="col-sm-6 col-12" >
+                            <mdb-input type="number" size="lg"  label="phone number" v-model="userPhone" name='phone' v-validate="'required'"  style="background:white" outline /> 
+                            <div class="mt-3" >
+                                <i v-show="errors.has('phone')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
+                             </div>
                         </mdb-col>
-                        <mdb-col class="col-md-6 col-12">
-                            <mdb-input type="password" size="lg"  label="Password"  style="background:white" outline /> 
+                        <mdb-col class="col-sm-6 col-12">
+                            <mdb-input type="password" size="lg" v-model="userPassword" name='password' v-validate="'required'" label="Password"  style="background:white" outline /> 
+                             <div class="mt-3" >
+                                <i v-show="errors.has('password')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('password')">{{ errors.first('password') }}</span>
+                             </div>
                         </mdb-col>
-                        <mdb-col class="col-md-6 col-12" >
-                            <mdb-input type="password" size="lg"  label="Confirm Password"  style="background:white" outline /> 
+                        <!-- <mdb-col class="col-sm-6 col-12" >
+                           <mdb-input type="password" size="lg"  v-validate="'required'" label="Confirm Password"  style="background:white" outline /> 
+                             <div class="mt-3" >
+                                <i v-show="errors.has('phone')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
+                             </div>
+                        </mdb-col> -->
+                        <mdb-col class="col-sm-6 col-12">
+                           
+                             <mdb-input  size="lg" v-model="userEmail" name='email' v-validate="'required|email'" label="Email address"  style="background:white" outline /> 
+                             <div class="mt-3" >
+                                <i v-show="errors.has('email')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('email')">{{ errors.first('email') }}</span>
+                             </div>
                         </mdb-col>
-                        <mdb-col class="col-md-6 col-12">
-                            <mdb-input type="email" size="lg"  label="Email address"  style="background:white" outline /> 
-                        </mdb-col>
-                        <mdb-col class="col-md-6 col-12">
-                            <mdb-input type="text" size="lg"  label="Home address"  style="background:white" outline /> 
+                        <mdb-col class="col-sm-6 col-12">
+                            <mdb-input type="text" size="lg" v-validate="'required'" v-model="userAddress" label="Home address" name='address'  style="background:white" outline /> 
+                             <div class="mt-3" >
+                                <i v-show="errors.has('address')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('address')">{{ errors.first('address') }}</span>
+                             </div>
                         </mdb-col>
                     </mdb-row>
 
 
                     <mdb-row>
-                        <mdb-col class="col-md-6 col-12">
-                        <select  class="browser-default custom-select">
-                                <!-- <option value="default">Choose country</option> -->
-                                <option value="Afghanistan">Afghanistan</option>
-                                <option value="Åland Islands">Åland Islands</option>
+                        <mdb-col class="col-sm-6 col-12">
+                        <select  v-validate="'required'" name="country" v-model="userCountry" class="custom-select">
+                                 <option value="nigeria" >Nigeria</option>
+                                <option value="Åland Islands" >Åland Islands</option>
                                 <option value="Albania">Albania</option>
                                 <option value="Algeria">Algeria</option>
-                                <option value="American Samoa">American Samoa</option>
+                                <option selected value="American Samoa">American Samoa</option>
                                 <option value="Andorra">Andorra</option>
                                 <option value="Angola">Angola</option>
                                 <option value="Anguilla">Anguilla</option>
@@ -292,11 +330,15 @@
                                 <option value="Zambia">Zambia</option>
                                 <option value="Zimbabwe">Zimbabwe</option>
                         </select>
+                        <div class="mt-3" >
+                                <i v-show="errors.has('country')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('country')">{{ errors.first('country') }}</span>
+                             </div>
                         </mdb-col>
 
-                        <mdb-col class="col-md-6 col-12 small-screen-select" >
-                            <select name="state" id="state" class="browser-default custom-select">
-                                <option value="" selected="selected" >Choose state</option>
+                        <mdb-col class="col-sm-6 col-12 small-screen-select" >
+                            <select name="state"  v-validate="'required'" v-model="userState"  id="state" class="browser-default custom-select">
+                                <option value="" selected='selected' >Choose state</option>
                                 <option value='Abia'>Abia</option>
                                 <option value='Adamawa'>Adamawa</option>
                                 <option value='AkwaIbom'>AkwaIbom</option>
@@ -335,6 +377,10 @@
                                 <option value='Yobe'>Yobe</option>
                                 <option value='Zamfara'>Zamafara</option>
                                 </select>
+                                <div class="mt-3" >
+                                <i v-show="errors.has('state')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('state')">{{ errors.first('state') }}</span>
+                             </div>
                         </mdb-col>
 
                         <mdb-col class="col-md-6 col-12">
@@ -342,9 +388,11 @@
                         </mdb-col>
 
                         <mdb-col class="col-md-6 col-12 small-screen-btn">
-                        <button type="submit" style="font-size:20px; font-weight:bold; background:indigo" class="btn btn-indigo btn-block mt-4">Sign Up</button>
+                        <button type='submit' style="font-size:20px; font-weight:bold; background:indigo" class="btn btn-indigo btn-block mt-4">Sign Up</button>
                         </mdb-col>
+                    
                     </mdb-row>
+                   </form> 
                 </section>
         </mdb-jumbotron> 
        
@@ -355,7 +403,7 @@
 
 
 <script>
-import {mdbView, mdbMask, mdbRow, mdbJumbotron,mdbCol, mdbIcon, mdbBtn,  mdbCard, mdbCardBody, mdbCardText, mdbNavbar, mdbNavbarBrand, mdbInput} from 'mdbvue'
+import {mdbView, mdbMask, mdbRow, mdbJumbotron,mdbCol, mdbIcon, mdbBtn,  mdbCard, mdbCardBody, mdbAlert, mdbCardText, mdbNavbar, mdbNavbarBrand, mdbInput} from 'mdbvue'
 export default {
     name:'signup',
     components : {
@@ -371,20 +419,133 @@ export default {
         mdbNavbarBrand,
         mdbInput,
         mdbJumbotron,
-        mdbBtn
+        mdbBtn,
+        mdbAlert
+    },
+
+    data () {
+        return {
+            // userFirstname:'',
+            // userLastname:'',
+            // userEmail:'',
+             userPassword:'',
+             p1:true
+            
+        }
+    },
+
+    computed : {
+         userFirstname : {
+          get () {
+                return this.$store.getters.userFirstname
+            },
+          set (value) {
+                this.$store.dispatch('updateUserFirstname', value )
+            }
+         },
+          userLastname : {
+          get () {
+                return this.$store.getters.userLastname
+            },
+          set (value) {
+                this.$store.dispatch('updateUserLastname', value )
+            }
+         },
+          userName : {
+          get () {
+                return this.$store.getters.userName
+            },
+          set (value) {
+                this.$store.dispatch('updateUserName', value )
+            }
+         },
+          userPhone : {
+          get () {
+                return this.$store.getters.userPhone
+            },
+          set (value) {
+                this.$store.dispatch('updateUserPhone', value )
+            }
+         },
+          userEmail : {
+          get () {
+                return this.$store.getters.userEmail
+            },
+          set (value) {
+                this.$store.dispatch('updateUserEmail', value )
+            }
+         },
+          userAddress : {
+          get () {
+                return this.$store.getters.userAddress
+            },
+          set (value) {
+                this.$store.dispatch('updateUserAddress', value )
+            }
+         },
+          userCountry : {
+          get () {
+                return this.$store.getters.userCountry
+            },
+          set (value) {
+                this.$store.dispatch('updateUserCountry', value )
+            }
+         },
+          userState : {
+          get () {
+                return this.$store.getters.userState
+            },
+          set (value) {
+                this.$store.dispatch('updateUserState', value )
+            }
+         },
+          isEmailRegistered () {
+        return this.$store.state.isEmailRegistered;
+    },
+    },
+     methods: {
+    validateBeforeSubmit() {
+    this.$validator.validateAll().then((result) => {
+        if (result) {
+           this.userSignUp() 
+        }
+    })
+    },
+
+    retfalse () {
+            this.$store.commit('setIsEmailRegistered', false)
+    },
+    
+    userSignUp () {
+        console.log('yess');
+        
+        this.$store.dispatch ('userSignUp', {
+            email:this.userEmail,
+            password:this.userPassword,
+            firstName:this.userFirstname,
+            lastName:this.userLastname,
+            state:this.userState,
+            country:this.userCountry,
+            phoneNumber:this.userPhone,
+            address:this.userAddress
+        })
     }
+  },
+
 }
 </script>
 
 <style scoped>
-@media (max-width:767px){
+@media (max-width:576px){
    .small-screen-select{
-       margin-top: 15px
+       margin-top: 0px
     }
    .small-screen-btn{
        margin-bottom: 20px
    }
 }
+
+
 
 
      

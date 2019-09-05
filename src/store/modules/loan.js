@@ -7,11 +7,13 @@ const state = {
   isActive5: null,
   //state for loandetails
   tenor: 1,
-  principal: 100000,
-  mra: 0,
+  principal: 0.00,
+  mra: 0.00,
   isPicked: "",
   loanIndebtedness: "",
   loanPurpose: "",
+  loanId : "",
+
   //state for workinfo
   employmentType: "",
   companyName: "",
@@ -28,7 +30,11 @@ const state = {
   email: "",
   email1: "",
   address: "",
-  address2: ""
+  address2: "",
+
+  //state for signature
+  loanSign:'',
+  
 };
 const mutations = {
   //Mutations for Apply
@@ -71,6 +77,9 @@ const mutations = {
   },
   setLoanPurpose(state, payload) {
     state.loanPurpose = payload;
+  },
+  setLoanId (state, payload) {
+    state.loanId=payload
   },
   //Mutations for workinfo
   setEmploymentType(state, payload) {
@@ -118,7 +127,12 @@ const mutations = {
   },
   setAddress2(state, payload) {
     state.address2 = payload;
-  }
+  },
+  //mutations for signature
+  setLoanSign (state, payload) {
+    state.loanSign=payload
+  },
+
 };
 
 const actions = {
@@ -273,6 +287,10 @@ const getters = {
   loanPurpose: state => {
     return state.loanPurpose;
   },
+  loanId: state => {
+    return state.loanId;
+  },
+  
   // getters for Workinfo
   employmentType: state => {
     return state.employmentType;
@@ -319,7 +337,11 @@ const getters = {
   },
   address2: state => {
     return state.address2;
-  }
+  },
+  //getters for signature
+  loanSign: state => {
+    return state.loanSign;
+  },
 };
 export default {
   state,

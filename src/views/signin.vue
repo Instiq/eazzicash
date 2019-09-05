@@ -29,21 +29,31 @@
 
                             <mdb-col class="col-md-4 col-10">
                                  <div class = 'card small-screen-card px-2 mt-n5'>
-                                    <form >
+                                    <form  @submit.prevent="validateBeforeSubmit">
+
+                                        <mdb-alert color="danger" v-if="isEmailorPasswordCorrect" class="mt-2" leaveAnimation="fadeOut"  @closeAlert="retfalse" dismiss> <i  class="fa fa-exclamation-triangle text-danger ml-2 mr-2"></i>Invalid email or password</mdb-alert>
                                        
                                         <mdb-card-body >
                                                 <section>
                                                     <mdb-row>
                                                         <mdb-col >
-                                                            <mdb-input type="text" label="Username" bg size="lg" />
-                                                            <mdb-input type="password" label="Password" bg size="lg" />
-                                                            <span class="float-right mt-n3 mb-4" style="color:orange">Forgot password?</span>
+                                                            <mdb-input type="text" name ='email' v-validate="'required|email'" v-model="email" label="Email" bg size="lg" />
+                                                               <div class="mt-3" >
+                                                                    <i v-show="errors.has('email')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                                                    <span class="text-warning" v-show="errors.has('email')">{{ errors.first('email') }}</span>
+                                                                </div>
+                                                            <mdb-input type="password" name ='password' v-validate="'required|min:5'" v-model="password" label="Password" bg size="lg" />
+                                                                <div class="mt-1" >
+                                                                    <i v-show="errors.has('password')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                                                    <span class="text-warning" v-show="errors.has('password')">{{ errors.first('password') }}</span>
+                                                                </div>
+                                                                <span class="float-right mt-1 mb-4" style="color:orange">Forgot password?</span>
                                                         </mdb-col>
                                                     </mdb-row>
                                                 </section>
 
                                                 <div class="text-center mb-4">
-                                                    <mdb-btn  class="btn btn-block" @click="userSignIn"><span class="login-size text-white"> Login </span></mdb-btn>
+                                                    <button  type='submit'  class="btn btn-block"><span class="login-size text-white"> Login <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span> </span></button>
                                                 </div>
 
                                                 <p class="text-center small-screen-txt" style="color:darkslateblue"> Don't have an account yet? <a href="/signup" style="color:limegreen; font-weight:bold"> SIGNUP</a> </p>
@@ -59,7 +69,7 @@
 
 
 <script>
-import {mdbView, mdbMask, mdbRow, mdbCol, mdbIcon, mdbCard, mdbCardBody, mdbCardText, mdbNavbar, mdbNavbarBrand, mdbInput} from 'mdbvue'
+import {mdbView, mdbMask, mdbRow, mdbCol, mdbIcon, mdbCard, mdbCardBody, mdbCardText, mdbNavbar, mdbNavbarBrand, mdbInput, mdbAlert} from 'mdbvue'
 export default {
     name:'signin',
     components : {
@@ -73,14 +83,48 @@ export default {
         mdbCardText,
         mdbNavbar,
         mdbNavbarBrand,
-        mdbInput
+        mdbInput,
+        mdbAlert
+    },
+    data () {
+        return {
+            email:'',
+            password:''
+        }
+    },
+
+    computed :{
+        isEmailorPasswordCorrect () {
+        return this.$store.state.isEmailorPasswordCorrect;
+        },
+        loading () {
+            return this .$store .state.loading
+        }
     },
 
     methods : {
         userSignIn () {
-            this.$router.push('/profile')
-        }
-    }
+            this.$store.dispatch('userSignIn', {
+                email:this.email,
+                password:this.password
+            } )
+        },
+        retfalse () {
+            this.$store.commit('setIsEmailorPasswordCorrect', false)
+        },
+        validateBeforeSubmit() {
+            this.$validator.validateAll().then((result) => {
+            if (result) {
+              this.$store.commit('setLoading', true)
+              this.userSignIn() 
+            }
+          })
+       },
+    },
+
+     created () {
+           this.$store.commit('setIsEmailorPasswordCorrect', false)
+       }
 }
 </script>
 
