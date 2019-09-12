@@ -77,11 +77,7 @@ export default {
      validateBeforeSubmit() {
         this.$validator.validateAll().then((result) => {
             if (result) {
-            alert('sucess')
             this.$router.push('/profile/finance/loandetails/guarantor')
-            }
-            else {
-                alert('Please Correct the errors!');
             }
         })
     }    

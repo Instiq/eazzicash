@@ -58,11 +58,13 @@
                      <div class="">
                          <div class="form-row">
                         <div class="col-md-5">
-                        <div class="mb-3">Evidence of Payment <span class="text-danger">*</span></div>
-                        <div class="mb-3" style="height:25vh; border:2px solid gray"> </div>
-                        <div class="custom-file mb-3">
-                            <input type="file" class="custom-file-input"  name="Payment Evidence" v-validate="'required'" id="validatedCustomFile" >
-                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                        <span class="mb-3">Evidence of Payment <span class="text-danger">*</span></span>
+                         <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                            <img style="max-width:100%; height:auto" class="img-fluid" :src="paymentEvidence"  alt=''>
+                         </div>
+                        <div class="mr-2 mt-2 mt-md-5">
+                            <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1" @change="onFileChange"  name="Payment Evidence" v-validate="'required'" id="validatedCustomFile" >
+                            <label class="" for="validatedCustomFile"></label>
                             <div class="mt-2" >
                             <i v-show="errors.has('Payment Evidence')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('Payment Evidence')">{{ errors.first('Payment Evidence') }}</span>
@@ -73,11 +75,13 @@
                         <div class="col-md-2"></div>
 
                         <div class="col-md-5">
-                        <div class="mb-3">ID Attachment <span class="text-danger">*</span></div>
-                        <div class="mb-3" style="height:25vh; border:2px solid gray"> </div>
-                        <div class="custom-file mb-3">
-                            <input type="file" class="custom-file-input"   name="ID" v-validate="'required'" id="validatedCustomFile" >
-                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                        <span class="mb-3">ID Attachment <span class="text-danger">*</span></span>
+                         <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                            <img style="max-width:100%; height:auto" class="img-fluid" :src="investId"  alt=''>
+                         </div>
+                        <div class="mr-2 mt-2 mt-md-5">
+                            <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1" @change="onFileChange2"  name="ID" v-validate="'required'" id="validatedCustomFile" >
+                            <label class='' for="validatedCustomFile"></label>
                             <div class="mt-2" >
                             <i v-show="errors.has('ID')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('ID')">{{ errors.first('ID') }}</span>
@@ -130,19 +134,54 @@ export default {
     }, 
     methods: {
     validateBeforeSubmit() {
-    this.$validator.validateAll().then((result) => {
-        if (result) {
-        alert('sucess')
-        this.$router.push('/profile/investment/investdetails/settlement')
+        this.$validator.validateAll().then((result) => {
+            if (result) {
+            this.$router.push('/profile/investment/investdetails/settlement')
+            }
+        })
+    },
+    
+    onFileChange(e) {
+        let files = e.target.files || e.dataTransfer.files;
+        if (!files.length) return;
+        this.createImage(files[0])
+    },
+    createImage (file) {
+        let image = new Image();
+        let reader = new FileReader();
+        // converts image to base64 and diaplays selected image to the client
+        reader.onload = (e) => {
+           this.$store.commit('setPaymentEvidence', e.target.result)
+           console.log(reader.result);
         }
-        else {
-            alert('Please Correct the errors!');
+        reader.readAsDataURL(file)
+    },
+
+      onFileChange2(e) {
+        let files = e.target.files || e.dataTransfer.files;
+        if (!files.length) return;
+        this.createImage2(files[0])
+    },
+    createImage2 (file) {
+        let image = new Image();
+        let reader = new FileReader();
+        // converts image to base64 and diaplays selected image to the client
+        reader.onload = (e) => {
+           this.$store.commit('setInvestId', e.target.result)
+           console.log(reader.result);;
         }
-    })
-    }    
+        reader.readAsDataURL(file)
+    },
+
   },
 
   computed : {
+       paymentEvidence () {
+          return this.$store.getters.paymentEvidence
+      },
+       investId () {
+          return this.$store.getters.investId
+      },
        investTenor : {
           get () {
                 return this.$store.getters.investTenor
@@ -197,6 +236,15 @@ export default {
      box-shadow: 0 0 5px rgb(75, 148, 8, 1);
      outline: 0 none;
  }
+
+  @media (min-width:1000px){
+  input {
+      /* border-color: rgba(75, 148, 8, 0.8); */
+      border:1px solid gainsboro;
+      border-radius: 5px
+     /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
+ }
+  }
 
  
 

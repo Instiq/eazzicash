@@ -10,6 +10,8 @@ const state = {
   investMra: 0.00,
   incomeSource: "",
   otherInfo: "",
+  paymentEvidence:"",
+  investId:"",
   //state for settlement
   accountNumber: "",
   accountName: "",
@@ -19,7 +21,9 @@ const state = {
   nokAddress: "",
   nokRelationship: "",
   nokPhone: "",
-  nokState: ""
+  nokState: "",
+  //state for signature
+  investSign:""
 };
 
 const mutations = {
@@ -52,6 +56,12 @@ const mutations = {
   setOtherInfo(state, payload) {
     state.otherInfo = payload;
   },
+  setPaymentEvidence(state, payload) {
+    state.paymentEvidence = payload;
+  },
+  setInvestId(state, payload) {
+    state.investId= payload;
+  },
   // Mutations for Settlement
   setAccountNumber(state, payload) {
     state.accountNumber = payload;
@@ -77,7 +87,11 @@ const mutations = {
   },
   setNokState(state, payload) {
     state.nokState = payload;
-  }
+  },
+  // Mutations for signature
+  setInvestSign(state, payload) {
+    state.investSign = payload;
+  },
 };
 const actions = {
   //Actions for precheck
@@ -178,6 +192,13 @@ const getters = {
   otherInfo: state => {
     return state.otherInfo;
   },
+  paymentEvidence: state => {
+    return state.paymentEvidence;
+  },
+  investId: state => {
+    return state.investId;
+  },
+
   //getters for settlement
   accountName: state => {
     return state.accountName;
@@ -203,7 +224,11 @@ const getters = {
   },
   nokState: state => {
     return state.nokState;
-  }
+  },
+  //getters for signature
+  investSign: state => {
+    return state.investSign;
+  },
 };
 
 export default {

@@ -1,3 +1,5 @@
+
+
 const state = {
   //state for Apply
   isActive1: null,
@@ -347,5 +349,5 @@ export default {
   state,
   getters,
   mutations,
-  actions
+  actions,
 };

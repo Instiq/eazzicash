@@ -37,20 +37,20 @@
 
                      <div class="form-row second">
                         <div class="col-md-5 mt-4"> 
-                               Any Indebtedness? 
+                               Any Indebtedness? <span class="text-danger">*</span>
                             <div class="custom-control custom-radio ml-2 d-inline"> 
-                                <input type="radio" v-model="isPicked" value="yes" class="custom-control-input form-check-input" id="invalidCheck" name="radio-stack" v-validate="'included:yes,no'" >
+                                <input type="radio" v-model="isPicked" value="yes" class="custom-control-input form-check-input" id="invalidCheck" name="indebtedness" v-validate="'required'" >
                                  <label class="custom-control-label" for="invalidCheck">Yes</label> 
                             </div>
 
                             <div class="custom-control custom-radio ml-2 d-inline"> 
-                                <input type="radio" v-model="isPicked" value='no' class="custom-control-input" id="customControlValidation3" name="radio-stack" >
+                                <input type="radio" v-model="isPicked" value='no' class="custom-control-input" id="customControlValidation3" name="indebtedness" >
                                  <label class="custom-control-label"  for="customControlValidation3">No</label>    
                             </div>
 
-                             <div class="mt-3" >
-                                    <i v-show="errors.has('radio-stack')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('radio-stack')">{{ errors.first('radio-stack') }}</span>
+                             <div class="mt-2" >
+                                    <i v-show="errors.has('indebtedness')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                    <span class="text-warning" v-show="errors.has('indebtedness')">{{ errors.first('indebtedness') }}</span>
                             </div>
                         </div>
 
@@ -71,12 +71,12 @@
                          <div class="col-md-2"></div>
 
                         <div class="col-md-5 mb-3 mt-3 mt-md-0">
+                             <span class="mt-md-n4 mb-md-3">Upload ID  <span class="text-danger">*</span> </span>
                              <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
                                  <img style="max-width:100%; height:auto" class="img-fluid" :src="loanId"  alt=''>
                              </div>
 
                             <div class="input-group mr-2 mt-2 mt-md-5">
-                                <span class="mt-md-n4 mb-md-3">Upload ID  <span class="text-danger">*</span> </span>
                                 <input type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 " v-validate="'required'"   @change="onFileChange"  name="id" id="id">
                                 <label class="" for="id" aria-describedby="inputGroupFileAddon02"></label>
                                 
@@ -143,8 +143,6 @@ export default {
     data () {
         return {
             selected:'',
-            // image:'',
-            // image_base64:''
         }
     }, 
     methods: {
@@ -172,8 +170,7 @@ export default {
         // converts image to base64 and diaplays selected image to the client
         reader.onload = (e) => {
            this.$store.commit('setLoanId', e.target.result)
-           console.log(reader.result);;
-           alert(this.loanId)
+           console.log(reader.result);
         }
         reader.readAsDataURL(file)
     }
@@ -240,12 +237,6 @@ export default {
     margin:0vh 0vw
  }
 
- input {
-      /* border-color: rgba(75, 148, 8, 0.8); */
-      border:1px solid gainsboro;
-      border-radius: 5px
-     /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
- }
 
  input:focus, select:focus {
      border-color: rgba(75, 148, 8, 0.8);
@@ -253,10 +244,13 @@ export default {
      outline: 0 none;
  }
 
- @media (min-width:768px){
-   .loanPurpose{
-       margin-top: 0px
-    }
+ @media (min-width:1000px){
+   input {
+      /* border-color: rgba(75, 148, 8, 0.8); */
+      border:1px solid gainsboro;
+      border-radius: 5px
+     /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
+ }
 }
 
  

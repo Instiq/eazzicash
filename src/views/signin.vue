@@ -98,7 +98,7 @@ export default {
         return this.$store.state.isEmailorPasswordCorrect;
         },
         loading () {
-            return this .$store .state.loading
+            return this.$store.state.loading
         }
     },
 
@@ -123,7 +123,8 @@ export default {
     },
 
      created () {
-           this.$store.commit('setIsEmailorPasswordCorrect', false)
+           this.$store.commit('setIsEmailorPasswordCorrect', false);
+           this.$store.commit('setLoading', false)
        }
 }
 </script>

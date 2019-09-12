@@ -24,7 +24,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text" style="cursor:pointer" v-on:click="minus" >-</div>
                             </div>
-                            <input type="text" @input='updateTenor'  style="background:whitesmoke" disabled v-model.number="tenor"  class="form-control py-0"  placeholder="months">
+                            <input type="text"  style="background:whitesmoke" disabled v-model.number="tenor"  class="form-control py-0"  placeholder="months">
 
                             <div class="input-group-append">
                                 <div class="input-group-text"  style="cursor:pointer" @click='add' >+</div>

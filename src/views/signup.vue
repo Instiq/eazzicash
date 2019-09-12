@@ -44,7 +44,7 @@
                              </div>
                         </mdb-col>
                         <mdb-col class="col-sm-6 col-12" >
-                            <mdb-input type="number" size="lg"  label="phone number" v-model="userPhone" name='phone' v-validate="'required'"  style="background:white" outline /> 
+                            <mdb-input type="number" size="lg"  label="phone number" v-model="userPhone" name='phone' v-validate="'required|min:11|max:15'"  style="background:white" outline /> 
                             <div class="mt-3" >
                                 <i v-show="errors.has('phone')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
@@ -388,7 +388,7 @@
                         </mdb-col>
 
                         <mdb-col class="col-md-6 col-12 small-screen-btn">
-                        <button type='submit' style="font-size:20px; font-weight:bold; background:indigo" class="btn btn-indigo btn-block mt-4">Sign Up</button>
+                        <button type='submit' style="font-size:20px; font-weight:bold; background:indigo" class="btn btn-indigo btn-block mt-4">Sign Up <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span> </button>
                         </mdb-col>
                     
                     </mdb-row>
@@ -435,6 +435,10 @@ export default {
     },
 
     computed : {
+         loading () {
+            return this.$store.state.loading
+        },
+
          userFirstname : {
           get () {
                 return this.$store.getters.userFirstname
@@ -504,10 +508,11 @@ export default {
     },
     },
      methods: {
-    validateBeforeSubmit() {
-    this.$validator.validateAll().then((result) => {
-        if (result) {
-           this.userSignUp() 
+      validateBeforeSubmit() {
+        this.$validator.validateAll().then((result) => {
+            if (result) {
+            this.$store.commit('setLoading', true)    
+            this.userSignUp() 
         }
     })
     },
@@ -517,8 +522,6 @@ export default {
     },
     
     userSignUp () {
-        console.log('yess');
-        
         this.$store.dispatch ('userSignUp', {
             email:this.userEmail,
             password:this.userPassword,

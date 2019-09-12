@@ -1,8 +1,16 @@
 import Vue from "vue";
 import Router from "vue-router";
+import store from "@/store/store";
 import Home from "./views/Home.vue";
 import signin from "./views/signin.vue";
 import signup from "./views/signup.vue";
+import emailVerified from "./views/emailVerified.vue";
+import verifyEmail from "./views/verifyEmail.vue";
+import getToken from "./views/getToken.vue";
+import expiredToken from "./views/expiredToken.vue";
+import loanApprovalStatus from "./views/loanApprovalStatus.vue";
+import declineLoan from "./views/declineLoan.vue";
+import approveLoan from "./views/approveLoan.vue";
 import profile from "./views/profile.vue";
 import dashboard from "./components/dashboard.vue";
 import apply from "./components/loan/apply.vue";
@@ -33,7 +41,7 @@ import signatureF from "./components/finance/signatureF.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -53,9 +61,45 @@ export default new Router({
       component: signup
     },
     {
+      path: "/verifyEmail",
+      name: "verifyEmail",
+      component: verifyEmail
+    },
+    {
+      path: "/getToken",
+      name: "getToken",
+      component: getToken
+    },
+    {
+      path: "/expiredToken",
+      name: "expiredToken",
+      component: expiredToken
+    },
+    {
+      path: "/declineLoan",
+      name: "declineLoan",
+      component: declineLoan
+    },
+    {
+      path: "/approveLoan",
+      name: "approveLoan",
+      component: approveLoan
+    },
+    {
+      path: "/loanApprovalStatus",
+      name: "loanApprovalStatus",
+      component: loanApprovalStatus
+    },
+    {
+      path: "/emailVerified",
+      name: "emailVerified",
+      component: emailVerified
+    },
+    {
       path: "/profile",
       name: "profile",
       component: profile,
+      meta: { authRequired: true },
       children: [
         {
           path: "/",
@@ -199,5 +243,26 @@ export default new Router({
         }
       ]
     }
-  ]
-});
+  ],
+
+})
+
+router.beforeEach((to, from, next) => {
+  //loops through each route record and checks routes that contains the 'meta' tag
+  if (to.matched.some(record => record.meta.authRequired)) {
+  // checks if user is signed in, if not, redirect to signin page.
+    if (!store.state.isAuthenticated) {
+      next({
+        path: "/signin",
+        query:{redirect:to.fullPath}
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+})
+
+export default router
+

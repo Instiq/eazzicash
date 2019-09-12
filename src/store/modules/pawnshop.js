@@ -12,10 +12,13 @@ const state = {
   pawnTenor: 30,
   releaseYear: "",
   itemDescription: "",
+  itemReceipt:"",
   //state for ownership
   itemDate: "",
   purchaseLocation: "",
-  isSworn: ""
+  isSworn: "",
+  //state for signature
+  pawnSign:""
 };
 
 const mutations = {
@@ -52,6 +55,9 @@ const mutations = {
   setReleaseYear(state, payload) {
     state.releaseYear = payload;
   },
+  setItemReceipt(state, payload) {
+    state.itemReceipt = payload;
+  },
   // Mutaions for ownership
   setItemDate(state, payload) {
     state.itemDate = payload;
@@ -61,11 +67,15 @@ const mutations = {
   },
   setIsSworn(state, payload) {
     state.isSworn = payload;
-  }
+  },
+  // Mutaions for ownership
+  setPawnSign(state, payload) {
+    state.pawnSign = payload;
+  },
 };
 const actions = {
   //Actions for pawndetails
-  updateIsActive1P({ commit }) {
+  updateIsActive1P({ commit}) {
     commit("setIsActive1P", true);
     commit("setIsActive2P", false);
     commit("setIsActive3P", false);
@@ -145,7 +155,10 @@ const getters = {
   releaseYear: state => {
     return state.releaseYear;
   },
-  //getters for pawninfo
+  itemReceipt: state => {
+    return state.itemReceipt;
+  },
+  //getters for profofownership
   itemDate: state => {
     return state.itemDate;
   },
@@ -154,7 +167,11 @@ const getters = {
   },
   isSworn: state => {
     return state.isSworn;
-  }
+  },
+   //getters for signature
+    pawnSign: state => {
+    return state.pawnSign;
+  },
 };
 
 export default {

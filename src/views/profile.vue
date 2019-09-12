@@ -8,11 +8,11 @@
             </div>
     
             <div icon='envelope' right class="float-right py-4 d-flex" style="border:2px solid blu;flex-direction:row">
-              <a href="#" icon='envelope' class="mr-5 text-white"> <i class="fas fa-envelope mr-1"></i> <span class="d-none d-sm-inline-block" >Contact</span></a>
+              <!-- <a href="#" icon='envelope' class="mr-5 text-white"> <i class="fas fa-envelope mr-1"></i> <span class="d-none d-sm-inline-block" >Contact</span></a> -->
               
               <a  @click="userSignOut" class="mr-5  text-white"><i class="fas fa-sign-out-alt mr-1"></i><span class="d-none d-sm-inline-block">Logout</span></a>
               
-              <a href="#" class="mr-5   text-white" ><i class="fas fa-user mr-1"></i><span class="d-none d-sm-inline-block"> Account</span></a>
+              <!-- <a href="#" class="mr-5   text-white" ><i class="fas fa-user mr-1"></i><span class="d-none d-sm-inline-block"> Account</span></a> -->
             </div>       
         </section>
 
@@ -39,7 +39,7 @@
             <a href="javascript:void(0)" class="closebtn sidenav-items" @click="closeNav">&times;</a>
 
             <!-- profile items -->
-            <a href="/profile/dashboard"> <i class="fas fa-home sidenav-icon1"></i> <span class="sidenav-items">Dashboard</span></a>
+            <router-link to="/profile/dashboard"> <i class="fas fa-home sidenav-icon1"></i> <span class="sidenav-items">Dashboard</span></router-link>
             <a href="/profile/loan/apply"> <i class="far fa-money-bill-alt sidenav-icon1"></i> <span class="sidenav-items">Loan</span></a>
             <a href="/profile/investment/precheck"> <span class="h5 sidenav-icon"> &#8358;</span> <span class="sidenav-items">Investment</span></a>
             <a href="/profile/finance/precheck"> <i class="fas fa-chart-line sidenav-icon"></i> <span class="sidenav-items">Finance</span></a>

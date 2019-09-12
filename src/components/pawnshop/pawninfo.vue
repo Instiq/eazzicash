@@ -95,7 +95,7 @@
                      <div class="form-row second">
                           <div class="col-md-5 mb-3">
                             <span class="m">Pawn Amount <span class="text-danger">*</span> </span>
-                            <input type="text"  v-model="pawnAmount" name='Pawn Amount' class="form-control">
+                            <input type="text"  v-model="pawnAmount" v-validate="'required|numeric'" name="Pawn Amount" class="form-control">
                             <div class="mt-3" >
                                 <i v-show="errors.has('Pawn Amount')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('Pawn Amount')">{{ errors.first('Pawn Amount') }}</span>
@@ -107,29 +107,26 @@
 
                             <div class="col-md-5">
                                 <span class="m">Tenor</span>
-                                <input type="text"  v-model="pawnTenor" name='Tenor' disabled class="form-control">
+                                <input type="number"  v-model="pawnTenor" name='Tenor' disabled class="form-control">
                             </div>
                      </div>
 
 
-                     <div class="">
-                        <div class="form-row">
-                        <div class="col-md-5">
-                        <div class="mb-3">Receipt of Item <span class="text-danger">*</span></div>
-                        <div class="mb-3" style="height:25vh; border:2px solid gray"> </div>
-                        <div class="custom-file mb-3">
-                            <input type="file" class="custom-file-input"  name="Payment Evidence" v-validate="'required'" id="validatedCustomFile" >
-                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                            <div class="mt-2" >
-                            <i v-show="errors.has('Payment Evidence')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('Payment Evidence')">{{ errors.first('Payment Evidence') }}</span>
+                     <div class="col-md-5 ml-n3 mt-3">
+                        <span class="mb-3">Receipt of Item <span class="text-danger">*</span></span>
+                        <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                            <img style="max-width:100%; height:auto" class="img-fluid" :src="itemReceipt"  alt=''>
+                        </div>
+                        
+                        <div class="input-group mt-5">
+                            <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1" v-validate="'required'"  name="item receipt" @change="onFileChange" id="inputGroupFile02">
+                            <label class="" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"></label>
+                        </div>
+                        <div class="mt-2" >
+                            <i v-show="errors.has('item receipt')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                            <span class="text-warning" v-show="errors.has('item receipt')">{{ errors.first('item receipt') }}</span>
                             </div>
                         </div>
-                        </div>
-
-                        <div class="col-md-2"></div>
-                     </div>
-                     </div>
 
                      <div class="form-row">
                          <div class="col-md-5"></div>
@@ -174,19 +171,34 @@ export default {
     }, 
     methods: {
     validateBeforeSubmit() {
-    this.$validator.validateAll().then((result) => {
-        if (result) {
-        alert('sucess')
-        this.$router.push('/profile/pawnshop/pawndetails/ownership')
-        }
-        else {
-            alert('Please Correct the errors!');
-        }
+        this.$validator.validateAll().then((result) => {
+            if (result) {
+            this.$router.push('/profile/pawnshop/pawndetails/ownership')
+            }
     })
+    } ,
+    
+    onFileChange(e) {
+        let files = e.target.files || e.dataTransfer.files;
+        if (!files.length) return;
+        this.createImage(files[0])
+    },
+    createImage (file) {
+        let image = new Image();
+        let reader = new FileReader();
+        // converts image to base64 and diaplays selected image to the client
+        reader.onload = (e) => {
+           this.$store.commit('setItemReceipt', e.target.result)
+           console.log(reader.result);;
+        }
+        reader.readAsDataURL(file)
     }    
   },
 
   computed : {
+       itemReceipt () {
+          return this.$store.getters.itemReceipt
+      },
         itemCategory : {
           get () {
                 return this.$store.getters.itemCategory
@@ -253,6 +265,14 @@ export default {
      outline: 0 none;
  }
 
+ @media (min-width:1000px){
+   input {
+      /* border-color: rgba(75, 148, 8, 0.8); */
+      border:1px solid gainsboro;
+      border-radius: 5px
+     /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
+ }
+}
  
 
  

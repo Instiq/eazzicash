@@ -6,14 +6,14 @@
             <form   @submit.prevent="validateBeforeSubmit" enctype="multipart/form-data">
 
                 <div class="form-row"> <div class="mb-3">Applicant's Signature <span class="text-danger">*</span></div> </div>
-                <div class="third ml-n2 col-md-5 mb-3 mt-3 mt-md-0">
+                <div class="ml-n3 col-md-5 mb-3 mt-3 mt-md-0">
                     <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
                         <img style="max-width:100%; height:auto" class="img-fluid" :src="loanSign"  alt=''>
                     </div>
                 </div>
 
                 <div class="custom-file form-row col-md-5 mb-3">
-                    <input type="file" class=" mt-3 ml-n2 mt-md-0 mb-2 mb-md-1 "  @change="onFileChange"  :class="{invalid1:isInvalid1}" name="file" v-validate="'required'" id="validatedCustomFile" >
+                    <input type="file" class=" mt-3 ml-n2 mt-md-0 mb-2 mb-md-1 "  @change="onFileChange" name="file" v-validate="'required'" id="validatedCustomFile" >
                     <label class="" for="validatedCustomFile"></label>
                     <div class="mt-2" >
                        <i v-show="errors.has('file')" class="fa fa-exclamation-triangle text-danger mr-2"></i> 
@@ -69,7 +69,7 @@
                       <div class="col-md-5"></div>
                       <div class="col-md-2"></div>
                       <div class="col-md-5">
-                         <mdb-btn type="submit" :disabled='isCheckedd' class="float-right btn-green mt-5" style="font-size:15px; border-radius:5px">Submit</mdb-btn>
+                         <mdb-btn type="submit" :disabled='isCheckedd' class="float-right btn-green mt-5" style="font-size:15px; border-radius:5px">Submit <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></mdb-btn>
                       </div> 
                   </div>
             </form>
@@ -128,8 +128,8 @@ export default {
      validateBeforeSubmit() {
         this.$validator.validateAll().then((result) => {
             if (result) {
+                this.$store.commit('setLoading', true)
                 this.postLoan ()
-        // this.$router.push('/profile/loan/loandetails/success')
             }
         })
     },
@@ -145,12 +145,11 @@ export default {
         reader.onload = (e) => {
            this.$store.commit('setLoanSign', e.target.result);
            console.log('RESULT', reader.result)
-            alert (this.loanSign);
         }
         reader.readAsDataURL(file)
     },
     postLoan () {
-        alert(9)
+        this.$store.dispatch('postLoan')
     }
   
   },
@@ -158,6 +157,9 @@ export default {
   computed : {
        loanSign () {
           return this.$store.getters.loanSign
+      },
+       loading () {
+        return this.$store.state.loading
       }
   },
 
@@ -186,17 +188,14 @@ export default {
      color:red
  }
 
-  input {
+ @media (min-width:1000px){
+   input {
       /* border-color: rgba(75, 148, 8, 0.8); */
       border:1px solid gainsboro;
       border-radius: 5px
      /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
  }
- 
- /* input {
-     border-color:red
- } */
-
+}
  
 
  

@@ -29,10 +29,27 @@
                          <div class="col-md-5">
                                 <span class="m">Bank Name <span class="text-danger">*</span></span>
                                 <select class="browser-default custom-select" name="Bank Name" v-validate="'required'" v-model="bankName">
-                                <option value="Access">Access Bank</option>
-                                <option value="Zenith">Zenith Bank</option>
-                                <option value="First">First Bank</option>
-                                <option value="Polaris">Polaris Bank</option>
+                                <option selected>Choose</option>
+                                <option value="access">Access Bank</option>
+                                <option value="citibank">Citibank</option>
+                                <option value="ecobank">Ecobank</option>
+                                <option value="fidelity">Fidelity Bank</option>
+                                <option value="fcmb">First City Monument Bank (FCMB)</option>
+                                <option value="fsdh">FSDH Merchant Bank</option>
+                                <option value="gtb">Guarantee Trust Bank (GTB)</option>
+                                <option value="heritage">Heritage Bank</option>
+                                <option value="Keystone">Keystone Bank</option>
+                                <option value="rand">Rand Merchant Bank</option>
+                                <option value="skye">Polaris Bank</option>
+                                <option value="stanbic">Stanbic IBTC Bank</option>
+                                <option value="standard">Standard Chartered Bank</option>
+                                <option value="sterling">Sterling Bank</option>
+                                <option value="suntrust">Suntrust Bank</option>
+                                <option value="union">Union Bank</option>
+                                <option value="uba">United Bank for Africa (UBA)</option>
+                                <option value="unity">Unity Bank</option>
+                                <option value="wema">Wema Bank</option>
+                                <option value="zenith">Zenith Bank</option>
                                 </select>
                                 <div class="mt-3" >
                                     <i v-show="errors.has('Bank Name')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -81,11 +98,7 @@ export default {
     validateBeforeSubmit() {
     this.$validator.validateAll().then((result) => {
         if (result) {
-        alert('sucess')
         this.$router.push('/profile/investment/investdetails/nextofkin')
-        }
-        else {
-            alert('Please Correct the errors!');
         }
     })
     }    

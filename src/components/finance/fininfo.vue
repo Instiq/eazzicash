@@ -6,7 +6,7 @@
                      <div class="form-row first">
                           <div class="col-md-5 mb-3">
                                 <span class="m">Finance  Type <span class="text-danger">*</span></span>
-                                <select class="browser-default custom-select" v-model="collateralType" v-validate="'required'" name="Employment-Type">
+                                <select class="browser-default custom-select" v-model="financeType" v-validate="'required'" name="Finance Type">
                                 <option value="LPO Finance">LPO Finance</option>
                                 <option disabled="disabled">-------------------------------------------------------- </option>
                                 <option value="Asset" >Asset</option>
@@ -14,8 +14,8 @@
                                 <option value="Contract">Contract</option>
                                 </select>
                                 <div class="mt-3" >
-                                    <i v-show="errors.has('>Collateral Type')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('>Collateral Type')">{{ errors.first('>Collateral Type') }}</span>
+                                    <i v-show="errors.has('Finance Type')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                    <span class="text-warning" v-show="errors.has('Finance Type')">{{ errors.first('Finance Type') }}</span>
                                 </div>
                            </div>  
                             
@@ -39,20 +39,20 @@
 
                      <div class="form-row second">
                         <div class="col-md-5 mt-4"> 
-                               Any Indebtedness? 
+                               Any Indebtedness? <span class="text-danger">*</span>
                             <div class="custom-control custom-radio ml-2 d-inline"> 
-                                <input type="radio" v-model="isPicked" value="yes" class="custom-control-input form-check-input" id="invalidCheck" name="radio-stack" v-validate="'included:yes,no'" >
+                                <input type="radio" v-model="isPicked" value="yes" class="custom-control-input form-check-input" id="invalidCheck" name="indebtedness" v-validate="'included:yes,no|required'" >
                                  <label class="custom-control-label" for="invalidCheck">Yes</label> 
                             </div>
 
                             <div class="custom-control custom-radio ml-2 d-inline"> 
-                                <input type="radio" v-model="isPicked" value='no' class="custom-control-input" id="customControlValidation3" name="radio-stack" >
+                                <input type="radio" v-model="isPicked" value='no' class="custom-control-input" id="customControlValidation3" name="indebtedness" >
                                  <label class="custom-control-label"  for="customControlValidation3">No</label>    
                             </div>
 
                              <div class="mt-3" >
-                                    <i v-show="errors.has('radio-stack')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('radio-stack')">{{ errors.first('radio-stack') }}</span>
+                                    <i v-show="errors.has('indebtedness')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                    <span class="text-warning" v-show="errors.has('indebtedness')">{{ errors.first('indebtedness') }}</span>
                             </div>
                         </div>
 
@@ -70,7 +70,7 @@
                                     <span class="text-warning" v-show="errors.has('Loan Amount')">{{ errors.first('Loan Amount') }}</span>
                                     </div>
                                 </div>
-                            </div>
+                          </div>
 
                      </div>
 
@@ -88,13 +88,14 @@
                          <div class="col-md-2"></div>
 
                         <div class="col-md-5 mt-4">
-                             <div class="" style="height:25vh; border:2px solid gray"> </div>
+                            <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                                 <img style="max-width:100%; height:auto" class="img-fluid" :src="loanId"  alt=''>
+                             </div>
 
                             <div class="input-group mr-2 mt-5">
-                                <div class="custom-file">
-                                <input type="file" class="custom-file-input" v-validate="'required'"  name="id" id="inputGroupFile02">
-                                <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Upload valid Id <span class="text-danger">*</span></label>
-                                </div>
+                                 <span class="mt-md-n4 mb-md-3">Upload ID  <span class="text-danger">*</span> </span>
+                                <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1" v-validate="'required'"  name="id" @change="onFileChange" id="inputGroupFile02">
+                                <label class="" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"></label>
                             </div>
 
                              <div class="mt-3" >
@@ -105,7 +106,7 @@
                     </div>
 
                     <div class="form-row fourth">
-                        <div class="col-md-5 small-screen-pp" style="margin-top:-100px">
+                        <div class="col-md-5 small-screen-pp">
                             <label for="exampleFormControlTextarea1">Finance Purpose <span class="text-danger">*</span></label>
                             <textarea style="background:whitesmoke" v-model="loanPurpose" v-validate="'required'"  name="Loanpurpose" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                             <div class="mt-3" >
@@ -168,19 +169,33 @@ export default {
            this.$store.dispatch('decrement')
         },
     validateBeforeSubmit() {
-    this.$validator.validateAll().then((result) => {
-        if (result) {
-        alert('sucess')
-        this.$router.push('/profile/finance/loandetails/workinfo')
+        this.$validator.validateAll().then((result) => {
+            if (result) {
+            this.$router.push('/profile/finance/loandetails/workinfo')
+            }
+        })
+    },
+    onFileChange(e) {
+        let files = e.target.files || e.dataTransfer.files;
+        if (!files.length) return;
+        this.createImage(files[0])
+    },
+    createImage (file) {
+        let image = new Image();
+        let reader = new FileReader();
+        // converts image to base64 and diaplays selected image to the client
+        reader.onload = (e) => {
+           this.$store.commit('setLoanId', e.target.result)
+           console.log(reader.result);;
         }
-        else {
-            alert('Please Correct the errors!');
-        }
-    })
+        reader.readAsDataURL(file)
     }    
   },
 
   computed : {
+      loanId () {
+          return this.$store.getters.loanId
+      },
        tenor : {
           get () {
                 return this.$store.getters.tenor
@@ -220,7 +235,17 @@ export default {
            set (value) {
               this.$store.dispatch('updateLoanPurpose', value)
            }
-       }
+       },
+
+         financeType : {
+           get () {
+              return  this.$store.getters.financeType
+           },
+           set (selected) {
+              this.$store.dispatch('updateFinanceType', selected)
+           }
+       },
+       
     },
     mounted () {
         this.$store.dispatch('updateIsActive1')
@@ -250,7 +275,14 @@ export default {
     }
  }
 
- 
+  @media (min-width:1000px){
+   input {
+      /* border-color: rgba(75, 148, 8, 0.8); */
+      border:1px solid gainsboro;
+      border-radius: 5px
+     /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
+ }
+}
 
  
 
