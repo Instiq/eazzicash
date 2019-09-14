@@ -40,6 +40,7 @@ import finworkinfo from "./components/finance/finworkinfo.vue";
 import finguarantor from "./components/finance/finguarantor.vue";
 import collateral from "./components/finance/collateral.vue";
 import signatureF from "./components/finance/signatureF.vue";
+import error from "./views/404.vue"
 
 Vue.use(Router);
 
@@ -254,6 +255,10 @@ const router = new Router({
           ]
         }
       ]
+    },
+    {
+      path:"/*",
+      component:error
     }
   ],
 
