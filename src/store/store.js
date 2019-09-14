@@ -381,7 +381,7 @@ export default new Vuex.Store({
     async updateEmailVerification ({commit, state}) {
       await axios({
         method:'put',
-        url:`http://localhost:3000/api/users/verify/${state.emailVerificationToken}`,
+        url:`${state.api_url}/users/verify/${state.emailVerificationToken}`,
       })
         .then(({data})=>{
           console.log(data);
@@ -399,7 +399,7 @@ export default new Vuex.Store({
     async resendEmailVerification ({commit, state}) {
       await axios({
         method:'post',
-        url:`http://localhost:3000/api/users/resendEmailVerification/${state.email}`,
+        url:`${state.api_url}/users/resendEmailVerification/${state.email}`,
       })
         .then(({data})=>{
           console.log(data);
