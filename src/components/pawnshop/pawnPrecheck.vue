@@ -3,7 +3,7 @@
       <div class="container">
           <div class="container main-container">
 
-              <mdb-jumbotron class="jumbotron-fluid" style="height:auto; width:auto">
+              <mdb-jumbotron class="jumbotron-fluid" style="height:auto; width:70vw">
                   <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Pawn Repayment pre-check</span></div>
 
                     <section class="container  mt-3">
@@ -45,7 +45,7 @@
                             </div>
                             <input type="text"  v-model.number="pawnAmount" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
                             </div>
-                            <span class="text-danger" style="font-size:14px">Please Note: All pawn items are to be redeemed within 30 days. Failure to do so, will result in forfeiture of the item.  </span>
+                            <p class="text-danger" style="font-size:14px; width:auto">Please Note: All pawn items are to be redeemed within 30 days. Failure to do so, will result in forfeiture of the item.  </p>
                         </div>
 
                       
@@ -63,7 +63,7 @@
                        
 
                         <div class="col-md-6 mt-2 text-white float-right apply-btn" >
-                          <router-link to="/profile/pawnshop/pawndetails"><button class="btn text-white " style="background:rgb(0, 85, 0); font-size:18px; border-radius:5px">Apply for Pawn</button></router-link>  
+                          <router-link to="/profile/pawnshop/pawndetails"><button class="btn text-white " style="background:rgb(0, 85, 0); width:auto; padding:15px 20px; font-size:18px; border-radius:5px">Apply for Pawn</button></router-link>  
                         </div>
                      </section>  
 
@@ -175,6 +175,7 @@ export default {
  .apply-btn {
      padding-left:200px;
      top:-70px;  
+    
  }
 
 </style>

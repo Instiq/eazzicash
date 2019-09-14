@@ -3,7 +3,7 @@
       <div class="container">
           <div class="container main-container">
 
-              <mdb-jumbotron class="jumbotron-fluid" style="height:auto">
+              <mdb-jumbotron class="jumbotron-fluid" style="height:auto; width:70vw">
                   <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Repayment pre-check</span></div>
 
                     <section class="container  mt-3">
@@ -41,7 +41,7 @@
                             </div>
                             <input type="text" style="background:whitesmoke" disabled v-model="rate" class="form-control py-0" id="inlineFormInputGroup" placeholder="">
                             </div>
-                            <p class="text-danger mb-2" style="font-size:15px">please note that Interest rate is calculated on principal</p>
+                            <p class="text-danger mb-2" style="font-size:15px; width:auto">please note that Interest rate is calculated on principal</p>
                         </div>
 
                          <div class="col-md-5">
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="col-md-6 mt-2 text-white float-right apply-btn" >
-                          <router-link to="/profile/finance/loandetails"><button class="btn text-white " style="background:rgb(0, 85, 0); font-size:18px; border-radius:5px">Book Finance</button></router-link>  
+                          <router-link to="/profile/finance/loandetails"><button class="btn text-white " style="background:rgb(0, 85, 0); width:auto; padding:15px 20px; font-size:18px; border-radius:5px">Book Finance</button></router-link>  
                         </div>
                      </section>  
 
