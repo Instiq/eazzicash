@@ -81,7 +81,7 @@ export default new Vuex.Store({
     async userSignUp(context, {email, password, firstName, lastName,state,country,phoneNumber,address }) {
       await axios({
           method: "post",
-          url: `http://localhost:3000/api/users/`,
+          url: `${context.state.api_url}/users`,
           data: {
             email,
             password,
