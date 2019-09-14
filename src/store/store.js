@@ -110,8 +110,9 @@ export default new Vuex.Store({
           }
           
         }) 
-      },
+     },
      //SignIn 
+    
      //${state.api_url}/auth/login
       async userSignIn({commit,state}, {email, password}) {
          await axios({

@@ -237,8 +237,8 @@ export default {
   position: absolute;;
   left:15vw;
   top:20vh;
-  height: 70vh; 
-  width:8vw;
+  height:auto; 
+  width:auto;
   display: inline-block;
   /* margin: 0px 60vw; */
 }
