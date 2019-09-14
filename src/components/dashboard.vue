@@ -8,13 +8,16 @@
                   <div class="col-lg-8 col-md-12 major-col-1">
                       <div class="row">
                           <div class="col-md-6">
+                            
                               <mdb-card class="borde mb-5" style="height:25vh">
                                   <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:orange">
                                          Loan Running
+                                        
                                       </mdb-card-title>
+                                     
                                       <mdb-card-text>
-                                         <span class="mt h5" style="font-weight:bold">N250,000</span> 
+                                         <span class="mt h5" style="font-weight:bold">{{}}</span> 
                                       </mdb-card-text>
                                      
                                       </mdb-card-body>
@@ -29,7 +32,7 @@
                                           Investment Running
                                       </mdb-card-title>
                                       <mdb-card-text>
-                                         <span class="mt-5 h5" style="font-weight:bold">N0,00</span> 
+                                         <span class="mt-5 h5" style="font-weight:bold">{{}}</span> 
                                       </mdb-card-text>
                                       </mdb-card-body>
                                       <div class="mx-4 pt-1 h6 text-muted" style="height:25px; font-size:13.5px">Payment: Every 6 months</div>
@@ -43,7 +46,7 @@
                                          Finance
                                       </mdb-card-title>
                                       <mdb-card-text>
-                                         <span class="mt-5 h5" style="font-weight:bold">N300,000</span> 
+                                         <span class="mt-5 h5" style="font-weight:bold">{{}}</span> 
                                       </mdb-card-text>
                                       </mdb-card-body>
                                       <div class="mx-4 pt-1 h6 text-muted" style="height:25px; font-size:13.5px">Repayment Duration: 6 months</div>
@@ -57,13 +60,13 @@
                                         Pawn
                                       </mdb-card-title>
                                       <mdb-card-text>
-                                         <span class=" h6" style="font-weight:500">Item : <span style="font-weight:300">mobile phone</span></span> 
+                                         <span class=" h6" style="font-weight:500">Item : <span style="font-weight:300">{{}}</span></span> 
                                       </mdb-card-text>
                                       <mdb-card-text>
-                                         <span class=" h6" style="font-weight:500">days left : <span style="font-weight:300">30</span> </span> 
+                                         <span class=" h6" style="font-weight:500">days left : <span style="font-weight:300">{{}}</span> </span> 
                                       </mdb-card-text>
                                       </mdb-card-body>
-                                      <div class="mx-4 pt-1 h6 text-muted" style="height:25px; font-size:13.5px">Running: 01</div>
+                                      <!-- <div class="mx-4 pt-1 h6 text-muted" style="height:25px; font-size:13.5px">Running: 01</div> -->
                               </mdb-card>
                               
                           </div>
@@ -76,10 +79,7 @@
                             <div class=" " >
                                 <mdb-list-group>
                                 <mdb-list-group-item class="text-white  list-group-header" >Transaction History</mdb-list-group-item>
-                                <mdb-list-group-item><span>Pawn</span>     <mdb-badge :pil="true" class='badges' color="default-color">item: Mobile</mdb-badge>     <mdb-badge :pill="true" color="default-color">03/10/12</mdb-badge></mdb-list-group-item>
-                                <mdb-list-group-item><span>Investment</span>       <mdb-badge :pil="true" class='badges' color="default-color">N250000</mdb-badge>     <mdb-badge :pill="true" color="default-color">03/10/12</mdb-badge></mdb-list-group-item>  
-                                <mdb-list-group-item><span>Finance</span>  <mdb-badge :pil="true" class='badges' color="default-color">N250000</mdb-badge>     <mdb-badge :pill="true" color="default-color">03/10/12</mdb-badge></mdb-list-group-item>  
-                                <mdb-list-group-item><span>Loan</span>     <mdb-badge :pil="true" class='badges' color="default-color">N250000</mdb-badge>     <mdb-badge :pill="true" color="default-color">03/10/12</mdb-badge></mdb-list-group-item> 
+                                <mdb-list-group-item  v-for="star in 5" :key="star"><span>Pawn</span>     <mdb-badge :pill="true" class='badges' color="default-color">item: Mobile</mdb-badge>     <mdb-badge :pill="true" color="default-color">03/10/12</mdb-badge></mdb-list-group-item>
                                 </mdb-list-group>
                             </div>
                                   
@@ -98,27 +98,15 @@
                                     <th>S/N</th>
                                     <th class="font-weight-bold h6">Type</th>
                                     <th class="font-weight-bold h6">Amount</th>
-                                    <th class="font-weight-bold h6">Date</th>
+                                    <th class="font-weight-bold h6">Details</th>
                                 </tr>
                             </mdb-tbl-head>
                             <mdb-tbl-body>
-                                <tr scope="row">
-                                    <td>1</td>
+                                <tr scope="row" v-for="star in 3" :key="star">
+                                    <td>{{star}}</td>
                                     <td>Investment</td>
                                     <td>N400,000</td>
-                                    <td>22/08/2019</td>
-                                </tr>
-                                <tr scope="row">
-                                    <td>2</td>
-                                    <td>Finance</td>
-                                    <td>N200,000</td>
-                                    <td>12/07/2019</td>
-                                </tr>
-                                <tr scope="row">
-                                    <td>3</td>
-                                    <td>Pawn</td>
-                                    <td>N30,000</td>
-                                    <td>12/03/2019</td>
+                                    <td><a class="text-primary" style="text-decoration:underline">View details</a></td>
                                 </tr>
                             </mdb-tbl-body>
                         </mdb-tbl>

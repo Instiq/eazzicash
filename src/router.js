@@ -11,6 +11,8 @@ import expiredToken from "./views/expiredToken.vue";
 import loanApprovalStatus from "./views/loanApprovalStatus.vue";
 import declineLoan from "./views/declineLoan.vue";
 import approveLoan from "./views/approveLoan.vue";
+import approveFinance from "./views/approveFinance.vue";
+import declineFinance from "./views/declineFinance.vue";
 import profile from "./views/profile.vue";
 import dashboard from "./components/dashboard.vue";
 import apply from "./components/loan/apply.vue";
@@ -84,6 +86,16 @@ const router = new Router({
       path: "/approveLoan",
       name: "approveLoan",
       component: approveLoan
+    },
+    {
+      path: "/approveFinance",
+      name: "approveFinance",
+      component: approveFinance
+    },
+    {
+      path: "/declineFinance",
+      name: "declineFinance",
+      component: declineFinance
     },
     {
       path: "/loanApprovalStatus",

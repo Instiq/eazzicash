@@ -2,8 +2,10 @@
   <div class="container">
       <div class="jumbotron">
             <div class="mt-sm-n5" style="height:"><a href="/"><img class="img-fluid" style="height:10vh" src="../assets/logomain.png" alt=""></a></div>
-        <section class="container table" style="width:70%">
-             <h4 class="text-center mb-3">Review Loan Details</h4>
+       
+            
+         <section class="container table" style="width:70%">
+             <h4 class="text-center mb-3">Review Finance Details</h4>
                 <mdb-tbl striped bordered>
                     <mdb-tbl-head>
                         <tr>
@@ -16,32 +18,32 @@
                         <tr >
                             <td>1</td>
                             <td>Name</td>
-                            <td>{{loanDetailsOne.userId.firstName}} {{loanDetailsOne.userId.lastName}}</td>
+                            <td>{{financeDetailsOne.userId.firstName}} {{financeDetailsOne.userId.lastName}}</td>
                         </tr>
                         <tr >
                             <td>2</td>
                             <td>Email</td>
-                            <td>{{loanDetailsOne.userId.email}}</td>
+                            <td>{{financeDetailsOne.userId.email}}</td>
                         </tr>
                         <tr >
                             <td>3</td>
-                            <td>Loan Amount</td>
-                            <td> <span style="font-weight:normal">&#8358;{{formatAmount(loanDetailsOne.loanAmount)}} </span></td>
+                            <td>Finance Amount</td>
+                            <td> <span style="font-weight:normal">&#8358;{{formatAmount(financeDetailsOne.financeAmount)}} </span></td>
                         </tr>
                         <tr >
                             <td>4</td>
-                            <td>Loan Tenor</td>
-                            <td>{{loanDetailsOne.loanTenor}}</td>
+                            <td>Finance Tenor</td>
+                            <td>{{financeDetailsOne.financeTenor}}</td>
                         </tr>
                         <tr >
                             <td>5</td>
                             <td>Indebtedness</td>
-                            <td>{{loanDetailsOne.indebtedness}}</td>
+                            <td>{{financeDetailsOne.indebtedness}}</td>
                         </tr>
                     </mdb-tbl-body>
                 </mdb-tbl>
         </section>
-            
+
 
 
             <p class="text-center"> Reason for Rejection  <span class="text-danger">*</span></p> 
@@ -88,9 +90,9 @@ name:"declineLoan",
          return this.$route.query.guarantorId
      },
       loanId () {
-         return this.$route.query.loanId
+         return this.$route.query.financeId
      },
-     loanDetailsOne () {
+     financeDetailsOne () {
          return this.$store.state.loanDetailsOne
      },
  },
@@ -99,7 +101,7 @@ methods : {
     declineGuarantor () {
         this.$store.commit('setLoanToken', this.loanToken);
         this.$store.commit('setGuarantorId', this.guarantorId);
-        this.$store.dispatch('declineLoanGuarantor')
+        this.$store.dispatch('declineFinanceGuarantor')
     },
     //function to format loan amount
     formatAmount (x) {
@@ -108,7 +110,7 @@ methods : {
 },
 mounted () {
     this.$store.commit('setLoanId', this.loanId);
-    this.$store.dispatch('getLoanDetailsOne');
+    this.$store.dispatch('getFinanceDetailsOne');
 }
 }
 </script>

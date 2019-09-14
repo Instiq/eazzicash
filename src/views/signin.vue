@@ -133,7 +133,7 @@ export default {
 <style scoped>
 
 .image{
-    background: url('../assets/naira1.jpg') center ;
+    background: url('../assets/naira2.png') center ;
     background-size:cover;
     height:100%;
   

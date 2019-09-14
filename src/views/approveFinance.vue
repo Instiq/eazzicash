@@ -4,7 +4,7 @@
         <div class="mt-sm-n5" style="height:"><a href="/"><img class="img-fluid" style="height:10vh" src="../assets/logomain.png" alt=""></a></div>
 
          <section class="container table" style="width:70%">
-             <h4 class="text-center mb-3">Review Loan Details</h4>
+             <h4 class="text-center mb-3">Review Finance Details</h4>
                 <mdb-tbl striped bordered>
                     <mdb-tbl-head>
                         <tr>
@@ -17,27 +17,27 @@
                         <tr >
                             <td>1</td>
                             <td>Name</td>
-                            <td>{{loanDetailsOne.userId.firstName}} {{loanDetailsOne.userId.lastName}}</td>
+                            <td>{{financeDetailsOne.userId.firstName}} {{financeDetailsOne.userId.lastName}}</td>
                         </tr>
                         <tr >
                             <td>2</td>
                             <td>Email</td>
-                            <td>{{loanDetailsOne.userId.email}}</td>
+                            <td>{{financeDetailsOne.userId.email}}</td>
                         </tr>
                         <tr >
                             <td>3</td>
-                            <td>Loan Amount</td>
-                            <td> <span style="font-weight:normal">&#8358;{{formatAmount(loanDetailsOne.loanAmount)}} </span></td>
+                            <td>Finance Amount</td>
+                            <td> <span style="font-weight:normal">&#8358;{{formatAmount(financeDetailsOne.financeAmount)}} </span></td>
                         </tr>
                         <tr >
                             <td>4</td>
-                            <td>Loan Tenor</td>
-                            <td>{{loanDetailsOne.loanTenor}}</td>
+                            <td>Finance Tenor</td>
+                            <td>{{financeDetailsOne.financeTenor}}</td>
                         </tr>
                         <tr >
                             <td>5</td>
                             <td>Indebtedness</td>
-                            <td>{{loanDetailsOne.indebtedness}}</td>
+                            <td>{{financeDetailsOne.indebtedness}}</td>
                         </tr>
                     </mdb-tbl-body>
                 </mdb-tbl>
@@ -46,7 +46,7 @@
 
 
 
-         <p class="text-center"> <button class="btn btn-success" @click="approveGuarantor" ><span class="h6">Confirm Approval</span></button></p>
+         <p class="text-center"> <button class="btn btn-success" @click="approveFinGuarantor" ><span class="h6">Confirm Approval</span></button></p>
      </div>
    
 
@@ -57,7 +57,7 @@
 <script>
 import {mdbTbl, mdbTblHead, mdbTblBody,} from 'mdbvue'
 export default {
- name:"approveLoan",
+ name:"approveFinance",
  components:{
      mdbTbl,
      mdbTblHead,
@@ -71,21 +71,21 @@ export default {
          return this.$route.query.guarantorId
      },
      loanId () {
-         return this.$route.query.loanId
+         return this.$route.query.financeId
      },
-     loanDetailsOne () {
+     financeDetailsOne () {
          return this.$store.state.loanDetailsOne
      },
  },
 
 methods : {
-    approveGuarantor () {
+    approveFinGuarantor () {
         this.$store.commit('setLoanToken', this.loanToken);
         this.$store.commit('setGuarantorId', this.guarantorId);
-        this.$store.dispatch('approveLoanGuarantor')
+        this.$store.dispatch('approveFinanceGuarantor')
     },
 
-    //function to format loan amount
+    //function to format finance amount
     formatAmount (x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
     },
@@ -93,7 +93,7 @@ methods : {
 
 mounted () {
     this.$store.commit('setLoanId', this.loanId);
-    this.$store.dispatch('getLoanDetailsOne');
+    this.$store.dispatch('getFinanceDetailsOne');
 }
 }
 </script>

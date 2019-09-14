@@ -13,14 +13,15 @@
                             <mdb-col class="col-md-4 col-12 mb-3 border-right">
                                <router-link to="/">
                                     <div class="container">
-                                        <mdb-card class="borderr bg-dange" style="opacity:0.8; background:limegreen">
+                                        <mdb-card class="borderr bg-dange" style="opacity:0.7; background:limegreen">
                                                 <mdb-row>
                                                     <mdb-col class="col-md-1 ml-2 mt-n2">
-                                                        <i class="fas fa-angle-double-left text-white" style="font-size:30px"></i> 
+                                                       <img src="../assets/first.svg" style="height:7vh; top:4.5vh" alt="">
                                                     </mdb-col>
-                                                    <mdb-col class="col-md-10">
+                                                    <mdb-col class="col-md-1"></mdb-col>
+                                                    <mdb-col class="col-md-6">
                                                         <mdb-card-body>
-                                                            <mdb-card-text class="text-white text-left" style="height:60px; width:200px ">Bring your valued minimal items and use for exchange in cash. </mdb-card-text>
+                                                            <mdb-card-text class="text-white text-left" style="height:60px; width:200px">Bring your valued minimal items and use for exchange in cash. </mdb-card-text>
                                                         </mdb-card-body>
                                                     </mdb-col>  
                                                 </mdb-row>   
@@ -32,12 +33,13 @@
                            <mdb-col class="col-md-4 col-12 mb-3 border-right">
                                 <router-link to="/">
                                     <div class="container" >
-                                        <mdb-card class="borderr bg-dange" style="opacity:0.8; background:deepskyblue">
+                                        <mdb-card class="borderr bg-dange" style="opacity:0.7; background:deepskyblue">
                                                 <mdb-row>
-                                                    <mdb-col class="col-md-1 ml-2 mt-n2">
-                                                        <i class="fas fa-angle-double-left text-white" style="font-size:30px"></i> 
+                                                    <mdb-col class="col-md-2 ml-2 mt-n2">
+                                                        <img src="../assets/second.svg" style="height:7vh; top:4.5vh" alt="">
                                                     </mdb-col>
-                                                    <mdb-col class="col-md-10">
+                                                    <mdb-col class="col-md-1"></mdb-col>
+                                                    <mdb-col class="col-md-6">
                                                         <mdb-card-body>
                                                             <mdb-card-text class="text-white text-left" style="height:60px; width:200px">Get your business financed at a good financial rate and interest</mdb-card-text>
                                                         </mdb-card-body>
@@ -51,14 +53,15 @@
                             <mdb-col class="col-md-4 col-12 mb-3" >
                                 <router-link to="/">
                                     <div class="container">
-                                        <mdb-card class="borderr bg-danger" style="opacity:0.8">
+                                        <mdb-card class="borderr " style="opacity:0.7; background:#d3592e">
                                                 <mdb-row>
-                                                    <mdb-col class="col-md-1 ml-2 mt-n2">
-                                                        <i class="fas fa-angle-double-left text-white" style="font-size:30px"></i> 
+                                                    <mdb-col class="col-md-2 ml-2 mt-n2">
+                                                        <img src="../assets/third.svg" style="height:7vh; top:4.7vh" alt="">
                                                     </mdb-col>
-                                                    <mdb-col class="col-md-10">
+                                                     <mdb-col class="col-md-1"></mdb-col>
+                                                    <mdb-col class="col-md-6">
                                                         <mdb-card-body>
-                                                            <mdb-card-text class="text-white text-left" style="height:60px; width:200px">Get up to 3 million naira loan  instantly. Best interest offer is avialable for comfortable repayment</mdb-card-text>
+                                                            <mdb-card-text class="text-white text-left" style="height:60px; width:200px">Get up to 3 million naira loan  instantly. Best interest offer is availaible for comfortable repayment</mdb-card-text>
                                                         </mdb-card-body>
                                                     </mdb-col>  
                                                 </mdb-row>   

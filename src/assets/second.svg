@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="127.233" height="76.941" viewBox="0 0 127.233 76.941">
+  <defs>
+    <clipPath id="clip-second">
+      <rect width="127.233" height="76.941"/>
+    </clipPath>
+  </defs>
+  <g id="second" clip-path="url(#clip-second)">
+    <g id="undraw_finance_0bdk" transform="translate(-258.77 -124.19)">
+      <path id="Path_192" data-name="Path 192" d="M258.77,124.19v76.941H386" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2"/>
+      <rect id="Rectangle_203" data-name="Rectangle 203" width="13.135" height="20.268" transform="translate(270.028 177.862)" fill="#fff" opacity="0.5"/>
+      <rect id="Rectangle_204" data-name="Rectangle 204" width="13.135" height="38.285" transform="translate(292.548 159.845)" fill="#fff" opacity="0.7"/>
+      <rect id="Rectangle_205" data-name="Rectangle 205" width="13.135" height="27.398" transform="translate(315.068 170.729)" fill="#fff" opacity="0.5"/>
+      <rect id="Rectangle_206" data-name="Rectangle 206" width="13.135" height="44.29" transform="translate(337.588 153.84)" fill="#fff" opacity="0.8"/>
+      <rect id="Rectangle_207" data-name="Rectangle 207" width="13.135" height="60.052" transform="translate(360.108 138.075)" fill="#fff"/>
+      <path id="Path_193" data-name="Path 193" d="M311.02,179.466l22.895-20.643,22.52,19.515,22.145-23.644,22.52-9.385" transform="translate(-34.612 -13.99)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2"/>
+      <circle id="Ellipse_23" data-name="Ellipse 23" cx="2.626" cy="2.626" r="2.626" transform="translate(273.782 162.849)" fill="#fff"/>
+      <circle id="Ellipse_24" data-name="Ellipse 24" cx="2.626" cy="2.626" r="2.626" transform="translate(318.822 161.347)" fill="#fff"/>
+      <circle id="Ellipse_25" data-name="Ellipse 25" cx="2.626" cy="2.626" r="2.626" transform="translate(341.716 138.078)" fill="#fff"/>
+      <circle id="Ellipse_26" data-name="Ellipse 26" cx="2.626" cy="2.626" r="2.626" transform="translate(296.677 141.828)" fill="#fff"/>
+      <circle id="Ellipse_27" data-name="Ellipse 27" cx="2.626" cy="2.626" r="2.626" transform="translate(363.862 128.693)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

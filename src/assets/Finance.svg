@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="75.038" height="51.949" viewBox="0 0 75.038 51.949">
+  <defs>
+    <clipPath id="clip-Finance">
+      <rect width="75.038" height="51.949"/>
+    </clipPath>
+  </defs>
+  <g id="Finance" clip-path="url(#clip-Finance)">
+    <path id="ic_credit_card_24px" d="M69.534,4H9.5C5.339,4,2.038,6.89,2.038,10.494L2,49.456c0,3.6,3.339,6.494,7.5,6.494h60.03c4.165,0,7.5-2.89,7.5-6.494V10.494C77.038,6.89,73.7,4,69.534,4Zm0,45.456H9.5V29.975h60.03Zm0-32.468H9.5V10.494h60.03Z" transform="translate(-2 -4)" fill="#fff"/>
+  </g>
+</svg>

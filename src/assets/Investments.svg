@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="113.749" height="66.637" viewBox="0 0 113.749 66.637">
+  <defs>
+    <clipPath id="clip-Investments">
+      <rect width="113.749" height="66.637"/>
+    </clipPath>
+  </defs>
+  <g id="Investments" clip-path="url(#clip-Investments)">
+    <g id="Group_103" data-name="Group 103">
+      <path id="Path_7" data-name="Path 7" d="M161.5,703.135l30.234-32.041,30.721,19.419,27.8-33.012" transform="translate(-148.474 -648.47)" fill="none" stroke="#fff" stroke-width="2"/>
+      <g id="Ellipse_19" data-name="Ellipse 19" transform="translate(0 42.625)" fill="#fff" stroke="#fff" stroke-width="1">
+        <ellipse cx="12.006" cy="12.006" rx="12.006" ry="12.006" stroke="none"/>
+        <ellipse cx="12.006" cy="12.006" rx="11.506" ry="11.506" fill="none"/>
+      </g>
+      <g id="Ellipse_20" data-name="Ellipse 20" transform="translate(30.264 9.497)" fill="#fff" stroke="#fff" stroke-width="1">
+        <ellipse cx="12.006" cy="12.006" rx="12.006" ry="12.006" stroke="none"/>
+        <ellipse cx="12.006" cy="12.006" rx="11.506" ry="11.506" fill="none"/>
+      </g>
+      <g id="Ellipse_21" data-name="Ellipse 21" transform="translate(64.422 27.998)" fill="#fff" stroke="#fff" stroke-width="1">
+        <ellipse cx="12.006" cy="12.006" rx="12.006" ry="12.006" stroke="none"/>
+        <ellipse cx="12.006" cy="12.006" rx="11.506" ry="11.506" fill="none"/>
+      </g>
+      <g id="Ellipse_22" data-name="Ellipse 22" transform="translate(89.737)" fill="#fff" stroke="#fff" stroke-width="1">
+        <ellipse cx="12.006" cy="12.006" rx="12.006" ry="12.006" stroke="none"/>
+        <ellipse cx="12.006" cy="12.006" rx="11.506" ry="11.506" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

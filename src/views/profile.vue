@@ -39,11 +39,11 @@
             <a href="javascript:void(0)" class="closebtn sidenav-items" @click="closeNav">&times;</a>
 
             <!-- profile items -->
-            <router-link to="/profile/dashboard"> <i class="fas fa-home sidenav-icon1"></i> <span class="sidenav-items">Dashboard</span></router-link>
-            <a href="/profile/loan/apply"> <i class="far fa-money-bill-alt sidenav-icon1"></i> <span class="sidenav-items">Loan</span></a>
-            <a href="/profile/investment/precheck"> <span class="h5 sidenav-icon"> &#8358;</span> <span class="sidenav-items">Investment</span></a>
-            <a href="/profile/finance/precheck"> <i class="fas fa-chart-line sidenav-icon"></i> <span class="sidenav-items">Finance</span></a>
-            <a href="/profile/pawnshop/precheck"> <i class="fas fa-chess-bishop sidenav-icon01"></i> <span class="sidenav-items">Pawnshop</span></a>
+            <router-link to="/profile/dashboard"><img src="../assets/Home.svg" height="15vh" style="" alt=""> <span class="sidenav-items" style="margin-left:10px">Dashboard</span></router-link>
+            <a href="/profile/loan/apply"> <img src="../assets/Loan.svg" height="15vh" style="margin-left:3px" alt=""> <span class="sidenav-items" style="margin-left:15px">Loan</span></a>
+            <a href="/profile/investment/precheck"> <img src="../assets/Investments.svg" height="14vh" style="" alt=""> <span class="sidenav-items" style="margin-left:6.5px">Investment</span></a>
+            <a href="/profile/finance/precheck"> <img src="../assets/Finance.svg" height="13vh" style="" alt=""> <span class="sidenav-items" style="margin-left:11px">Finance</span></a>
+            <a href="/profile/pawnshop/precheck"> <img src="../assets/Pawnshop.svg" height="14vh" style='' alt=""> <span class="sidenav-items" style="margin-left:8px">Pawnshop</span></a>
         </section>
 
 
