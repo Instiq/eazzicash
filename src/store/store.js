@@ -116,7 +116,7 @@ export default new Vuex.Store({
       async userSignIn({commit,state}, {email, password}) {
          await axios({
             method: "post",
-            url: `http://localhost:3000/api/auth/login`,
+            url: `${state.api_url}/auth/login`,
             data: {
               email,
               password,
