@@ -71,7 +71,7 @@ const router = new Router({
     {
       path: "/getToken",
       name: "getToken",
-      component: getToken
+      component: getToken,
     },
     {
       path: "/expiredToken",
