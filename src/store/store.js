@@ -186,7 +186,7 @@ export default new Vuex.Store({
       //  `${state.api_url}/loans`
         await axios({
           method: "post",
-          url: `http://localhost:3000/api/loans/`,
+          url: `${state.api_url}/loans`,
           data: {
             loanAmount : rootState.loan.principal,
             loanTenor : rootState.loan.tenor,
@@ -221,7 +221,7 @@ export default new Vuex.Store({
      //  `${state.api_url}/loans/${state.loanId}`
     async getLoanDetailsOne ({commit, state}) {
         await axios({
-          url :  `http://localhost:3000/api/loans/${state.loanId}`,
+          url :  `${state.api_url}/loans/${state.loanId}`,
           method :'get'
         })
         .then(({data}) => {
@@ -256,7 +256,7 @@ export default new Vuex.Store({
      //${state.api_url}/finance
       await axios({
         method:'post',
-        url:`http://localhost:3000/api/finance/`,
+        url:`${state.api_url}/finance`,
         data :{
           financeAmount: rootState.loan.principal,
           financeTenor:rootState.loan.tenor,
@@ -298,7 +298,7 @@ export default new Vuex.Store({
      //  `${state.api_url}/finance/${state.loanId}`
      async getFinanceDetailsOne ({commit, state}) {
       await axios({
-        url :  `http://localhost:3000/api/finance/${state.loanId}`,
+        url :  `${state.api_url}/finance/${state.loanId}`,
         method :'get'
       })
       .then(({data}) => {
@@ -425,7 +425,7 @@ export default new Vuex.Store({
       async approveLoanGuarantor ({commit, state}) {
         await axios({
           method:'put',
-          url:`http://localhost:3000/api/loans/loanStatusApprove/${state.loanToken}/${state.guarantorId}`,
+          url:`${state.api_url}/loans/loanStatusApprove/${state.loanToken}/${state.guarantorId}`,
         })
           .then(({data})=>{
             console.log(data);
@@ -450,7 +450,7 @@ export default new Vuex.Store({
       async approveFinanceGuarantor ({commit, state}) {
         await axios({
           method:'put',
-          url:`http://localhost:3000/api/finance/financeStatusApprove/${state.loanToken}/${state.guarantorId}`,
+          url:`${state.api_url}/finance/financeStatusApprove/${state.loanToken}/${state.guarantorId}`,
         })
           .then(({data})=>{
             console.log(data);
@@ -475,7 +475,7 @@ export default new Vuex.Store({
       async declineLoanGuarantor ({commit, state}) {
         await axios({
           method:'put',
-          url:`http://localhost:3000/api/loans/loanStatusDecline/${state.loanToken}/${state.guarantorId}`,
+          url:`${state.api_url}/loans/loanStatusDecline/${state.loanToken}/${state.guarantorId}`,
         })
           .then(({data})=>{
             console.log(data);
@@ -500,7 +500,7 @@ export default new Vuex.Store({
       async declineFinanceGuarantor ({commit, state}) {
         await axios({
           method:'put',
-          url:`http://localhost:3000/api/finance/financeStatusDecline/${state.loanToken}/${state.guarantorId}`,
+          url:`${state.api_url}/finance/financeStatusDecline/${state.loanToken}/${state.guarantorId}`,
         })
           .then(({data})=>{
             console.log(data);

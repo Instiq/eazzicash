@@ -8,6 +8,7 @@
             <p class="h3 text-center" v-if="path!='verifyEmail'">Email Verified</p>
             <p class="h3 text-center" v-if="path=='verifyEmail'" >Email  already  Verified</p>
             <p class="text-center">Congratulations! Your email has been successfully verified.</p>
+            <p class="text-center"><a href="/signin"><button class="btn btn-primary h4 p-3"> <i class="fas fa-arrow-left" style="font-size:16px"></i>  <span class="h6 ml-2">Back to Login</span></button></a> </p>
           </div>
       </div>
 
