@@ -32,7 +32,7 @@
                               </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <!-- <div class="col-md-5">
                             <span class="m">Interest rate (per month)</span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
                             <div class="input-group mb-2">
@@ -42,7 +42,7 @@
                             <input type="text" style="background:whitesmoke" disabled v-model="rate" class="form-control py-0" id="inlineFormInputGroup" placeholder="">
                             </div>
                             <p class="text-danger mb-2" style="font-size:15px; width:auto">please note that Interest rate is calculated on principal</p>
-                        </div>
+                        </div> -->
 
                          <div class="col-md-5">
                             <span class="m">Monthly Repayment Amount</span>
@@ -53,6 +53,7 @@
                             </div>
                             <input type="text" disabled v-model="mra" class="form-control font-weight-bold py-0" style="background:whitesmoke" id="inlineFormInputGroup"  placeholder="amount">
                             </div>
+                             <p class="text-danger mb-2" style="font-size:15px; width:auto"> Please note that the interest rate is fixed per month on the principal amount.</p>
                         </div>
 
                         <div class="col-md-6 mt-2 text-white float-right apply-btn" >

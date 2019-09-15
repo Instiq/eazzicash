@@ -27,7 +27,7 @@
                             <option value="12">12 months</option>
                             </select>
                         </div>
-
+<!-- 
                         <div class="col-md-5">
                             <span class="m">Interest rate (per month)</span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
@@ -38,7 +38,7 @@
                             <input type="text" style="background:whitesmoke" disabled v-model="investRate" class="form-control py-0" id="inlineFormInputGroup" placeholder="">
                             </div>
                             <p class="text-danger mb-2" style="font-size:15px; width:auto">please note that Interest rate is calculated on principal</p>
-                        </div>
+                        </div> -->
 
                          <div class="col-md-5">
                             <span class="m">Return on Investment </span>
@@ -49,6 +49,8 @@
                             </div>
                             <input type="text" disabled v-model="investMra" class="form-control font-weight-bold py-0" style="background:whitesmoke" id="inlineFormInputGroup"  placeholder="amount">
                             </div>
+                             <p class="text-danger mb-2" style="font-size:15px; width:auto"> Please note that the return on investment is accrued interest plus investment amount.</p>
+                           
                         </div>
 
                         <div class="col-md-6 mt-2 text-white float-right apply-btn" >

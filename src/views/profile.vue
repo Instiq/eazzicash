@@ -21,7 +21,7 @@
         <section id="mySidenav" class="sidenav" style="z-index:2">
             <div class="wrapper-head">
               <img class ='nav' src = "../assets/logomain.png" height="40px" />
-              <span class='navheader sidenav-items'>MyEazziSolutions</span>
+              <span class='navheader sidenav-items'>MyEazziCash</span>
             </div>
 
           <!-- avatar image -->

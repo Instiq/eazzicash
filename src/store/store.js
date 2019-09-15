@@ -17,7 +17,7 @@ export default new Vuex.Store({
     name:"",
     token:"",
     email:"",
-    expiredToken:false,
+    isTokenExpired:false,
     emailVerificationToken : "",
     isAuthenticated:false,
     isEmailRegistered : false,
@@ -54,8 +54,8 @@ export default new Vuex.Store({
     setEmailVerificationToken(state, payload) {
       state.emailVerificationToken = payload
     },
-    setExpiredToken (state, payload) {
-      state.expiredToken = payload
+    setIsTokenExpired (state, payload) {
+      state.isTokenExpired = payload
     },
     setEmail (state, payload) {
       state.email=payload
@@ -394,7 +394,7 @@ export default new Vuex.Store({
         
         .catch (err=>{
           if(err.response.data=='expired token') {
-            commit('setExpiredToken', true)
+            commit('setIsTokenExpired', true)
             setTimeout (_ =>  router.push('/verifyEmail?path=getToken'), 4500)
           }
           console.error(err.response.data);

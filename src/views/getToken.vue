@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <div class="jumbotron" v-if="expired">
+      <div class="jumbotron" v-if="isTokenExpired">
             <div class="mt-sm-n5" style="height:"><a href="/"><img class="img-fluid" style="height:10vh" src="../assets/logomain.png" alt=""></a></div>
            <p class="text-center" ><img class="img-fluid" style="height:10vh" src="../assets/sad.svg" alt=""></p> 
            <p class="h4 text-center">Token Expired.. You will be redirected in {{count}} seconds</p>
@@ -28,15 +28,18 @@ methods : {
     }
 },
 computed : {
-    expired () {
-       return this.$store.state.expiredToken
+    isTokenExpired () {
+       return this.$store.state.isTokenExpired
     }
 },
-mounted () {
-    if (this.expired) {
+watch : {
+    isTokenExpired (newval) {
+        if (newval) {
         setInterval(_ => this.timer(), 1000)
     }
-}
+    }
+},
+
 }
 </script>
 
