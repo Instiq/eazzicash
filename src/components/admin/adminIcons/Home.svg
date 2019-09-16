@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="69.035" height="58.68" viewBox="0 0 69.035 58.68">
+  <defs>
+    <clipPath id="clip-Home">
+      <rect width="69.035" height="58.68"/>
+    </clipPath>
+  </defs>
+  <g id="Home" clip-path="url(#clip-Home)">
+    <path id="ic_home_24px" d="M29.614,61.68V40.969H43.421V61.68H60.68V34.066H71.035L36.517,3,2,34.066H12.355V61.68Z" transform="translate(-2 -3)" fill="#fff"/>
+  </g>
+</svg>

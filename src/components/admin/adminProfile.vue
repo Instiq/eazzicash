@@ -1,7 +1,7 @@
 <template>
     <div class="">
 
-        <section class="mb-5 d-flex position-fixed " style="height:10vh;width:100%;z-index:1; box-shadow:20px 20px blur; background:#424242; justify-content:space-between" >
+        <section class="mb-5 d-flex position-fixed" style="height:10vh;width:100%;z-index:1; box-shadow:20px 20px blur; background:#424242; justify-content:space-between" >
             <div>
               <span waves class="hambger container text-black" @click="openNav">&#9776; </span>
               <!-- <span class="text-white" @click="openNav" style="font-size:22px; position:absolute; margin-left:55px; margin-top:18px; cursor:pointer">Dashboard</span>    -->
@@ -20,17 +20,17 @@
 
         <section id="mySidenav" class="sidenav" style="z-index:2">
             <div class="wrapper-head">
-              <img class ='nav' src = "../assets/logomain.png" height="40px" />
+              <img class ='nav' src = "./adminIcons/logomain.png" height="40px" />
               <span class='navheader sidenav-items'>MyEazziCash</span>
             </div>
 
           <!-- avatar image -->
             <div class="row mt-n4 avatar-main">
                 <div class="col-6">
-                  <img src="../assets/avatar2.jpg" class="avatar rounded-pill" alt="">
+                <img src="./adminIcons/avatar3.jpg" class="avatar rounded-pill" alt=""> 
                 </div>
                 <div class="col-6">
-                   <span class="avatar-welcome">Welcome! <br> {{name}}</span>
+                   <span class="avatar-welcome">Welcome Admin! <br> {{name}}</span>
                 </div>
             </div>
 
@@ -39,12 +39,18 @@
             <a href="javascript:void(0)" class="closebtn sidenav-items" @click="closeNav">&times;</a>
 
             <!-- profile items -->
-            <router-link to="/profile/dashboard"><img src="../assets/Home.svg" height="15vh" style="" alt=""> <span class="sidenav-items" style="margin-left:10px" >Dashboard</span></router-link>
-            <a href="/profile/loan/apply"> <img src="../assets/Loan.svg" height="15vh" style="margin-left:3px" alt=""> <span class="sidenav-items" style="margin-left:15px">Loan</span></a>
-            <a href="/profile/investment/precheck"> <img src="../assets/Investments.svg" height="14vh" style="" alt=""> <span class="sidenav-items" style="margin-left:6.5px">Investment</span></a>
-            <a href="/profile/finance/precheck"> <img src="../assets/Finance.svg" height="13vh" style="" alt=""> <span class="sidenav-items" style="margin-left:11px">Finance</span></a>
-            <a href="/profile/pawnshop/precheck"> <img src="../assets/Pawnshop.svg" height="14vh" style='' alt=""> <span class="sidenav-items" style="margin-left:8px">Pawnshop</span></a>
+            <router-link to="/profile/dashboard"> <img src="./adminIcons/Home.svg" height="15vh" style="" alt=""> <span class="sidenav-items" style="margin-left:16px">Dashboard</span></router-link>
+            <a href="/profile/loan/apply">   <i class="fas fa-user"></i><span class="sidenav-items" style="margin-left:18px">User Management</span></a>
+            <a href="/profile/investment/precheck"> <i class="fas fa-check"></i> <span class="sidenav-items" style="margin-left:15px"> Approvals</span></a>
+            <a href="/profile/finance/precheck"> <img src="./adminIcons/Investments.svg" height="14vh" style="" alt=""> <span class="sidenav-items" style="margin-left:9px">Reports</span></a>
+    
         </section>
+
+        <!-- <img src=".../assets/Home.svg" height="15vh" style="" alt=""> 
+         <img src="../assets/Investments.svg" height="14vh" style="" alt="">
+            <img src=".../assets/Loan.svg" height="15vh" style="margin-left:3px" alt="">
+            <img src="..../assets/Finance.svg" height="13vh" style="" alt="">
+             <img src=".../assets/Pawnshop.svg" height="14vh" style='' alt=""> -->
 
 
         <div class="children-routes container">
@@ -96,7 +102,8 @@ export default {
 
         userSignOut () {
          this.$store.dispatch('userSignOut')
-        },
+        }
+        
     },
     computed : {
       name () {

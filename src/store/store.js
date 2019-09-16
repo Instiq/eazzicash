@@ -17,6 +17,10 @@ export default new Vuex.Store({
     name:"",
     token:"",
     email:"",
+    //state for userId and all user activity start
+    userId:"",
+    userEntitiesOne:"",
+     //state for userId and all user activity End
     isTokenExpired:false,
     emailVerificationToken : "",
     isAuthenticated:false,
@@ -32,7 +36,7 @@ export default new Vuex.Store({
   },
 
   plugins: [createPersistedState({
-   paths : ['name', 'isAuthenticated', 'token', 'emailVerificationToken', 'email', 'loanToken', 'guarantorId', 'loanId']
+   paths : ['name', 'isAuthenticated', 'token', 'emailVerificationToken', 'email', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne']
   })],
 
   mutations: {
@@ -51,6 +55,14 @@ export default new Vuex.Store({
     setName (state, payload) {
       state.name = payload
     },
+    //mutations for userId and all user activity start
+    setUserId (state, payload) {
+      state.userId = payload
+    },
+    setUserEntitiesOne (state, payload) {
+      state.userEntitiesOne = payload
+    },
+    //mutations for userId and all user activity End
     setEmailVerificationToken(state, payload) {
       state.emailVerificationToken = payload
     },
@@ -104,6 +116,7 @@ export default new Vuex.Store({
           context.commit('setLoading', false);
           context.commit('setIsAuthenticated', true);
           context.commit('setEmail', data.email)
+          context.commit('setUserId', data._id)
           router.push('/verifyEmail?path=signup');
         })
         .catch(({response}) => {
@@ -134,6 +147,7 @@ export default new Vuex.Store({
             commit('setToken', data.token);
             commit('setIsAuthenticated', true);
             commit('setEmail', data.email)
+            commit('setUserId', data._id)
             router.push('/profile/dashboard'); 
           })
           .catch(({response}) => {
@@ -152,7 +166,12 @@ export default new Vuex.Store({
         commit('setIsAuthenticated', false);
         commit('setName', '');
         commit('setEmail', '')
-        commit('setUsetEmailVerificationTokenid', '');
+        commit('setEmailVerificationToken', '');
+        commit('setUserEntitiesOne', '');
+        commit('setGuarantorId', ''),
+        commit('setLoanId', '')
+        commit('setLoanToken', '');
+        commit('setUserId', '')
         console.log(state.token);
         
        },
@@ -308,6 +327,7 @@ export default new Vuex.Store({
   } , 
      
     //post Pawn
+    //${state.api_url}/pawn
     async postPawn ({commit, state, rootState}) {
       await axios({
         method:'post',
@@ -341,6 +361,7 @@ export default new Vuex.Store({
     },
 
      //post Investment
+     //${state.api_url}/investment
     async postInvestment ({commit, state, rootState}) {
       await axios({
         method:'post',
@@ -519,6 +540,20 @@ export default new Vuex.Store({
             console.error(err.response.data);
           })
         },
+
+        //get all loans, pawn, investments and finance from a particular user
+        async getAllEntitiesOne ({commit, state}) {
+          await axios({
+            method:'get',
+            url:`${state.api_url}/entities/${state.userId}`
+          })
+          .then(({data}) => {
+            console.log(data);
+            commit('setUserEntitiesOne', data)
+            
+          })
+        }
+
 
     
   },
