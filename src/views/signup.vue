@@ -44,7 +44,7 @@
                              </div>
                         </mdb-col>
                         <mdb-col class="col-sm-6 col-12" >
-                            <mdb-input type="number" size="lg"  label="phone number" v-model="userPhone" name='phone' v-validate="'required|min:11|max:15'"  style="background:white" outline /> 
+                            <mdb-input type="number" size="lg"  label="Phone number" v-model="userPhone" name='phone' v-validate="'required|min:11|max:15'"  style="background:white" outline /> 
                             <div class="mt-3" >
                                 <i v-show="errors.has('phone')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
@@ -85,7 +85,8 @@
                     <mdb-row>
                         <mdb-col class="col-sm-6 col-12">
                         <select  v-validate="'required'" name="country" v-model="userCountry" class="custom-select">
-                                 <option value="nigeria" >Nigeria</option>
+                             <option value="" selected='selected' >Choose Country</option>
+                                 <option value="Nigeria" >Nigeria</option>
                                 <option value="Åland Islands" >Åland Islands</option>
                                 <option value="Albania">Albania</option>
                                 <option value="Algeria">Algeria</option>
@@ -338,7 +339,7 @@
 
                         <mdb-col class="col-sm-6 col-12 small-screen-select" >
                             <select name="state"  v-validate="'required'" v-model="userState"  id="state" class="browser-default custom-select">
-                                <option value="" selected='selected' >Choose state</option>
+                                <option value="" selected='selected' >Choose State</option>
                                 <option value='Abia'>Abia</option>
                                 <option value='Adamawa'>Adamawa</option>
                                 <option value='AkwaIbom'>AkwaIbom</option>

@@ -7,11 +7,13 @@
                              <div class="col-md-5 mb-3">
                                 <span class="m">Collateral Type <span class="text-danger">*</span></span>
                                 <select class="browser-default custom-select" v-model="collateralType" v-validate="'required'" name="Collateral Type">
-                                <option value="LPO Finance">LPO Finance</option>
+                                <option value="LPO Finance">Moveable Asset</option>
                                 <option disabled="disabled">-------------------------------------------------------- </option>
-                                <option value="Asset" >Asset</option>
+                                <option value="Asset" >Contract Agreement</option>
                                 <option disabled="disabled">---------------------------------------------------------</option>
-                                <option value="Contract">Contract</option>
+                                <option value="Contract">Joint Account</option>
+                                 <option disabled="disabled">---------------------------------------------------------</option>
+                                <option value="Contract">Direct Payment to EazziCash</option>
                                 </select>
                                 <div class="mt-3" >
                                     <i v-show="errors.has('Collateral Type')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 

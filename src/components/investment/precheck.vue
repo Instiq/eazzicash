@@ -8,7 +8,7 @@
 
                     <section class="container  mt-3">
                         <div class="col-md-5">
-                            <span class="m">Investment Amount (min:100k max:3m)</span>
+                            <span class="m">Investment Amount (min:100k)</span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
                             <div class="input-group mb-2">
                             <div class="input-group-prepend">

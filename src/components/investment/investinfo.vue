@@ -10,7 +10,7 @@
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
                                     </div>
-                                    <input type="text" v-model.number="investPrincipal" class="form-control"  placeholder="Enter Amount" v-validate="'required|min_value:100000|max_value:30000000'"  name="Investment Amount"  >
+                                    <input type="text" v-model.number="investPrincipal" class="form-control"  placeholder="Enter Amount" v-validate="'required|min_value:100000'"  name="Investment Amount"  >
                                     <div class="mt-3" >
                                     <i v-show="errors.has('Investment Amount')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('Investment Amount')">{{ errors.first('Investment Amount') }}</span>

@@ -110,7 +110,7 @@ export default new Vuex.Store({
           }
         })
         .then(({data})=>{
-          console.log(data);
+         // console.log(data);
           context.commit('setName', `${data.firstName} ${data.lastName}`);
           context.commit('setToken', data.token);
           context.commit('setLoading', false);
@@ -120,7 +120,7 @@ export default new Vuex.Store({
           router.push('/verifyEmail?path=signup');
         })
         .catch(({response}) => {
-          console.log(response.data);
+         // console.log(response.data);
           if (response.data.msg=="User already registered.") {
             context.commit('setIsEmailRegistered', true);
             context.commit('setLoading', false)
@@ -141,7 +141,11 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
-            console.log(data);
+            if (!data.isVerified) {
+              router.push('/verifyEmail?path=signin')
+              return;
+            }
+           // console.log(data);
             commit('setLoading', false)
             commit('setName', `${data.firstName} ${data.lastName}`) ;
             commit('setToken', data.token);
@@ -151,7 +155,7 @@ export default new Vuex.Store({
             router.push('/profile/dashboard'); 
           })
           .catch(({response}) => {
-            console.log(response.data);
+            //console.log(response.data);
             if (response.data.msg=="Invalid email or password.") {
               commit('setIsEmailorPasswordCorrect', true);
               commit('setLoading', false)

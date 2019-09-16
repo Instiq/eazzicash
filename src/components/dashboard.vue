@@ -97,7 +97,7 @@
 
                    <div class="col-md-12 major-col-2 mt-4" style="">
                         <mdb-card class="bg-">
-                            <mdb-card-title class="borde bg-danger py-2 text-white text-center pending">Pending Requests <mdb-badge :pill="true" color="danger"> {{checkPendingRequests()}} </mdb-badge></mdb-card-title>
+                            <mdb-card-title class="borde bg-danger py-2 text-white text-center pending">Pending Requests <mdb-badge :pill="true" color="danger"> {{totalPending().length}} </mdb-badge></mdb-card-title>
 
                        <section>
                         <mdb-tbl striped>
@@ -110,30 +110,31 @@
                                     <th class="font-weight-bold h6">Details</th>
                                 </tr>
                             </mdb-tbl-head>
-                            <mdb-tbl-body>
-                                <tr scope="row" v-for="(item, index) in filteredPawnPending()" :key="index">
-                                    <td>{{addOne()}}</td>
+                            <mdb-tbl-body  >
+
+                                <tr scope="row" v-for="(item, index) in filteredPawnPending()" :key="index" >
+                                    <td>#</td>
                                     <td>{{item.type}}</td>
                                     <td>&#8358; {{formatAmount(item.pawnAmount)}}</td>
                                      <!-- <td> {{item.approved}}</td> -->
                                     <td><a class="text-primary" style="text-decoration:underline">View details</a></td>
                                 </tr>
                                  <tr scope="row" v-for="(item, index) in filteredInvestmentPending()" :key="index">
-                                    <td>{{addOne()}}</td>
+                                    <td >#</td>
                                     <td>{{item.type}}</td>
                                     <td>&#8358; {{formatAmount(item.investmentAmount)}}</td>
                                     <!-- <td> {{item.approved}}</td> -->
                                     <td><a class="text-primary" style="text-decoration:underline">View details</a></td>
                                 </tr>
                                  <tr scope="row" v-for="(item, index) in filteredLoanPending()" :key="index">
-                                    <td>{{addOne()}}</td>
+                                    <td >#</td>
                                     <td>{{item.type}}</td>
                                     <td>&#8358; {{formatAmount(item.loanAmount)}}</td>
                                     <!-- <td> {{item.approved}}</td> -->
                                     <td><a class="text-primary" style="text-decoration:underline">View details</a></td>
                                 </tr>
                                  <tr scope="row" v-for="(item, index) in filteredFinancePending()" :key="index">
-                                    <td>{{addOne()}}</td>
+                                    <td>#</td>
                                     <td>{{item.type}}</td>
                                     <td>&#8358; {{formatAmount(item.financeAmount)}}</td>
                                     <!-- <td> {{item.approved}}</td> -->
@@ -178,7 +179,7 @@ export default {
     },
     data () {
         return {
-            index:1,
+            indexx:1,
             sum:''
         }
     },
@@ -193,29 +194,6 @@ export default {
         formatAmount (x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
         },
-         addOne () {
-             if (this.index>this.sum) {
-                this.index = this.sum
-                 return ;
-             }
-
-            else {
-                  for (let i =1; i<this.sum-1; i++) { 
-                 return this.index++
-             }
-            }
-             
-        },
-        checkPendingRequests () {
-            let pawn = this.filteredPawnPending().length
-            let loan = this.filteredLoanPending().length
-            let finance = this.filteredFinancePending().length
-            let investment = this.filteredInvestmentPending().length
-
-            let total = pawn + loan + finance + investment
-            this.sum = total
-            return total
-        },
         checkTransactionHistory () {
             let pawn = this.filteredPawnApproved().length
             let loan = this.filteredLoanApproved().length
@@ -226,8 +204,28 @@ export default {
             this.sum = total
             return total
         },
+        totalPending () {
+            let pawn = this.filteredPawnPending()
+            let loan = this.filteredLoanPending()
+            let finance = this.filteredFinancePending()
+            let investment = this.filteredInvestmentPending()
+
+            let total = pawn.concat(loan).concat(finance).concat(investment)
+            return total
+        },
         moment (x) {
         return moment(x).format("DD/MM/YYYY")
+     },
+
+     addOne () {
+        let td = document.querySelectorAll('.td')
+        td.forEach((item, index) => {
+            return item
+        })
+                
+               
+
+        
      },
     //filter pawn  by approval ststus
      filteredPawnApproved () {
