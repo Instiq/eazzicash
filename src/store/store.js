@@ -234,8 +234,14 @@ export default new Vuex.Store({
   
         })
         .catch(({response}) => {
-          console.error(response.data);
           commit('setLoading', false)
+          if (err.response.data=='Invalid Token') {
+            alert('Session Expired. kindly Re-Login');
+            router.push('/signin');
+            return;
+          }
+          console.error(response.data);
+          
         }) 
 
        },
@@ -309,11 +315,17 @@ export default new Vuex.Store({
       .then(({data})=>{
         console.log(data);
         commit('setLoading', false);
-        router.push('/profile/loan/loandetails/success')
+        router.push('/profile/finance/loandetails/success')
       })
       .catch (err=>{
-        console.error(err.response.data);
         commit('setLoading', false)
+        if (err.response.data=='Invalid Token') {
+          alert('Session Expired. kindly Re-Login');
+          router.push('/signin');
+          return;
+        }
+        console.error(err.response.data);
+        
       })
     },
 
@@ -359,8 +371,15 @@ export default new Vuex.Store({
         commit('setLoading', false)
       })
       .catch (err=>{
-        console.error(err.response.data);
+
         commit('setLoading', false)
+        if (err.response.data=='Invalid Token') {
+          alert('Session Expired. kindly Re-Login');
+          router.push('/signin');
+          return;
+        }
+        console.error(err.response.data);
+       
       })
     },
 
@@ -400,8 +419,14 @@ export default new Vuex.Store({
         commit('setLoading', false)
       })
       .catch (err=>{
-        console.error(err.response.data);
         commit('setLoading', false)
+        if (err.response.data=='Invalid Token') {
+          alert('Session Expired. kindly Re-Login');
+          router.push('/signin');
+          return;
+        }
+        console.error(err.response.data);
+        
       })
     },
 
@@ -422,6 +447,11 @@ export default new Vuex.Store({
             commit('setIsTokenExpired', true)
             setTimeout (_ =>  router.push('/verifyEmail?path=getToken'), 4500)
           }
+          if(err.response.data=='User does not exist') {
+            commit('setIsTokenExpired', true)
+            router.push('/signup')
+          }
+
           console.error(err.response.data);
          
         })
@@ -431,17 +461,23 @@ export default new Vuex.Store({
     //${state.api_url}/users/resendEmailVerification
     async resendEmailVerification ({commit, state}) {
       await axios({
-        method:'post',
+        method:'put',
         url:`${state.api_url}/users/resendEmailVerification/${state.email}`,
       })
         .then(({data})=>{
           console.log(data);
-          router.push('/verifyEmail')
+          router.push('/verifyEmail?path=resendEmail')
         })
         
         .catch (err=>{
-          console.error(err.response.data);
-          router.push('/emailVerified?path=verifyEmail')
+          if (err.response.data == 'User already verified') {
+            router.push('/emailVerified?path=verifyEmail');
+            return
+          }
+          if (err.response.data == 'User not found') {
+            router.push('/signup')
+          }
+         
         })
       },
 

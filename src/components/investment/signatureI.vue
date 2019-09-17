@@ -41,22 +41,54 @@
                     <mdb-modal-title >Terms & Conditions</mdb-modal-title>
                     </mdb-modal-header>
                     <mdb-modal-body>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                    </mdb-modal-body>
+                                    <p class="font-weight-bold"> USE OF CREDIT BUREAU</p>
+                                    <p>Upon filling of MyEazzi Solution loan application form, the Borrower agrees that MyEazzi Solution Limited will:</p>
+
+                                    <p>a.  Approach dedicated Credit Reference Agencies for a credit report of the Borrower upon considering any application for credit.</p>
+                                    <p>b.access any information  as provided by the Credit Agencies.</p>
+                                    <p>c. The Borrower also agrees that its details and the make loan application decision will be registered with the Credit Agencies.</p>
+                                    <p>d. Advise and  contact details of the relevant credit agencies if the Borrower wishes to access the credit report  and the Borrower waives any claims against the Lender in respect of such disclosure.</p>
+
+
+                                    <p class="font-weight-bold">RIGHTS AND OBLIGATION OF THE BORROWER AND THE CO -SIGNATORY.</p>
+                                    <p>a. The Borrower has the right to receive and use the loan as stipulated in the terms and conditions.</p>
+                                    <p>b.	The installments must be paid as at when due by paying in any of the conventional Lenders.</p>
+                                    <p>c.	The Borrower must not use the loan for a different purpose as against the stipulated purpose provided in the application form.</p>
+                                    <p>d.	The Borrower has to inform the Lender immediately in event that there is change in Business/residential address, home, change of business activity and/or other change that is significant to the loan.</p>
+                                    <p>e.	The Borrower  needs the Lender’s express and written approval when:</p>
+                                    <ul>
+                                        <li>Selling partly or entirely his/her fixed business assets </li>
+                                    <li>Pledging or selling any of the collaterals.</li>
+                                    </ul>
+
+                                    <p class="font-weight-bold">REPRESENTATIONS AND WARRANTIES</p>
+                                    <p> The Borrower represents and warrants that:</p>
+                                    <p>a.	The Borrower agrees to accept this facility and has executed the offer letter herein without duress after reading and understanding the contents of same.</p>
+                                    <p>b.	The Borrower agrees to accept this facility and has taken all necessary actions to authorize same upon executing the offer letter herein.</p>
+                                    <p>c.	The Lender is not in default or under any obligation in respe respect of any borrowed money that the acceptance of this facility will be or result in breach of or default under any provision of any other agreement to which the Borrower is a party.</p>
+                                    <p>d.	The information given to MyEazzi Solution Limited verbally or in writing in the formal loan application form is true and accurate.</p>
+                                    <p>e.	The Borrower will utilize the loan for the purpose(s) for which it intimated MyEazzi Solution Limited about in their application for the loan.</p>
+                                    <p>f.	The Borrower agrees that MyEazzi Solution Limited will not be held liable for the postdated cheques provided by the Borrower upon approval of the loan facility; in any event that such loan is declined subsequently.</p>
+                                    <p>g.	The Borrower agrees that MyEazzi Solution Limited can decline an already approved loan applications at any stage and at its discretion.</p>
+                                    <p>h.	 MyEazzi Solution Limited will not be held liable for any damage claim whatsoever.</p>
+                                    <p>i.	The Borrower agrees that in the event this loan application is declined by MyEazzi Solution Limited, application documents shall not be returned. The Borrower hereby acknowledges and concedes that the Lender’s books and accounts shall be evidence of the sum due or which the Borrower is bound to pay in respect of the credit.</p>	
+
+                                    <p>J.	The invalidity of any part of this offer of credit facility [“offer letter”] will not and shall not be deemed to affect the validity of any other part. In the event that any provision or clause of this offer letter is held to be invalid, the parties agree that the remaining provisions shall be deemed to be in full force and effect as if they had been executed by both parties subsequent to the expungement of the invalid provision; and If at any time any term or provision in this Offer letter shall be held to be illegal, invalid or unenforceable, in whole or in part, under any rule of law or enactment or by judicial pronouncement, such term or provision or part shall to that extent be deemed not to form part of this Offer letter, but the enforceability of the remainder of this Offer letter shall not be affected.</p>
+                                    <p>K.	This offer letter shall constitute the entire offer letter between the parties. Any prior understanding or representation of any kind preceding the date of this offer letter shall not be binding on either party except to the extent incorporated in this offer letter; and it is hereby expressly agreed by parties to this offer letter that no Party has entered into this Offer letter under any form of duress or in reliance upon any representation, warranty, indemnity, covenant or undertaking of any other Party which is not expressly set out in this Offer letter. WHEREBY IT IS HEREBY EXPRESSLY AND MUTUALLY AGREED THAT THE “COLLATERAL EVALUATION”, Borrower’s Means of Identification, Borrower’s passport photograph and all documents submitted to the Lender by the Borrower and accepted by the Lender for the purpose of approving this loan form part of this agreement.</p>
+                                    <p>l.  Any modification of this offer letter or additional obligation assumed by either party in connection with this offer letter shall be binding only if evidenced in writing signed and sealed by each party or an authorized representative of each party.</p>
+
+                                    <p>m.   This offer letter may be executed in any number of counterparts, each of which shall be deemed to be an original, but all of which together shall constitute but one and the same instrument.</p>
+
+                                    <p>****This offer is subject to a satisfactory credit report and further verification checks in event that your application is unsuccessful; your documents shall be returned to you.
+
+                                    Please note that where this offer is not accepted within 14 (Fourteen) days, it shall be subject to review against the prevailing market values.
+
+                                    We believe that this offer meets your need, If so, kindly indicate your acceptance of the the terms and conditions by executing the Memorandum of Acceptance below.
+
+                                    </p>
+
+                                    <p>Thank you..</p>
+                    </mdb-modal-body>       
                     <mdb-modal-footer>
                     <mdb-btn color="info" @click.native="showModal12a = false">Submit</mdb-btn>
                     <!-- <mdb-btn color="primary">Save changes</mdb-btn> -->

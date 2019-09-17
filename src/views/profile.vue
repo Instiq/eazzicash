@@ -2,6 +2,11 @@
     <div class="">
 
         <section class="mb-5 d-flex position-fixed " style="height:10vh;width:100%;z-index:1; box-shadow:20px 20px blur; background:#424242; justify-content:space-between" >
+          <p v-if="['dashboard'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold;   margin-left:25%">Dashboard</p>
+           <p v-if="['loan'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Loan</p>
+            <p v-if="['pawn'].includes($route.name)" class="text-white  profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Pawn</p>
+             <p v-if="['finance'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Finance</p>
+              <p v-if="['investment'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Investment</p>
             <div>
               <span waves class="hambger container text-black" @click="openNav">&#9776; </span>
               <!-- <span class="text-white" @click="openNav" style="font-size:22px; position:absolute; margin-left:55px; margin-top:18px; cursor:pointer">Dashboard</span>    -->
@@ -86,7 +91,7 @@ export default {
         },
 
         closeNav() {
-        document.getElementById("mySidenav").style.width = "120px";
+        document.getElementById("mySidenav").style.width = "120px"
         document.querySelector('.avatar-welcome').style.display='none';
         let items = document.querySelectorAll('.sidenav-items');
         items.forEach((item, index)=>item.style.display='none');
@@ -242,9 +247,22 @@ export default {
   /* margin: 0px 60vw; */
 }
 
+
 /* my custom styles */
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+/* @media screen and (max-height: 750px) {
+  .profileItems {
+  margin-left:50% !important
+}
+} */
+
+@media (max-width: 750px) {
+  .profileItems {
+  margin-left:50% !important
+}
 }
 </style>

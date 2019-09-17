@@ -36,13 +36,13 @@
 
 
                     <mdb-row>
-                        <mdb-col class="col-sm-6 col-12">
+                        <!-- <mdb-col class="col-sm-6 col-12">
                             <mdb-input type="text" size="lg" name='username' v-validate="'required'" v-model="userName" label="User name"  style="background:white" outline /> 
                             <div class="mt-3" >
                                 <i v-show="errors.has('username')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('username')">{{ errors.first('username') }}</span>
                              </div>
-                        </mdb-col>
+                        </mdb-col> -->
                         <mdb-col class="col-sm-6 col-12" >
                             <mdb-input type="number" size="lg"  label="Phone number" v-model="userPhone" name='phone' v-validate="'required|min:11|max:15'"  style="background:white" outline /> 
                             <div class="mt-3" >
@@ -384,12 +384,12 @@
                              </div>
                         </mdb-col>
 
-                        <mdb-col class="col-md-6 col-12">
+                        <!-- <mdb-col class="col-md-6 col-12">
                             <mdb-input type="text" size="lg"  style="background:white" label="Zip code" outline /> 
-                        </mdb-col>
+                        </mdb-col> -->
 
-                        <mdb-col class="col-md-6 col-12 small-screen-btn">
-                        <button type='submit' style="font-size:20px; font-weight:bold; background:indigo" class="btn btn-indigo btn-block mt-4">Sign Up <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span> </button>
+                        <mdb-col class="col-12 small-screen-btn">
+                        <button type='submit' style="font-size:20px;font-weight:bold; background:indigo" class="btn btn-indigo btn-block mt-4">Sign Up <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span> </button>
                         </mdb-col>
                     
                     </mdb-row>

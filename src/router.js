@@ -127,10 +127,12 @@ const router = new Router({
         },
         {
           path: "/profile/dashboard",
+          name: "dashboard",
           component: dashboard
         },
         {
           path: "/profile/loan/apply", // Loan routes
+          name: "loan",
           component: apply
         },
         {
@@ -139,32 +141,39 @@ const router = new Router({
           children: [
             {
               path: "/",
+              name: "loan",
               redirect: "/profile/loan/loandetails/loaninformation"
             },
             {
               path: "/profile/loan/loandetails/loaninformation",
+              name: "loan",
               component: loaninformation
             },
             {
               path: "/profile/loan/loandetails/workinfo",
+              name: "loan",
               component: workinfo
             },
             {
               path: "/profile/loan/loandetails/guarantor",
+              name: "loan",
               component: guarantor
             },
             {
               path: "/profile/loan/loandetails/signature",
+              name: "loan",
               component: signature
             },
             {
               path: "/profile/loan/loandetails/success",
+               name: "loan",
               component: thankyou
             }
           ]
         },
         {
           path: "/profile/investment/precheck", //Investment Route
+          name: "investment",
           component: precheck
         },
         {
@@ -173,32 +182,39 @@ const router = new Router({
           children: [
             {
               path: "/",
+              name: "investment",
               redirect: "/profile/investment/investdetails/investinfo"
             },
             {
               path: "/profile/investment/investdetails/investinfo",
+              name: "investment",
               component: investinfo
             },
             {
               path: "/profile/investment/investdetails/settlement",
+              name: "investment",
               component: settlement
             },
             {
               path: "/profile/investment/investdetails/nextofkin",
+              name: "investment",
               component: nextofkin
             },
             {
               path: "/profile/investment/investdetails/signature",
+              name: "investment",
               component: signatureI
             },
             {
               path: "/profile/investment/investdetails/success",
+              name: "investment",
               component: thankyou
             }
           ]
         },
         {
           path: "/profile/pawnshop/precheck", //Pawn Route
+          name: "pawn",
           component: pawnPrecheck
         },
         {
@@ -211,24 +227,29 @@ const router = new Router({
             },
             {
               path: "/profile/pawnshop/pawndetails/pawninfo",
+              name: "pawn",
               component: pawninfo
             },
             {
               path: "/profile/pawnshop/pawndetails/ownership",
+              name: "pawn",
               component: ownership
             },
             {
               path: "/profile/pawnshop/pawndetails/signature",
+              name: "pawn",
               component: signatureP
             },
             {
               path: "/profile/pawnshop/pawndetails/success",
+              name: "pawn",
               component: thankyou
             }
           ]
         },
         {
           path: "/profile/finance/precheck", //Finance Route
+          name: "finance",
           component: finPrecheck
         },
         {
@@ -237,27 +258,38 @@ const router = new Router({
           children: [
             {
               path: "/",
+              name: "finance",
               redirect: "/profile/finance/loandetails/loaninfo"
             },
             {
               path: "/profile/finance/loandetails/loaninfo",
+              name: "finance",
               component: fininfo
             },
             {
               path: "/profile/finance/loandetails/workinfo",
+              name: "finance",
               component: finworkinfo
             },
             {
               path: "/profile/finance/loandetails/guarantor",
+              name: "finance",
               component: finguarantor
             },
             {
               path: "/profile/finance/loandetails/signature",
+              name: "finance",
               component: signatureF
             },
             {
               path: "/profile/finance/loandetails/collateral",
+              name: "finance",
               component: collateral
+            },
+            {
+              path: "/profile/finance/loandetails/success",
+              name: "finance",
+              component: thankyou
             }
           ]
         }
