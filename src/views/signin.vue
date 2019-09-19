@@ -1,7 +1,7 @@
-<template>
-    <div style="height:100vh; background:red">
-         <section class='view image small-screen'>
-            <div class="mask flex-center" style="background:black; opacity:0.8">
+<template >
+    <div style="height:100%; width:100%" >
+         <section  class=' view image'>
+            <div class="flex-center" style="height:100%">
                 <section class="one">
                     <mdb-navbar  >
                        <mdb-navbar-brand href="#" >
@@ -9,19 +9,21 @@
                        </mdb-navbar-brand>
                     </mdb-navbar>
                 </section>
-            </div>
-         </section>
+        </div>
+           
+       
 
-          <section class="2" style="margin-top:-450px">
+        
+          <section class="2" style="margin-top:-65vh">
                     <div class="container">
-                        <mdb-row>
-                            <mdb-col class="col-md-8 col-12 small-screen">
+                        <mdb-row class="small-screen">
+                            <mdb-col class="col-md-8 col-12">
                                 <p class="text-white mb-4 small-screen-intro" style="font-size:3.8vw">
-                                    Introducing <span style=" font-weight:bold">Pawnshop</span> <img src="../assets/logomain.png" class='rounded-circle ml-2 small-screen-pawn' style="height:50px;width:50px"   alt="">
+                                    Introducing <span style=" font-weight:bold">Pawnshop</span> <img src="../assets/logomain.png" class='rounded-circle d-none d-sm-inline-block ml-2 small-screen-pawn' style="height:50px;width:50px"   alt="">
                                 </p>
 
                                 <p class="text-white h5 font-weight-light small-screen-text" style="width:40vw;">
-                                    You can now bring items such as mobile phones, Tv, cars e.t.c.. and receive money as exchange.
+                                    You can now bring items such as mobile phones, Tv, cars e.t.c and receive money as exchange.
                                     The value of the item will determine the amount to be cashed out.
                                 </p>
                                 
@@ -63,7 +65,8 @@
                             </mdb-col>
                         </mdb-row>
                     </div>
-            </section>
+            </section>  
+        </section>
     </div>
 </template>
 
@@ -133,15 +136,15 @@ export default {
 <style scoped>
 
 .image{
-    background: url('../assets/naira2.png') center ;
+    background: url('../assets/naira3.png') center ;
     background-size:cover;
-    height:100%;
-  
+    height:100vh;
+    background-repeat: no-repeat;
 }
 
 .nav {
     /* border:2px solid white; */
-    margin-top: -300px;
+    margin-top: -45vh;
     margin-left:80vw
 }
 
@@ -159,17 +162,17 @@ export default {
 
 @media (max-width:768px){
     .small-screen {
-        margin-top: -23vh;
+        margin-top: -110vh !important;
     }
 
     .image {
          min-height:120vh;
     }
     .nav {
-         margin-top: -220px;
+         margin-top: -55vh;
     }
     .small-screen-card{
-        height:0vh;
+        height:auto !important;
         margin-left:-25px;
         margin-top:5px !important
        
@@ -185,23 +188,23 @@ export default {
         font-size: 35px !important
     }
     .small-screen-text {
-        width:65vw !important
+        width:60vw !important
     }
 }
 
 @media (max-width:700px){
-    .small-screen {
+    /* .small-screen {
         margin-top: -23vh;
-    }
+    } */
 
     .image {
          height:120vh;
     }
     .nav {
-         margin-top: -223px;
+         margin-top: -55vh;
     }
     .small-screen-text {
-        width:88vw !important;
+        width:75vw !important;
     }
     .small-screen-card{
         margin-top: 12px;
@@ -221,5 +224,23 @@ export default {
         width: 50px !important;
     }
 }
+
+@media (max-width:576px){ 
+    .nav {
+    /* border:2px solid white; */
+    margin-top: -55vh;
+    margin-left:80vw
+}
+.small-screen-text {
+        width:85vw !important;
+        font-size:16.5px !important
+    }
+.signin-card {
+    height: 10vh !important;
+}
+    
+}
+
+
 
 </style>

@@ -8,9 +8,7 @@
                                 <span class="m">Finance  Type <span class="text-danger">*</span></span>
                                 <select class="browser-default custom-select" v-model="financeType" v-validate="'required'" name="Finance Type">
                                 <option value="LPO Finance">LPO Finance</option>
-                                <option disabled="disabled">-------------------------------------------------------- </option>
                                 <option value="Asset" >Asset</option>
-                                <option disabled="disabled">---------------------------------------------------------</option>
                                 <option value="Contract">Contract</option>
                                 </select>
                                 <div class="mt-3" >

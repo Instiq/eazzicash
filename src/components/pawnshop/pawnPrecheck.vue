@@ -12,25 +12,15 @@
                             <span class="m">Item Category</span>
                             <select class="browser-default custom-select" v-model="itemCategory" v-validate="'required'" name="Item Category" >
                             <option value="Mobile Phones">Mobile Phones</option>
-                            <option disabled="disabled">-------------------------------------------------------- </option>
                             <option value="Jewelries">Jewelries (pure Gold & Silver)</option>
-                            <option disabled="disabled">-------------------------------------------------------- </option>
                             <option value="Camera">Digital Camera</option>
-                            <option disabled="disabled">-------------------------------------------------------- </option>
                             <option value="Cars">Cars</option>
-                            <option disabled="disabled">-------------------------------------------------------- </option>
                               <option value="Laptops">Laptops</option>
-                            <option disabled="disabled">-------------------------------------------------------- </option>
                               <option value="TV">TV</option>
-                            <option disabled="disabled">-------------------------------------------------------- </option>
                               <option value="Generators">Moveable Generators</option>
-                            <option disabled="disabled">-------------------------------------------------------- </option>
                               <option value="Smart Watches">Smart Watches</option>
-                            <option disabled="disabled">-------------------------------------------------------- </option>
                               <option value="Game Console">Game Console (Xbox/PS4)</option>
-                            <option disabled="disabled">-------------------------------------------------------- </option>
                              <option value="Wrist Watch">Wrist Watch</option>
-                             <option disabled="disabled">-------------------------------------------------------- </option>
                             
                             </select>
                           </div>

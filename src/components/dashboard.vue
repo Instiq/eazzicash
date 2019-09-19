@@ -9,7 +9,7 @@
                       <div class="row">
                           <div class="col-md-6">
                             
-                              <mdb-card class="borde mb-5" style="height:25vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
                                   <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:orange">
                                          Loan Running
@@ -27,7 +27,7 @@
                               </mdb-card>
                           </div>
                           <div class="col-md-6">
-                              <mdb-card class="borde mb-5" style="height:25vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
                                     <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:mediumseagreen">
                                           Investment Running
@@ -42,7 +42,7 @@
                               
                           </div>  
                           <div class="col-md-6">
-                              <mdb-card class="borde mb-5" style="height:25vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
                                    <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:deepskyblue">
                                          Finance
@@ -57,7 +57,7 @@
                               
                           </div>
                           <div class="col-md-6">
-                              <mdb-card class="borde mb-5" style="height:25vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
                                    <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:orangered; margin-bottom:20px">
                                         Pawn
@@ -80,14 +80,14 @@
 
                   
                   <div class="col-lg-4 col-12 major-col-2">
-                      <mdb-card class="mt-3 mt-md-0" style="height:auto">
+                      <mdb-card class="mt-3 mt-md-0" style="height:auto; width:auto">
                             <div class=" " >
                                 <mdb-list-group>
-                                <mdb-list-group-item class="text-white  list-group-header" >Transaction History <mdb-badge class="" style="margin-left:-30px" :pill="true" > {{checkTransactionHistory()}} </mdb-badge></mdb-list-group-item>
+                                <mdb-list-group-item class="text-white h6 list-group-header" >Transaction History <mdb-badge class="" style="margin-left:-30px" :pill="true" > {{checkTransactionHistory()}} </mdb-badge></mdb-list-group-item>
                                 <mdb-list-group-item   v-for="(item, index) in filteredPawnApproved()" :key=" 'a' + index"><span>{{item.type}}</span>     <mdb-badge :pill="true" class='badges' style="margin-left:15px" color="default-color">&#8358; {{formatAmount(item.pawnAmount)}} </mdb-badge>     <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
                                 <mdb-list-group-item   v-for="(item, index) in filteredLoanApproved()" :key="'b' + index"><span>{{item.type}}</span>     <mdb-badge :pill="true" class='badges' color="default-color">&#8358; {{formatAmount(item.loanAmount)}} </mdb-badge>     <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
-                                <mdb-list-group-item   v-for="(item, index) in filteredInvestmentApproved()" :key=" 'c' + index"><span>{{item.type}}</span>    <mdb-badge :pill="true" class='badges ml-n4' style="margin-left" color="default-color">&#8358; {{formatAmount(item.investmentAmount)}} </mdb-badge>     <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
-                                <mdb-list-group-item   v-for="(item, index) in filteredFinanceApproved()" :key=" 'd' + index"><span>{{item.type}}</span>     <mdb-badge :pill="true" class='badges' style="margin-left:-3px" color="default-color">&#8358; {{formatAmount(item.financeAmount)}} </mdb-badge>     <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
+                                <mdb-list-group-item   v-for="(item, index) in filteredInvestmentApproved()" :key=" 'c' + index"><span class="small-screen-type">{{item.type}}</span>    <mdb-badge :pill="true" class='badges ml-n4 small-screen-history' style="margin-left" color="default-color">&#8358; {{formatAmount(item.investmentAmount)}} </mdb-badge>     <mdb-badge :pill="true" class="small-screen-history-date" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
+                                <mdb-list-group-item   v-for="(item, index) in filteredFinanceApproved()" :key=" 'd' + index"><span class="small-screen-type-finance">{{item.type}}</span>     <mdb-badge :pill="true" class='badges' style="margin-left:-3px" color="default-color">&#8358; {{formatAmount(item.financeAmount)}} </mdb-badge>     <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
                                 </mdb-list-group>
                             </div>
                                   
@@ -97,10 +97,10 @@
 
                    <div class="col-md-12 major-col-2 mt-4" style="">
                         <mdb-card class="bg-">
-                            <mdb-card-title class="borde bg-danger py-2 text-white text-center pending">Pending Requests <mdb-badge :pill="true" color="danger"> {{totalPending().length}} </mdb-badge></mdb-card-title>
+                            <mdb-card-title class=" py-2 text-white text-center h6 pending">Pending Requests <mdb-badge :pill="true" color="danger"> {{totalPending().length}} </mdb-badge></mdb-card-title>
 
                        <section>
-                        <mdb-tbl striped w-auto class="table-responsive table">
+                        <mdb-tbl striped  class="table-responsive small-screen-table">
                             <mdb-tbl-head>
                                 <tr>
                                     <th class="font-weight-bold h6">ID</th>
@@ -153,7 +153,7 @@
                     <mdb-modal-title >Pawn Details</mdb-modal-title>
                     </mdb-modal-header>
                     <mdb-modal-body>
-                         <mdb-tbl striped w-auto class="table-responsive">
+                         <mdb-tbl striped  class="table-responsive small-screen-table">
                             <mdb-tbl-head>
                                 <tr>
                                     <th class="font-weight-bold h6">Type</th>
@@ -227,7 +227,7 @@
                     <mdb-modal-title >Loan Details</mdb-modal-title>
                     </mdb-modal-header>
                     <mdb-modal-body>
-                         <mdb-tbl striped w-auto class="table-responsive">
+                         <mdb-tbl striped  class="table-responsive small-screen-table">
                             <mdb-tbl-head>
                                 <tr>
                                     <th class="font-weight-bold h6">Type</th>
@@ -295,7 +295,7 @@
                     <mdb-modal-title >Investment Details</mdb-modal-title>
                     </mdb-modal-header>
                     <mdb-modal-body>
-                         <mdb-tbl striped w-auto class="table-responsive">
+                         <mdb-tbl striped  class="table-responsive small-screen-table">
                             <mdb-tbl-head>
                                 <tr>
                                     <th class="font-weight-bold h6">Type</th>
@@ -362,7 +362,7 @@
                     <mdb-modal-title >Finance Details</mdb-modal-title>
                     </mdb-modal-header>
                     <mdb-modal-body>
-                         <mdb-tbl striped w-auto class="table-responsive">
+                         <mdb-tbl striped  class="table-responsive small-screen-table">
                             <mdb-tbl-head>
                                 <tr>
                                     <th class="font-weight-bold h6">Type</th>
@@ -646,12 +646,37 @@ export default {
  }
  .pending {
       background:rgb(0, 85, 0) !important;
-      font-weight: bold;
-      font-size: 18px
  }
 
  .card-footer {
      margin-top: -8px
  }
+
+ @media (max-width:576px){ 
+    .small-screen-table {
+        padding: 0 5.5vw;
+
+    } 
+
+    .small-screen-entities-card{
+       height:auto !important
+    }
+ }
+
+ 
+
+  /* @media (max-width:420px){ 
+    .small-screen-history {
+        margin-left:11.5px !important
+    }
+
+     .small-screen-type-finance {
+        width:15vw !important
+    }
+      .small-screen-type {
+        width:12vw !important
+    }
+ } */
+
 
 </style>

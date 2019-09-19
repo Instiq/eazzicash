@@ -3,8 +3,8 @@
     <div style="height:100%; background:whitesmoke">
 
             <section class="mb-5">
-                <mdb-navbar expand="small" position="top" class="navbar" color="indigo" >
-                <mdb-navbar-brand waves href="#" class="ml-5" > <img src = "../assets/logomain.png" height="50px" /> <span class="font-weight-bold ml-3 h4 text-white" > Sign Up</span></mdb-navbar-brand>
+                <mdb-navbar expand="small" position="top" class="navbar" style="background:rgb(5, 80, 6)" >
+                <mdb-navbar-brand waves class="ml-5" > <router-link to="/"><img src = "../assets/logomain.png" height="50px" /></router-link> </mdb-navbar-brand> <span class="font-weight-bold ml-n5 ml-sm-0 h4 text-white" > Sign Up</span>
                 </mdb-navbar>
             </section>
          
@@ -18,7 +18,7 @@
                    
                     <mdb-row>
                         <mdb-col class="col-sm-6 col-12 ">   
-                            <mdb-input type="text" size="lg" v-model='userFirstname' v-validate="'required'" name='firstname' label="First name" style="background:white" outline />      
+                            <mdb-input type="text" size="lg" v-model='userFirstname' v-validate="'required'" name='firstname' label="First name" style="background:white" class="input-field" outline />      
                              <div class="mt-3" >
                                 <i v-show="errors.has('firstname')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('firstname')">{{ errors.first('firstname') }}</span>
@@ -44,7 +44,8 @@
                              </div>
                         </mdb-col> -->
                         <mdb-col class="col-sm-6 col-12" >
-                            <mdb-input type="number" size="lg"  label="Phone number" v-model="userPhone" name='phone' v-validate="'required|min:11|max:15'"  style="background:white" outline /> 
+                            <!-- Material input -->
+                             <mdb-input class="input-field" type="number" label='Phone number' size="lg"  id="numberExample" v-model="userPhone" name='phone' v-validate="'required|min:11|max:15'"  style="background:white" outline />                        
                             <div class="mt-3" >
                                 <i v-show="errors.has('phone')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
@@ -84,7 +85,7 @@
 
                     <mdb-row>
                         <mdb-col class="col-sm-6 col-12">
-                        <select  v-validate="'required'" name="country" v-model="userCountry" class="custom-select">
+                        <select   v-validate="'required'" name="country" v-model="userCountry" class="custom-select">
                              <option value="" selected='selected' >Choose Country</option>
                                  <option value="Nigeria" >Nigeria</option>
                                 <option value="Åland Islands" >Åland Islands</option>
@@ -389,7 +390,7 @@
                         </mdb-col> -->
 
                         <mdb-col class="col-12 small-screen-btn">
-                        <button type='submit' style="font-size:20px;font-weight:bold; background:indigo" class="btn btn-indigo btn-block mt-4">Sign Up <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span> </button>
+                        <button type='submit' style="font-size:20px;font-weight:bold; background:rgb(5, 80, 6)" class="btn text-white btn-block mt-4">Sign Up <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span> </button>
                         </mdb-col>
                     
                     </mdb-row>
@@ -547,6 +548,21 @@ export default {
    .small-screen-btn{
        margin-bottom: 20px
    }
+    /* .input-field:focus, select:focus {
+     border-color: rgba(75, 148, 8, 0.8) !important;
+     box-shadow: 0 0 5px rgb(75, 148, 8, 1) !important;
+     outline: 0 none !important;
+ } */
+
+ 
+/* 
+  input[type=text]:focus:not([readOnly])+ label {
+     box-shadow: 0 1px 0 0 green;
+     border: 1px solid green;
+     color:green
+ }
+ */
+
 }
 
 

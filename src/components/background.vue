@@ -2,21 +2,22 @@
 <div class="body">
 
       <section class='view image'>
-            <div class="mask pattern- rgba-black-strong flex-center"  >
+            <div class="flex-center"  >
                 <div class="text-white text-center px-4 mt-5">   
-                    <div class="mb-5">
-                        <h2 class="display-4 mb-3 font-weight-bold"><strong>Pawn . Loan . Finance . Investment</strong></h2>
+                    <div class="mb-5 small-screen-entities-div">
+                        <h2  class="display-4 mb-3 font-weight-bold small-screen-entities-text"><strong>Pawn . Loan . Finance . Investment</strong></h2>
                     </div>
             
-                    <div  style="width:100vw" class="text-white display-3 container box position-relative ">
+                    <div  style="width:100vw" class="text-white display-3 small-screen-card-container container box position-relative ">
                         <mdb-row>
-                            <mdb-col class="col-md-4 col-12 mb-3 border-right">
+                           <!-- Green Div  -->
+                            <mdb-col class="col-md-4 mb-3 border-rightt">
                                <router-link to="/">
                                     <div class="container">
-                                        <mdb-card class="borderr bg-dange" style="opacity:0.7; background:limegreen">
+                                        <mdb-card class="borderr small-screen-card" style="opacity:0.7; background:limegreen">
                                                 <mdb-row>
                                                     <mdb-col class="col-md-1 ml-2 mt-n2">
-                                                       <img src="../assets/first.svg" style="height:7vh; top:4.5vh" alt="">
+                                                       <img  class="small-screen-home-icons" src="../assets/first.svg" style="height:7vh; top:4.5vh" alt="">
                                                     </mdb-col>
                                                     <mdb-col class="col-md-1"></mdb-col>
                                                     <mdb-col class="col-md-6">
@@ -30,13 +31,15 @@
                                 </router-link>
                             </mdb-col>
 
-                           <mdb-col class="col-md-4 col-12 mb-3 border-right">
+                             <!-- blueDiv  -->
+
+                           <mdb-col class="col-md-4 col-12 mb-3 border-rightt">
                                 <router-link to="/">
                                     <div class="container" >
-                                        <mdb-card class="borderr bg-dange" style="opacity:0.7; background:deepskyblue">
+                                        <mdb-card class="borderr small-screen-card" style="opacity:0.7; background:deepskyblue">
                                                 <mdb-row>
                                                     <mdb-col class="col-md-2 ml-2 mt-n2">
-                                                        <img src="../assets/second.svg" style="height:7vh; top:4.5vh" alt="">
+                                                        <img class=" small-screen-home-icons" src="../assets/second.svg" style="height:7vh; top:4.5vh" alt="">
                                                     </mdb-col>
                                                     <mdb-col class="col-md-1"></mdb-col>
                                                     <mdb-col class="col-md-6">
@@ -53,10 +56,10 @@
                             <mdb-col class="col-md-4 col-12 mb-3" >
                                 <router-link to="/">
                                     <div class="container">
-                                        <mdb-card class="borderr " style="opacity:0.7; background:#d3592e">
+                                        <mdb-card class="borderr small-screen-card " style="opacity:0.7; background:#d3592e">
                                                 <mdb-row>
                                                     <mdb-col class="col-md-2 ml-2 mt-n2">
-                                                        <img src="../assets/third.svg" style="height:7vh; top:4.7vh" alt="">
+                                                        <img class=" small-screen-home-icons" src="../assets/third.svg" style="height:7vh; top:4.7vh" alt="">
                                                     </mdb-col>
                                                      <mdb-col class="col-md-1"></mdb-col>
                                                     <mdb-col class="col-md-6">
@@ -108,7 +111,7 @@ export default {
 
 <style scoped>
 .image{
-    background: url('../assets/man.jpg') center ;
+    background: url('../assets/landingpage2.png') center ;
     background-size:cover;
     height:100vh;
     background-repeat: no-repeat
@@ -122,6 +125,10 @@ export default {
 .borderr{
     border: 2px solid lightgrey;
     border-radius: 7px
+}
+
+.border-rightt{
+    border-right: 1px
 }
 
 .box {
@@ -138,6 +145,68 @@ export default {
     .box {
         top:30px;
     }
+}
+
+
+@media (max-width:576px){
+  .small-screen-entities-div{
+      border:3px solid whit;
+      margin-top:5vh ;
+      position: absolute;
+      width:100vw
+  }
+  .small-screen-entities-text{
+      font-size:30px
+  }
+  .small-screen-home-icons{
+      display: block;
+      height: 5vh !important;
+  }
+  .small-screen-card{
+      height: auto;
+      position: relative;
+      width:68vw;
+      text-align: center;
+      margin: 0px auto;
+
+  }
+  .small-screen-card-container{
+      margin-top:18vh;
+      border: 2px solid whit;
+      width: auto;
+      /* text-align: center */
+
+  }
+}
+
+@media (max-width:540px){
+  .small-screen-entities-div{
+      border:3px solid whit;
+      margin-top:5vh ;
+      position: absolute;
+      width:100vw
+  }
+  .small-screen-entities-text{
+      font-size:30px
+  }
+  .small-screen-home-icons{
+      display: none
+  }
+  .small-screen-card{
+      height: auto;
+      position: relative;
+      width:68vw;
+      text-align: center;
+      margin: 0px auto;
+
+  }
+  .small-screen-card-container{
+      margin-top:18vh;
+      border: 2px solid whit;
+      width: auto;
+      /* text-align: center */
+
+  }
 }
 
 
