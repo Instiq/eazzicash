@@ -2,7 +2,41 @@
   <div class="container">
       <section class="container main-container " style="height:auto">
 
-
+    <div class="container ">
+      <div class="row  p-1 mb-5" style="margin-top:-30px">
+        <div class="col">
+          <p class="text-success mt-5 h6 font-weight-bold">Loan Requests</p>
+          <!-- <div class="form-group has-search main">
+            <span class="fa fa-search form-control-feedback"></span>
+            <input type="text" class="form-control" placeholder="Search">
+          </div> -->
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col" class="text-center">Amount</th>
+                      <th scope="col" class="text-center">Details</th>
+                      <th scope="col" class="text-center">Status</th>
+                      <th scope="col" class="text-center">Date Applied</th>
+                      <th scope="col" class="text-center">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(item, index) in loanRequests" :key="'a' + index">
+                      <th scope="row" class="text-success">{{item.userDetails.lastName}} {{item.userDetails.firstName}}</th>
+                      <td class="text-center"> &#8358; {{formatAmount(item.loanAmount)}}  </td>
+                      <td class="text-center"><span class="text-primary" style="cursor:pointer" >View Details</span></td>
+                      <td class="text-center"> {{item.approved}} </td>
+                      <td class="text-center"> {{moment(item.createdAt)}} </td>
+                      <td class="text-center text-danger">   Delete </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+</div>
 
 
            
@@ -11,6 +45,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import{ mdbTbl, mdbModal, mdbBtn, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbTblHead, mdbTblBody,mdbListGroup, mdbListGroupItem, mdbBadge,mdbNavbar, mdbContainer,mdbCard, mdbRow,mdbCardBody, mdbCardTitle, mdbCardText, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
 export default {
  name:'approvals',
@@ -34,14 +69,36 @@ export default {
      mdbTblHead,
       mdbTblBody,
 
- }
+ },
+
+ methods : {
+    isActiveOne () {
+        this.$store.dispatch('updateIsActive1')
+    },
+    formatAmount (x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
+    },
+    moment (x) {
+        return moment(x).format("DD/MM/YYYY")
+     },
+ },
+
+ computed : {
+    loanRequests () {
+        return this.$store.state.userEntitiesAll.loan
+    },
+ },
+  mounted () {
+      this.$store.dispatch('getAllEntitiesAll');
+      console.log(this.loanRequests) 
+  }, 
 }
 </script>
 
 <style scoped>
 .main-container {
-    border:2px solid black;
-    margin-left:3vw;
+    border:2px solid blac;
+    margin-left:0vw;
     height: auto;
     overflow-x: hidden
  }

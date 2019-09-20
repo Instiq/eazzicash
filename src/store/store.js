@@ -17,10 +17,12 @@ export default new Vuex.Store({
     name:"",
     token:"",
     email:"",
-    //state for userId and all user activity start
+    //state for userId and all user activity for one user start
     userId:"",
     userEntitiesOne:"",
-     //state for userId and all user activity End
+     //state for userId and all user activity for one user End
+     //state to get all Useractivity for all users
+    userEntitiesAll:"",
     isTokenExpired:false,
     emailVerificationToken : "",
     isAuthenticated:false,
@@ -31,12 +33,12 @@ export default new Vuex.Store({
     loanToken:"",
     guarantorId:"",
     loanId:"",
-    //state to get one Loan/finance detail for one user
-    loanDetailsOne:""
+    // //state to get one Loan/finance detail for one user
+    // loanDetailsOne:""
   },
 
   plugins: [createPersistedState({
-   paths : ['name', 'isAuthenticated', 'token', 'emailVerificationToken', 'email', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne']
+   paths : ['name', 'isAuthenticated', 'token', 'emailVerificationToken', 'email', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne', 'userEntitiesAll']
   })],
 
   mutations: {
@@ -55,14 +57,20 @@ export default new Vuex.Store({
     setName (state, payload) {
       state.name = payload
     },
-    //mutations for userId and all user activity start
+    //mutations for userId and all user activity for one user start
     setUserId (state, payload) {
       state.userId = payload
     },
     setUserEntitiesOne (state, payload) {
       state.userEntitiesOne = payload
     },
-    //mutations for userId and all user activity End
+    //mutations for userId and all user activity for one user End
+
+    // mutations to get all user activities for all user;
+    setUserEntitiesAll (state, payload) {
+      state.userEntitiesAll = payload
+    },
+
     setEmailVerificationToken(state, payload) {
       state.emailVerificationToken = payload
     },
@@ -85,10 +93,11 @@ export default new Vuex.Store({
     setLoanId (state, payload) {
       state.loanId = payload
     },
-    //mutation to get one Loan/Finance detail for one user
-    setLoanDetailsOne (state, payload) {
-      state.loanDetailsOne = payload
-    }
+    
+    // //mutation to get one Loan/Finance detail for one user
+    // setLoanDetailsOne (state, payload) {
+    //   state.loanDetailsOne = payload
+    // }
 
   },
   actions: {
@@ -250,16 +259,16 @@ export default new Vuex.Store({
        },
 
     //Get Loan for particular User
-     //  `${state.api_url}/loans/${state.loanId}`
-    async getLoanDetailsOne ({commit, state}) {
-        await axios({
-          url :  `${state.api_url}/loans/${state.loanId}`,
-          method :'get'
-        })
-        .then(({data}) => {
-          commit('setLoanDetailsOne', data)
-        })
-    } , 
+    //  //  `${state.api_url}/loans/${state.loanId}`
+    // async getLoanDetailsOne ({commit, state}) {
+    //     await axios({
+    //       url :  `${state.api_url}/loans/${state.loanId}`,
+    //       method :'get'
+    //     })
+    //     .then(({data}) => {
+    //       commit('setLoanDetailsOne', data)
+    //     })
+    // } , 
 
     //Post Finance
     async postFinance ({commit, state, rootState}) {
@@ -593,18 +602,30 @@ export default new Vuex.Store({
           })
         },
 
-        //get all loans, pawn, investments and finance from a particular user
+        //get all loans, pawn, investments and finance for a particular user
         async getAllEntitiesOne ({commit, state}) {
           await axios({
             method:'get',
             url:`${state.api_url}/entities/${state.userId}`
           })
           .then(({data}) => {
-            console.log(data);
             commit('setUserEntitiesOne', data)
             
           })
+        },
+
+         //get all loans, pawn, investments and finance for a particular user
+         async getAllEntitiesAll ({commit, state}) {
+          await axios({
+            method:'get',
+            url:`${state.api_url}/entities`
+          })
+          .then(({data}) => {
+            commit('setUserEntitiesAll', data)
+            
+          })
         }
+
 
 
     

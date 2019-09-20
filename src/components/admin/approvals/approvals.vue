@@ -5,7 +5,7 @@
          
                    <div class="card mb-5  text-muted jumbotron-head">
                          <div class="loan-navigation container row small-screen-nav">
-                            <router-link class="col-md-3 ml-n1 text-dark  loan-nav " to="#" ><div class="nav-items small-screen-nav text-center"  style="width: 142px" @click="isActiveOne" :class="{ active: isActive1 }" >Loan Approvals</div></router-link>
+                            <router-link class="col-md-3 ml-n1 text-dark  loan-nav " to="/adminProfile/approvals/loan" ><div class="nav-items small-screen-nav text-center"  style="width: 142px" @click="isActiveOne" :class="{ active: isActive1 }" >Loan Approvals</div></router-link>
                             <router-link class="col-md-3 text-dark p-0 loan-nav" to="#"> <div class=" nav-items  small-screen-nav ml-n1 ml-xl-1 text-center" style="width:193px" @click="isActiveTwo" :class="{ active: isActive2 }">Investment Approvals </div></router-link>
                             <router-link class="col-md-3  text-dark  loan-nav"  to="#"> <div  class="nav-items nok small-screen-nav text-center " style="width:163px" @click="isActiveThree" :class="{ active: isActive3 }" >Finance Approvals</div></router-link>
                             <router-link class="col-md-3 text-purple loan-nav" to="#"> <div  class="nav-items  signature small-screen-nav text-center "  style="width:143px" @click="isActiveFour" :class="{ active: isActive4 }">Pawn Approvals</div></router-link>        
@@ -17,7 +17,7 @@
 
                    <div class="containr">
                        <div class="router-div" style="">
-                         <!-- <router-view></router-view> -->
+                         <router-view></router-view>
                        </div>
                    </div>
 
@@ -54,7 +54,41 @@ export default {
      mdbTblHead,
       mdbTblBody,
 
- }
+ },
+
+methods : {
+        isActiveOne () {
+            this.$store.dispatch('updateIsActive1')
+        },
+        isActiveTwo () {
+            this.$store.dispatch('updateIsActive2')
+        },
+        isActiveThree () {
+            this.$store.dispatch('updateIsActive3')
+        },
+        isActiveFour () {
+           this.$store.dispatch('updateIsActive4')
+        }
+    },
+
+computed : {
+    isActive1 () {
+        return this.$store.getters.isActive1
+    },
+    isActive2 () {
+        return this.$store.getters.isActive2
+    },
+    isActive3 () {
+        return this.$store.getters.isActive3
+    },
+    isActive4 () {
+        return this.$store.getters.isActive4
+    }
+},
+
+mounted () {
+        this.isActiveOne()
+    }
 }
 </script>
 
@@ -75,8 +109,7 @@ export default {
 
   }
 .active {
-      border-bottom:4px solid blue;
-      color:blue;
+      border-bottom:4px solid  rgb(19, 95, 195);
       font-weight:600
  }
 
@@ -86,8 +119,8 @@ export default {
  } 
   
  .router-div {
-     border:2px solid green;
-     height:30vh;
+     border:2px solid gree;
+     height:auto;
      margin:-7vh 0vw;
      width: auto
  }
@@ -96,17 +129,14 @@ export default {
      /* width:auto; */
      margin:1vw 0px;
      cursor:pointer;
-     border:3px solid blue;
      height:4vh;
      text-align: center;
-     font-weight: 400;
-     color:blue;
+     /* font-weight: 400; */
+     color: rgb(19, 95, 195);
      font-size:17.5px
 
  }
- /* .jumbotron-head-text {
-     font-size:20px
- } */
+
  .loan-navigation {
      position: relative;
      height: 1vh;

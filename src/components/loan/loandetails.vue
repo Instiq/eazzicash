@@ -19,7 +19,7 @@
                    <div class="containe">
 
                        <div class="router-div" style="">
-                         <!-- <router-view></router-view> -->
+                         <router-view></router-view>
                        </div>
 
                    </div>
@@ -88,9 +88,9 @@ export default {
          return this.$store.getters.isActive4
        }
    },
-    // mounted () {
-    //     this.isActiveOne()
-    // }
+    mounted () {
+        this.isActiveOne()
+    }
 }
 </script>
 

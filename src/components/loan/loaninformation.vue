@@ -221,9 +221,9 @@ export default {
            }
        }
     },
-    mounted () {
-        this.$store.dispatch('updateIsActive1')
-    }
+    // mounted () {
+    //     this.$store.dispatch('updateIsActive1')
+    // }
 }
 </script>
 
