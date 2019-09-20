@@ -141,7 +141,10 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
+            console.log(data);
+            
             if (!data.isVerified) {
+              commit('setEmail', data.email)
               router.push('/verifyEmail?path=signin')
               return;
             }
