@@ -46,6 +46,12 @@ import collateral from "./components/finance/collateral.vue";
 import signatureF from "./components/finance/signatureF.vue";
 //Admin routes
 import adminProfile from "./components/admin/adminProfile.vue";
+import adminDashboard from "./components/admin/adminDashboard.vue";
+import approvals from "./components/admin/approvals/approvals.vue";
+import loanApproval from "./components/admin/approvals/loanApproval.vue";
+import investmentApproval from "./components/admin/approvals/investmentApproval.vue";
+import financeApproval from "./components/admin/approvals/financeApproval.vue";
+import pawnApproval from "./components/admin/approvals/pawnApproval.vue";
 
 import error from "./views/404.vue"
 
@@ -299,8 +305,52 @@ const router = new Router({
     {
       path: "/adminProfile",
       name: "adminProfile",
-      component: adminProfile
-    },
+      component: adminProfile,
+      children: [
+        {
+          path: "/",
+          name:'adminProfile',
+          redirect: "/adminProfile/adminDashboard"
+        },
+        {
+          path: "/adminProfile/adminDashboard",
+          name: "adminDashboard",
+          component: adminDashboard
+        },
+        {
+          path: "/adminProfile/approvals",
+          name: "approvals",
+          component: approvals,
+          children: [
+            {
+              path: "/",
+              name:'approvals',
+              redirect: "/adminProfile/approvals/loan"
+            },
+            {
+              path: "/adminProfile/approvals/loan",
+              name:'Loan Approval',
+              component: loanApproval
+            },
+            {
+              path: "/adminProfile/approvals/investment",
+              name:'Investment Approval',
+              component: investmentApproval
+            },
+            {
+              path: "/adminProfile/approvals/pawn",
+              name:'Pawn Approval',
+              component: pawnApproval
+            },
+            {
+              path: "/adminProfile/approvals/finance",
+              name:'Finance  Approval',
+              component: financeApproval
+            },
+          ] 
+        },
+      ]
+    },  
     //error route
     {
       path:"/*",

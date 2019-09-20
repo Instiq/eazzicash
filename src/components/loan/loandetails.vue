@@ -19,7 +19,7 @@
                    <div class="containe">
 
                        <div class="router-div" style="">
-                         <router-view></router-view>
+                         <!-- <router-view></router-view> -->
                        </div>
 
                    </div>

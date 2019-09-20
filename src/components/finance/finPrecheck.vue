@@ -109,6 +109,9 @@ export default {
      minus () {
            this.$store.dispatch('decrement')
         },
+    formatAmount (x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
+       },
     calculate () {
         let a = 13.5;
         let b = 16.7;
@@ -190,7 +193,7 @@ export default {
     },
 
     watch :  {
-        principal () {
+        principal (newval) {
             this.calculate()
         },
         tenor (newval) {

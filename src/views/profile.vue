@@ -1,7 +1,7 @@
 <template>
     <div class="">
 
-        <section class="mb-5 d-flex position-fixed " style="height:10vh;width:100%;z-index:1; box-shadow:20px 20px blur; background:#424242; justify-content:space-between" >
+        <section  class="mb-5 d-flex position-fixed " style="height:10vh;width:100%;z-index:1; box-shadow:20px 20px blur; background:#424242; justify-content:space-between" >
           <p v-if="['dashboard'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold;   margin-left:25%">Dashboard</p>
            <p v-if="['loan'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Loan</p>
             <p v-if="['pawn'].includes($route.name)" class="text-white  profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Pawn</p>
@@ -52,7 +52,12 @@
         </section>
 
 
-        <div class="children-routes container">
+         <div class="children-routes container d-none d-sm-block">
+            <router-view> </router-view>
+        </div> 
+
+        
+        <div class="children-routes container d-sm-none" @click="closeNav">
             <router-view> </router-view>
         </div>
 

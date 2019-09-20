@@ -443,13 +443,19 @@ export default new Vuex.Store({
         })
         
         .catch (err=>{
+          if (err.response.data == 'User already verified') {
+            router.push('/emailVerified?path=verifyEmail');
+            return
+          }
           if(err.response.data=='expired token') {
             commit('setIsTokenExpired', true)
-            setTimeout (_ =>  router.push('/verifyEmail?path=getToken'), 4500)
+            setTimeout (_ =>  router.push('/verifyEmail?path=getToken'), 4500);
+            return
           }
           if(err.response.data=='User does not exist') {
             commit('setIsTokenExpired', true)
-            router.push('/signup')
+            router.push('/signup');
+            return
           }
 
           console.error(err.response.data);
@@ -470,11 +476,14 @@ export default new Vuex.Store({
         })
         
         .catch (err=>{
+          console.log(err.response.data);
+          
           if (err.response.data == 'User already verified') {
             router.push('/emailVerified?path=verifyEmail');
             return
           }
           if (err.response.data == 'User not found') {
+            alert('User not found')
             router.push('/signup')
           }
          
