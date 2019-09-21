@@ -24,9 +24,9 @@
                   </thead>
                   <tbody>
                     <tr v-for="(item, index) in loanRequests" :key="'a' + index">
-                      <th scope="row" class="text-success">{{item.userDetails.lastName}} {{item.userDetails.firstName}}</th>
+                      <th scope="row" class="text-success">{{item.userDetails.firstName}} {{item.userDetails.lastName}}</th>
                       <td class="text-center"> &#8358; {{formatAmount(item.loanAmount)}}  </td>
-                      <td class="text-center"><span class="text-primary" style="cursor:pointer" >View Details</span></td>
+                      <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
                       <td class="text-center"> {{item.approved}} </td>
                       <td class="text-center"> {{moment(item.createdAt)}} </td>
                       <td class="text-center text-danger">   Delete </td>
@@ -81,6 +81,13 @@ export default {
     moment (x) {
         return moment(x).format("DD/MM/YYYY")
      },
+
+    //function to conditionally show loan details for a particulasr user
+   userDetails(n) {
+        let newObject  = this.loanRequests[n]
+        this.$store.commit('setUserDetails', newObject)
+        this.$router.push('/adminProfile/approvals/details')
+    }, 
  },
 
  computed : {
@@ -90,7 +97,6 @@ export default {
  },
   mounted () {
       this.$store.dispatch('getAllEntitiesAll');
-      console.log(this.loanRequests) 
   }, 
 }
 </script>

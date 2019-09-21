@@ -73,18 +73,64 @@
                                 <span class="text-warning" v-show="errors.has('email')">{{ errors.first('email') }}</span>
                              </div>
                         </mdb-col>
-                        <mdb-col class="col-sm-6 col-12">
+                        <!-- <mdb-col class="col-sm-6 col-12">
                             <mdb-input type="text" size="lg" v-validate="'required'" v-model="userAddress" label="Home address" name='address'  style="background:white" outline /> 
                              <div class="mt-3" >
                                 <i v-show="errors.has('address')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('address')">{{ errors.first('address') }}</span>
+                             </div>
+                        </mdb-col> -->
+                        <mdb-col class="col-sm-6 col-12 mt-4 small-screen-select" >
+                            <select name="state"  v-validate="'required'" v-model="userState"  id="state" class="browser-default custom-select">
+                                <option value="" selected='selected' >Choose State</option>
+                                <option value='Abia'>Abia</option>
+                                <option value='Adamawa'>Adamawa</option>
+                                <option value='AkwaIbom'>AkwaIbom</option>
+                                <option value='Anambra'>Anambra</option>
+                                <option value='Bauchi'>Bauchi</option>
+                                <option value='Bayelsa'>Bayelsa</option>
+                                <option value='Benue'>Benue</option>
+                                <option value='Borno'>Borno</option>
+                                <option value='Cross River'>Cross River</option>
+                                <option value='Delta'>Delta</option>
+                                <option value='Ebonyi'>Ebonyi</option>
+                                <option value='Edo'>Edo</option>
+                                <option value='Ekiti'>Ekiti</option>
+                                <option value='Enugu'>Enugu</option>
+                                <option value='FCT'>FCT</option>
+                                <option value='Gombe'>Gombe</option>
+                                <option value='Imo'>Imo</option>
+                                <option value='Jigawa'>Jigawa</option>
+                                <option value='Kaduna'>Kaduna</option>
+                                <option value='Kano'>Kano</option>
+                                <option value='Katsina'>Katsina</option>
+                                <option value='Kebbi'>Kebbi</option>
+                                <option value='Kogi'>Kogi</option>
+                                <option value='Kwara'>Kwara</option>
+                                <option value='Lagos'>Lagos</option>
+                                <option value='Nasarawa'>Nasarawa</option>
+                                <option value='Niger'>Niger</option>
+                                <option value='Ogun'>Ogun</option>
+                                <option value='Ondo'>Ondo</option>
+                                <option value='Osun'>Osun</option>
+                                <option value='Oyo'>Oyo</option>
+                                <option value='Plateau'>Plateau</option>
+                                <option value='Rivers'>Rivers</option>
+                                <option value='Sokoto'>Sokoto</option>
+                                <option value='Taraba'>Taraba</option>
+                                <option value='Yobe'>Yobe</option>
+                                <option value='Zamfara'>Zamafara</option>
+                                </select>
+                                <div class="mt-3" >
+                                <i v-show="errors.has('state')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('state')">{{ errors.first('state') }}</span>
                              </div>
                         </mdb-col>
                     </mdb-row>
 
 
                     <mdb-row>
-                        <mdb-col class="col-sm-6 col-12">
+                        <mdb-col class="col-sm-6 col-12 mt-1">
                         <select   v-validate="'required'" name="country" v-model="userCountry" class="custom-select">
                              <option value="" selected='selected' >Choose Country</option>
                                  <option value="Nigeria" >Nigeria</option>
@@ -338,58 +384,13 @@
                              </div>
                         </mdb-col>
 
-                        <mdb-col class="col-sm-6 col-12 small-screen-select" >
-                            <select name="state"  v-validate="'required'" v-model="userState"  id="state" class="browser-default custom-select">
-                                <option value="" selected='selected' >Choose State</option>
-                                <option value='Abia'>Abia</option>
-                                <option value='Adamawa'>Adamawa</option>
-                                <option value='AkwaIbom'>AkwaIbom</option>
-                                <option value='Anambra'>Anambra</option>
-                                <option value='Bauchi'>Bauchi</option>
-                                <option value='Bayelsa'>Bayelsa</option>
-                                <option value='Benue'>Benue</option>
-                                <option value='Borno'>Borno</option>
-                                <option value='Cross River'>Cross River</option>
-                                <option value='Delta'>Delta</option>
-                                <option value='Ebonyi'>Ebonyi</option>
-                                <option value='Edo'>Edo</option>
-                                <option value='Ekiti'>Ekiti</option>
-                                <option value='Enugu'>Enugu</option>
-                                <option value='FCT'>FCT</option>
-                                <option value='Gombe'>Gombe</option>
-                                <option value='Imo'>Imo</option>
-                                <option value='Jigawa'>Jigawa</option>
-                                <option value='Kaduna'>Kaduna</option>
-                                <option value='Kano'>Kano</option>
-                                <option value='Katsina'>Katsina</option>
-                                <option value='Kebbi'>Kebbi</option>
-                                <option value='Kogi'>Kogi</option>
-                                <option value='Kwara'>Kwara</option>
-                                <option value='Lagos'>Lagos</option>
-                                <option value='Nasarawa'>Nasarawa</option>
-                                <option value='Niger'>Niger</option>
-                                <option value='Ogun'>Ogun</option>
-                                <option value='Ondo'>Ondo</option>
-                                <option value='Osun'>Osun</option>
-                                <option value='Oyo'>Oyo</option>
-                                <option value='Plateau'>Plateau</option>
-                                <option value='Rivers'>Rivers</option>
-                                <option value='Sokoto'>Sokoto</option>
-                                <option value='Taraba'>Taraba</option>
-                                <option value='Yobe'>Yobe</option>
-                                <option value='Zamfara'>Zamafara</option>
-                                </select>
-                                <div class="mt-3" >
-                                <i v-show="errors.has('state')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('state')">{{ errors.first('state') }}</span>
-                             </div>
-                        </mdb-col>
+                        
 
                         <!-- <mdb-col class="col-md-6 col-12">
                             <mdb-input type="text" size="lg"  style="background:white" label="Zip code" outline /> 
                         </mdb-col> -->
 
-                        <mdb-col class="col-12 small-screen-btn">
+                        <mdb-col class="col-md-12 small-screen-btn">
                         <button type='submit' style="font-size:20px;font-weight:bold; background:rgb(5, 80, 6)" class="btn text-white btn-block mt-4">Sign Up <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span> </button>
                         </mdb-col>
                     
@@ -457,14 +458,14 @@ export default {
                 this.$store.dispatch('updateUserLastname', value )
             }
          },
-          userName : {
-          get () {
-                return this.$store.getters.userName
-            },
-          set (value) {
-                this.$store.dispatch('updateUserName', value )
-            }
-         },
+        //   userName : {
+        //   get () {
+        //         return this.$store.getters.userName
+        //     },
+        //   set (value) {
+        //         this.$store.dispatch('updateUserName', value )
+        //     }
+        //  },
           userPhone : {
           get () {
                 return this.$store.getters.userPhone
@@ -481,14 +482,14 @@ export default {
                 this.$store.dispatch('updateUserEmail', value )
             }
          },
-          userAddress : {
-          get () {
-                return this.$store.getters.userAddress
-            },
-          set (value) {
-                this.$store.dispatch('updateUserAddress', value )
-            }
-         },
+        //   userAddress : {
+        //   get () {
+        //         return this.$store.getters.userAddress
+        //     },
+        //   set (value) {
+        //         this.$store.dispatch('updateUserAddress', value )
+        //     }
+         //},
           userCountry : {
           get () {
                 return this.$store.getters.userCountry

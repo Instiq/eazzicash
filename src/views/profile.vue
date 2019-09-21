@@ -46,9 +46,9 @@
             <!-- profile items -->
             <router-link to="/profile/dashboard"><img src="../assets/Home.svg" height="15vh" style="" alt=""> <span class="sidenav-items" style="margin-left:10px" >Dashboard</span></router-link>
             <a href="/profile/loan/apply"> <img src="../assets/Loan.svg" height="15vh" style="margin-left:3px" alt=""> <span class="sidenav-items" style="margin-left:15px">Loan</span></a>
-            <a href="/profile/investment/precheck"> <img src="../assets/Investments.svg" height="14vh" style="" alt=""> <span class="sidenav-items" style="margin-left:6.5px">Investment</span></a>
             <a href="/profile/finance/precheck"> <img src="../assets/Finance.svg" height="13vh" style="" alt=""> <span class="sidenav-items" style="margin-left:11px">Finance</span></a>
-            <a href="/profile/pawnshop/precheck"> <img src="../assets/Pawnshop.svg" height="14vh" style='' alt=""> <span class="sidenav-items" style="margin-left:8px">Pawnshop</span></a>
+            <a href="/profile/pawnshop/precheck"> <img src="../assets/Pawnshop.svg" height="14vh" style='' alt=""> <span class="sidenav-items" style="margin-left:8px">Pawn</span></a>
+            <a href="/profile/investment/precheck"> <img src="../assets/Investments.svg" height="14vh" style="" alt=""> <span class="sidenav-items" style="margin-left:6.5px">Investment</span></a>
         </section>
 
 

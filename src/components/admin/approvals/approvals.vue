@@ -94,7 +94,7 @@ mounted () {
 
 <style scoped>
 .main-container {
-    border:2px solid blue;
+    border:2px solid blu;
     margin-left:3vw;
     height: auto;
     overflow-x: hidden

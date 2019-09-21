@@ -21,8 +21,10 @@ export default new Vuex.Store({
     userId:"",
     userEntitiesOne:"",
      //state for userId and all user activity for one user End
-     //state to get all Useractivity for all users
+    //state to get all Useractivity for all users by admin
     userEntitiesAll:"",
+    //state to get the details of a particular user by admin
+    userDetails :{},
     isTokenExpired:false,
     emailVerificationToken : "",
     isAuthenticated:false,
@@ -38,7 +40,7 @@ export default new Vuex.Store({
   },
 
   plugins: [createPersistedState({
-   paths : ['name', 'isAuthenticated', 'token', 'emailVerificationToken', 'email', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne', 'userEntitiesAll']
+   paths : ['name', 'isAuthenticated', 'token', 'emailVerificationToken', 'email', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne', 'userEntitiesAll', 'userDetails']
   })],
 
   mutations: {
@@ -69,6 +71,11 @@ export default new Vuex.Store({
     // mutations to get all user activities for all user;
     setUserEntitiesAll (state, payload) {
       state.userEntitiesAll = payload
+    },
+
+     // mutations to get details of a particular user by admin;
+     setUserDetails (state, payload) {
+      state.userDetails = payload
     },
 
     setEmailVerificationToken(state, payload) {
@@ -459,13 +466,13 @@ export default new Vuex.Store({
             router.push('/emailVerified?path=verifyEmail');
             return
           }
-          if(err.response.data=='expired token') {
-            commit('setIsTokenExpired', true)
-            setTimeout (_ =>  router.push('/verifyEmail?path=getToken'), 4500);
-            return
-          }
+          // if(err.response.data=='expired token') {
+          //   commit('setIsTokenExpired', true)
+          //   setTimeout (_ =>  router.push('/verifyEmail?path=getToken'), 4500);
+          //   return
+          // }
           if(err.response.data=='User does not exist') {
-            commit('setIsTokenExpired', true)
+            // commit('setIsTokenExpired', true)
             router.push('/signup');
             return
           }

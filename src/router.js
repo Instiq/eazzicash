@@ -52,6 +52,7 @@ import loanApproval from "./components/admin/approvals/loanApproval.vue";
 import investmentApproval from "./components/admin/approvals/investmentApproval.vue";
 import financeApproval from "./components/admin/approvals/financeApproval.vue";
 import pawnApproval from "./components/admin/approvals/pawnApproval.vue";
+import userDetails from "./components/admin/approvals/userDetails.vue";
 
 import error from "./views/404.vue"
 
@@ -346,6 +347,11 @@ const router = new Router({
               path: "/adminProfile/approvals/finance",
               name:'Finance  Approval',
               component: financeApproval
+            },
+            {
+              path: "/adminProfile/approvals/details",
+              name:'User Details',
+              component: userDetails 
             },
           ] 
         },
