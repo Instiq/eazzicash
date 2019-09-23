@@ -22,14 +22,14 @@
                       <th scope="col" class="text-center">Delete</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody v-if="loanRequests"   >
                     <tr v-for="(item, index) in loanRequests" :key="'a' + index">
                       <th scope="row" class="text-success">{{item.userDetails.firstName}} {{item.userDetails.lastName}}</th>
                       <td class="text-center"> &#8358; {{formatAmount(item.loanAmount)}}  </td>
                       <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
                       <td class="text-center"> {{item.approved}} </td>
                       <td class="text-center"> {{moment(item.createdAt)}} </td>
-                      <td class="text-center text-danger">   Delete </td>
+                      <td @click="userDetailsAdmin(index); deleteLoan()" class="text-center text-danger" style="cursor:pointer">   Delete </td>
                     </tr>
                   </tbody>
                 </table>
@@ -81,13 +81,24 @@ export default {
     moment (x) {
         return moment(x).format("DD/MM/YYYY")
      },
+//function to update current loan details by admin
+    userDetailsAdmin(n) {
+        let newObject  = this.loanRequests[n]
+        this.$store.commit('setUserDetails', newObject);
+    }, 
 
     //function to conditionally show loan details for a particulasr user
    userDetails(n) {
         let newObject  = this.loanRequests[n]
         this.$store.commit('setUserDetails', newObject)
-        this.$router.push('/adminProfile/approvals/details')
+        this.$router.push('/adminProfile/approvals/loanDetails')
     }, 
+
+    //delete loan request
+    deleteLoan () {
+       this.$store.commit('setLoading', true)
+        this.$store.dispatch('deleteLoan')
+    }
  },
 
  computed : {
@@ -97,6 +108,7 @@ export default {
  },
   mounted () {
       this.$store.dispatch('getAllEntitiesAll');
+      this.isActiveOne()
   }, 
 }
 </script>

@@ -6,9 +6,9 @@
                    <div class="card mb-5  text-muted jumbotron-head">
                          <div class="loan-navigation container row small-screen-nav">
                             <router-link class="col-md-3 ml-n1 text-dark  loan-nav " to="/adminProfile/approvals/loan" ><div class="nav-items small-screen-nav text-center"  style="width: 142px" @click="isActiveOne" :class="{ active: isActive1 }" >Loan Approvals</div></router-link>
-                            <router-link class="col-md-3 text-dark p-0 loan-nav" to="#"> <div class=" nav-items  small-screen-nav ml-n1 ml-xl-1 text-center" style="width:193px" @click="isActiveTwo" :class="{ active: isActive2 }">Investment Approvals </div></router-link>
-                            <router-link class="col-md-3  text-dark  loan-nav"  to="#"> <div  class="nav-items nok small-screen-nav text-center " style="width:163px" @click="isActiveThree" :class="{ active: isActive3 }" >Finance Approvals</div></router-link>
-                            <router-link class="col-md-3 text-purple loan-nav" to="#"> <div  class="nav-items  signature small-screen-nav text-center "  style="width:143px" @click="isActiveFour" :class="{ active: isActive4 }">Pawn Approvals</div></router-link>        
+                            <router-link class="col-md-3 text-dark p-0 loan-nav" to="/adminProfile/approvals/investment"> <div class=" nav-items  small-screen-nav ml-n1 ml-xl-1 text-center" style="width:193px" @click="isActiveTwo" :class="{ active: isActive2 }">Investment Approvals </div></router-link>
+                            <router-link class="col-md-3  text-dark  loan-nav"  to="/adminProfile/approvals/finance"> <div  class="nav-items nok small-screen-nav text-center " style="width:163px" @click="isActiveThree" :class="{ active: isActive3 }" >Finance Approvals</div></router-link>
+                            <router-link class="col-md-3 text-purple loan-nav" to="/adminProfile/approvals/pawn"> <div  class="nav-items  signature small-screen-nav text-center "  style="width:143px" @click="isActiveFour" :class="{ active: isActive4 }">Pawn Approvals</div></router-link>        
                           </div>
                    </div>
 
@@ -84,11 +84,7 @@ computed : {
     isActive4 () {
         return this.$store.getters.isActive4
     }
-},
-
-mounted () {
-        this.isActiveOne()
-    }
+}
 }
 </script>
 

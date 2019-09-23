@@ -33,7 +33,7 @@
                 <img src="./adminIcons/avatar3.jpg" class="avatar rounded-pill" alt=""> 
                 </div>
                 <div class="col-6">
-                   <span class="avatar-welcome">Welcome Admin! <br> {{name}}</span>
+                   <span class="avatar-welcome">Welcome <br> {{name}}</span>
                 </div>
             </div>
 

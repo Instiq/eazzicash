@@ -52,7 +52,10 @@ import loanApproval from "./components/admin/approvals/loanApproval.vue";
 import investmentApproval from "./components/admin/approvals/investmentApproval.vue";
 import financeApproval from "./components/admin/approvals/financeApproval.vue";
 import pawnApproval from "./components/admin/approvals/pawnApproval.vue";
-import userDetails from "./components/admin/approvals/userDetails.vue";
+import userDetailsLoan from "./components/admin/approvals/userDetailsLoan.vue";
+import userDetailsInvestment from "./components/admin/approvals/userDetailsInvestment.vue";
+import userDetailsFinance from "./components/admin/approvals/userDetailsFinance.vue";
+import userDetailsPawn from "./components/admin/approvals/userDetailsPawn.vue";
 
 import error from "./views/404.vue"
 
@@ -306,6 +309,7 @@ const router = new Router({
     {
       path: "/adminProfile",
       name: "adminProfile",
+      meta:{admin:true},
       component: adminProfile,
       children: [
         {
@@ -349,9 +353,24 @@ const router = new Router({
               component: financeApproval
             },
             {
-              path: "/adminProfile/approvals/details",
-              name:'User Details',
-              component: userDetails 
+              path: "/adminProfile/approvals/loanDetails",
+              name:'Loan Details',
+              component: userDetailsLoan 
+            },
+            {
+              path: "/adminProfile/approvals/investmentDetails",
+              name:'Investment Details',
+              component: userDetailsInvestment
+            },
+            {
+              path: "/adminProfile/approvals/financeDetails",
+              name:'Finance Details',
+              component: userDetailsFinance 
+            },
+            {
+              path: "/adminProfile/approvals/pawnDetails",
+              name:'Pawn Details',
+              component: userDetailsPawn 
             },
           ] 
         },
@@ -372,6 +391,23 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.authRequired)) {
   // checks if user is signed in, if not, redirect to signin page.
     if (!store.state.isAuthenticated) {
+      next({
+        path: "/signin",
+        query:{redirect:to.fullPath}
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+})
+
+router.beforeEach((to, from, next) => {
+  //loops through each route record and checks routes that contains the 'meta' tag
+  if (to.matched.some(record => record.meta.admin)) {
+  // checks if user is signed in, if not, redirect to signin page.
+    if (!store.state.isAdmin) {
       next({
         path: "/signin",
         query:{redirect:to.fullPath}

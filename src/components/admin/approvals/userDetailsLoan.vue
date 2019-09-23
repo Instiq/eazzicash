@@ -34,7 +34,7 @@
               <td class="col-sm-6">
                 <form action="/action_page.php">
                   <div class="form-group" style= "width:auto; height:auto">
-                   <img class="img-fluid" :src="image" alt="id">
+                   <img class="img-fluid" :src="id" alt="id">
                   </div>
                 </form>
               </td>
@@ -83,20 +83,55 @@
             <td class="col-sm-6">
              
                 <div class="form-group" style="height:auto; width:auto; border:2px solid whitesmoke">
-                    <img src="" alt="signature">
+                    <img  class="img-fluid" :src="signature" alt="signature">
                 </div>
             </td>
           </tr>
         </tbody>
       </table>
 
-      <div class="container form-group">
+      
+          <div class="row mb-3">
+           <div class="col-md-5 mb-3">
+                <label for="validationCustomUsername">Final Loan Amount <span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <div class="input-group-prepend" >
+                    <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
+                    </div>
+                    <input type="text" required v-model="principal" class="form-control"  placeholder="Enter Amount" v-validate="'required|min_value:100000|max_value:3000000'"  name="Loan Amount"  >
+                </div>
+            </div>
+
+             <div class="col-md-4 mb-3">
+                    <label for="validationCustom02">Final Loan Tenor <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text" style="cursor:pointer" v-on:click="minus" id="inputGroupPrepend">-</span>
+                        </div>
+                        <input type="text" class="form-control" style="background:whitesmoke" disabled v-model.number="tenor" id="validationCustom02" placeholder="Duration (months)" aria-describedby="inputGroupPrepend" required>
+                        <div class="input-group-append">
+                        <span class="input-group-text" style="cursor:pointer" @click='add' id="inputGroupAppend">+</span>
+                        </div>
+                    </div>
+              </div>
+
+              <div class="col-md-3">
+                  <button @click="updateLoanAdmin"  class="btn btn-info" style="margin-left:30px; padding:10px 20px; font-size:15px; margin-top:25px"> Update  <span v-if="isLoading3"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
+
+              </div>
+          </div>
+     
+      
+
+      <div class="form-group">
           <textarea type="text" placeholder="comment...." class="form-control"></textarea>
       </div>
 
       <div class="text-center">
-          <button type="button" class="btn btn-success mr-5" ><span class="h6">Approve</span></button>
-          <button type="button" class="btn btn-danger "><span class="h6" >Decline</span></button>
+          <!-- <button  class="btn btn-success mr-5" ><span style="font-size:15px;  padding:10px 20px;">Approve</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
+          <!-- <button  class="btn btn-danger "><span style="font-size:15px;  padding:10px 20px;">Decline</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
+           <button @click="updateLoanStatusApprove" class="btn btn-success ml-n2" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Approve  <span v-if="isLoading1"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
+           <button @click="updateLoanStatusDecline"  class="btn btn-danger" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Decline  <span v-if="isLoading2"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
       </div>
 
     </div>
@@ -137,19 +172,77 @@ export default {
 
  },
 
+ data () {
+     return {
+         isLoading1:false,
+         isLoading2:false,
+         isLoading3:false
+     }
+ },
+
  methods : {
     formatAmount (x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
     },
+     add () {
+           this.$store.dispatch('increment')
+    },
+    minus () {
+           this.$store.dispatch('decrement')
+    },
+    updateLoanAdmin () {
+         this.isLoading3= true;
+        this.$store.dispatch('updateLoanAdmin')
+            .then(_ => this.isLoading3=false)
+            .catch(_ => this.isLoading3=false)
+    },
+    updateLoanStatusApprove() {
+        this.isLoading1= true;
+         this.$store.commit('setLoading', true)
+        this.$store.dispatch('updateLoanStatusApprove')
+            .then(_ => this.isLoading1=false)
+            .catch(_ => this.isLoading1=false)
+    },
+    updateLoanStatusDecline() {
+         this.isLoading2= true;
+         this.$store.dispatch('updateLoanStatusDecline')
+            .then(_ => this.isLoading2=false)
+            .catch(_ => this.isLoading2=false)
+    }
  },
 
  computed : {
      userDetails () {
         return this.$store.state.userDetails
      },
-     image () {
+     id () {
+         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.id}`
+     },
+     signature () {
          return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.signature}`
-     }
+     },
+     tenor : {
+          get () {
+                return this.$store.getters.tenor
+            },
+          set (value) {
+                this.$store.dispatch('updateTenor', value )
+            }
+       },
+    principal : {
+        get () {
+            return this.$store.getters.principal
+        },
+        set (value) {
+            this.$store.dispatch('updatePrincipal', value )
+        }
+    }, 
+ },
+
+ mounted () {
+     this.$store.commit('setPrincipal', (this.userDetails.loanAmount))
+      this.$store.commit('setTenor', this.userDetails.loanTenor)
+
  }
 }
 </script>
@@ -166,6 +259,13 @@ export default {
      box-shadow: 0 0 5px rgb(75, 148, 8, 1);
      outline: 0 none;
  }
+
+  input:focus, select:focus {
+     border-color: rgba(75, 148, 8, 0.8);
+     box-shadow: 0 0 5px rgb(75, 148, 8, 1);
+     outline: 0 none;
+ }
+
 
 
 </style>

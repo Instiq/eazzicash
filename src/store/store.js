@@ -28,6 +28,7 @@ export default new Vuex.Store({
     isTokenExpired:false,
     emailVerificationToken : "",
     isAuthenticated:false,
+    isAdmin:false,
     isEmailRegistered : false,
     isEmailorPasswordCorrect : false,
     loading:false,
@@ -40,7 +41,7 @@ export default new Vuex.Store({
   },
 
   plugins: [createPersistedState({
-   paths : ['name', 'isAuthenticated', 'token', 'emailVerificationToken', 'email', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne', 'userEntitiesAll', 'userDetails']
+   paths : ['name', 'isAuthenticated', 'isAdmin', 'token', 'emailVerificationToken', 'email', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne', 'userEntitiesAll', 'userDetails']
   })],
 
   mutations: {
@@ -90,6 +91,9 @@ export default new Vuex.Store({
     setIsAuthenticated (state, payload) {
       state.isAuthenticated = payload
     },
+    setIsAdmin(state, payload) {
+      state.isAdmin= payload
+    },
     //mutation for loanToken, loanId and guarantorId
     setLoanToken (state, payload) {
       state.loanToken = payload
@@ -128,7 +132,6 @@ export default new Vuex.Store({
         .then(({data})=>{
          // console.log(data);
           context.commit('setName', `${data.firstName} ${data.lastName}`);
-          context.commit('setToken', data.token);
           context.commit('setLoading', false);
           context.commit('setIsAuthenticated', true);
           context.commit('setEmail', data.email)
@@ -158,10 +161,23 @@ export default new Vuex.Store({
           })
           .then(({data}) => {
             console.log(data);
-            
+            //check if user is verified
             if (!data.isVerified) {
               commit('setEmail', data.email)
               router.push('/verifyEmail?path=signin')
+              return;
+            }
+            //check if user is an admin
+            if (data.isAdmin) {
+              commit('setLoading', false)
+              commit('setIsAuthenticated', false);
+              commit('setIsAdmin', true)
+              commit('setName', `${data.firstName} ${data.lastName}`);
+              commit('setToken', data.token);
+              commit('setEmail', data.email);
+              commit('setUserId', data._id)
+              // alert('welcome admin')
+              router.push('/adminProfile')
               return;
             }
            // console.log(data);
@@ -169,6 +185,7 @@ export default new Vuex.Store({
             commit('setName', `${data.firstName} ${data.lastName}`) ;
             commit('setToken', data.token);
             commit('setIsAuthenticated', true);
+            commit('setIsAdmin', false)
             commit('setEmail', data.email)
             commit('setUserId', data._id)
             router.push('/profile/dashboard'); 
@@ -187,6 +204,7 @@ export default new Vuex.Store({
         router.push('/signin');
         commit('setToken', '');
         commit('setIsAuthenticated', false);
+        commit('setIsAdmin', false)
         commit('setName', '');
         commit('setEmail', '')
         commit('setEmailVerificationToken', '');
@@ -254,7 +272,7 @@ export default new Vuex.Store({
         })
         .catch(({response}) => {
           commit('setLoading', false)
-          if (err.response.data=='Invalid Token') {
+          if (response.data=='Invalid Token') {
             alert('Session Expired. kindly Re-Login');
             router.push('/signin');
             return;
@@ -411,21 +429,22 @@ export default new Vuex.Store({
         data :{
           investmentAmount: rootState.investment.investPrincipal,
           investmentTenor:rootState.investment.investTenor,
+          incomeSource:rootState.investment.incomeSource,
           otherInformation:rootState.investment.otherInfo,
           paymentEvidence:rootState.investment.paymentEvidence,
           id:rootState.investment.investId,
           signature:rootState.investment.investSign,
           accountDetails : {
-            name:rootState.investment.accountName,
-            number:rootState.investment.accountNumber,
-            bank:rootState.investment.bankName,
+            Name:rootState.investment.accountName,
+            Number:rootState.investment.accountNumber,
+            Bank:rootState.investment.bankName,
           },
           nextOfKin : {
-            name:rootState.investment.nokName,
-            phone:rootState.investment.nokPhone,
-            address:rootState.investment.nokAddress,
-            relationship:rootState.investment.nokRelationship,
-            state:rootState.investment.nokState
+            Name:rootState.investment.nokName,
+            Phone:rootState.investment.nokPhone,
+            Address:rootState.investment.nokAddress,
+            Relationship:rootState.investment.nokRelationship,
+            State:rootState.investment.nokState
           }
       },
       headers : {
@@ -621,7 +640,7 @@ export default new Vuex.Store({
           })
         },
 
-         //get all loans, pawn, investments and finance for a particular user
+         //get all loans, pawn, investments and finance for all users
          async getAllEntitiesAll ({commit, state}) {
           await axios({
             method:'get',
@@ -631,8 +650,334 @@ export default new Vuex.Store({
             commit('setUserEntitiesAll', data)
             
           })
-        }
+        },
 
+        // update Loan amount and tenor by admin
+        async updateLoanAdmin ({commit, state, rootState}) {
+          await axios({
+            method:'put',
+            url:`${state.api_url}/loans/adminUpdateLoan/${state.userDetails._id}`,
+            data :{
+              loanAmount:rootState.loan.principal,
+              loanTenor:rootState.loan.tenor
+            },
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            alert('updated succesfully')
+            router.push('/adminProfile/approvals/loan')
+            
+          })
+          .catch (err => {
+            console.log(err.response.data);
+            
+          })
+        },
+
+         // update Loan status to approved by admin
+         async updateLoanStatusApprove ({commit, state, rootState}) {
+          await axios({
+            method:'put',
+            url:`${state.api_url}/loans/adminUpdateLoanStatusApprove/${state.userDetails._id}`,
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            alert('approved succesfully') ;
+            router.push('/adminProfile/approvals/loan')
+          })
+          .catch (err => {
+            console.log(err.response.data);
+            
+          })
+        },
+
+         // update Loan status to declined by admin
+         async updateLoanStatusDecline ({commit, state, rootState}) {
+          await axios({
+            method:'put',
+            url:`${state.api_url}/loans/adminUpdateLoanStatusDecline/${state.userDetails._id}`,
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            alert('declined succesfully')   
+            router.push('/adminProfile/approvals/loan')
+            
+          })
+          .catch (err => {;
+            console.log(err.response.data);
+            
+          })
+        },
+
+        //delete Loan request by admin
+         async deleteLoan ({commit, state, rootState}, ) {
+          await axios({
+            method:'delete',
+            url:`${state.api_url}/loans/${state.userDetails._id}`,
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            commit('setLoading', false)
+            alert('deleted succesfully')
+          })
+          .catch (err => {
+            commit('setLoading', false);
+            console.log(err.response.data); 
+          })
+        },
+
+         // update investment amount and tenor by admin
+        async updateInvestAdmin ({commit, state, rootState}) {
+          await axios({
+            method:'put',
+            url:`${state.api_url}/investment/adminUpdateInvestment/${state.userDetails._id}`,
+            data :{
+              investmentAmount:rootState.investment.investPrincipal,
+              investmentTenor:rootState.investment.investTenor
+            },
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            alert('updated succesfully')
+            router.push('/adminProfile/approvals/investment')
+            
+          })
+          .catch (err => {
+            console.log(err.response.data);
+            
+          })
+        },
+
+         // update investment status to approved by admin
+         async updateInvestStatusApprove ({commit, state, rootState}) {
+          await axios({
+            method:'put',
+            url:`${state.api_url}/investment/adminUpdateInvestmentStatusApprove/${state.userDetails._id}`,
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            alert('approved succesfully') ;
+            router.push('/adminProfile/approvals/investment')
+          })
+          .catch (err => {
+            console.log(err.response.data);
+            
+          })
+        },
+
+        // update investment status to declined by admin
+        async updateInvestStatusDecline({commit, state, rootState}) {
+          await axios({
+            method:'put',
+            url:`${state.api_url}/investment/adminUpdateInvestmentStatusDecline/${state.userDetails._id}`,
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            alert('declined succesfully') ;
+            router.push('/adminProfile/approvals/investment')
+          })
+          .catch (err => {
+            console.log(err.response.data);
+            
+          })
+        },
+         
+        //delete Investment request by admin
+        async deleteInvestment ({commit, state, rootState}, ) {
+          await axios({
+            method:'delete',
+            url:`${state.api_url}/investment/${state.userDetails._id}`,
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            commit('setLoading', false)
+            alert('deleted succesfully')
+          })
+          .catch (err => {
+            commit('setLoading', false);
+            console.log(err.response.data); 
+          })
+        },
+
+         // update finance amount and tenor by admin
+         async updateFinanceAdmin ({commit, state, rootState}) {
+          await axios({
+            method:'put',
+            url:`${state.api_url}/finance/adminUpdateFinance/${state.userDetails._id}`,
+            data :{
+              financeAmount:rootState.loan.principal,
+              financeTenor:rootState.loan.tenor
+            },
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            alert('updated succesfully')
+            router.push('/adminProfile/approvals/finance')
+            
+          })
+          .catch (err => {
+            console.log(err.response.data);
+            
+          })
+        },
+
+         // update finance status to approved by admin
+         async updateFinanceStatusApprove ({commit, state, rootState}) {
+          await axios({
+            method:'put',
+            url:`${state.api_url}/finance/adminUpdateFinanceStatusApprove/${state.userDetails._id}`,
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            alert('approved succesfully') ;
+            router.push('/adminProfile/approvals/finance')
+          })
+          .catch (err => {
+            console.log(err.response.data);
+            
+          })
+        },
+
+         // update finance status to declined by admin
+         async updateFinanceStatusDecline ({commit, state, rootState}) {
+          await axios({
+            method:'put',
+            url:`${state.api_url}/finance/adminUpdateFinanceStatusDecline/${state.userDetails._id}`,
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            alert('declined succesfully')   
+            router.push('/adminProfile/approvals/finance')
+            
+          })
+          .catch (err => {;
+            console.log(err.response.data);
+            
+          })
+        },
+
+        //delete finance request by admin
+         async deleteFinance({commit, state, rootState}, ) {
+          await axios({
+            method:'delete',
+            url:`${state.api_url}/finance/${state.userDetails._id}`,
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            commit('setLoading', false)
+            alert('deleted succesfully')
+          })
+          .catch (err => {
+            commit('setLoading', false);
+            console.log(err.response.data); 
+          })
+        },
+        
+         // update pawn amount and tenor by admin
+         async updatePawnAdmin ({commit, state, rootState}) {
+          await axios({
+            method:'put',
+            url:`${state.api_url}/pawn/adminUpdatePawn/${state.userDetails._id}`,
+            data :{
+              pawnAmount:rootState.pawnshop.pawnAmount,
+            },
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            alert('updated succesfully')
+            router.push('/adminProfile/approvals/pawn')
+            
+          })
+          .catch (err => {
+            console.log(err.response.data);
+            
+          })
+        },
+
+          // update Pawn status to approved by admin
+          async updatePawnStatusApprove ({commit, state, rootState}) {
+            await axios({
+              method:'put',
+              url:`${state.api_url}/pawn/adminUpdatePawnStatusApprove/${state.userDetails._id}`,
+              headers : {
+                'x-auth-token': state.token
+              }
+            })
+            .then(({data}) => {
+              alert('approved succesfully') ;
+              router.push('/adminProfile/approvals/pawn')
+            })
+            .catch (err => {
+              console.log(err.response.data);
+              
+            })
+          },
+
+          // update Pawn status to approved by admin
+          async updatePawnStatusDecline ({commit, state, rootState}) {
+            await axios({
+              method:'put',
+              url:`${state.api_url}/pawn/adminUpdatePawnStatusDecline/${state.userDetails._id}`,
+              headers : {
+                'x-auth-token': state.token
+              }
+            })
+            .then(({data}) => {
+              alert('declined succesfully') ;
+              router.push('/adminProfile/approvals/pawn')
+            })
+            .catch (err => {
+              console.log(err.response.data);
+              
+            })
+          },
+
+          //delete finance request by admin
+         async deletePawn({commit, state, rootState}, ) {
+          await axios({
+            method:'delete',
+            url:`${state.api_url}/pawn/${state.userDetails._id}`,
+            headers : {
+              'x-auth-token': state.token
+            }
+          })
+          .then(({data}) => {
+            commit('setLoading', false)
+            alert('deleted succesfully')
+          })
+          .catch (err => {
+            commit('setLoading', false);
+            console.log(err.response.data); 
+          })
+        },
+        
+  
 
 
     

@@ -8,9 +8,7 @@
                             <span class="m">Employment Type <span class="text-danger">*</span></span>
                             <select class="browser-default custom-select" v-model="employmentType" v-validate="'required|included:Self-Employed,Private-Sector,Public-Sector'" name="Employment-Type">
                             <option value="Self-Employed">Self Employed</option>
-                             <option disabled="disabled">-------------------------------------------------------- </option>
                             <option value="Private-Sector" >Private Sector</option>
-                            <option disabled="disabled">---------------------------------------------------------</option>
                             <option value="Public-Sector">Public Sector</option>
                             </select>
                            <div class="mt-3" >

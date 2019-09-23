@@ -319,6 +319,10 @@
                                     <td>Investment Tenor</td>
                                     <td>{{investmentPending.investmentTenor}}</td>
                                 </tr>
+                                 <tr scope="row" >
+                                    <td>Source of Income</td>
+                                    <td>{{investmentPending.incomeSource}}</td>
+                                </tr>
                                 <tr scope="row" >
                                     <td>Account Details</td>
                                     <td>
