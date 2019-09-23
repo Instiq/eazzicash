@@ -36,8 +36,8 @@ export default new Vuex.Store({
     loanToken:"",
     guarantorId:"",
     loanId:"",
-    // //state to get one Loan/finance detail for one user
-    // loanDetailsOne:""
+    //state to get one Loan/finance detail for one user
+    loanDetailsOne:""
   },
 
   plugins: [createPersistedState({
@@ -105,10 +105,10 @@ export default new Vuex.Store({
       state.loanId = payload
     },
     
-    // //mutation to get one Loan/Finance detail for one user
-    // setLoanDetailsOne (state, payload) {
-    //   state.loanDetailsOne = payload
-    // }
+    //mutation to get one Loan/Finance detail for one user
+    setLoanDetailsOne (state, payload) {
+      state.loanDetailsOne = payload
+    }
 
   },
   actions: {
@@ -283,17 +283,17 @@ export default new Vuex.Store({
 
        },
 
-    //Get Loan for particular User
-    //  //  `${state.api_url}/loans/${state.loanId}`
-    // async getLoanDetailsOne ({commit, state}) {
-    //     await axios({
-    //       url :  `${state.api_url}/loans/${state.loanId}`,
-    //       method :'get'
-    //     })
-    //     .then(({data}) => {
-    //       commit('setLoanDetailsOne', data)
-    //     })
-    // } , 
+  //  Get Loan for particular User
+     //  `${state.api_url}/loans/${state.loanId}`
+    async getLoanDetailsOne ({commit, state}) {
+        await axios({
+          url :  `${state.api_url}/loans/${state.loanId}`,
+          method :'get'
+        })
+        .then(({data}) => {
+          commit('setLoanDetailsOne', data)
+        })
+    } , 
 
     //Post Finance
     async postFinance ({commit, state, rootState}) {
