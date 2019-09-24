@@ -47,7 +47,7 @@
                                <div class="input-group">
                                     <input type="text"  v-model="email" class="form-control"  placeholder=""   name='email' v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('email') }">
                                      <div class="input-group-append">
-                                       <span class="input-group-text" id="inputGroupAppend">@example.com</span>
+                                       <span class="input-group-text" id="inputGroupAppend">@</span>
                                     </div>
                                      <div class="vee-validate mt-2">
                                         <i v-show="errors.has('email')" class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>
@@ -128,7 +128,7 @@
                                  <div class="input-group">
                                     <input type="text"  v-model="email1" class="form-control"  placeholder=""   name='email1' v-validate="'email'" :class="{'input': true, 'is-danger': errors.has('email') }">
                                      <div class="input-group-append">
-                                       <span class="input-group-text" id="inputGroupAppend">@example.com</span>
+                                       <span class="input-group-text" id="inputGroupAppend">@</span>
                                     </div>
                                     <div class="vee-validate mt-2">
                                         <i v-show="errors.has('email1')" class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>

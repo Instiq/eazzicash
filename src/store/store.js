@@ -628,7 +628,7 @@ export default new Vuex.Store({
           })
         },
 
-        //get all loans, pawn, investments and finance for a particular user
+        //get all loans, pawn, investments and finance data for a particular user
         async getAllEntitiesOne ({commit, state}) {
           await axios({
             method:'get',
@@ -640,7 +640,7 @@ export default new Vuex.Store({
           })
         },
 
-         //get all loans, pawn, investments and finance for all users
+         //get all loans, pawn, investments and finance data for all users
          async getAllEntitiesAll ({commit, state}) {
           await axios({
             method:'get',

@@ -7,7 +7,7 @@
               <div class="row">
                   <div class="col-lg-8 col-md-12 major-col-1">
                       <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-6 entities-card ">
                             
                               <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
                                   <mdb-card-body class="col-one" >
@@ -26,7 +26,7 @@
                                       
                               </mdb-card>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-6 entities-card">
                               <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
                                     <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:mediumseagreen">
@@ -41,7 +41,7 @@
                               </mdb-card>
                               
                           </div>  
-                          <div class="col-md-6">
+                          <div class="col-md-6 entities-card">
                               <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
                                    <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:deepskyblue">
@@ -56,7 +56,7 @@
                               </mdb-card>
                               
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-6 entities-card">
                               <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
                                    <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:orangered; margin-bottom:20px">
@@ -79,11 +79,11 @@
                   </div>
 
                   
-                  <div class="col-lg-4 col-12 major-col-2">
-                      <mdb-card class="mt-3 mt-md-0" style="height:auto; width:auto">
+                  <div class="col-lg-4 col-12 major-col-2 transaction-card">
+                      <mdb-card class="mt-3 mt-md-0 " style="height:auto; width:auto">
                             <div class=" " >
                                 <mdb-list-group>
-                                <mdb-list-group-item class="text-white h6 list-group-header" >Transaction History <mdb-badge class="" style="margin-left:-30px" :pill="true" > {{checkTransactionHistory()}} </mdb-badge></mdb-list-group-item>
+                                <mdb-list-group-item class="text-white h6 list-group-header" >Transaction History <mdb-badge class="trans-history-badge" style="" :pill="true" > {{checkTransactionHistory()}} </mdb-badge></mdb-list-group-item>
                                 <mdb-list-group-item   v-for="(item, index) in filteredPawnApproved()" :key=" 'a' + index"><span>{{item.type}}</span>     <mdb-badge :pill="true" class='badges' style="margin-left:15px" color="default-color">&#8358; {{formatAmount(item.pawnAmount)}} </mdb-badge>     <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
                                 <mdb-list-group-item   v-for="(item, index) in filteredLoanApproved()" :key="'b' + index"><span>{{item.type}}</span>     <mdb-badge :pill="true" class='badges' color="default-color">&#8358; {{formatAmount(item.loanAmount)}} </mdb-badge>     <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
                                 <mdb-list-group-item   v-for="(item, index) in filteredInvestmentApproved()" :key=" 'c' + index"><span class="small-screen-type">{{item.type}}</span>    <mdb-badge :pill="true" class='badges ml-n4 small-screen-history' style="margin-left" color="default-color">&#8358; {{formatAmount(item.investmentAmount)}} </mdb-badge>     <mdb-badge :pill="true" class="small-screen-history-date" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
@@ -95,11 +95,11 @@
                       
                   </div>
 
-                   <div class="col-md-12 major-col-2 mt-4" style="">
+                   <div class="col-md-12 major-col-2 mt-4 pending-card" style="">
                         <mdb-card class="bg-">
                             <mdb-card-title class=" py-2 text-white text-center h6 pending">Pending Requests <mdb-badge :pill="true" color="danger"> {{totalPending().length}} </mdb-badge></mdb-card-title>
 
-                       <section>
+                       <section class="">
                         <mdb-tbl striped  class="table-responsive small-screen-table">
                             <mdb-tbl-head>
                                 <tr>
@@ -113,28 +113,28 @@
                             <mdb-tbl-body  >
 
                                 <tr scope="row" v-for="(item, index) in filteredPawnPending()" :key="'d' + index" >
-                                    <td>{{item._id}}</td>
+                                    <td>{{text_truncate(item._id)}}</td>
                                     <td>{{item.type}}</td>
                                     <td>&#8358; {{formatAmount(item.pawnAmount)}}</td>
                                      <!-- <td> {{item.approved}}</td> -->
                                     <td><span class="text-primary"  @click="pawnPend(index)" style="text-decoration:underline; cursor:pointer">View details</span></td>
                                 </tr>
                                  <tr scope="row" v-for="(item, index) in filteredInvestmentPending()" :key="'a' + index">
-                                    <td >{{item._id}}</td>
+                                    <td >{{text_truncate(item._id)}}</td>
                                     <td>{{item.type}}</td>
                                     <td>&#8358; {{formatAmount(item.investmentAmount)}}</td>
                                     <!-- <td> {{item.approved}}</td> -->
                                     <td><span class="text-primary" @click="investmentPend(index)" style="text-decoration:underline; cursor:pointer">View details</span></td>
                                 </tr>
                                  <tr scope="row" v-for="(item, index) in filteredLoanPending()" :key=" 'b' + index">
-                                    <td >{{item._id}}</td>
+                                    <td >{{text_truncate(item._id)}}</td>
                                     <td>{{item.type}}</td>
                                     <td>&#8358; {{formatAmount(item.loanAmount)}}</td>
                                     <!-- <td> {{item.approved}}</td> -->
                                     <td><span class="text-primary" @click="loanPend(index)"  style="text-decoration:underline; cursor:pointer">View details</span></td>
                                 </tr>
                                  <tr scope="row" v-for="(item, index) in filteredFinancePending()" :key="'c' + index">
-                                    <td>{{item._id}}</td>
+                                    <td>{{text_truncate(item._id)}}</td>
                                     <td>{{item.type}}</td>
                                     <td>&#8358; {{formatAmount(item.financeAmount)}}</td>
                                     <!-- <td> {{item.approved}}</td> -->
@@ -178,7 +178,7 @@
                                     <td>{{pawnPending.pawnTenor}}</td>
                                 </tr>
                                  <tr scope="row" >
-                                    <td>Pawn Item Category</td>
+                                    <td>Item Category</td>
                                     <td>{{pawnPending.itemCategory}}</td>
                                 </tr>
                                  <tr scope="row" >
@@ -492,6 +492,21 @@ export default {
         formatAmount (x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
         },
+       //truncate the id length to the first 10 characters
+         text_truncate(str, length, ending) {
+            if(length==null) {
+                length=10;
+            }
+            if (ending==null) {
+                ending= ''
+            }
+            if(str.length>length) {
+                return str.substring(0, length) + ending
+            }
+            else {
+                return str
+            }
+        },
         checkTransactionHistory () {
             let pawn = this.filteredPawnApproved().length
             let loan = this.filteredLoanApproved().length
@@ -522,7 +537,7 @@ export default {
         })
         
      },
-    //filter pawn  by approval ststus
+    //filter pawn  by approval status
      filteredPawnApproved () {
          let pawnItems = this.userEntitiesOne.pawn;
         let newPawnItem = pawnItems.filter(data => data.approved=='approved');
@@ -534,7 +549,7 @@ export default {
          let newPawnItem = pawnItems.filter(data => data.approved=='pending');
          return newPawnItem
      },
-      //filter Loan by approval ststus
+      //filter Loan by approval status
      filteredLoanApproved () {
          let loanItems = this.userEntitiesOne.loan;
         let newloanItem = loanItems.filter(data => data.approved=='approved');
@@ -546,7 +561,7 @@ export default {
          let newLoanItem = loanItems.filter(data => data.approved=='pending');
          return newLoanItem
      },
-      //filter Finance  by approval ststus
+      //filter Finance  by approval status
      filteredFinanceApproved () {
          let financeItems = this.userEntitiesOne.finance;
         let newFinanceItem = financeItems.filter(data => data.approved=='approved');
@@ -621,8 +636,9 @@ export default {
 <style scoped>
 
  .main-container {
-    border:2px solid blac;
-    margin-left:3vw;
+    border:2px solid blu;
+    width:auto;
+    margin-left:6vw;
     height: auto;
     overflow-x: hidden
  }
@@ -656,6 +672,8 @@ export default {
      margin-top: -8px
  }
 
+
+
  @media (max-width:576px){ 
     .small-screen-table {
         padding: 0 5.5vw;
@@ -664,6 +682,22 @@ export default {
 
     .small-screen-entities-card{
        height:auto !important
+    }
+
+    .transaction-card{
+        margin-left:6vw;
+        width:auto
+    } 
+
+    .entities-card{
+      margin-left:9.8vw;
+    }
+    .pending-card {
+        margin-left:6vw;
+    }
+    .trans-history-badge{
+        margin-left: 48vw !important;
+        position: absolute;
     }
  }
 

@@ -2,7 +2,7 @@
   <div>
       <div class="container">
           <div class="containe main-container">
-               <mdb-jumbotron class="jumbotron-fluid" style="height:auto; width:auto">
+               <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
                    <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Pawn Application Form</span></div>
                    <router-link to="/profile/pawnshop/precheck">
                        <div class="back-arrow-div  ml-lg-4 ml-xl-5 ml-md-4 small-screen-nav">
@@ -177,9 +177,27 @@ export default {
  }
 }
 
- @media (max-width:800px){
+ @media (max-width:990px){
    .small-screen-nav{
       display: none
     }
 }
+
+ @media (max-width:576px){ 
+    .main-container {
+    border:2px solid blac;
+    margin-left:7vw;
+    height: auto;
+    width:70vw
+ }
+.small-screen-jumbo {
+    width:84vw !important;
+    height:auto !important
+} 
+ .apply-btn {
+     padding:10px 20vw;
+     position: absolute !important;
+     top:46vh;  
+ }
+ }
 </style>

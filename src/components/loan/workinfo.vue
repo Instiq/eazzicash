@@ -32,7 +32,7 @@
                   <div class="form-row">
                        <div class="col-md-5">
                             <label for="exampleFormControlTextarea1">Other comments (optional)</label>
-                            <textarea style="background:whitesmoke" v-model="otherComments" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea style="background:whitesmoke" v-model="otherComments" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                   </div>
 
@@ -124,7 +124,7 @@ export default {
     width:auto;
     margin:0px 0vw
  }
- input:focus, select:focus {
+ input:focus, .text-area:focus, select:focus {
      border-color: rgba(75, 148, 8, 0.8);
      box-shadow: 0 0 5px rgb(75, 148, 8, 1);
      outline: 0 none;

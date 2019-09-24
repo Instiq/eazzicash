@@ -3,11 +3,11 @@
       <div class="container">
           <div class="container main-container">
 
-              <mdb-jumbotron class="jumbotron-fluid" style="height:auto; width:70vw">
+              <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:70vw">
                   <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Repayment pre-check</span></div>
 
                     <section class="container  mt-3">
-                        <div class="col-md-5">
+                        <div class="col-xl-6 col-lg-9 col-md-10">
                             <span class="m">Loan Amount (min:100k max:3m)</span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
                             <div class="input-group mb-2">
@@ -18,7 +18,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-xl-6 col-lg-9 col-md-10 ">
                             <span class="m">Repayment Duration (months)</span>
                             <div class="input-group mb-2">
                             <div class="input-group-prepend">
@@ -31,8 +31,8 @@
                             </div>
                               </div>
                         </div>
-
-                        <!-- <div class="col-md-5">
+<!-- 
+                         <div class="col-md-5">
                             <span class="m">Interest rate (per month)</span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
                             <div class="input-group mb-2">
@@ -42,9 +42,9 @@
                             <input type="text" style="background:whitesmoke" disabled v-model="rate" class="form-control py-0" id="inlineFormInputGroup" placeholder="">
                             </div>
                             <p class="text-danger mb-2" style="font-size:15px; width:auto">please note that Interest rate is calculated on principal</p>
-                        </div> -->
+                        </div>  -->
 
-                         <div class="col-md-5">
+                         <div class="col-xl-6 col-lg-9 col-md-10">
                             <span class="m">Monthly Repayment Amount</span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
                             <div class="input-group mb-2">
@@ -238,6 +238,89 @@ export default {
  .apply-btn {
      padding-left:200px;
      top:-70px;  
+ }
+
+ input:focus, select:focus {
+     border-color: rgba(75, 148, 8, 0.8);
+     box-shadow: 0 0 5px rgb(75, 148, 8, 1);
+     outline: 0 none;
+ }
+
+
+ @media (max-width:1200px){ 
+    .main-container {
+    border:2px solid blac;
+    margin-left:7vw;
+    height: auto;
+    width:70vw
+ }
+.small-screen-jumbo {
+    width:auto!important;
+    height:65vh !important
+} 
+ .apply-btn {
+     padding:10px 7vw;
+     position: absolute;
+     top:46vh;  
+     
+ }
+ }
+ 
+ @media (max-width:767px){ 
+    .main-container {
+    border:2px solid blac;
+    margin-left:7vw;
+    height: auto;
+    width:70vw
+ }
+.small-screen-jumbo {
+    width:75vw!important;
+    height:60vh !important
+} 
+ .apply-btn {
+     padding:10px 20vw;
+     position: absolute;
+     top:46vh;  
+     
+ }
+ }
+
+
+ @media (max-width:576px){ 
+    .main-container {
+    border:2px solid blac;
+    margin-left:7vw;
+    height: auto;
+    width:70vw
+ }
+.small-screen-jumbo {
+    width:100vw !important;
+    height:60vh !important
+} 
+ .apply-btn {
+     padding:10px 20vw;
+     position: absolute !important;
+     top:46vh;  
+ }
+ }
+
+ @media (max-width:320px){ 
+    .main-container {
+    border:2px solid blac;
+    margin-left:7vw;
+    height: auto;
+    width:70vw
+ }
+.small-screen-jumbo {
+    width:100vw !important;
+    height:72vh !important
+} 
+ .apply-btn {
+     padding:10px 10vw;
+     position: absolute;
+     top:55vh;  
+ }
+
  }
 
 </style>

@@ -63,7 +63,7 @@
                             <img style="max-width:100%; height:auto" class="img-fluid" :src="paymentEvidence"  alt=''>
                          </div>
                         <div class="mr-2 mt-2 mt-md-5">
-                            <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1" @change="onFileChange"  name="Payment Evidence" v-validate="'required'" id="validatedCustomFile" >
+                            <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" @change="onFileChange"  name="Payment Evidence" v-validate="'required'" id="validatedCustomFile" >
                             <label class="" for="validatedCustomFile"></label>
                             <div class="mt-2" >
                             <i v-show="errors.has('Payment Evidence')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -80,7 +80,7 @@
                             <img style="max-width:100%; height:auto" class="img-fluid" :src="investId"  alt=''>
                          </div>
                         <div class="mr-2 mt-2 mt-md-5">
-                            <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1" @change="onFileChange2"  name="ID" v-validate="'required'" id="validatedCustomFile" >
+                            <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" @change="onFileChange2"  name="ID" v-validate="'required'" id="validatedCustomFile" >
                             <label class='' for="validatedCustomFile"></label>
                             <div class="mt-2" >
                             <i v-show="errors.has('ID')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -237,14 +237,47 @@ export default {
      outline: 0 none;
  }
 
-  @media (min-width:1000px){
-  input {
+ @media (min-width:767px){
+   input {
+    
+      border:1px solid gainsboro;
+      border-radius: 5px
+ }
+
+ .small-screen-id {
+     width:25vw!important
+ }
+}
+
+
+
+@media (max-width:767px){
+   input {
       /* border-color: rgba(75, 148, 8, 0.8); */
       border:1px solid gainsboro;
       border-radius: 5px
      /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
  }
-  }
+
+ .small-screen-id {
+     width:55vw
+ }
+}
+
+ @media (max-width:576px){
+   input {
+      /* border-color: rgba(75, 148, 8, 0.8); */
+      border:1px solid gainsboro;
+      border-radius: 5px
+     /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
+ }
+
+ .small-screen-id {
+     width:70vw
+ }
+}
+
+
 
  
 

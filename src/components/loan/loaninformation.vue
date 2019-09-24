@@ -77,7 +77,7 @@
                              </div>
 
                             <div class="input-group mr-2 mt-2 mt-md-5">
-                                <input type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 " v-validate="'required'"   @change="onFileChange"  name="id" id="id">
+                                <input type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate="'required'"   @change="onFileChange"  name="id" id="id">
                                 <label class="" for="id" aria-describedby="inputGroupFileAddon02"></label>
                                 
                             </div>
@@ -221,9 +221,9 @@ export default {
            }
        }
     },
-    // mounted () {
-    //     this.$store.dispatch('updateIsActive1')
-    // }
+    mounted () {
+        this.$store.dispatch('updateIsActive1')
+    }
 }
 </script>
 
@@ -244,14 +244,46 @@ export default {
      outline: 0 none;
  }
 
- @media (min-width:1000px){
+@media (min-width:767px){
+   input {
+    
+      border:1px solid gainsboro;
+      border-radius: 5px
+ }
+
+ .small-screen-id {
+     width:29vw!important
+ }
+}
+
+
+
+@media (max-width:767px){
    input {
       /* border-color: rgba(75, 148, 8, 0.8); */
       border:1px solid gainsboro;
       border-radius: 5px
      /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
  }
+
+ .small-screen-id {
+     width:75vw
+ }
 }
+
+ @media (max-width:576px){
+   input {
+      /* border-color: rgba(75, 148, 8, 0.8); */
+      border:1px solid gainsboro;
+      border-radius: 5px
+     /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
+ }
+
+ .small-screen-id {
+     width:70vw
+ }
+}
+
 
  
 

@@ -7,13 +7,13 @@
 
                 <div class="form-row"> <div class="mb-3">Applicant's Signature <span class="text-danger">*</span></div> </div>
                 <div class="ml-n3 col-md-5 mb-3 mt-3 mt-md-0">
-                    <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                    <div class=" mb-4 mb-md-0 " style="height:auto; width:auto; border:1px solid whitesmoke"> 
                         <img style="max-width:100%; height:auto" class="img-fluid" :src="loanSign"  alt=''>
                     </div>
                 </div>
 
                 <div class="custom-file form-row col-md-5 mb-3">
-                    <input type="file" class=" mt-3 ml-n2 mt-md-0 mb-2 mb-md-1 "  @change="onFileChange" name="file" v-validate="'required'" id="validatedCustomFile" >
+                    <input type="file" class=" mt-3 ml-n3 mt-md-0 mb-2 mb-md-1 small-screen-id "  @change="onFileChange" name="file" v-validate="'required'" id="validatedCustomFile" >
                     <label class="" for="validatedCustomFile"></label>
                     <div class="mt-2" >
                        <i v-show="errors.has('file')" class="fa fa-exclamation-triangle text-danger mr-2"></i> 
@@ -219,16 +219,67 @@ export default {
  .invalid {
      color:red
  }
+ 
 
- @media (min-width:1000px){
+ input:focus, .text-area:focus, select:focus {
+     border-color: rgba(75, 148, 8, 0.8);
+     box-shadow: 0 0 5px rgb(75, 148, 8, 1);
+     outline: 0 none;
+ }
+
+ 
+ 
+@media (min-width:767px){
+   input {
+    
+      border:1px solid gainsboro;
+      border-radius: 5px
+ }
+
+ .small-screen-id {
+     width:29vw!important
+ }
+}
+
+@media (min-width:1200px){
+   input {
+    
+      border:1px solid gainsboro;
+      border-radius: 5px
+ }
+
+ .small-screen-id {
+     width:auto!important
+ }
+}
+
+
+
+@media (max-width:767px){
    input {
       /* border-color: rgba(75, 148, 8, 0.8); */
       border:1px solid gainsboro;
       border-radius: 5px
      /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
  }
+
+ .small-screen-id {
+     width:50vw
+ }
 }
- 
+
+ @media (max-width:576px){
+   input {
+      /* border-color: rgba(75, 148, 8, 0.8); */
+      border:1px solid gainsboro;
+      border-radius: 5px
+     /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
+ }
+
+ .small-screen-id {
+     width:60vw
+ }
+}
 
  
  

@@ -92,7 +92,7 @@
 
                             <div class="input-group mr-2 mt-5">
                                  <span class="mt-md-n4 mb-md-3">Upload ID  <span class="text-danger">*</span> </span>
-                                <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1" v-validate="'required'"  name="id" @change="onFileChange" id="inputGroupFile02">
+                                <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" v-validate="'required'"  name="id" @change="onFileChange" id="inputGroupFile02">
                                 <label class="" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"></label>
                             </div>
 
@@ -273,15 +273,45 @@ export default {
     }
  }
 
-  @media (min-width:1000px){
+@media (min-width:767px){
+   input {
+    
+      border:1px solid gainsboro;
+      border-radius: 5px
+ }
+
+ .small-screen-id {
+     width:29vw!important
+ }
+}
+
+
+
+@media (max-width:767px){
    input {
       /* border-color: rgba(75, 148, 8, 0.8); */
       border:1px solid gainsboro;
       border-radius: 5px
      /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
  }
+
+ .small-screen-id {
+     width:75vw
+ }
 }
 
+ @media (max-width:576px){
+   input {
+      /* border-color: rgba(75, 148, 8, 0.8); */
+      border:1px solid gainsboro;
+      border-radius: 5px
+     /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
+ }
+
+ .small-screen-id {
+     width:70vw
+ }
+}
  
 
 </style>
