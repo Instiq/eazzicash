@@ -45,10 +45,10 @@
 
                            <div class="col-md-5 mb-3">
                                 <span class="m">Joint Receivable Account Number</span>
-                                <input type="text"  v-model="jointAccount" name="JOint Receivable Account Number" class="form-control" v-validate="'min:11|max:11|numeric'" placeholder="">
+                                <input type="text"  v-model="jointAccount" name="Joint Receivable Account Number" class="form-control" v-validate="'min:11|max:11|numeric'" placeholder="">
                                 <div class="mt-3" >
-                                    <i v-show="errors.has('JOint Receivable Account Number')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('JOint Receivable Account Number')">{{ errors.first('JOint Receivable Account Number') }}</span>
+                                    <i v-show="errors.has('Joint Receivable Account Number')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                    <span class="text-warning" v-show="errors.has('Joint Receivable Account Number')">{{ errors.first('Joint Receivable Account Number') }}</span>
                               </div>
                             </div>     
 

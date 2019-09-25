@@ -8,7 +8,7 @@
 
                     <section class="container  mt-3">
                         <div class="col-xl-6 col-lg-9 col-md-10">
-                            <span class="m">Loan Amount (min:100k max:3m)</span>
+                            <span class="m">Finance Amount (min:100k max:3m)</span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
                             <div class="input-group mb-2">
                             <div class="input-group-prepend">

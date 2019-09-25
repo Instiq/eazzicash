@@ -49,7 +49,7 @@
                                                                     <i v-show="errors.has('password')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                                                     <span class="text-warning" v-show="errors.has('password')">{{ errors.first('password') }}</span>
                                                                 </div>
-                                                                <span class="float-right mt-1 mb-4" style="color:orange">Forgot password?</span>
+                                                               <router-link to="/passwordResetLink"> <span class="float-right mt-1 mb-4" style="color:orange; cursor:pointer">Forgot password?</span></router-link>
                                                         </mdb-col>
                                                     </mdb-row>
                                                 </section>

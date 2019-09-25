@@ -13,6 +13,8 @@ import declineLoan from "./views/declineLoan.vue";
 import approveLoan from "./views/approveLoan.vue";
 import approveFinance from "./views/approveFinance.vue";
 import declineFinance from "./views/declineFinance.vue";
+import passwordResetLink from "./views/forgotPassword/passwordResetLink.vue";
+import changePassword from "./views/forgotPassword/changePassword.vue"
 import profile from "./views/profile.vue";
 import dashboard from "./components/dashboard.vue";
 //Loan routes
@@ -124,6 +126,16 @@ const router = new Router({
       path: "/emailVerified",
       name: "emailVerified",
       component: emailVerified
+    },
+    {
+      path: "/passwordResetLink",
+      name: "passwordResetLink",
+      component: passwordResetLink
+    },
+    {
+      path: "/changePassword",
+      name: "changePassword",
+      component: changePassword
     },
     {
       path: "/profile",

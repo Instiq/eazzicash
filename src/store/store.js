@@ -217,6 +217,53 @@ export default new Vuex.Store({
         
        },
       
+       //send password reset Link
+       async sendResetLink ({commit, state}, email) {
+          await axios({
+            method:'post',
+            url: `${state.api_url}/users/forgotPassword/${email}`
+          })
+          .then (_ => {
+              router.push('/passwordResetLink?path=resetSuccess')
+          })
+          .catch(err => {
+            console.error(err.response.data);
+            if(err.response.data=='User not found') {
+              router.push('/passwordResetLink?path=wrongEmail');
+              return;
+            }
+          })
+       },    
+       
+       //Change/Reset Password
+       async changePassword ({commit, state}, {token, password}) {
+        await axios({
+          method:'put',
+          url: `${state.api_url}/users/resetPassword/${token}`,
+          data: {
+            password
+          }
+        })
+        .then (_ => {
+            router.push('/passwordResetLink?path=passwordChangeSuccess')
+        })
+        .catch(err => {
+          console.error(err.response.data);
+          if(err.response.data=='User not found') {
+            alert('User not Found');
+            router.push('/signup');
+            return;
+          }
+          if (err.response.data=='expired token') {
+            router.push('/changePassword?path=expiredPasswordResetToken')
+            commit('setIsTokenExpired', true)
+            setTimeout (_ =>  router.push('/passwordResetLink'), 5000)
+          }
+        })
+     },    
+       
+       
+       
        //postLoan
       async postLoan ({commit, state, rootState}) {
 
@@ -638,6 +685,10 @@ export default new Vuex.Store({
             commit('setUserEntitiesOne', data)
             
           })
+          .catch(err => {
+            console.error(err.response.data);
+            
+          })
         },
 
          //get all loans, pawn, investments and finance data for all users
@@ -648,6 +699,10 @@ export default new Vuex.Store({
           })
           .then(({data}) => {
             commit('setUserEntitiesAll', data)
+            
+          })
+          .catch(err => {
+            console.error(err.response.data);
             
           })
         },
@@ -976,6 +1031,7 @@ export default new Vuex.Store({
             console.log(err.response.data); 
           })
         },
+
         
   
 

@@ -60,7 +60,7 @@
                     <div class="form-row third">
                          <div class="col-md-5 mb-3">
                             <label for="exampleFormControlTextarea1">List Indebtednes </label>
-                            <textarea style="background:whitesmoke" v-model="loanIndebtedness" v-validate="''"  name="Loan Indebtedness" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                            <textarea style="background:whitesmoke" v-model="loanIndebtedness" v-validate="''"  name="Loan Indebtedness" class="form-control text-area" id="exampleFormControlTextarea1" rows="2"></textarea>
                          <div class="mt-3" >
                             <i v-show="errors.has('Loan Indebtedness')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                             <span class="text-warning" v-show="errors.has('Loan Indebtedness')">{{ errors.first('Loan Indebtedness') }}</span>
@@ -92,7 +92,7 @@
                     <div class="form-row fourth">
                         <div class="col-md-5 loanPurpose">
                             <label for="exampleFormControlTextarea1">Loan Purpose <span class="text-danger">*</span></label>
-                            <textarea style="background:whitesmoke" v-model="loanPurpose" v-validate="'required'" accept="image/*" multiple  name="Loanpurpose" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea style="background:whitesmoke" v-model="loanPurpose" v-validate="'required'" accept="image/*" multiple  name="Loanpurpose" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
                             <div class="mt-3" >
                                     <i v-show="errors.has('Loanpurpose')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('Loanpurpose')">{{ errors.first('Loanpurpose') }}</span>
@@ -237,12 +237,12 @@ export default {
     margin:0vh 0vw
  }
 
-
- input:focus, select:focus {
+  input:focus, .text-area:focus, select:focus {
      border-color: rgba(75, 148, 8, 0.8);
      box-shadow: 0 0 5px rgb(75, 148, 8, 1);
      outline: 0 none;
  }
+
 
 @media (min-width:767px){
    input {
