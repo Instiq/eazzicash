@@ -1,6 +1,6 @@
 <template>
  <div class="container">
-     <div class="jumbotron">
+     <div class="jumbotron-fluid">
         <div class="mt-sm-n5" style="height:"><a href="/"><img class="img-fluid" style="height:10vh" src="../assets/logomain.png" alt=""></a></div>
 
          <section class="container table" style="width:70%">
@@ -13,6 +13,7 @@
                             <th class="font-weight-bold h6">Value</th>
                         </tr>
                     </mdb-tbl-head>
+                     
                     <mdb-tbl-body scope="row" >
                         <tr >
                             <td>1</td>
@@ -99,9 +100,9 @@ mounted () {
 </script>
 
 <style>
- @media (max-width:400px){
+ @media (max-width:576px){
    .table {
-     margin:0 -20px
+     margin:0 20px
  }
 }
 </style>
