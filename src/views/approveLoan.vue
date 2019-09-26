@@ -99,10 +99,10 @@ mounted () {
 }
 </script>
 
-<style>
+<style scoped>
  @media (max-width:576px){
    .table {
-     margin:0 20px
+     margin:0 -20px
  }
 }
 </style>
