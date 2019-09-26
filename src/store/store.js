@@ -330,7 +330,7 @@ export default new Vuex.Store({
 
        },
 
-  //  Get Loan for particular User
+  //  Get Loan for particular User to be seen by guarantor befor approving or declining
      //  `${state.api_url}/loans/${state.loanId}`
     async getLoanDetailsOne ({commit, state}) {
         await axios({
@@ -413,7 +413,7 @@ export default new Vuex.Store({
       })
     },
 
-    //Get Finance details for particular User
+    //Get Finance details for particular User to be seen by guarantor before approving or declining
      //  `${state.api_url}/finance/${state.loanId}`
      async getFinanceDetailsOne ({commit, state}) {
       await axios({

@@ -695,10 +695,7 @@ export default {
     .pending-card {
         margin-left:6vw;
     }
-    .trans-history-badge{
-        margin-left: 48vw !important;
-        position: absolute;
-    }
+   
  }
 
  

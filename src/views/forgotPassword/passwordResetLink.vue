@@ -7,7 +7,7 @@
             <p class="text-center h5">Reset Link sent succesfully..kindly check your inbox</p>
          </div>
          <div class="mb-3" v-if="path=='wrongEmail'" >
-            <p class="h4 text-center" style="color:crimson">  We couldn't Find any account with that email address</p>
+            <p class="h4 text-center" style="color:crimson">  We couldn't find any account with that email address</p>
             <p class="h6 text-center" style="color:crimson">please try again with your registered email</p>
          </div>
          <div v-if="path!='resetSuccess' && path!='passwordChangeSuccess'">
