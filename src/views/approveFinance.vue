@@ -1,7 +1,7 @@
 <template>
  <div class="container">
      <div class="jumbotron-fluid">
-        <div class="mt-sm-n5" style="height:"><a href="/"><img class="img-fluid" style="height:10vh" src="../assets/logomain.png" alt=""></a></div>
+        <div class="mt-sm-n5 mb-3 mb-sm-0" style="height:"><a href="/"><img class="img-fluid" style="height:10vh" src="../assets/logomain.png" alt=""></a></div>
 
          <section class="container table" style="width:70%">
              <h4 class="text-center mb-3">Review Finance Details</h4>
@@ -101,7 +101,7 @@ mounted () {
 <style scoped>
  @media (max-width:576px){
    .table {
-     margin:0 -20px
+     margin:0 -50px
  }
 }
 </style>
