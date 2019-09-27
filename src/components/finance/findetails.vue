@@ -10,11 +10,11 @@
                        </div>
                    </router-link>
                    <div class="loan-navigation row small-screen-nav">
-                       <router-link class="col-md-2 ml-n1  ml-xl-3  text-dark  loan-nav " to='/profile/finance/loandetails/loaninfo' style="padding-left:3px"><div class="nav-items px-n3 small-screen-nav" style="border:2px solid blu; width:120px;" @click="isActiveOne" :class="{ active: isActive1 }" >Finance Details</div></router-link>
-                       <router-link class="col-md-2 ml-4  text-dark  loan-nav" style="padding-left:20px" to="/profile/finance/loandetails/workinfo"><div class=" nav-items  small-screen-nav" @click="isActiveTwo" :class="{ active: isActive2 }"  style="border:2px solid blu; width:80px" >Work Info</div></router-link>
-                       <router-link class="col-md-2 ml-3  text-dark  loan-nav"  to="/profile/finance/loandetails/guarantor" style="padding:0"><div class="nav-items ml-0 small-screen-nav"  style="border:2px solid blu; width:130px" @click="isActiveThree" :class="{ active: isActive3 }" >Guarantor Details</div></router-link>
-                        <router-link class="col-md-2  text-dark ml-lg-4 ml-xl-4 pl-lg-4 loan-nav"  to="/profile/finance/loandetails/collateral" style="margin-left:30px; padding-left:18px" ><div class="nav-items ml-0 small-screen-nav"  style="border:2px solid blu; width:80px" @click="isActiveFive" :class="{ active: isActive5 }" >Collateral</div></router-link>
-                       <router-link class="link col-md-2 ml-md-0 ml-lg-4 text-dark  loan-nav" to="/profile/finance/loandetails/signature"> <div class="nav-items small-screen-nav"  style="border:2px solid blu; width:80px" @click="isActiveFour" :class="{ active: isActive4 }" >Signature</div></router-link>        
+                       <router-link class="col-md-2 ml-n1  ml-xl-3  text-dark  loan-nav " to='#' style="padding-left:3px"><div class="nav-items px-n3 small-screen-nav" style="border:2px solid blu; width:120px;" :class="{ active: isActive1 }" >Finance Details</div></router-link>
+                       <router-link class="col-md-2 ml-4  text-dark  loan-nav" style="padding-left:20px" to=""><div class=" nav-items  small-screen-nav" :class="{ active: isActive2 }"  style="border:2px solid blu; width:80px" >Work Info</div></router-link>
+                       <router-link class="col-md-2 ml-3  text-dark  loan-nav"  to="#" style="padding:0"><div class="nav-items ml-0 small-screen-nav"  style="border:2px solid blu; width:130px" :class="{ active: isActive3 }" >Guarantor Details</div></router-link>
+                        <router-link class="col-md-2  text-dark ml-lg-4 ml-xl-4 pl-lg-4 loan-nav"  to="#" style="margin-left:30px; padding-left:18px" ><div class="nav-items ml-0 small-screen-nav"  style="border:2px solid blu; width:80px"  :class="{ active: isActive5 }" >Collateral</div></router-link>
+                       <router-link class="link col-md-2 ml-md-0 ml-lg-4 text-dark  loan-nav" to="#"> <div class="nav-items small-screen-nav"  style="border:2px solid blu; width:80px"  :class="{ active: isActive4 }" >Signature</div></router-link>        
                    </div>
 
                    <div class="containe">

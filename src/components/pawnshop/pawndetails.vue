@@ -10,9 +10,9 @@
                        </div>
                    </router-link>
                    <div class="loan-navigation container row small-screen-nav">
-                       <router-link class="col-md-4 text-center  text-dark p-0  loan-nav " to='/profile/pawnshop/pawndetails/pawninfo'><div class="nav-items small-screen-nav" style="border:2px solid blu; width:100px;" @click="isActiveOne" :class="{ active: isActive1P }"> Pawn Details</div></router-link>
-                       <router-link class="col-md-4 text-center  text-dark ml-n4 ml-lg-n3 p-0 loan-nav"  to="/profile/pawnshop/pawndetails/ownership"><div class=" nav-items ml-4 ml-lg-5 small-screen-nav" style="border:2px solid blu; width:150px;" @click="isActiveTwo" :class="{ active: isActive2P }">Proof of Ownership</div></router-link>
-                       <router-link class="col-md-4  text-center text-dark ml-3 ml-lg-3  loan-nav"  to="/profile/pawnshop/pawndetails/signature" ><div class="nav-items ml-md-5 signature small-screen-nav" style="border:2px solid blu; width:80px;" @click="isActiveThree" :class="{ active: isActive3P }" >Signature</div></router-link>
+                       <router-link class="col-md-4 text-center  text-dark p-0  loan-nav " to='#'><div class="nav-items small-screen-nav" style="border:2px solid blu; width:100px;" :class="{ active: isActive1P }"> Pawn Details</div></router-link>
+                       <router-link class="col-md-4 text-center  text-dark ml-n4 ml-lg-n3 p-0 loan-nav"  to="#"><div class=" nav-items ml-4 ml-lg-5 small-screen-nav" style="border:2px solid blu; width:150px;"  :class="{ active: isActive2P }">Proof of Ownership</div></router-link>
+                       <router-link class="col-md-4  text-center text-dark ml-3 ml-lg-3  loan-nav"  to="#" ><div class="nav-items ml-md-5 signature small-screen-nav" style="border:2px solid blu; width:80px;" :class="{ active: isActive3P }" >Signature</div></router-link>
                    </div>
 
                    <div class="">
