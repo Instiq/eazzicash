@@ -2,7 +2,7 @@
   <div class="container">
       <section class="container main-container" style="height:auto">
           <div>
-            njn
+            <img class="img-fluid" src="../../assets/eazzicashlg2.png" alt="">
           </div>
       </section>
 

@@ -235,7 +235,7 @@ export default new Vuex.Store({
           })
        },    
        
-       //Change/Reset Password
+       //Reset Password
        async changePassword ({commit, state}, {token, password}) {
         await axios({
           method:'put',

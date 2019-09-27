@@ -19,7 +19,7 @@
                         <mdb-row class="small-screen">
                             <mdb-col class="col-md-8 col-12">
                                 <p class="text-white mb-4 small-screen-intro" style="font-size:3.8vw">
-                                    Introducing <span style=" font-weight:bold">Pawnshop</span> <img src="../assets/logomain.png" class='rounded-circle d-none d-sm-inline-block ml-2 small-screen-pawn' style="height:50px;width:50px"   alt="">
+                                    Introducing <span style=" font-weight:bold">Pawnshop</span> <img src="../assets/logomain.png" class='rounded-circle d-none ml-2 small-screen-pawn' style="height:50px;width:50px"   alt="">
                                 </p>
 
                                 <p class="text-white h5 font-weight-light small-screen-text" style="width:40vw;">
