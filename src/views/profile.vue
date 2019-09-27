@@ -7,18 +7,18 @@
           <p v-if="['pawn'].includes($route.name)" class="text-white  profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Pawn</p>
           <p v-if="['finance'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Finance</p>
           <p v-if="['investment'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Investment</p>
-            <div>
-              <span waves class="hambger container text-black" @click="openNav">&#9776; </span>
-              <!-- <span class="text-white" @click="openNav" style="font-size:22px; position:absolute; margin-left:55px; margin-top:18px; cursor:pointer">Dashboard</span>    -->
-            </div>
-    
-            <div icon='envelope' right class="float-right py-4 d-flex" style="border:2px solid blu;flex-direction:row">
-              <!-- <a href="#" icon='envelope' class="mr-5 text-white"> <i class="fas fa-envelope mr-1"></i> <span class="d-none d-sm-inline-block" >Contact</span></a> -->
-              
-              <a  @click="userSignOut" class="mr-5  text-white"><i class="fas fa-sign-out-alt mr-1"></i><span class="d-none d-sm-inline-block">Logout</span></a>
-              
-              <!-- <a href="#" class="mr-5   text-white" ><i class="fas fa-user mr-1"></i><span class="d-none d-sm-inline-block"> Account</span></a> -->
-            </div>       
+          <div>
+            <span waves class="hambger container text-black" @click="openNav">&#9776; </span>
+            <!-- <span class="text-white" @click="openNav" style="font-size:22px; position:absolute; margin-left:55px; margin-top:18px; cursor:pointer">Dashboard</span>    -->
+          </div>
+  
+          <div icon='envelope' right class="float-right py-4 d-flex" style="border:2px solid blu;flex-direction:row">
+            <!-- <a href="#" icon='envelope' class="mr-5 text-white"> <i class="fas fa-envelope mr-1"></i> <span class="d-none d-sm-inline-block" >Contact</span></a> -->
+            
+            <a  @click="userSignOut" class="mr-5  text-white"><i class="fas fa-sign-out-alt mr-1"></i><span class="d-none d-sm-inline-block">Logout</span></a>
+            
+            <!-- <a href="#" class="mr-5   text-white" ><i class="fas fa-user mr-1"></i><span class="d-none d-sm-inline-block"> Account</span></a> -->
+          </div>       
         </section>
 
         <!--  side bar main -->
@@ -54,7 +54,7 @@
 
          <div class="children-routes container d-none d-sm-block">
             <router-view> </router-view>
-        </div> 
+         </div> 
 
         
         <div class="children-routes container d-sm-none" @click="closeNav">

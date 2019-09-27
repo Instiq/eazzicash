@@ -11,7 +11,7 @@
             <p class="h6 text-center" style="color:crimson">please try again with your registered email</p>
          </div>
          <div v-if="path!='resetSuccess' && path!='passwordChangeSuccess'">
-             <h3 class="text-center mb-3">Reset Password</h3>
+            <h3 class="text-center mb-3">Reset Password</h3>
             <div class="text-center row mb-3"> 
                <div class="col-md-3"></div>
                <div class="col-md-6">
@@ -19,7 +19,7 @@
                </div>
                <div class="col-md-3"></div>
             </div>
-          <p class="text-center"> <button style="font-size:17px" @click='sendResetLink' class="btn btn-primary">Send Reset Link <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button></p>
+            <p class="text-center"> <button style="font-size:17px" @click='sendResetLink' class="btn btn-primary">Send Reset Link <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button></p>
         </div>
 
         <div v-if="path=='passwordChangeSuccess'">

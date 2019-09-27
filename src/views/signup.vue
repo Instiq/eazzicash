@@ -52,7 +52,7 @@
                              </div>
                         </mdb-col>
                         <mdb-col class="col-sm-6 col-12">
-                            <mdb-input type="password" size="lg" v-model="userPassword" name='password' v-validate="'required'" label="Password"  style="background:white" outline /> 
+                            <mdb-input type="password" size="lg" v-model="userPassword" name='password' v-validate="'required|min:6'" label="Password"  style="background:white" outline /> 
                              <div class="mt-3" >
                                 <i v-show="errors.has('password')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('password')">{{ errors.first('password') }}</span>

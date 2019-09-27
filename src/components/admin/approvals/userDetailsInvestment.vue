@@ -217,7 +217,7 @@ export default {
          return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.signature}`
      },
      evidence () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.paymnetEvidence}`
+         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.paymentEvidence}`
      },
     investTenor : {
         get () {

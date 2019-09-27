@@ -44,7 +44,7 @@
                                                                     <i v-show="errors.has('email')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                                                     <span class="text-warning" v-show="errors.has('email')">{{ errors.first('email') }}</span>
                                                                 </div>
-                                                            <mdb-input type="password" name ='password' v-validate="'required|min:5'" v-model="password" label="Password" bg size="lg" />
+                                                            <mdb-input type="password" name ='password' v-validate="'required|min:6'" v-model="password" label="Password" bg size="lg" />
                                                                 <div class="mt-1" >
                                                                     <i v-show="errors.has('password')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                                                     <span class="text-warning" v-show="errors.has('password')">{{ errors.first('password') }}</span>
