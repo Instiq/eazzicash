@@ -13,7 +13,7 @@
           <tbody>
              <tr class="row">
               <td class="col-sm-3">Customer Email</td>
-              <td class="col-sm-3 text-success"> &#8358; {{userDetails.userDetails.email}}</td>
+              <td class="col-sm-3 text-success"> {{userDetails.userDetails.email}}</td>
               <td class="col-sm-3">Customer Phone</td>
               <td class="col-sm-3 text-success"> {{userDetails.userDetails.phoneNumber}}</td>
             </tr>
