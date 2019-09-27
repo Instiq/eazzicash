@@ -10,10 +10,10 @@
                        </div>
                    </router-link>
                    <div class="loan-navigation container row small-screen-nav">
-                       <router-link class="col-md-3 ml-n2 text-dark p-0 loan-nav " to='#'><div class="nav-items text-center small-screen-nav"  style=" width:100px;" @click="isActiveOne" :class="{ active: isActive1 }" >Loan Details</div></router-link>
-                       <router-link class="col-md-3 text-dark p-0 loan-nav" to="#"><div class=" nav-items  small-screen-nav ml-n1 ml-xl-1 text-center" style=" width:140px;" @click="isActiveTwo" :class="{ active: isActive2 }">Work Information</div></router-link>
-                       <router-link class="col-md-3 text-dark  loan-nav"  to="#" ><div class="nav-items text-center nok text-center small-screen-nav " style=" width:135px;" @click="isActiveThree" :class="{ active: isActive3 }" >Guarantor Details</div></router-link>
-                       <router-link class="col-md-3 text-dark  loan-nav" to="#"> <div class="nav-items  text-center signature small-screen-nav "  style=" width:80px;" @click="isActiveFour" :class="{ active: isActive4 }" >Signature</div></router-link>        
+                       <router-link class="col-md-3 ml-n2 text-dark p-0 loan-nav " to='#'><div class="nav-items text-center small-screen-nav"  style=" width:100px;" :class="{ active: isActive1 }" >Loan Details</div></router-link>
+                       <router-link class="col-md-3 text-dark p-0 loan-nav" to="#"><div class=" nav-items  small-screen-nav ml-n1 ml-xl-1 text-center" style=" width:140px;" :class="{ active: isActive2 }">Work Information</div></router-link>
+                       <router-link class="col-md-3 text-dark  loan-nav"  to="#" ><div class="nav-items text-center nok text-center small-screen-nav " style=" width:135px;"  :class="{ active: isActive3 }" >Guarantor Details</div></router-link>
+                       <router-link class="col-md-3 text-dark  loan-nav" to="#"> <div class="nav-items  text-center signature small-screen-nav "  style=" width:80px;"  :class="{ active: isActive4 }" >Signature</div></router-link>        
                    </div>
 
                    <div class="containe">
