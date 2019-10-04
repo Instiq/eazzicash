@@ -104,7 +104,7 @@
 
                      <div class="col-md-5 ml-n3 mt-3">
                         <span class="mb-3">Receipt of Item <span class="text-danger">*</span></span>
-                        <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                        <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
                             <img style="max-width:100%; height:auto" class="img-fluid" :src="itemReceipt"  alt=''>
                         </div>
                         

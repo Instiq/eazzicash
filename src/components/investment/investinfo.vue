@@ -59,7 +59,7 @@
                          <div class="form-row">
                         <div class="col-md-5">
                         <span class="mb-3">Evidence of Payment <span class="text-danger">*</span></span>
-                         <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                         <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
                             <img style="max-width:100%; height:auto" class="img-fluid" :src="paymentEvidence"  alt=''>
                          </div>
                         <div class="mr-2 mt-2 mt-md-5">
@@ -76,7 +76,7 @@
 
                         <div class="col-md-5">
                         <span class="mb-3">ID Attachment <span class="text-danger">*</span></span>
-                         <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                         <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
                             <img style="max-width:100%; height:auto" class="img-fluid" :src="investId"  alt=''>
                          </div>
                         <div class="mr-2 mt-2 mt-md-5">

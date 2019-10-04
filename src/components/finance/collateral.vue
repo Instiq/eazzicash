@@ -22,7 +22,7 @@
 
                              <div class="col-md-5 mb-3">
                                 <span class="m">Collateral Description <span class="text-danger">*</span></span>
-                                <input type="text"  v-model="collateralDescription" name="Collateral Description" class="form-control" v-validate="'required'" placeholder="">
+                                <textarea type="text"  v-model="collateralDescription" name="Collateral Description" class="form-control textarea" rows="3" v-validate="'required'" placeholder=""></textarea>
                                 <div class="mt-3" >
                                     <i v-show="errors.has('Collateral Description')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('Collateral Description')">{{ errors.first('Collateral Description') }}</span>
@@ -58,7 +58,7 @@
 
                         <div class="col-md-5">
                               <span class="mt-md-n4 mb-md-3">Attach supporting Documents <span class="text-danger">*</span> </span>
-                            <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                            <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
                                 <img style="max-width:100%; height:auto" class="img-fluid" :src="supportingDocs"  alt=''>
                             </div>
 
@@ -79,7 +79,7 @@
 
                          <div class="col-md-5">
                               <span class="mt-md-n4 mb-md-3">Other Documents </span>
-                            <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                            <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
                                 <img style="max-width:100%; height:auto" class="img-fluid" :src="otherDocs"  alt=''>
                             </div>
 
@@ -253,7 +253,7 @@ export default {
     margin:0vh 0vw
  }
 
- input:focus, select:focus {
+ input:focus,.textarea:focus, select:focus {
      border-color: rgba(75, 148, 8, 0.8);
      box-shadow: 0 0 5px rgb(75, 148, 8, 1);
      outline: 0 none;

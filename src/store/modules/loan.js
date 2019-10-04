@@ -118,7 +118,7 @@ const mutations = {
   setPhone1(state, payload) {
     state.phone1 = payload;
   },
-  setEmail(state, payload) {
+  setEmail2(state, payload) {
     state.email = payload;
   },
   setEmail1(state, payload) {
@@ -241,7 +241,7 @@ const actions = {
     commit("setPhone1", value);
   },
   updateEmail({ commit }, value) {
-    commit("setEmail", value);
+    commit("setEmail2", value);
   },
   updateEmail1({ commit }, value) {
     commit("setEmail1", value);

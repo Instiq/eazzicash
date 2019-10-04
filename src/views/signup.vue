@@ -51,28 +51,39 @@
                                 <span class="text-warning" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
                              </div>
                         </mdb-col>
-                        <mdb-col class="col-sm-6 col-12">
-                            <mdb-input type="password" size="lg" v-model="userPassword" name='password' v-validate="'required|min:6'" label="Password"  style="background:white" outline /> 
-                             <div class="mt-3" >
-                                <i v-show="errors.has('password')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('password')">{{ errors.first('password') }}</span>
-                             </div>
-                        </mdb-col>
-                        <!-- <mdb-col class="col-sm-6 col-12" >
-                           <mdb-input type="password" size="lg"  v-validate="'required'" label="Confirm Password"  style="background:white" outline /> 
-                             <div class="mt-3" >
-                                <i v-show="errors.has('phone')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
-                             </div>
-                        </mdb-col> -->
-                        <mdb-col class="col-sm-6 col-12">
-                           
-                             <mdb-input  size="lg" v-model="userEmail" name='email' v-validate="'required|email'" label="Email address"  style="background:white" outline /> 
+                        <!-- email -->
+                         <mdb-col class="col-sm-6 col-12">
+                             <mdb-input  size="lg" v-model="userEmail" name='email' v-validate="'required|email'" label="Email address" ref="email" style="background:white" outline /> 
                              <div class="mt-3" >
                                 <i v-show="errors.has('email')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                 <span class="text-warning" v-show="errors.has('email')">{{ errors.first('email') }}</span>
                              </div>
                         </mdb-col>
+                        <!-- confirm email -->
+                          <mdb-col class="col-sm-6 col-12">
+                             <mdb-input  size="lg" v-model="userEmail1" name='email_confirmation' v-validate="'required|email|confirmed:email'"  data-vv-as="email" label="Confirm Email address"  style="background:white" outline /> 
+                             <div class="mt-3" >
+                                <i v-show="errors.has('email_confirmation')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('email_confirmation')">{{ errors.first('email_confirmation') }}</span>
+                             </div>
+                        </mdb-col>
+                        <!-- password -->
+                        <mdb-col class="col-sm-6 col-12">
+                            <mdb-input type="password" size="lg" v-model="userPassword" name='password' v-validate="'required|min:6'" label="Password" ref="password"  style="background:white" outline /> 
+                             <div class="mt-3" >
+                                <i v-show="errors.has('password')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('password')">{{ errors.first('password') }}</span>
+                             </div>
+                        </mdb-col>
+                        <!-- confirm password -->
+                        <mdb-col class="col-sm-6 col-12" >
+                           <mdb-input type="password" size="lg"  v-model="userPassword1" name="password_confirmation" v-validate="'required|confirmed:password'" data-vv-as="password" label="Confirm Password"  style="background:white" outline /> 
+                             <div class="mt-3" >
+                                <i v-show="errors.has('password_confirmation')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('password_confirmation')">{{ errors.first('password_confirmation') }}</span>
+                             </div>
+                        </mdb-col>
+                       
                         <!-- <mdb-col class="col-sm-6 col-12">
                             <mdb-input type="text" size="lg" v-validate="'required'" v-model="userAddress" label="Home address" name='address'  style="background:white" outline /> 
                              <div class="mt-3" >
@@ -432,6 +443,7 @@ export default {
             // userLastname:'',
             // userEmail:'',
              userPassword:'',
+             userPassword1:'',
              p1:true
             
         }
@@ -447,6 +459,7 @@ export default {
                 return this.$store.getters.userFirstname
             },
           set (value) {
+                value =  value.charAt(0).toUpperCase() + value.slice(1);
                 this.$store.dispatch('updateUserFirstname', value )
             }
          },
@@ -455,17 +468,10 @@ export default {
                 return this.$store.getters.userLastname
             },
           set (value) {
+                value =  value.charAt(0).toUpperCase() + value.slice(1);
                 this.$store.dispatch('updateUserLastname', value )
             }
          },
-        //   userName : {
-        //   get () {
-        //         return this.$store.getters.userName
-        //     },
-        //   set (value) {
-        //         this.$store.dispatch('updateUserName', value )
-        //     }
-        //  },
           userPhone : {
           get () {
                 return this.$store.getters.userPhone

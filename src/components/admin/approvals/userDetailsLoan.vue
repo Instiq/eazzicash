@@ -73,7 +73,13 @@
                     <td class="col-sm-8">
                         <ul class="ml-n4" v-for="(item, index) in userDetails.guarantors" :key="index">
                             <li>
-                                Guarantor {{index+1}} :  {{userDetails.guarantors[index].status}}
+                                Guarantor {{index+1}} : 
+                                <ul>
+                                  <li>Status : {{userDetails.guarantors[index].status}}</li>
+                                  <li>Name : {{userDetails.guarantors[index].firstName}} {{userDetails.guarantors[index].lastName}}</li>
+                                  <li>Phone : {{userDetails.guarantors[index].phoneNumber}} </li>
+                                  <li>Email :  {{userDetails.guarantors[index].email}}</li>
+                                </ul>
                             </li>
                         </ul>
                     </td>

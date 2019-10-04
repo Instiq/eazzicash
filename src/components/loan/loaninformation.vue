@@ -60,7 +60,7 @@
                     <div class="form-row third">
                          <div class="col-md-5 mb-3">
                             <label for="exampleFormControlTextarea1">List Indebtednes </label>
-                            <textarea style="background:whitesmoke" v-model="loanIndebtedness" v-validate="''"  name="Loan Indebtedness" class="form-control text-area" id="exampleFormControlTextarea1" rows="2"></textarea>
+                            <textarea :disabled='isPickedd' style="background:whitesmoke" v-model="loanIndebtedness" v-validate="''"  name="Loan Indebtedness" class="form-control text-area" id="exampleFormControlTextarea1" rows="2"></textarea>
                          <div class="mt-3" >
                             <i v-show="errors.has('Loan Indebtedness')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                             <span class="text-warning" v-show="errors.has('Loan Indebtedness')">{{ errors.first('Loan Indebtedness') }}</span>
@@ -72,7 +72,7 @@
 
                         <div class="col-md-5 mb-3 mt-3 mt-md-0">
                              <span class="mt-md-n4 mb-md-3">Upload ID  <span class="text-danger">*</span> </span>
-                             <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                             <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
                                  <img style="max-width:100%; height:auto" class="img-fluid" :src="loanId"  alt=''>
                              </div>
 
@@ -143,6 +143,7 @@ export default {
     data () {
         return {
             selected:'',
+            isPickedd:true
         }
     }, 
     methods: {
@@ -220,6 +221,14 @@ export default {
               this.$store.dispatch('updateLoanPurpose', value)
            }
        }
+    },
+    watch : {
+        isPicked (newval) {
+           
+            if (newval=='yes') return  this.isPickedd=false;
+            
+            if (newval=='no')   return  this.isPickedd=true;
+        }
     },
     mounted () {
         this.$store.dispatch('updateIsActive1')

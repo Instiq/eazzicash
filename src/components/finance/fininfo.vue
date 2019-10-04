@@ -62,10 +62,10 @@
                                     <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
                                     </div>
-                                    <input type="text"  v-model="principal" class="form-control"  placeholder="Enter Amount" v-validate="'required|min_value:100000|max_value:3000000'"  name="Loan Amount"  >
+                                    <input type="text"  v-model="principal" class="form-control"  placeholder="Enter Amount" v-validate="'required|min_value:100000|max_value:3000000'"  name="Finance Amount"  >
                                     <div class="mt-3" >
-                                    <i v-show="errors.has('Loan Amount')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Loan Amount')">{{ errors.first('Loan Amount') }}</span>
+                                    <i v-show="errors.has('Finance Amount')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                    <span class="text-warning" v-show="errors.has('Finance Amount')">{{ errors.first('Finance Amount') }}</span>
                                     </div>
                                 </div>
                           </div>
@@ -75,18 +75,19 @@
                     <div class="form-row third">
                          <div class="col-md-5 mb-3">
                             <label for="exampleFormControlTextarea1">List Indebtednes</label>
-                            <textarea style="background:whitesmoke" v-model="loanIndebtedness" v-validate="''"  name="Loan Indebtedness" class="form-control text-area" id="exampleFormControlTextarea1" rows="2"></textarea>
+                            <textarea :disabled='isPickedd' style="background:whitesmoke" v-model="loanIndebtedness" v-validate="''"  name="Loan Indebtedness" class="form-control text-area" id="exampleFormControlTextarea1" rows="2"></textarea>
                          <div class="mt-3" >
                             <i v-show="errors.has('Loan Indebtedness')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                             <span class="text-warning" v-show="errors.has('Loan Indebtedness')">{{ errors.first('Loan Indebtedness') }}</span>
                         </div>
                         </div>
+
                        
 
                          <div class="col-md-2"></div>
 
                         <div class="col-md-5 mt-4">
-                            <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                            <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
                                  <img style="max-width:100%; height:auto" class="img-fluid" :src="loanId"  alt=''>
                              </div>
 
@@ -106,10 +107,10 @@
                     <div class="form-row fourth">
                         <div class="col-md-5 small-screen-pp">
                             <label for="exampleFormControlTextarea1">Finance Purpose <span class="text-danger">*</span></label>
-                            <textarea style="background:whitesmoke" v-model="loanPurpose" v-validate="'required'"  name="Loanpurpose" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea style="background:whitesmoke" v-model="loanPurpose" v-validate="'required'"  name="Finance purpose" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
                             <div class="mt-3" >
-                                    <i v-show="errors.has('Loanpurpose')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Loanpurpose')">{{ errors.first('Loanpurpose') }}</span>
+                                    <i v-show="errors.has('Finance purpose')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                    <span class="text-warning" v-show="errors.has('Finance purpose')">{{ errors.first('Finance purpose') }}</span>
                         </div>
                         </div>
 
@@ -156,7 +157,8 @@ export default {
     
     data () {
         return {
-            selected:''
+            selected:'',
+            isPickedd:''
         }
     }, 
     methods: {
@@ -244,6 +246,14 @@ export default {
            }
        },
        
+    },
+    watch : {
+        isPicked (newval) {
+           
+            if (newval=='yes') return  this.isPickedd=false;
+            
+            if (newval=='no')   return  this.isPickedd=true;
+        }
     },
     mounted () {
         this.$store.dispatch('updateIsActive1')

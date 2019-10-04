@@ -7,7 +7,7 @@
 
                 <div class="form-row"> <div class="mb-3">Applicant's Signature <span class="text-danger">*</span></div> </div>
                  <div class="ml-n3 col-md-5 mb-3 mt-3 mt-md-0">
-                    <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid whitesmoke"> 
+                    <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
                         <img style="max-width:100%; height:auto" class="img-fluid" :src="pawnSign"  alt=''>
                     </div>
                 </div>

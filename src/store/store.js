@@ -15,8 +15,11 @@ export default new Vuex.Store({
   state: {
     api_url : 'https://still-bastion-19162.herokuapp.com/api',
     name:"",
+    userFirstname:'',
+    userLastname:'',
     token:"",
     email:"",
+    userPhone:'',
     //state for userId and all user activity for one user start
     userId:"",
     userEntitiesOne:"",
@@ -41,7 +44,7 @@ export default new Vuex.Store({
   },
 
   plugins: [createPersistedState({
-   paths : ['name', 'isAuthenticated', 'isAdmin', 'token', 'emailVerificationToken', 'email', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne', 'userEntitiesAll', 'userDetails']
+   paths : ['name', 'userFirstname', 'userLastname', 'isAuthenticated', 'isAdmin', 'token', 'emailVerificationToken', 'email', 'userPhone', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne', 'userEntitiesAll', 'userDetails']
   })],
 
   mutations: {
@@ -59,6 +62,12 @@ export default new Vuex.Store({
     },
     setName (state, payload) {
       state.name = payload
+    },
+    setUserFirstname (state, payload) {
+      state.userFirstname = payload
+    },
+    setUserLastname (state, payload) {
+      state.userLastname = payload
     },
     //mutations for userId and all user activity for one user start
     setUserId (state, payload) {
@@ -87,6 +96,9 @@ export default new Vuex.Store({
     },
     setEmail (state, payload) {
       state.email=payload
+    },
+    setUserPhone (state, payload) {
+      state.userPhone=payload
     },
     setIsAuthenticated (state, payload) {
       state.isAuthenticated = payload
@@ -183,10 +195,13 @@ export default new Vuex.Store({
            // console.log(data);
             commit('setLoading', false)
             commit('setName', `${data.firstName} ${data.lastName}`) ;
+            commit('setUserFirstname', data.firstName);
+            commit('setUserLastname', data.lastName);
             commit('setToken', data.token);
             commit('setIsAuthenticated', true);
             commit('setIsAdmin', false)
-            commit('setEmail', data.email)
+            commit('setEmail', data.email);
+            commit('setUserPhone', data.phoneNumber);
             commit('setUserId', data._id)
             router.push('/profile/dashboard'); 
           })
@@ -206,9 +221,12 @@ export default new Vuex.Store({
         commit('setIsAuthenticated', false);
         commit('setIsAdmin', false)
         commit('setName', '');
-        commit('setEmail', '')
+        commit('setEmail', '');
+        commit('setUserPhone', '');
+        commit('setUserDetails', '');
         commit('setEmailVerificationToken', '');
         commit('setUserEntitiesOne', '');
+        commit('setUserEntitiesAll', '');
         commit('setGuarantorId', ''),
         commit('setLoanId', '')
         commit('setLoanToken', '');
@@ -691,7 +709,7 @@ export default new Vuex.Store({
           })
         },
 
-         //get all loans, pawn, investments and finance data for all users
+         //get all loans, pawn, investments and finance data for all users by admin
          async getAllEntitiesAll ({commit, state}) {
           await axios({
             method:'get',
@@ -727,6 +745,10 @@ export default new Vuex.Store({
           })
           .catch (err => {
             console.log(err.response.data);
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
             
           })
         },
@@ -746,6 +768,10 @@ export default new Vuex.Store({
           })
           .catch (err => {
             console.log(err.response.data);
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
             
           })
         },
@@ -766,6 +792,10 @@ export default new Vuex.Store({
           })
           .catch (err => {;
             console.log(err.response.data);
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
             
           })
         },
@@ -786,6 +816,10 @@ export default new Vuex.Store({
           .catch (err => {
             commit('setLoading', false);
             console.log(err.response.data); 
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
           })
         },
 
@@ -809,6 +843,10 @@ export default new Vuex.Store({
           })
           .catch (err => {
             console.log(err.response.data);
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
             
           })
         },
@@ -828,7 +866,10 @@ export default new Vuex.Store({
           })
           .catch (err => {
             console.log(err.response.data);
-            
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
           })
         },
 
@@ -847,7 +888,10 @@ export default new Vuex.Store({
           })
           .catch (err => {
             console.log(err.response.data);
-            
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
           })
         },
          
@@ -867,6 +911,10 @@ export default new Vuex.Store({
           .catch (err => {
             commit('setLoading', false);
             console.log(err.response.data); 
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
           })
         },
 
@@ -890,6 +938,10 @@ export default new Vuex.Store({
           })
           .catch (err => {
             console.log(err.response.data);
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
             
           })
         },
@@ -909,6 +961,10 @@ export default new Vuex.Store({
           })
           .catch (err => {
             console.log(err.response.data);
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
             
           })
         },
@@ -929,6 +985,10 @@ export default new Vuex.Store({
           })
           .catch (err => {;
             console.log(err.response.data);
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
             
           })
         },
@@ -949,6 +1009,10 @@ export default new Vuex.Store({
           .catch (err => {
             commit('setLoading', false);
             console.log(err.response.data); 
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
           })
         },
         
@@ -971,6 +1035,10 @@ export default new Vuex.Store({
           })
           .catch (err => {
             console.log(err.response.data);
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
             
           })
         },
@@ -990,6 +1058,10 @@ export default new Vuex.Store({
             })
             .catch (err => {
               console.log(err.response.data);
+              if (err.response.data == 'Invalid Token') {
+                alert('Token expired....kindly re-login');
+                router.push('/signin')
+              }
               
             })
           },
@@ -1009,6 +1081,10 @@ export default new Vuex.Store({
             })
             .catch (err => {
               console.log(err.response.data);
+              if (err.response.data == 'Invalid Token') {
+                alert('Token expired....kindly re-login');
+                router.push('/signin')
+              }
               
             })
           },
@@ -1029,6 +1105,10 @@ export default new Vuex.Store({
           .catch (err => {
             commit('setLoading', false);
             console.log(err.response.data); 
+            if (err.response.data == 'Invalid Token') {
+              alert('Token expired....kindly re-login');
+              router.push('/signin')
+            }
           })
         },
 

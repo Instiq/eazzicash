@@ -15,8 +15,8 @@
                                 <div class="mt-3" >
                                     <i v-show="errors.has('title')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('title')">{{ errors.first('title') }}</span>
-                              </div>
-                            </div>  
+                                </div>
+                        </div>  
 
                             <div class="col-md-2"></div>
 
@@ -27,6 +27,7 @@
                                     <i v-show="errors.has('phone')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
                               </div>
+                               <div class="text-warning mt-2" v-if="phoneDuplicate1">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor's phoneNumber must not be same as yours</div>
                             </div>         
                     </div>
 
@@ -54,6 +55,7 @@
                                        <span v-show="errors.has('email')" class="text-warning">{{ errors.first('email') }}</span>
                                     </div>
                                 </div>
+                                  <div class="text-warning mt-2" v-if="emailDuplicate1">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor email must not be same as your email</div>
                             </div>         
                     </div>
 
@@ -62,17 +64,18 @@
                             <div class="col-md-5 mb-3">
                                 <span class="m">Last Name <span class="text-danger">*</span></span>
                                 <input type="text"  v-model="lastname" class="form-control" name="lastname" v-validate="'required|alpha|max:50'" placeholder="">
-                                 <div class="mt-3" >
+                                <div class="mt-3" >
                                     <i v-show="errors.has('lastname')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('lastname')">{{ errors.first('lastname') }}</span>
                                 </div>
+                                 <div class="text-warning mt-2" v-if="nameDuplicate1">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor name must be different from your name</div>
                             </div>   
 
                             <div class="col-md-2"></div>
 
                             <div class="col-md-5 mb-3">
                                 <span class="m">Home Address <span class="text-danger">*</span></span>
-                                <input type="text"  v-model="address" name="address" v-validate="'required|max:50'" class="form-control"  placeholder="">
+                                <textarea type="text"  v-model="address" name="address" v-validate="'required|max:50'" class="form-control textarea" rows="3" placeholder=""> </textarea>
                                 <div class="mt-3" >
                                     <i v-show="errors.has('address')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('address')">{{ errors.first('address') }}</span>
@@ -108,13 +111,15 @@
                                     <i v-show="errors.has('phone1')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('phone1')">{{ errors.first('phone1') }}</span>
                               </div>
+                              <div class="text-warning mt-2" v-if="phoneDuplicate">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor's phoneNumber must not be same as yours</div>
+                                <div class="text-warning mt-2" v-if="guarantorPhoneDuplicate">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>duplicate guarantor phoneNumber</div>   
                             </div>         
                     </div>
 
                     <div class="form-row two">
                             <div class="col-md-5 mb-3">
                                 <span class="m">First Name</span>
-                                <input type="text"  v-model="firstname1" class="form-control" v-validate="'alpha|max:50'" name="firstname1" placeholder="" require> 
+                                <input type="text" v-model="firstname1" class="form-control" v-validate="'alpha|max:50'" name="firstname1" placeholder="" require> 
                                 <div class="mt-3" >
                                     <i v-show="errors.has('firstname1')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('firstname1')">{{ errors.first('firstname1') }}</span>
@@ -135,6 +140,8 @@
                                        <span v-show="errors.has('email1')" class="text-warning">{{ errors.first('email1') }}</span>
                                     </div>
                                 </div>
+                                 <div class="text-warning mt-2" v-if="emailDuplicate">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor email must not be same as your email</div>
+                                  <div class="text-warning mt-2" v-if="guarantorEmailDuplicate">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>duplicate guarantor email</div>
                             </div>         
                     </div>
 
@@ -147,13 +154,15 @@
                                     <i v-show="errors.has('lastname1')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('lastname1')">{{ errors.first('lastname1') }}</span>
                                 </div>
+                                 <div class="text-warning mt-2" v-if="guarantorNameDuplicate">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>duplicate guarantor names</div>
+                                 <div class="text-warning mt-2" v-if="nameDuplicate">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor names must be different from your name</div>
                             </div>   
 
                             <div class="col-md-2"></div>
 
                             <div class="col-md-5 mb-3">
                                 <span class="m">Home Address</span>
-                                <input type="text" v-model="address2" name="address1" class="form-control" v-validate="'max:50'" placeholder="">
+                                <textarea type="text" v-model="address2" name="address1" class="form-control textarea" v-validate="'max:50'" rows="3" placeholder=""></textarea>
                                   <div class="mt-3" >
                                     <i v-show="errors.has('address1')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
                                     <span class="text-warning" v-show="errors.has('address1')">{{ errors.first('address1') }}</span>
@@ -197,13 +206,26 @@ export default {
     mdbInput,
     mdbNumericInput
     },
-
+     data () {
+        return {
+            emailDuplicate:false,
+            guarantorEmailDuplicate:false,
+            phoneDuplicate:false,
+            guarantorPhoneDuplicate:false,
+            emailDuplicate1:false,
+            phoneDuplicate1:false,
+            nameDuplicate:false,
+            nameDuplicate1:false,
+            guarantorNameDuplicate:false
+        }
+    },
     methods: {
      
       validateBeforeSubmit() {
         this.$validator.validateAll().then((result) => {
             if (result) {
-            this.$router.push('/profile/finance/loandetails/collateral')
+                if (this.emailDuplicate || this.guarantorEmailDuplicate || this.phoneDuplicate || this.phoneDuplicate1 || this.guarantorPhoneDuplicate || this.emailDuplicate1 ||this.nameDuplicate || this.nameDuplicate1 || this.guarantorNameDuplicate) return;
+                this.$router.push('/profile/finance/loandetails/collateral')
             }
         })
       }
@@ -246,6 +268,7 @@ export default {
                 return this.$store.getters.firstname
             },
             set (value) {
+                 value =  value.charAt(0).toUpperCase() + value.slice(1);
                 this.$store.dispatch('updateFirstName', value)
             }
         },
@@ -254,6 +277,7 @@ export default {
                 return this.$store.getters.firstname1
             },
             set (value) {
+                value =  value.charAt(0).toUpperCase() + value.slice(1);
                 this.$store.dispatch('updateFirstName1', value)
             }
         },
@@ -278,6 +302,7 @@ export default {
                 return this.$store.getters.lastname
             },
             set (value) {
+                value =  value.charAt(0).toUpperCase() + value.slice(1);
                 this.$store.dispatch('updateLastname', value)
             }
         },
@@ -286,6 +311,7 @@ export default {
                 return this.$store.getters.lastname1
             },
             set (value) {
+                value =  value.charAt(0).toUpperCase() + value.slice(1);
                 this.$store.dispatch('updateLastname1', value)
             }
         },
@@ -306,6 +332,120 @@ export default {
             }
         },
 
+
+    },
+     watch : {
+        email (newval) {
+            //check 1st  guarantor email
+            if (newval==this.$store.state.email && newval!='') return this.emailDuplicate1=true;
+
+            this.emailDuplicate1=false;
+        },
+        phone (newval) {
+             // check 1st guarantor phone number
+            if (newval==this.$store.state.userPhone && newval!='') return this.phoneDuplicate1=true;
+
+            this.phoneDuplicate1=false;   
+        },
+        email1 (newval) {
+            //check 2nd  guarantor email
+            if ((newval==this.email && newval!='')) {
+                this.guarantorEmailDuplicate=true;
+                this.emailDuplicate=false
+            }
+           else if ((newval==this.$store.state.email && newval!='')) {
+                this.emailDuplicate=true;
+                this.guarantorEmailDuplicate=false;
+            }
+            else {
+                this.emailDuplicate=false;
+                this.guarantorEmailDuplicate=false;
+            }
+        },
+        phone1 (newval) {
+             // check 2nd guarantor phone number
+            if ((newval==this.phone && newval!='')) {
+                this.guarantorPhoneDuplicate=true;
+                this.phoneDuplicate=false
+            }
+            else if ((newval==this.$store.state.userPhone && newval!='')) {
+                this.phoneDuplicate=true;
+                this.guarantorPhoneDuplicate=false;
+            }
+            else {
+                this.phoneDuplicate=false;
+                this.guarantorPhoneDuplicate=false;
+            }
+        },
+         firstname (newval) {
+             // check 1st guarantor first names
+            if ((newval==this.firstname1 && this.lastname==this.lastname1 && newval!='')) {
+                this.guarantorNameDuplicate=true;
+                this.nameDuplicate=false
+            }
+            else if ((newval==this.$store.state.userFirstname && this.lastname==this.$store.state.userLastname && newval!='')) {
+                this.nameDuplicate1=true;
+                this.guarantorNameDuplicate=false;
+            }
+            else if ((this.lastname1==this.$store.state.userLastname &&  this.lastname1==this.$store.state.userLastname && newval!='')) {
+                this.nameDuplicate=true;
+                this.guarantorNameDuplicate=false;
+            }
+            else {
+                this.nameDuplicate1=false;
+                this.guarantorNameDuplicate=false;
+            }
+        },
+        lastname (newval) {
+             // check 1st guarantor last names
+            if ((newval==this.lastname1 && this.firstname==this.firstname1 && newval!='')) {
+                this.guarantorNameDuplicate=true;
+                this.nameDuplicate1=false
+            }
+            else if ((newval==this.$store.state.userLastname && this.firstname==this.$store.state.userFirstname  && newval!='')) {
+                this.nameDuplicate1=true;
+                this.guarantorNameDuplicate=false;
+            }
+            else if ((this.lastname1==this.$store.state.userLastname &&  this.firstname1==this.$store.state.userFirstname && newval!='')) {
+                this.nameDuplicate=true;
+                this.guarantorNameDuplicate=false;
+            }
+            else {
+                this.nameDuplicate1=false;
+                this.guarantorNameDuplicate=false;
+            }
+        }  ,
+        firstname1 (newval) {
+             // check 2nd guarantor first names
+            if ((newval==this.firstname && this.lastname1==this.lastname && newval!='')) {
+                this.guarantorNameDuplicate=true;
+                this.nameDuplicate=false
+            }
+            else if ((newval==this.$store.state.userFirstname && this.lastname1==this.$store.state.userLastname && newval!='')) {
+                this.nameDuplicate=true;
+                this.guarantorNameDuplicate=false;
+            }
+            else {
+                this.nameDuplicate=false;
+                this.guarantorNameDuplicate=false;
+            }
+        } ,
+
+        lastname1 (newval) {
+             // check 2nd guarantor last names
+            if ((newval==this.lastname && this.firstname1==this.firstname && newval!='')) {
+                this.guarantorNameDuplicate=true;
+                this.nameDuplicate=false
+            }
+            else if ((newval==this.$store.state.userLastname && this.firstname1==this.$store.state.userFirstname && newval!='')) {
+                this.nameDuplicate=true;
+                this.guarantorNameDuplicate=false;
+            }
+            else {
+                this.nameDuplicate=false;
+                this.guarantorNameDuplicate=false;
+            }
+        } 
 
     },
     mounted () {
@@ -334,7 +474,7 @@ export default {
      font-size:20px
  }
 
- input:focus, select:focus {
+ input:focus,.textarea:focus, select:focus {
      border-color: rgba(75, 148, 8, 0.8);
      box-shadow: 0 0 5px rgb(75, 148, 8, 1);
      outline: 0 none;
