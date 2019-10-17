@@ -33,6 +33,11 @@ const state = {
   email1: "",
   address: "",
   address2: "",
+  id:'',
+  id1:'',
+  signature:'',
+  signature1:"",
+
 
   //state for signature
   loanSign:'',
@@ -130,6 +135,19 @@ const mutations = {
   setAddress2(state, payload) {
     state.address2 = payload;
   },
+  setId (state, payload) {
+    state.id = payload
+  },
+  setId1 (state, payload) {
+    state.id1 = payload
+  },
+  setSignature (state, payload) {
+    state.signature = payload
+  },
+  setSignature1 (state, payload) {
+    state.signature1 = payload
+  },
+
   //mutations for signature
   setLoanSign (state, payload) {
     state.loanSign=payload
@@ -339,6 +357,18 @@ const getters = {
   },
   address2: state => {
     return state.address2;
+  },
+  id : state => {
+    return state.id
+  },
+  id1 : state => {
+    return state.id1
+  },
+  signature : state => {
+    return state.signature
+  },
+  signature1 : state => {
+    return state.signature1
   },
   //getters for signature
   loanSign: state => {

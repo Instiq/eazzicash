@@ -83,6 +83,49 @@
                             </div>         
                     </div>
 
+                      <div class="row four">
+                        <div class="col-md-5 mb-3 mt-3 mt-md-0 ml2">
+                             <span class="mt-md-n4 mb-md-3">Upload ID  <span class="text-danger">*</span> </span>
+                             <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
+                                 <img style="max-width:100%; height:auto" class="img-fluid" :src="id"  alt=''>
+                             </div>
+
+                            <div class="input-group mr-2 mt-2 mt-md-5">
+                                <input type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate="'required'"   @change="onFileChange"  name="id" id="id">
+                                <label class="" for="id" aria-describedby="inputGroupFileAddon02"></label>
+                                
+                            </div>
+
+                             <div class="mt-3 mt-md-0" >
+                                <i v-show="errors.has('id')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('id')">{{ errors.first('id') }}</span>
+                             </div>
+                        </div>
+
+                        <div class="col-md-2"></div>
+
+                        <div class="col-md-5 mb-3 mt-3 mt-md-0 ml-n2">
+                             <span class="mt-md-n4 mb-md-3">Upload Signature  <span class="text-danger">*</span> </span>
+                             <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
+                                 <img style="max-width:100%; height:auto" class="img-fluid" :src="signature"  alt=''>
+                             </div>
+
+                            <div class="input-group mr-2 mt-2 mt-md-5">
+                                <input type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate="'required'"   @change="onFileChange1"  name="signature" id="signature">
+                                <label class="" for="id" aria-describedby="inputGroupFileAddon02"></label>
+                                
+                            </div>
+
+                             <div class="mt-3 mt-md-0" >
+                                <i v-show="errors.has('signature')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                <span class="text-warning" v-show="errors.has('signature')">{{ errors.first('signature') }}</span>
+                             </div>
+                        </div>
+
+
+
+                    </div>
+
                 </section>
 
 
@@ -170,6 +213,46 @@
                             </div>         
                     </div>
 
+                    <div class="row four">
+                            <div class="col-md-5 mb-3 mt-3 mt-md-0 ml2">
+                                <span class="mt-md-n4 mb-md-3 ml-1">Upload ID  <span class="text-danger">*</span> </span>
+                                <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
+                                    <img style="max-width:100%; height:auto" class="img-fluid" :src="id1"  alt=''>
+                                </div>
+
+                                <div class="input-group mr-2 mt-2 mt-md-5">
+                                    <input type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate=""   @change="onFileChange2"  name="id1" id="id1">
+                                    <label class="" for="id" aria-describedby="inputGroupFileAddon02"></label>
+                                    
+                                </div>
+
+                                <div class="mt-3 mt-md-0" >
+                                    <i v-show="errors.has('id1')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                    <span class="text-warning" v-show="errors.has('id1')">{{ errors.first('id1') }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2"></div>
+
+                            <div class="col-md-5 mb-3 mt-3 mt-md-0 ml-n2">
+                                <span class="mt-md-n4 mb-md-3">Upload Signature  <span class="text-danger">*</span> </span>
+                                <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
+                                    <img style="max-width:100%; height:auto" class="img-fluid" :src="signature1"  alt=''>
+                                </div>
+
+                                <div class="input-group mr-2 mt-2 mt-md-5">
+                                    <input type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate=""   @change="onFileChange3"  name="signature1" id="signature1">
+                                    <label class="" for="id" aria-describedby="inputGroupFileAddon02"></label>
+                                    
+                                </div>
+
+                                <div class="mt-3 mt-md-0" >
+                                    <i v-show="errors.has('signature1')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
+                                    <span class="text-warning" v-show="errors.has('signature1')">{{ errors.first('signature1') }}</span>
+                                </div>
+                           </div>
+                       </div>       
+
                 </section>
 
                 <div class="form-row">
@@ -228,9 +311,81 @@ export default {
                 this.$router.push('/profile/finance/loandetails/collateral')
             }
         })
-      }
+      },
+       onFileChange(e) {
+            let files = e.target.files || e.dataTransfer.files;
+            if (!files.length) return;
+            this.createImage(files[0])
+        },
+        createImage (file) {
+            let image = new Image();
+            let reader = new FileReader();
+            // converts image to base64 and diaplays selected image to the client
+            reader.onload = (e) => {
+            this.$store.commit('setId', e.target.result)
+            console.log(reader.result);
+            }
+            reader.readAsDataURL(file)
+        },
+        onFileChange1(e) {
+            let files = e.target.files || e.dataTransfer.files;
+            if (!files.length) return;
+            this.createImage1(files[0])
+        },
+        createImage1 (file) {
+            let image = new Image();
+            let reader = new FileReader();
+            // converts image to base64 and diaplays selected image to the client
+            reader.onload = (e) => {
+            this.$store.commit('setSignature', e.target.result)
+            console.log(reader.result);
+            }
+            reader.readAsDataURL(file)
+        },
+        onFileChange2(e) {
+            let files = e.target.files || e.dataTransfer.files;
+            if (!files.length) return;
+            this.createImage2(files[0])
+        },
+        createImage2 (file) {
+            let image = new Image();
+            let reader = new FileReader();
+            // converts image to base64 and diaplays selected image to the client
+            reader.onload = (e) => {
+            this.$store.commit('setId1', e.target.result)
+            console.log(reader.result);
+            }
+            reader.readAsDataURL(file)
+        },
+        onFileChange3(e) {
+            let files = e.target.files || e.dataTransfer.files;
+            if (!files.length) return;
+            this.createImage3(files[0])
+        },
+        createImage3 (file) {
+            let image = new Image();
+            let reader = new FileReader();
+            // converts image to base64 and diaplays selected image to the client
+            reader.onload = (e) => {
+            this.$store.commit('setSignature1', e.target.result)
+            console.log(reader.result);
+            }
+            reader.readAsDataURL(file)
+        },
     },
     computed : {
+         id () {
+          return this.$store.getters.id
+        },
+        signature () {
+          return this.$store.getters.signature
+        },
+        id1 () {
+          return this.$store.getters.id1
+        },
+        signature1 () {
+          return this.$store.getters.signature1
+        },
         title : {
             get () {
                 return this.$store.getters.title
@@ -479,6 +634,39 @@ export default {
      box-shadow: 0 0 5px rgb(75, 148, 8, 1);
      outline: 0 none;
  }
+
+ @media (min-width:767px){
+   input {
+    
+      border:1px solid gainsboro;
+      border-radius: 5px;
+ }
+
+ .small-screen-id {
+     width:20vw!important
+ }
+}
+
+@media (max-width:767px) {
+    .ml-n2, .ml2 {
+     margin-left:8px !important
+ }
+}
+
+@media (max-width: 576px) {
+    .main-container {
+    border:2px solid blac;
+    /* margin-left:3vw; */
+    /* height: auto; */
+    width:auto;
+    margin:0px 2vw;
+    padding:15px 10px
+ }
+ .ml-n2, .ml2 {
+     margin-left:8px !important
+ }
+  
+}
 
  
 

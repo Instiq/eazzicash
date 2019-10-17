@@ -130,6 +130,18 @@ export default {
      outline: 0 none;
  }
 
+ @media (max-width: 576px) {
+    .main-container {
+    border:2px solid blac;
+    /* margin-left:3vw; */
+    height: auto;
+    width:auto;
+    margin-left:-5vw;
+    padding: 0 10px !important
+ }
+}
+
+
  
 
 </style>

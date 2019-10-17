@@ -28,6 +28,8 @@ export default new Vuex.Store({
     userEntitiesAll:"",
     //state to get the details of a particular user by admin
     userDetails :{},
+    //state to get all registered users admin
+    users : '',
     isTokenExpired:false,
     emailVerificationToken : "",
     isAuthenticated:false,
@@ -44,7 +46,7 @@ export default new Vuex.Store({
   },
 
   plugins: [createPersistedState({
-   paths : ['name', 'userFirstname', 'userLastname', 'isAuthenticated', 'isAdmin', 'token', 'emailVerificationToken', 'email', 'userPhone', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne', 'userEntitiesAll', 'userDetails']
+   paths : ['name', 'userFirstname', 'userLastname', 'users', 'isAuthenticated', 'isAdmin', 'token', 'emailVerificationToken', 'email', 'userPhone', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne', 'userEntitiesAll', 'userDetails']
   })],
 
   mutations: {
@@ -86,6 +88,10 @@ export default new Vuex.Store({
      // mutations to get details of a particular user by admin;
      setUserDetails (state, payload) {
       state.userDetails = payload
+    },
+    // mutations to get all registered users admin;
+    setUsers (state, payload) {
+      state.users = payload
     },
 
     setEmailVerificationToken(state, payload) {
@@ -280,6 +286,17 @@ export default new Vuex.Store({
         })
      },    
        
+     //get all users admin
+     async getAllUsers ({commit, state}) {
+        await axios({
+          method:"get",
+          url:`http://localhost:3000/api/users/`
+        })
+        .then(({data})=> {
+          commit('setUsers', data)
+        })
+        .catch (err => console.log(err.response.data))
+     },
        
        
        //postLoan
@@ -713,7 +730,7 @@ export default new Vuex.Store({
          async getAllEntitiesAll ({commit, state}) {
           await axios({
             method:'get',
-            url:`${state.api_url}/entities`
+            url:`http://localhost:3000/api/entities`
           })
           .then(({data}) => {
             commit('setUserEntitiesAll', data)

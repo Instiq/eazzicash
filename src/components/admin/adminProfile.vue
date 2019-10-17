@@ -3,7 +3,9 @@
 
         <section class="mb-5 d-flex position-fixed" style="height:10vh;width:100%;z-index:1; box-shadow:20px 20px blur; background:#424242; justify-content:space-between" >
              <p v-if="['adminDashboard'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold;   margin-left:25%">Dashboard</p>
-           <p v-if="['approvals'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Approvals</p>
+            <p v-if="['approvals'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Approvals</p>
+            <p v-if="['userManagement'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">User Management</p>
+             <p v-if="['userDetails'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">User Management</p>
             
             <div>
               <span waves class="hambger container text-black" @click="openNav">&#9776; </span>
@@ -43,7 +45,7 @@
 
             <!-- profile items -->
             <router-link to="/adminProfile/adminDashboard"> <img src="./adminIcons/Home.svg" height="15vh" style="" alt=""> <span class="sidenav-items" style="margin-left:16px">Dashboard</span></router-link>
-            <a href="#">   <i class="fas fa-user"></i><span class="sidenav-items" style="margin-left:18px">User Management</span></a>
+            <a href="/adminProfile/userManagement">   <i class="fas fa-user"></i><span class="sidenav-items" style="margin-left:18px">User Management</span></a>
             <a href="/adminProfile/approvals"> <i class="fas fa-check"></i> <span class="sidenav-items" style="margin-left:15px"> Approvals</span></a>
             <a href="#"> <img src="./adminIcons/Investments.svg" height="14vh" style="" alt=""> <span class="sidenav-items" style="margin-left:9px">Reports</span></a>
     
@@ -100,7 +102,7 @@ export default {
         let items = document.querySelectorAll('.sidenav-items');
         items.forEach((item, index)=>item.style.display='none');
         document.querySelector('.avatar').style.marginLeft='7.5px';
-         document.querySelector('.nav').style.marginLeft='25px';
+        document.querySelector('.nav').style.marginLeft='25px';
         },
 
         userSignOut () {

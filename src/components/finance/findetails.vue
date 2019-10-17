@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="container">
-          <div class="containe main-container">
+          <div class="container main-container">
                <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
                    <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Finance Application Form</span></div>
                    <router-link to="/profile/loan/apply">
@@ -104,10 +104,10 @@ export default {
 <style scoped>
 
  .main-container {
-    border:2px solid blak;
+    border:2px solid blac;
     /* margin-left:3vw; */
     height: auto;
-    width:70vw;
+    width:auto;
     margin:0px 5vw
  }
  .jumbotron-head {
@@ -179,7 +179,7 @@ export default {
  }
 
 
-  @media (max-width:890px){
+  @media (max-width:991px){
    .small-screen-nav{
       display: none
     }
@@ -187,12 +187,6 @@ export default {
 
 
  @media (max-width:576px){ 
-    .main-container {
-    border:2px solid blac;
-    margin-left:7vw;
-    height: auto;
-    width:70vw
- }
 .small-screen-jumbo {
     width:84vw !important;
     height:auto !important
@@ -201,6 +195,19 @@ export default {
      padding:10px 20vw;
      position: absolute !important;
      top:46vh;  
+ }
+ .main-container {
+    border:2px solid blac;
+    margin-left:3vw !important;
+    height: auto;
+    width:auto;
+    margin:0px 1vw
+ }
+ .jumbotron-head {
+     height: 15vh;
+     margin-top:-10vh;
+     background:rgb(208, 216, 224);
+     padding: 60px 25px !important
  }
  }
 </style>

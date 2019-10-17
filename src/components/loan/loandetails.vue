@@ -1,9 +1,9 @@
 <template>
   <div>
       <div class="container">
-          <div class="containe main-container">
-               <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
-                   <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Loan Application Form</span></div>
+          <div class="container main-container">
+               <div class=" jumbotron jumbotron-fluid small-screen-jumbo borde" style="height:auto; width:auto">
+                   <div class="borde py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Loan Application Form</span></div>
                    <router-link to="/profile/loan/apply">
                        <div class="back-arrow-div  ml-lg-4 ml-xl-5 small-screen-nav">
                          <i class="fas fa-arrow-left text-white"></i>   
@@ -24,7 +24,7 @@
 
                    </div>
 
-               </mdb-jumbotron>   
+               </div>   
               
           </div>
       </div>
@@ -94,11 +94,11 @@ export default {
 <style scoped>
 
  .main-container {
-    border:2px solid blak;
+    border:2px solid bla;
     /* margin-left:3vw; */
     height: auto;
-    width:70vw;
-    margin:0px 5vw
+    width:auto;
+    /* margin:0px 5vw */
  }
  .jumbotron-head {
      height: 10vh;
@@ -147,14 +147,14 @@ export default {
  }
 
  .router-div {
-     border:2px solid gree;
+     border:0px solid none;
      height:auto;
-     margin:5vh 8vw;
+     margin:5vh 10vw;
      width: auto
  }
 
 .loan-nav {
-     border : 2px solid blac;
+     border : 2px solid bl;
      position: relative; 
  } 
 
@@ -183,7 +183,7 @@ export default {
    
      .loan-navigation {
      margin:0px 9vw;
-     width:51vw
+     width:auto
  }
 
  .nok {
@@ -211,7 +211,7 @@ export default {
     border:2px solid blac;
     margin-left:7vw;
     height: auto;
-    width:70vw
+    width:auto
  }
 .small-screen-jumbo {
     width:84vw !important;
@@ -221,7 +221,15 @@ export default {
      padding:10px 20vw;
      position: absolute !important;
      top:46vh;  
+}
+.jumbotron-head {
+     height: 15vh;
+     margin-top:-10vh;
+     background:rgb(208, 216, 224);
+     padding-top : 70px !important
  }
- }
+
+
+}
 
 </style>

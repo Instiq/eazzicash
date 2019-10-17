@@ -209,7 +209,8 @@ export default {
     /* margin-left:3vw; */
     height: auto;
     width:auto;
-    margin:0px 0vw
+    margin:0px 0vw;
+    padding: 0 10px
  }
 
 
@@ -279,7 +280,18 @@ export default {
  .small-screen-id {
      width:60vw
  }
+
+   .main-container {
+    border:2px solid bla;
+    /* margin-left:3vw; */
+    height: auto;
+    width:auto;
+    margin:0px 0vw;
+    padding: 0 10px !important
+ }
 }
+
+
 
  
  

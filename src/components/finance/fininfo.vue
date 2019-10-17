@@ -86,7 +86,7 @@
 
                          <div class="col-md-2"></div>
 
-                        <div class="col-md-5 mt-4">
+                        <div class="col-md-5 mt-4 mt4sm">
                             <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
                                  <img style="max-width:100%; height:auto" class="img-fluid" :src="loanId"  alt=''>
                              </div>
@@ -264,11 +264,12 @@ export default {
 <style scoped>
 
  .main-container {
-    border:2px solid blac;
+    border:2px solid re;
     /* margin-left:3vw; */
     height: auto;
     width:auto;
-    margin:0vh 0vw
+    margin:0vh 0vw;
+    padding: 0px 19px;
  }
 
  input:focus,.text-area:focus, select:focus {
@@ -277,11 +278,6 @@ export default {
      outline: 0 none;
  }
 
- @media (max-width:767px){
-   .small-screen-pp{
-       margin-top: 15px !important
-    }
- }
 
 @media (min-width:767px){
    input {
@@ -291,11 +287,9 @@ export default {
  }
 
  .small-screen-id {
-     width:29vw!important
+     width:20vw!important
  }
 }
-
-
 
 @media (max-width:767px){
    input {
@@ -305,9 +299,16 @@ export default {
      /* box-shadow: 0 0 5px rgb(75, 148, 8, 1); */
  }
 
+  .mt4sm {
+     margin-top:-7vh !important
+ }
+
  .small-screen-id {
      width:75vw
  }
+  .small-screen-pp{
+       margin-top: 15px !important
+    }
 }
 
  @media (max-width:576px){
@@ -319,7 +320,19 @@ export default {
  }
 
  .small-screen-id {
-     width:70vw
+     width:auto
+ }
+
+  .main-container {
+    border:2px solid re;
+    /* margin-left:3vw; */
+    height: auto;
+    width:auto;
+    margin:0vh 1vw;
+    padding: 0px 20px !important;
+ }
+ .mt4sm {
+     margin-top:-7vh !important
  }
 }
  

@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import store from "@/store/store";
 import Home from "./views/Home.vue";
+import about from "./views/about.vue";
 import signin from "./views/signin.vue";
 import signup from "./views/signup.vue";
 import emailVerified from "./views/emailVerified.vue";
@@ -49,16 +50,19 @@ import signatureF from "./components/finance/signatureF.vue";
 //Admin routes
 import adminProfile from "./components/admin/adminProfile.vue";
 import adminDashboard from "./components/admin/adminDashboard.vue";
+import userManagement from "./components/admin/userManagement.vue";
 import approvals from "./components/admin/approvals/approvals.vue";
 import loanApproval from "./components/admin/approvals/loanApproval.vue";
 import investmentApproval from "./components/admin/approvals/investmentApproval.vue";
 import financeApproval from "./components/admin/approvals/financeApproval.vue";
 import pawnApproval from "./components/admin/approvals/pawnApproval.vue";
 import userDetailsLoan from "./components/admin/approvals/userDetailsLoan.vue";
+import userDetails from "./components/admin/approvals/userDetails.vue";
 import userDetailsInvestment from "./components/admin/approvals/userDetailsInvestment.vue";
 import userDetailsFinance from "./components/admin/approvals/userDetailsFinance.vue";
 import userDetailsPawn from "./components/admin/approvals/userDetailsPawn.vue";
 
+//error route **always the last**
 import error from "./views/404.vue"
 
 Vue.use(Router);
@@ -71,6 +75,11 @@ const router = new Router({
       path: "/",
       name: "home",
       component: Home
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: about
     },
     {
       path: "/signin",
@@ -386,6 +395,16 @@ const router = new Router({
             },
           ] 
         },
+        {
+          path: "/adminProfile/userManagement",
+          name: "userManagement",
+          component: userManagement
+        },
+        {
+          path: "/adminProfile/userManagement/user",
+          name: "userDetails",
+          component: userDetails
+        },
       ]
     },  
     //error route
@@ -418,7 +437,7 @@ router.beforeEach((to, from, next) => {
 router.beforeEach((to, from, next) => {
   //loops through each route record and checks routes that contains the 'meta' tag
   if (to.matched.some(record => record.meta.admin)) {
-  // checks if user is signed in, if not, redirect to signin page.
+  // checks if user is signed in as admin , if not, redirect to signin page.
     if (!store.state.isAdmin) {
       next({
         path: "/signin",

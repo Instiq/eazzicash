@@ -5,7 +5,6 @@ import store from "./store/store";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbvue/build/css/mdb.css";
 import VeeValidate from "vee-validate";
-// import moment from "moment"
 import "@/firebase/";
 
 Vue.config.productionTip = false;

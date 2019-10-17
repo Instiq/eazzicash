@@ -134,6 +134,18 @@ export default {
     border-bottom: 1px solid black;
 }
 
+
+@media (max-width: 576px) {
+    .main-container {
+    border:2px solid blac;
+    /* margin-left:3vw; */
+    height: auto;
+    width:auto;
+    margin:0px 0vw;
+    padding: 0 10px !important
+ }
+}
+
  
 
 </style>

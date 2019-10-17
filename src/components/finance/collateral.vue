@@ -276,7 +276,7 @@ export default {
  }
 
  .small-screen-id {
-     width:29vw!important
+     width:20vw!important
  }
 }
 
