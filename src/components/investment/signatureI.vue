@@ -2,6 +2,7 @@
   <div>
       
           <div class="main-container">
+            <span class="h5 mb-5 d-lg-none d-block ">Signature</span>
                
             <form   @submit.prevent="validateBeforeSubmit">
 
@@ -267,6 +268,15 @@ export default {
  .small-screen-id {
      width:50vw
  }
+
+  .main-container {
+    border:2px solid bla;
+    /* margin-left:3vw; */
+    height: auto;
+    width:auto;
+    margin:0px 0vw;
+    padding: 0 10px !important
+ }
 }
 
  @media (max-width:576px){
@@ -279,6 +289,15 @@ export default {
 
  .small-screen-id {
      width:60vw
+ }
+
+  .main-container {
+    border:2px solid bla;
+    /* margin-left:3vw; */
+    height: auto;
+    width:auto;
+    margin:0px 0vw;
+    padding: 0 10px !important
  }
 }
 

@@ -3,6 +3,7 @@
       
           <div class="main-container">
                  <form  @submit.prevent="validateBeforeSubmit"> 
+                      <span class="h5 mb-5 d-lg-none d-block ">Proof of Ownership</span>
                      <div class="form-row first">
                           <div class="col-md-5 mb-3">
                             <span class="m">Date of Purchase <span class="text-danger">*</span></span>

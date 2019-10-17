@@ -2,6 +2,7 @@
   <div>
         <div class="main-container">
             <form  @submit.prevent="validateBeforeSubmit"> 
+                 <span class="h5 mb-5 d-lg-none d-block ">Guarantor Details</span>
                  <section class="section-1 mb-3"> 
                     <span class="mb-3" style="color:blue; font-weight:400">Guarantor 1</span>
                     <div class="form-row one mt-3">
@@ -648,7 +649,7 @@ export default {
  }
 
  .small-screen-id {
-     width:27vw!important
+     width:22vw!important
  }
 }
 

@@ -3,9 +3,10 @@
       
           <div class="main-container">
                  <form  @submit.prevent="validateBeforeSubmit"> 
-                     <div class="form-row first">
+                     <span class="h5 mb-5 d-lg-none d-block ">Next of Kin Details</span>
+                     <div class="form-row first mt-lg-0 mt-5">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Next of kin Name <span class="text-danger">*</span></label>
+                                <label for="validationCustomUsername">Name <span class="text-danger">*</span></label>
                                     <input type="text" v-model="nokName" class="form-control"  placeholder="" v-validate="'required|max:50'"  name="Next of kin Name"  >
                                     <div class="mt-3" >
                                     <i v-show="errors.has('Next of kin Name')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -16,7 +17,7 @@
                              <div class="col-md-2"></div>
 
                               <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Relationship with Next of kin <span class="text-danger">*</span></label>
+                                <label for="validationCustomUsername">Relationship <span class="text-danger">*</span></label>
                                     <input type="text" v-model="nokRelationship" class="form-control"  placeholder="" v-validate="'required'"  name="Relationship with Next of kin"  >
                                     <div class="mt-3" >
                                     <i v-show="errors.has('Relationship with Next of kin')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
@@ -27,7 +28,7 @@
 
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Next of kin Address <span class="text-danger">*</span></label>
+                                <label for="validationCustomUsername">Address <span class="text-danger">*</span></label>
                                     <input type="text" v-model="nokAddress" class="form-control"  placeholder="" v-validate="'required'"  name="Next of kin Address"  >
                                     <div class="mt-3" >
                                     <i v-show="errors.has('Next of kin Address')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 

@@ -115,7 +115,7 @@ export default {
      position: relative;
      height: 6vh;
      margin:0px 9vw;
-     width:50vw
+     width:auto
  }
 
  .back-arrow-div {
@@ -163,7 +163,7 @@ export default {
    
     .loan-navigation {
      margin:0px 9vw;
-     width:51vw
+     width:auto
  }
 
  .nok {
@@ -209,9 +209,10 @@ export default {
  @media (max-width:576px){ 
     .main-container {
     border:2px solid blac;
-    margin-left:7vw;
+    margin-left:15vw;
     height: auto;
-    width:auto
+     width:120vw;
+    max-width:120vw
  }
 .small-screen-jumbo {
     width:84vw !important;
@@ -226,7 +227,7 @@ export default {
      height: 15vh;
      margin-top:-10vh;
      background:rgb(208, 216, 224);
-     padding-top : 70px !important
+     padding-top : 60px !important
  }
 
 

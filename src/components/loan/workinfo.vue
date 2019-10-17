@@ -3,6 +3,7 @@
       
           <div class="main-container">
               <form  @submit.prevent="validateBeforeSubmit"> 
+                   <span class="h5 mb-5 d-lg-none d-block ">Work Information</span>
                   <div class="form-row">
                        <div class="col-md-5 mb-3">
                             <span class="m">Employment Type <span class="text-danger">*</span></span>

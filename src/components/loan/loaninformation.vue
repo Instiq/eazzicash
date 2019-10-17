@@ -2,7 +2,8 @@
   <div>
       
           <div class="main-container">
-                 <form  @submit.prevent="validateBeforeSubmit" enctype="multipart/form-data"> 
+                 <form  @submit.prevent="validateBeforeSubmit" enctype="multipart/form-data">
+                     <span class="h5 mb-5 d-lg-none d-block ">Loan Details</span> 
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
                                 <label for="validationCustomUsername">Loan Amount (min:100k max:3m) <span class="text-danger">*</span></label>

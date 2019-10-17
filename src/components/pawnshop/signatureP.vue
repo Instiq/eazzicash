@@ -3,7 +3,8 @@
       
           <div class="main-container">
                
-            <form   @submit.prevent="validateBeforeSubmit">
+            <form   @submit.prevent="validateBeforeSubmit">\
+                 <span class="h5 mb-5 d-lg-none d-block ">Signature</span>
 
                 <div class="form-row"> <div class="mb-3">Applicant's Signature <span class="text-danger">*</span></div> </div>
                  <div class="ml-n3 col-md-5 mb-3 mt-3 mt-md-0">
@@ -236,6 +237,15 @@ export default {
  .small-screen-id {
      width:50vw
  }
+
+  .main-container {
+    border:2px solid bla;
+    /* margin-left:3vw; */
+    height: auto;
+    width:auto;
+    margin:0px 0vw;
+    padding: 0 10px !important
+ }
 }
 
  @media (max-width:576px){
@@ -248,6 +258,15 @@ export default {
 
  .small-screen-id {
      width:60vw
+ }
+
+  .main-container {
+    border:2px solid bla;
+    /* margin-left:3vw; */
+    height: auto;
+    width:auto;
+    margin:0px 0vw;
+    padding: 0 10px !important
  }
 }
 

@@ -198,9 +198,10 @@ export default {
  }
  .main-container {
     border:2px solid blac;
-    margin-left:3vw !important;
+    margin-left:15vw !important;
     height: auto;
-    width:auto;
+     width:120vw;
+    max-width:120vw;
     margin:0px 1vw
  }
  .jumbotron-head {

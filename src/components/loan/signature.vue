@@ -4,6 +4,7 @@
           <div class="main-container">
                
             <form   @submit.prevent="validateBeforeSubmit" enctype="multipart/form-data">
+             <span class="h5 mb-5 d-lg-none d-block ">Signature</span>
 
                 <div class="form-row"> <div class="mb-3">Applicant's Signature <span class="text-danger">*</span></div> </div>
                 <div class="ml-n3 col-md-5 mb-3 mt-3 mt-md-0">

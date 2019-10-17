@@ -3,7 +3,7 @@
       <div class="container">
           <div class="container main-container">
 
-              <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:100vw">
+              <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
                   <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Repayment pre-check</span></div>
 
                     <section class="container  mt-3">
@@ -53,7 +53,7 @@
                             </div>
                             <input type="text" disabled v-model="mra" class="form-control font-weight-bold py-0" style="background:whitesmoke" id="inlineFormInputGroup"  placeholder="amount">
                             </div>
-                            <p class="text-danger mb-2" style="font-size:15px; width:auto"> Please note that the interest rate is fixed per month on the principal amount.</p>
+                            <p class="text-danger mb-2" style="font-size:15px; width:auto"> Please note that the interest rate is fixed per month on the principal amount. </p>
                         </div>
 
                         <div class="col-md-6 mt-2 text-white float-right apply-btn" >
@@ -224,6 +224,7 @@ export default {
     border:2px solid blac;
     margin-left:3vw;
     height: auto;
+    width:auto
  }
 
  .jumbotron-head {
@@ -252,7 +253,7 @@ export default {
     border:2px solid blac;
     margin-left:7vw;
     height: auto;
-    width:70vw
+    width:auto
  }
 .small-screen-jumbo {
     width:auto!important;
@@ -269,9 +270,10 @@ export default {
  @media (max-width:767px){ 
     .main-container {
     border:2px solid blac;
-    margin-left:7vw;
+    margin-left:15vw;
     height: auto;
-    width:70vw
+    width:120vw;
+    max-width:120vw
  }
 .small-screen-jumbo {
     width:75vw!important;
@@ -289,27 +291,36 @@ export default {
  @media (max-width:576px){ 
     .main-container {
     border:2px solid blac;
-    margin-left:7vw;
+    margin-left:15vw;
     height: auto;
-    width:70vw
+    width:120vw;
+    max-width:120vw
  }
 .small-screen-jumbo {
     width:100vw !important;
-    height:60vh !important
+    height:65vh !important
 } 
  .apply-btn {
      padding:10px 20vw;
      position: absolute !important;
-     top:46vh;  
+     top:50vh;  
+ }
+
+ .jumbotron-head {
+     height: 15vh;
+     margin-top:-10vh;
+     background:rgb(208, 216, 224);
+     padding-top : 60px !important
  }
  }
 
  @media (max-width:320px){ 
     .main-container {
     border:2px solid blac;
-    margin-left:7vw;
+    margin-left:15vw;
     height: auto;
-    width:70vw
+     width:120vw;
+    max-width:120vw
  }
 .small-screen-jumbo {
     width:100vw !important;
