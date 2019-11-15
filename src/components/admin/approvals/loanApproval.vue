@@ -37,7 +37,7 @@
                     </tr>
                   </thead>
                   <tbody v-if="loanRequests"   >
-                    <tr v-for="(item, index) in filtered()" :key="'a' + index">
+                    <tr v-for="(item, index) in loanRequests" :key="'a' + index">
                       <th scope="row" class="text-success">{{item.userDetails.firstName}} {{item.userDetails.lastName}}</th>
                       <td class="text-center"> &#8358; {{formatAmount(item.loanAmount)}}  </td>
                       <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
@@ -126,46 +126,49 @@ export default {
     },
 
    //filter loan items by search parameter
-    filtered () {
-       if (this.name=='') {
-            return  this.$store.state.userEntitiesAll.loan.sort().reverse()
-        }
+    // filtered () {
+    //    if (this.name=='') {
+    //         return this.$store.state.userEntitiesAll.loan.sort().reverse()
+    //     }
 
-        else{
-            this.toUpperCase()
-            let result = this.$store.state.userEntitiesAll.loan.sort().reverse()
+    //     else {
+    //        this.toUpperCase()
+    //         let result = this.$store.state.userEntitiesAll.loan.sort().reverse()
             
-            let final = result.filter(value=> {
-              let fullName = value.userDetails.firstName + " " +  value.userDetails.lastName;
-              let fullNameReverse = value.userDetails.lastName + " " +  value.userDetails.firstName;
-              let formattedTime = this.moment(value.createdAt);
-              let check = moment(value.createdAt, 'YYYY/MM/DD');
-              let month = check.format('M');              
-              // let day   = check.format('D');
-              let year  = check.format('YYYY');
-              let monthAndYear = month + "/" + year
+    //         return result.filter(value=> {
+    //           let fullName = value.userDetails.firstName + " " +  value.userDetails.lastName;
+    //           let fullNameReverse = value.userDetails.lastName + " " +  value.userDetails.firstName;
+    //           let formattedTime = this.moment(value.createdAt);
+    //           let check = moment(value.createdAt, 'YYYY/MM/DD');
+    //           let month = check.format('M');              
+    //           // let day   = check.format('D');
+    //           let year  = check.format('YYYY');
+    //           let monthAndYear = month + "/" + year
 
 
-              return  value.userDetails.firstName.indexOf(this.name)==0 ||
-                      value.userDetails.lastName.indexOf(this.name)==0 ||
-                      value.approved.indexOf(this.name)==0 || 
-                      fullName.indexOf(this.name) == 0 || 
-                      fullNameReverse.indexOf(this.name) == 0 ||
-                      formattedTime.indexOf(this.name) == 0 ||
-                      year.indexOf(this.name) == 0 ||
-                      month.indexOf(this.name) == 0 ||
-                      // day.indexOf(this.name) == 0 ||
-                      monthAndYear.indexOf(this.name) == 0
-            } )
-            return final
-        }
-    }
+    //           return  value.userDetails.firstName.indexOf(this.name)==0 ||
+    //                   value.userDetails.lastName.indexOf(this.name)==0 ||
+    //                   value.approved.indexOf(this.name)==0 || 
+    //                   fullName.indexOf(this.name) == 0 || 
+    //                   fullNameReverse.indexOf(this.name) == 0 ||
+    //                   formattedTime.indexOf(this.name) == 0 ||
+    //                   year.indexOf(this.name) == 0 ||
+    //                   month.indexOf(this.name) == 0 ||
+    //                   // day.indexOf(this.name) == 0 ||
+    //                   monthAndYear.indexOf(this.name) == 0
+    //         } )
+    //     }
+           
+
+            // return final
+        
+    // }
 
  },
 
  computed : {
     loanRequests () {
-        return this.$store.state.userEntitiesAll.loan
+        return this.$store.state.userEntitiesAll.loan.sort().reverse()
     },
  },
 
