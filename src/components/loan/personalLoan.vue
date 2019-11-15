@@ -3,7 +3,7 @@
              <div class="main-container">
                 <ValidationObserver v-slot="{ passes }">
                   <form  @submit.prevent="passes(next_page)">
-                       <div class="container border">
+                       <div class="container">
                           <div class="row">
                               <div class="col-md-6 borde">
                                     <div class="div1i mb-3">

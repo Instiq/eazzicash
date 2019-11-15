@@ -18,6 +18,7 @@
                                 <input type="text"  v-model.number="principal" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
                                 </div>
                             </div>
+                             <div class="col-xl-6 col-lg-3 col-md-2 d-none d-md-block"></div>
                         </div>
 
                         <div class="row">
@@ -35,6 +36,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                         
                         <div class="row">
@@ -228,7 +230,7 @@ export default {
  }
 
  .jumbotron-head {
-     height: 10vh;
+     height: auto;
      margin-top:-10.3vh;
      background:rgb(208, 216, 224)
  }
@@ -236,10 +238,10 @@ export default {
      font-size:20px
  }
 
- .apply-btn {
+ /* .apply-btn {
      padding-left:200px;
      top:-70px;  
- }
+ } */
 
  input:focus, select:focus {
      border-color: rgba(75, 148, 8, 0.8);
@@ -260,6 +262,21 @@ export default {
     height:auto !important
 } 
  }
+
+
+ @media (min-width:1200px){ 
+    .main-container {
+    border:2px solid blac;
+    margin-left:7vw;
+    height: auto;
+    width:auto
+ }
+.small-screen-jumbo {
+    width:70vw!important;
+    height:auto !important
+} 
+ }
+
  
  @media (max-width:767px){ 
     .main-container {

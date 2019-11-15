@@ -24,6 +24,7 @@
                                 
                                 </select>
                             </div>
+                             <div class="col-xl-6 col-lg-3 col-md-2 d-none d-md-block"></div>
                         </div>
                         <div class="row">
                              <div class="col-xl-6 col-lg-9 col-md-10 mb-3">
@@ -37,6 +38,7 @@
                                 </div>
                                 <!-- <p class="text-danger" style="font-size:14px; width:auto">Please Note: All pawn items are to be redeemed within 30 days as failure to do that will imply forfeiture of the item.  </p> -->
                              </div>
+                              <div class="col-xl-6 col-lg-3 col-md-2 d-none d-md-block"></div>
                         </div>   
 
                             
@@ -52,6 +54,7 @@
                                 </div>
                                 <p class="text-danger" style="font-size:14px; width:auto">Please Note: All pawn items are to be redeemed within 30 days as failure to do so will imply forfeiture of the item.  </p>
                             </div>
+                             <div class="col-xl-6 col-lg-3 col-md-2 d-none d-md-block"></div>
                         </div>
 
                         <div class="row">
@@ -65,6 +68,7 @@
                                 <input type="text" disabled v-model.number="pawnMra" class="form-control font-weight-bold py-0" id="inlineFormInputGroup" placeholder="amount">
                                 </div>
                              </div>
+                             <div class="col-xl-6 col-lg-3 col-md-2 d-none d-md-block"></div>
                         </div>
                            
                         <div class="row d-flex justify-content-around">
@@ -209,6 +213,19 @@ export default {
      top:52vh;  
  }
  }
+
+  @media (min-width:1200px){ 
+    .main-container {
+    border:2px solid blac;
+    margin-left:7vw;
+    height: auto;
+    width:auto
+ }
+.small-screen-jumbo {
+    width:70vw!important;
+    height:auto !important
+} 
+ }
  
  @media (max-width:767px){ 
     .main-container {
@@ -248,8 +265,8 @@ export default {
      top:60vh;  
  }
   .jumbotron-head {
-     height: 15vh;
-     margin-top:-10vh;
+     height: auto;
+     /* margin-top:-10vh; */
      background:rgb(208, 216, 224);
      padding-top : 60px !important
  }
