@@ -4,61 +4,61 @@
           <div class="container main-container">
 
               <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
-                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Repayment pre-check</span></div>
+                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Loan Calculator</span></div>
 
                     <section class="container  mt-3">
-                        <div class="col-xl-6 col-lg-9 col-md-10">
-                            <span class="m">Loan Amount (min:100k max:3m)</span>
-                            <label class="sr-only" for="inlineFormInputGroup"></label>
-                            <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"> &#8358;</div>
-                            </div>
-                            <input type="text"  v-model.number="principal" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-9 col-md-10">
+                                <span class="m">Loan Amount (min: &#8358;100,000 max: &#8358;3,000,000 )</span>
+                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"> &#8358;</div>
+                                </div>
+                                <input type="text"  v-model.number="principal" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-xl-6 col-lg-9 col-md-10 ">
-                            <span class="m">Repayment Duration (months)</span>
-                            <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text" style="cursor:pointer" v-on:click="minus" >-</div>
-                            </div>
-                            <input type="text"  style="background:whitesmoke" disabled v-model.number="tenor"  class="form-control py-0"  placeholder="months">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-9 col-md-10 ">
+                                <span class="m">Repayment Duration</span>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text" style="cursor:pointer" v-on:click="minus" >-</div>
+                                    </div>
+                                    <input type="text"  style="background:whitesmoke" disabled v-model.number="tenor"  class="form-control py-0"  placeholder="months">
 
-                            <div class="input-group-append">
-                                <div class="input-group-text"  style="cursor:pointer" @click='add' >+</div>
+                                    <div class="input-group-append">
+                                        <div  class="input-group-text" style="color:darkgray">month(s)</div>
+                                        <div class="input-group-text"  style="cursor:pointer" @click='add' >+</div>
+                                    </div>
+                                </div>
                             </div>
-                              </div>
                         </div>
-<!-- 
-                         <div class="col-md-5">
-                            <span class="m">Interest rate (per month)</span>
-                            <label class="sr-only" for="inlineFormInputGroup"></label>
-                            <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">%</div>
+                        
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-9 col-md-10">
+                                <span class="m">Monthly Repayment Amount</span>
+                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">&#8358;</div>
+                                    </div>
+                                    <input type="text" disabled v-model="mra" class="form-control font-weight-bold py-0" style="background:whitesmoke" id="inlineFormInputGroup"  placeholder="amount">
+                                </div>
+                                <p class="text-danger mb-2" style="font-size:15px; width:auto"> Please note that the interest rate is fixed per month on the principal amount. </p>
                             </div>
-                            <input type="text" style="background:whitesmoke" disabled v-model="rate" class="form-control py-0" id="inlineFormInputGroup" placeholder="">
-                            </div>
-                            <p class="text-danger mb-2" style="font-size:15px; width:auto">please note that Interest rate is calculated on principal</p>
-                        </div>  -->
-
-                         <div class="col-xl-6 col-lg-9 col-md-10">
-                            <span class="m">Monthly Repayment Amount</span>
-                            <label class="sr-only" for="inlineFormInputGroup"></label>
-                            <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">&#8358;</div>
-                            </div>
-                            <input type="text" disabled v-model="mra" class="form-control font-weight-bold py-0" style="background:whitesmoke" id="inlineFormInputGroup"  placeholder="amount">
-                            </div>
-                            <p class="text-danger mb-2" style="font-size:15px; width:auto"> Please note that the interest rate is fixed per month on the principal amount. </p>
                         </div>
 
-                        <div class="col-md-6 mt-2 text-white float-right apply-btn" >
-                          <router-link to="/profile/loan/loandetails"><button class="btn text-white " style="background:rgb(0, 85, 0);width:auto; padding:15px 20px; font-size:18px; border-radius:5px">APPLY FOR LOAN</button></router-link>  
+                        <div class="row d-flex justify-content-around">
+                             <div></div>
+                             <div class="mt-3 text-whit" >
+                                <router-link to="/profile/loan/loandetails"><button class="btn text-white " style="background:rgb(0, 85, 0);width:auto; padding:15px 20px; font-size:18px; border-radius:5px">APPLY NOW</button></router-link>  
+                            </div>
                         </div>
+
+                       
                      </section>  
 
                     
@@ -257,14 +257,8 @@ export default {
  }
 .small-screen-jumbo {
     width:auto!important;
-    height:65vh !important
+    height:auto !important
 } 
- .apply-btn {
-     padding:10px 7vw;
-     position: absolute;
-     top:46vh;  
-     
- }
  }
  
  @media (max-width:767px){ 
@@ -279,12 +273,7 @@ export default {
     width:75vw!important;
     height:60vh !important
 } 
- .apply-btn {
-     padding:10px 20vw;
-     position: absolute;
-     top:46vh;  
-     
- }
+
  }
 
 
@@ -298,17 +287,12 @@ export default {
  }
 .small-screen-jumbo {
     width:100vw !important;
-    height:65vh !important
+    height:auto !important
 } 
- .apply-btn {
-     padding:10px 20vw;
-     position: absolute !important;
-     top:50vh;  
- }
 
  .jumbotron-head {
-     height: 15vh;
-     margin-top:-10vh;
+     height: auto;
+     /* margin-top:-10vh; */
      background:rgb(208, 216, 224);
      padding-top : 60px !important
  }
@@ -324,14 +308,8 @@ export default {
  }
 .small-screen-jumbo {
     width:100vw !important;
-    height:72vh !important
+    height:auto !important
 } 
- .apply-btn {
-     padding:10px 10vw;
-     position: absolute;
-     top:55vh;  
- }
-
  }
 
 </style>

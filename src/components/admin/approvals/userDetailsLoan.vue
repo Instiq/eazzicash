@@ -6,9 +6,9 @@
   <div class="row" style="margin-left:5%;margin-right:5%;">
     <div class="col">
       <p><a href="/adminProfile/approvals/loan"><i style='font-size:24px' class='fas'>&#xf060;</i></a></p>
-      <p class="text-success font-weight-bold">Loan Request Details</p>
       
-      <div class="container table-responsive">            
+       <p class="text-success font-weight-bold">Personal Details</p>
+       <div class="container table-responsive">            
         <table class="table table-striped table-bordered">
           <tbody>
              <tr class="row">
@@ -17,6 +17,51 @@
               <td class="col-sm-3">Customer Phone</td>
               <td class="col-sm-3 text-success"> {{userDetails.userDetails.phoneNumber}}</td>
             </tr>
+            <tr class="row">
+              <td class="col-sm-3">Address</td>
+              <td class="text-success col-sm-3"> {{userDetails.personalDetails.address}}</td>
+              <td class="col-sm-3">Years Lived in Address</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.yearsInAddress}}</td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Bus Stop</td>
+              <td class="text-success col-sm-3">{{userDetails.personalDetails.busstop}}</td>
+               <td class="col-sm-3">State</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.state}} </td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Means of Identification</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.meansOfId}} </td>
+              <td class="col-sm-2">ID Card</td>
+              <td class="col-sm-4">
+                  <form action="/action_page.php">
+                    <div class="form-group" style= "width:auto; height:auto">
+                    <a :href="userDetails.personalDetails.idCard" download=""><img class="img-fluid" :src="userDetails.personalDetails.idCard" alt="id"></a>
+                    </div>
+                </form>
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Other ID</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.otherId}}  </td>
+              <td class="col-sm-2">Signature</td>
+              <td class="col-sm-4">
+                 <form action="/action_page.php">
+                    <div class="form-group" style= "width:auto; height:auto">
+                    <a :href="userDetails.personalDetails.signature" download><img class="img-fluid" :src="userDetails.personalDetails.signature" alt="id"></a>
+                    </div>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      
+      <p class="text-success font-weight-bold">Loan Request Details</p>
+      <div class="container table-responsive">            
+        <table class="table table-striped table-bordered">
+          <tbody>
             <tr class="row">
               <td class="col-sm-3">Loan Purpose</td>
               <td class="col-sm-3 text-success"> {{userDetails.loanPurpose}}</td>
@@ -34,16 +79,6 @@
               <td class="col-sm-3 text-success"> {{userDetails.indebtedness}}  </td>
               <td class="col-sm-3">List indebtedness</td>
               <td class="col-sm-3"><b class="text-success">{{userDetails.listIndebtedness}}</b></td>
-            </tr>
-            <tr class="row">
-              <td class="col-sm-6">ID Attachment</td>
-              <td class="col-sm-6">
-                <form action="/action_page.php">
-                  <div class="form-group" style= "width:auto; height:auto">
-                   <img class="img-fluid" :src="id" alt="id">
-                  </div>
-                </form>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -69,38 +104,42 @@
          <table class="table table-striped table-bordered">
             <tbody>
                 <tr class="row">
-                    <td class="col-sm-4">Guarantors </td>
-                    <td class="col-sm-8">
-                        <ul class="ml-n4" v-for="(item, index) in userDetails.guarantors" :key="index">
-                            <li>
-                                Guarantor {{index+1}} : 
-                                <ul>
-                                  <li>Status : {{userDetails.guarantors[index].status}}</li>
-                                  <li>Name : {{userDetails.guarantors[index].firstName}} {{userDetails.guarantors[index].lastName}}</li>
-                                  <li>Phone : {{userDetails.guarantors[index].phoneNumber}} </li>
-                                  <li>Email :  {{userDetails.guarantors[index].email}}</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </td>
+                  <td class="col-sm-3">Status</td>
+                  <td class="col-sm-3 text-success">{{userDetails.guarantors[0].status}}</td>
+                  <td class="col-sm-3">Name</td>
+                  <td class="col-sm-3 text-success"> {{userDetails.guarantors[0].firstName}} {{userDetails.guarantors[0].lastName}}</td>
                 </tr>
+
+                <tr class="row">
+                  <td class="col-sm-3">Email</td>
+                  <td class="col-sm-3 text-success">{{userDetails.guarantors[0].email}}</td>
+                  <td class="col-sm-3">Phone Number</td>
+                  <td class="col-sm-3 text-success"> {{userDetails.guarantors[0].phoneNumber}}</td>
+                </tr>
+
+                <tr class="row">
+                  <td class="col-sm-3">ID Card</td>
+                  <td class="col-sm-3 text-success">
+                      <form action="/action_page.php">
+                        <div class="form-group" style= "width:auto; height:auto">
+                        <a :href="userDetails.guarantors[0].idCard" download><img class="img-fluid" :src="userDetails.guarantors[0].idCard" alt="id"></a>
+                        </div>
+                      </form>
+                  </td>
+                  <td class="col-sm-3">Signature</td>
+                  <td class="col-sm-3 text-success">
+                      <form action="/action_page.php">
+                        <div class="form-group" style= "width:auto; height:auto">
+                        <a :href="userDetails.guarantors[0].signature" download><img class="img-fluid" :src="userDetails.guarantors[0].signature" alt="id"></a>
+                        </div>
+                      </form>
+                  </td>
+                </tr>
+                  
+                     
         </tbody>
       </table>
        </div>
-      <p class="font-weight-bold text-success">Signatures</p><hr>
-      <table class="table table-borderless">
-        <tbody>
-          <tr class="row">
-            <td class="col-sm-6">Applicant's Signature</td>
-            <td class="col-sm-6">
-             
-                <div class="form-group" style="height:auto; width:auto; border:2px solid whitesmoke">
-                    <img  class="img-fluid" :src="signature" alt="signature">
-                </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
 
       
           <div class="row mb-3">
@@ -227,12 +266,6 @@ export default {
      userDetails () {
         return this.$store.state.userDetails
      },
-     id () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.id}`
-     },
-     signature () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.signature}`
-     },
      tenor : {
           get () {
                 return this.$store.getters.tenor
@@ -252,8 +285,9 @@ export default {
  },
 
  mounted () {
-     this.$store.commit('setPrincipal', (this.userDetails.loanAmount))
-      this.$store.commit('setTenor', this.userDetails.loanTenor)
+    this.$store.commit('setPrincipal', (this.userDetails.loanAmount))
+    this.$store.commit('setTenor', this.userDetails.loanTenor);
+    this.$store.dispatch('updateIsActive1')
 
  }
 }

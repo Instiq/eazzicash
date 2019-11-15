@@ -1,142 +1,146 @@
 <template>
   <div>
       
-          <div class="main-container">
-                 <form  @submit.prevent="validateBeforeSubmit"> 
-                      <span class="h5 mb-5 d-lg-none d-block ">Pawn Details</span>
-                     <div class="form-row first">
-                          <div class="col-md-5 mb-3">
-                            <span class="m">Item Category  <span class="text-danger">*</span></span>
-                            <select class="browser-default custom-select" v-model="itemCategory" v-validate="'required'" name="Item Category" >
-                            <option value="Mobile Phones">Mobile Phones</option>
-                            <option value="Jewelries">Jewelries (pure Gold & Silver)</option>
-                            <option value="Camera">Digital Camera</option>
-                            <option value="Cars">Cars</option>
-                              <option value="Laptops">Laptops</option>
-                              <option value="TV">TV</option>
-                              <option value="Generators">Moveable Generators</option>
-                              <option value="Smart Watches">Smart Watches</option>
-                              <option value="Game Console">Game Console (Xbox/PS4)</option>
-                             <option value="Wrist Watch">Wrist Watch</option>
-                            
-                            </select>
-                             <div class="mt-3" >
-                                <i v-show="errors.has('Item Category')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('Item Category')">{{ errors.first('Item Category') }}</span>
-                             </div>
-                          </div>
-                          
-
-                            <div class="col-md-2"></div>
-
-                            <div class="col-md-5">
-                                <span class="m">Item Description  <span class="text-danger">*</span> </span>
-                                <input type="text"  name="Item Description" v-model="itemDescription" v-validate="'required'" style="font-size:13px;" placeholder="e.g Samsung Galaxy S9" class="form-control">
-                                <div class="mt-3" >
-                                    <i v-show="errors.has('Item Description')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('Item Description')">{{ errors.first('Item Description') }}</span>
-                             </div>
+        <div class="main-container">
+            <ValidationObserver v-slot="{ passes }">
+                <form  @submit.prevent="passes(next_page)"> 
+                    <span class="h5 mb-5 d-lg-none d-block ">Pawn Details</span>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class=" mb-3">
+                               <ValidationProvider name="Item Category" rules="required" v-slot="{ errors }">
+                                    <span class="m">Item Category  <span class="text-danger">*</span></span>
+                                    <select class="browser-default custom-select" v-model="itemCategory" name="Item Category" >
+                                        <option value="Mobile Phones">Mobile Phones</option>
+                                        <option value="Jewelries">Jewelries (pure Gold & Silver)</option>
+                                        <option value="Camera">Digital Camera</option>
+                                        <option value="Cars">Cars</option>
+                                        <option value="Laptops">Laptops</option>
+                                        <option value="TV">TV</option>
+                                        <option value="Generators">Moveable Generators</option>
+                                        <option value="Smart Watches">Smart Watches</option>
+                                        <option value="Game Console">Game Console (Xbox/PS4)</option>
+                                        <option value="Wrist Watch">Wrist Watch</option>
+                                    </select>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                 </ValidationProvider> 
                             </div>
-                     </div>
-
-
-                     <div class="form-row second">
-                          <div class="col-md-5 mb-3">
-                            <span class="m">Year of Release  <span class="text-danger">*</span></span>
-                            <select class="browser-default custom-select" v-model="releaseYear" v-validate="'required'" name="Year of Release" >
-                                <option value="2019">2019</option>
-                                <option value="2018">2018</option>
-                                <option value="2017">2017</option>
-                                <option value="2016">2016</option>
-                                <option value="2015">2015</option>
-                                <option value="2014">2014</option>
-                                <option value="2013">2013</option> 
-                                <option value="2012">2012</option> 
-                                <option value="2011">2011</option>
-                                <option value="2010">2010</option>  
-                                <option value="2009">2009</option>    
-
-                        </select>
-                            <div class="mt-3" >
-                                 <i v-show="errors.has('Year of Release')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('Year of Release')">{{ errors.first('Year of Release') }}</span>
+                            <div class="mb-3">
+                                <ValidationProvider name="Item Description" rules="required" v-slot="{ errors }">
+                                    <span class="m">Item Description  <span class="text-danger">*</span> </span>
+                                    <input type="text"  name="Item Description" v-model="itemDescription" placeholder="e.g Samsung Galaxy S9" class="form-control">
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
                             </div>
-                          </div> 
-                          
-
-                            <div class="col-md-2"></div>
-
-                            <div class="col-md-5">
-                                <span class="m">Condition of Item  <span class="text-danger">*</span></span>
-                                <select class="browser-default custom-select" v-model="itemCondition" v-validate="'required'" name="Condition of Item">
-                                <option value="New">New</option>
-                                <option value="Used">Used</option>
-                                <option value="Refurbished">Refurbished</option>
-                                <option value="Inheritance">Inheritance</option>
-                                </select>
-                                <div class="mt-3" >
-                                    <i v-show="errors.has('Condition of Item')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Condition of Item')">{{ errors.first('Condition of Item') }}</span>
-                                </div>
-                          
+                            <div class=" mb-3">
+                               <ValidationProvider name="Year of Release" rules="required" v-slot="{ errors }">
+                                    <span class="m">Year of Release  <span class="text-danger">*</span></span>
+                                    <select class="browser-default custom-select" v-model="releaseYear" name="Year of Release" >
+                                        <option value="2019">2019</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2013">2013</option> 
+                                        <option value="2012">2012</option> 
+                                        <option value="2011">2011</option>
+                                        <option value="2010">2010</option>  
+                                        <option value="2009">2009</option>    
+                                    </select>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                               </ValidationProvider>
+                            </div> 
+                            <div class="mb-3">
+                                <ValidationProvider name="Condition of Item" rules="required" v-slot="{ errors }">
+                                    <span class="m">Condition of Item  <span class="text-danger">*</span></span>
+                                    <select class="browser-default custom-select" v-model="itemCondition" name="Condition of Item">
+                                    <option value="New">New</option>
+                                    <option value="Used">Used</option>
+                                    <option value="Refurbished">Refurbished</option>
+                                    <option value="Inheritance">Inheritance</option>
+                                    </select>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                               </ValidationProvider> 
                             </div>
-                     </div>
-
-                     
-                     <div class="form-row second">
-                          <div class="col-md-5 mb-3">
-                            <span class="m">Pawn Amount <span class="text-danger">*</span> </span>
-                            <input type="text"  v-model="pawnAmount" v-validate="'required|numeric'" name="Pawn Amount" class="form-control">
-                            <div class="mt-3" >
-                                <i v-show="errors.has('Pawn Amount')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('Pawn Amount')">{{ errors.first('Pawn Amount') }}</span>
+                            <div class=" mb-3">
+                               <ValidationProvider name="Pawn Amount" rules="required" v-slot="{ errors }">
+                                    <span class="m">Pawn Amount <span class="text-danger">*</span> </span>
+                                    <div class="input-group mb-2">
+                                         <div class="input-group-prepend">
+                                            <div class="input-group-text"> &#8358;</div>
+                                         </div>
+                                         <input type="text"  v-model="pawnAmount"  name="Pawn Amount" class="form-control">
+                                    </div>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
                             </div>
-                          </div>
-                          
-
-                            <div class="col-md-2"></div>
-
-                            <div class="col-md-5">
+                            <div class="mb-3">
                                 <span class="m">Tenor</span>
-                                <input type="number"  v-model="pawnTenor" name='Tenor' disabled class="form-control">
-                            </div>
-                     </div>
-
-
-                     <div class="col-md-5 ml-n3 mt-3">
-                        <span class="mb-3">Receipt of Item <span class="text-danger">*</span></span>
-                        <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
-                            <img style="max-width:100%; height:auto" class="img-fluid" :src="itemReceipt"  alt=''>
-                        </div>
-                        
-                        <div class="input-group mt-5">
-                            <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" v-validate="'required'"  name="item receipt" @change="onFileChange" id="inputGroupFile02">
-                            <label class="" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"></label>
-                        </div>
-                        <div class="mt-2" >
-                            <i v-show="errors.has('item receipt')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                            <span class="text-warning" v-show="errors.has('item receipt')">{{ errors.first('item receipt') }}</span>
+                                <div class="input-group">
+                                    <input type="text"  v-model="pawnTenor" name='Tenor' disabled class="form-control">
+                                    <div class="input-group-append">
+                                        <div  class="input-group-text" style="color:darkgray">days</div>
+                                    </div>
+                                </div>
+                               
                             </div>
                         </div>
-
-                     <div class="form-row">
-                         <div class="col-md-5"></div>
-                         <div class="col-md-2"></div>
-                         <div class="col-md-5">
-                              <mdb-btn type="submit" class="float-right btn-green mt-5"  style="font-size:15px; border-radius:5px"> Next</mdb-btn>
-                          </div>
-                     </div>
-
-                 </form>
-               
-              
-          </div>
-     
+                        <div class="col-md-6">
+                            <!-- <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-9">
+                                    <div class="" >
+                                        <span class="mb-3">Receipt of Item <span class="text-danger">*</span></span>
+                                        <div class=" mb-4 mb-md-0 " style="height:105px; width:170px; border:1px solid blue"> 
+                                            <img style="max-width:100%; height:100px" class="img-fluid" :src="itemReceipt"  alt=''>
+                                        </div>
+                                        
+                                        <div class="input-group mt-5">
+                                            <ValidationProvider name="Item Receipt" rules="required|image"  v-slot="{validate, errors }">
+                                                <label class="btn btn-info btn-file">
+                                                    Choose File <input @change="onFileChange($event); validate($event)" type="file" name="Item Receipt"  style="display: none;"> 
+                                                </label> <br>
+                                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                            </ValidationProvider> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                     </div> 
+                    
+                           
+                     <div class="row d-flex justify-content-between row2 borde">
+                                <!-- <div class="col-6 border"> -->
+                                    <div class="div3">
+                                        <div class="input-group mr-2 ml-2 mt-2 mt-md-5">
+                                            <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                                     <!-- <input type="text"  @click="prev_page" class="btn btn-green" value="prev"> -->
+                                                     <button  @click="prev_page" class="btn btn-green">prev</button>
+                                            </ValidationProvider> 
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                                 <!-- <div class="col-6 border"> -->
+                                    <div class="div3">
+                                        <div class="input-group mt-2 ml-2 mr-2 mt-md-5" >
+                                            <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                                     <input type="submit" class="btn btn-green" value="next">
+                                            </ValidationProvider> 
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                    </div>
+                </form>
+            </ValidationObserver>  
+        </div>
   </div>
 </template>
 
 <script>
 import{mdbNavbar,mdbInput, mdbBtn, mdbNumericInput, mdbJumbotron, mdbContainer,mdbRow, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue';
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export default {
     name:'guarantor',
@@ -152,7 +156,9 @@ export default {
     mdbCol,
     mdbJumbotron,
     mdbInput,
-    mdbNumericInput
+    mdbNumericInput,
+    ValidationObserver,
+    ValidationProvider
     },
     
     data () {
@@ -161,14 +167,12 @@ export default {
         }
     }, 
     methods: {
-    validateBeforeSubmit() {
-        this.$validator.validateAll().then((result) => {
-            if (result) {
-            this.$router.push('/profile/pawnshop/pawndetails/ownership')
-            }
-    })
-    } ,
-    
+    next_page () {
+        this.$router.push('/profile/pawnshop/pawndetails/ownership')
+    },
+    prev_page () {
+        this.$router.go(-1)
+    },
     onFileChange(e) {
         let files = e.target.files || e.dataTransfer.files;
         if (!files.length) return;
@@ -256,11 +260,30 @@ export default {
      outline: 0 none;
  }
 
+::-webkit-input-placeholder { /* Edge */
+  color: red !important;
+  font-size: 13px
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: red !important;
+  font-size: 13px
+}
+
+::placeholder {
+   color: red !important;
+   font-size: 13px
+}
+
 @media (min-width:767px){
    input {
     
       border:1px solid gainsboro;
-      border-radius: 5px
+      border-radius: 5px;
+ }
+
+ .receipt {
+     margin-left:-1vw
  }
 
  .small-screen-id {

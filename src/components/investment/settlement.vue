@@ -2,66 +2,60 @@
   <div>
       
           <div class="main-container">
-                 <form  @submit.prevent="validateBeforeSubmit"> 
+               <ValidationObserver v-slot="{ passes }">
+                 <form  @submit.prevent="passes(next_page)"> 
                       <span class="h5 mb-5 d-lg-none d-block ">Settlement Account</span>
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Account Number <span class="text-danger">*</span></label>
-                                    <input type="text" v-model="accountNumber" class="form-control"  placeholder="" v-validate="'required|min:10|max:10|numeric'"  name="Account Number"  >
-                                    <div class="mt-3" >
-                                    <i v-show="errors.has('Account Number')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Account Number')">{{ errors.first('Account Number') }}</span>
-                                </div>
+                                <ValidationProvider name="Account Number" rules="required|min:10|max:10|numeric" v-slot="{ errors }">
+                                     <label for="validationCustomUsername">Account Number <span class="text-danger">*</span></label>
+                                     <input type="text" v-model="accountNumber" class="form-control"  placeholder=""  name="Account Number"  >
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>  
                              </div>
                      </div>
 
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Account Name <span class="text-danger">*</span></label>
-                                    <input type="text" v-model="accountName" class="form-control"  placeholder="" v-validate="'required'"  name="Account Name"  >
-                                    <div class="mt-3" >
-                                    <i v-show="errors.has('Account Name')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Account Name')">{{ errors.first('Account Name') }}</span>
-                                </div>
+                                 <ValidationProvider name="Account Name" rules="required" v-slot="{ errors }">
+                                    <label for="validationCustomUsername">Account Name <span class="text-danger">*</span></label>
+                                    <input type="text" v-model="accountName" class="form-control"  placeholder=""  name="Account Name"  >
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
                              </div>
                      </div>
 
                      <div class="form-row">
                          <div class="col-md-5">
-                                <span class="m">Bank Name <span class="text-danger">*</span></span>
-                                <select class="browser-default custom-select" name="Bank Name" v-validate="'required'" v-model="bankName">
-                                <option selected>Choose</option>
-                                <option value="access">Access Bank</option>
-                                <option value="citibank">Citibank</option>
-                                <option value="ecobank">Ecobank</option>
-                                <option value="fidelity">Fidelity Bank</option>
-                                <option value="fcmb">First City Monument Bank (FCMB)</option>
-                                <option value="fsdh">FSDH Merchant Bank</option>
-                                <option value="gtb">Guarantee Trust Bank (GTB)</option>
-                                <option value="heritage">Heritage Bank</option>
-                                <option value="Keystone">Keystone Bank</option>
-                                <option value="rand">Rand Merchant Bank</option>
-                                <option value="skye">Polaris Bank</option>
-                                <option value="stanbic">Stanbic IBTC Bank</option>
-                                <option value="standard">Standard Chartered Bank</option>
-                                <option value="sterling">Sterling Bank</option>
-                                <option value="suntrust">Suntrust Bank</option>
-                                <option value="union">Union Bank</option>
-                                <option value="uba">United Bank for Africa (UBA)</option>
-                                <option value="unity">Unity Bank</option>
-                                <option value="wema">Wema Bank</option>
-                                <option value="zenith">Zenith Bank</option>
-                                </select>
-                                <div class="mt-3" >
-                                    <i v-show="errors.has('Bank Name')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Bank Name')">{{ errors.first('Bank Name') }}</span>
-                                </div>
+                               <ValidationProvider name="Bank Name" rules="required" v-slot="{ errors }">
+                                    <span class="m">Bank Name <span class="text-danger">*</span></span>
+                                    <select class="browser-default custom-select" name="Bank Name"  v-model="bankName">
+                                    <option selected>Choose</option>
+                                    <option value="access">Access Bank</option>
+                                    <option value="citibank">Citibank</option>
+                                    <option value="ecobank">Ecobank</option>
+                                    <option value="fidelity">Fidelity Bank</option>
+                                    <option value="fcmb">First City Monument Bank (FCMB)</option>
+                                    <option value="fsdh">FSDH Merchant Bank</option>
+                                    <option value="gtb">Guarantee Trust Bank (GTB)</option>
+                                    <option value="heritage">Heritage Bank</option>
+                                    <option value="Keystone">Keystone Bank</option>
+                                    <option value="rand">Rand Merchant Bank</option>
+                                    <option value="skye">Polaris Bank</option>
+                                    <option value="stanbic">Stanbic IBTC Bank</option>
+                                    <option value="standard">Standard Chartered Bank</option>
+                                    <option value="sterling">Sterling Bank</option>
+                                    <option value="suntrust">Suntrust Bank</option>
+                                    <option value="union">Union Bank</option>
+                                    <option value="uba">United Bank for Africa (UBA)</option>
+                                    <option value="unity">Unity Bank</option>
+                                    <option value="wema">Wema Bank</option>
+                                    <option value="zenith">Zenith Bank</option>
+                                    </select>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>
                             </div>
                      </div>
-
-
-                     
-
                      <div class="form-row">
                          <div class="col-md-5"></div>
                          <div class="col-md-2"></div>
@@ -69,17 +63,15 @@
                               <mdb-btn type="submit" class="float-right btn-green mt-5"  style="font-size:15px; border-radius:5px"> Next</mdb-btn>
                           </div>
                      </div>
-
                  </form>
-               
-              
+               </ValidationObserver>  
           </div>
-     
   </div>
 </template>
 
 <script>
 import {mdbInput, mdbBtn, mdbContainer,mdbRow, mdbCol, } from 'mdbvue';
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export default {
     name:'guarantor',
@@ -88,6 +80,8 @@ export default {
     mdbRow,
     mdbCol,
     mdbInput,
+    ValidationObserver,
+    ValidationProvider
     },
     
     data () {
@@ -96,14 +90,10 @@ export default {
         }
     }, 
     methods: {
-    validateBeforeSubmit() {
-    this.$validator.validateAll().then((result) => {
-        if (result) {
-        this.$router.push('/profile/investment/investdetails/nextofkin')
+        next_page () {
+            this.$router.push('/profile/investment/investdetails/nextofkin')
         }
-    })
-    }    
-  },
+   },
 
   computed : {
          accountNumber : {

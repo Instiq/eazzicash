@@ -9,6 +9,7 @@ import signup from "./modules/signup";
 import axios from "axios";
 import router from "../router";
 
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -36,17 +37,24 @@ export default new Vuex.Store({
     isAdmin:false,
     isEmailRegistered : false,
     isEmailorPasswordCorrect : false,
-    loading:false,
     //state for loanToken, loanId and guarantorid
     loanToken:"",
     guarantorId:"",
     loanId:"",
     //state to get one Loan/finance detail for one user
-    loanDetailsOne:""
+    loanDetailsOne:"",
+    //state to show error message on post of loan, finance, investment, pawn and update profile
+    isError:false,
+    errorMsg:"Something failed",
+     //state to show success message on put update profile
+    isSuccess:false,
+    //state to get user profile
+    userProfile : {}
   },
 
+
   plugins: [createPersistedState({
-   paths : ['name', 'userFirstname', 'userLastname', 'users', 'isAuthenticated', 'isAdmin', 'token', 'emailVerificationToken', 'email', 'userPhone', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne', 'userEntitiesAll', 'userDetails']
+   paths : ['name', 'userFirstname', 'userLastname', 'users', 'isAuthenticated', 'isAdmin', 'token', 'emailVerificationToken', 'email', 'userPhone', 'loanToken', 'guarantorId', 'loanId', 'userId', 'userEntitiesOne', 'userEntitiesAll', 'userProfile', 'userDetails']
   })],
 
   mutations: {
@@ -58,9 +66,6 @@ export default new Vuex.Store({
     },
     setIsEmailorPasswordCorrect(state, payload) {
       state.isEmailorPasswordCorrect = payload;
-    },
-    setLoading (state, payload) {
-      state.loading = payload
     },
     setName (state, payload) {
       state.name = payload
@@ -126,6 +131,25 @@ export default new Vuex.Store({
     //mutation to get one Loan/Finance detail for one user
     setLoanDetailsOne (state, payload) {
       state.loanDetailsOne = payload
+    },
+
+    //mutation to show error on post of loan, investment, finance or pawn and update profile
+    setIsError (state, payload) {
+      state.isError=payload
+    },
+
+    setErrorMsg (state, payload) {
+      state.errorMsg=payload
+    },
+
+    //mutation to show success message on update user profile
+    setIsSuccess (state, payload) {
+      state.isSuccess=payload
+    },
+
+    //mutation to get user profile
+    setUserProfile (state, payload) {
+      state.userProfile=payload
     }
 
   },
@@ -135,14 +159,14 @@ export default new Vuex.Store({
     async userSignUp(context, {email, password, firstName, lastName,state,country,phoneNumber,address }) {
       await axios({
           method: "post",
-          url: `${context.state.api_url}/users`,
+          url: `${state.api_url}/users`,
           data: {
             email,
             password,
             firstName,
             lastName,
-            state,
-            country,
+            // state,
+            // country,
             phoneNumber,
             address
           }
@@ -150,7 +174,6 @@ export default new Vuex.Store({
         .then(({data})=>{
          // console.log(data);
           context.commit('setName', `${data.firstName} ${data.lastName}`);
-          context.commit('setLoading', false);
           context.commit('setIsAuthenticated', true);
           context.commit('setEmail', data.email)
           context.commit('setUserId', data._id)
@@ -160,7 +183,6 @@ export default new Vuex.Store({
          // console.log(response.data);
           if (response.data.msg=="User already registered.") {
             context.commit('setIsEmailRegistered', true);
-            context.commit('setLoading', false)
           }
           
         }) 
@@ -187,7 +209,6 @@ export default new Vuex.Store({
             }
             //check if user is an admin
             if (data.isAdmin) {
-              commit('setLoading', false)
               commit('setIsAuthenticated', false);
               commit('setIsAdmin', true)
               commit('setName', `${data.firstName} ${data.lastName}`);
@@ -198,8 +219,7 @@ export default new Vuex.Store({
               router.push('/adminProfile')
               return;
             }
-           // console.log(data);
-            commit('setLoading', false)
+           // console.log(data)
             commit('setName', `${data.firstName} ${data.lastName}`) ;
             commit('setUserFirstname', data.firstName);
             commit('setUserLastname', data.lastName);
@@ -215,7 +235,6 @@ export default new Vuex.Store({
             //console.log(response.data);
             if (response.data.msg=="Invalid email or password.") {
               commit('setIsEmailorPasswordCorrect', true);
-              commit('setLoading', false)
             }
           }) 
         },
@@ -240,7 +259,133 @@ export default new Vuex.Store({
         console.log(state.token);
         
        },
-      
+
+       //get User Profile for one User
+
+       async getUserProfile ({commit, state}) {
+          await axios({
+            method:'get',
+            url:`${state.api_url}/users/me`,
+            headers : {
+              'x-auth-token':state.token
+            }
+          })
+          .then(({data}) => {
+            commit('setUserProfile', data)
+          })
+          .catch(err => {
+            console.error(err);
+            
+          })
+       },
+
+       //update user Profile
+       async updateUserProfile ({commit, state}, {firstName, lastName, phoneNumber, address,  email,Name, Bank, Number, Type}) {
+        await axios({
+          method:'put',
+          url:`${state.api_url}/users/me`,
+          data : {
+            firstName,
+            lastName,
+            phoneNumber,
+            email,
+            address,
+            accountDetails: {
+              Name,
+              Bank,
+              Number,
+              Type
+             },
+          },
+          headers : {
+            'x-auth-token':state.token
+          }
+        })
+        .then(_ => {
+          commit('setIsSuccess', true);
+        })
+        .catch(err => {
+          console.error(err.response.data);
+          commit('setIsError', true);
+          if(response.data == 'Invalid Token') {
+            commit('setErrorMsg', `${response.data}. kindly re-login`);
+            setTimeout (_ => router.push('/signin'), 500);
+            return;
+          }
+          if(err.response.data.code == 11000 && err.response.data.index == 0 && err.response.data.name == 'MongoError') {
+            return commit('setErrorMsg', "email already exists. Update to another.");
+          }
+        })
+      },
+
+       //update user Profile (display picture)
+       async updateUserProfile1 ({commit, state}, {displayPicture}) {
+        await axios({
+          method:'put',
+          url:`${state.api_url}/users/me`,
+          data : {
+             displayPicture, 
+          },
+          headers : {
+            'x-auth-token':state.token
+          }
+        })
+        .then(_ => {
+          commit('setIsSuccess', true);
+        })
+        .catch(({response}) => {
+            console.error(response.data);
+            commit('setIsError', true);
+            if(response.data == 'Invalid Token') {
+              commit('setErrorMsg', `${response.data}. kindly re-login`);
+              setTimeout (_ => router.push('/signin'), 500);
+              return;
+            }
+            if(response.data=='image must be a valid jpg or png image') return commit('setErrorMsg', response.data);
+            if(response.data=='image must not be more than 2mb') return commit('setErrorMsg', response.data)
+            if(response.data[0]) {
+              if(response.data[0].error.code=='ENOTFOUND' && response.data[0].error.syscall=='getaddrinfo') {
+                  return commit('setErrorMsg', 'please check your internet connection');
+                }
+            }   
+         })
+      },
+
+       //update user Profile (Signature)
+       async updateUserProfile2 ({commit, state}, {signature}) {
+        await axios({
+          method:'put',
+          url:`${state.api_url}/users/me`,
+          data : {
+             signature
+          },
+          headers : {
+            'x-auth-token':state.token
+          }
+        })
+        .then( _  => {
+          commit('setIsSuccess', true);
+        })
+        .catch(({response}) => {
+         console.error(response.data);
+         commit('setIsError', true);
+         if(response.data == 'Invalid Token') {
+           commit('setErrorMsg', `${response.data}. kindly re-login`);
+           setTimeout (_ => router.push('/signin'), 500);
+           return;
+         }
+         if(response.data=='image must be a valid jpg or png image') return commit('setErrorMsg', response.data);
+         if(response.data=='image must not be more than 2mb') return commit('setErrorMsg', response.data)
+         if(response.data[0]) {
+            if(response.data[0].error.code=='ENOTFOUND' && response.data[0].error.syscall=='getaddrinfo') {
+                return commit('setErrorMsg', 'please check your internet connection');
+              }
+         }
+          
+        })
+      },
+
+
        //send password reset Link
        async sendResetLink ({commit, state}, email) {
           await axios({
@@ -290,7 +435,7 @@ export default new Vuex.Store({
      async getAllUsers ({commit, state}) {
         await axios({
           method:"get",
-          url:`http://localhost:3000/api/users/`
+          url:`${state.api_url}/users/`
         })
         .then(({data})=> {
           commit('setUsers', data)
@@ -302,7 +447,7 @@ export default new Vuex.Store({
        //postLoan
       async postLoan ({commit, state, rootState}) {
 
-      //guarantors
+      //guarantors schema
       let guarantors = [
         {
           title: rootState.loan.title,
@@ -310,21 +455,12 @@ export default new Vuex.Store({
           lastName: rootState.loan.lastname,
           phoneNumber:rootState.loan.phone,
           email:rootState.loan.email,
-          address:rootState.loan.address
+          address:rootState.loan.address,
+          idCard:rootState.loan.id,
+          signature:rootState.loan.signature
         }
       ];
 
-      //check if second guarantors is supplied and add to the guarantors array if supplied
-      if(rootState.loan.title1 !== "" && rootState.loan.address2 !== "" &&rootState.loan.firstName1 !== "" && rootState.loan.lastName1 !== "" && rootState.loan.phone1 !== "" && rootState.loan.email1 !== ""  ) {
-        guarantors.push({
-          title: rootState.loan.title1,
-          firstName: rootState.loan.firstname1,
-          lastName: rootState.loan.lastname1,
-          phoneNumber:rootState.loan.phone1,
-          email:rootState.loan.email1,
-          address:rootState.loan.address2
-        })
-      }
       //  `${state.api_url}/loans`
         await axios({
           method: "post",
@@ -337,10 +473,18 @@ export default new Vuex.Store({
             employmentType: rootState.loan.employmentType,
             companyName:rootState.loan.companyName,
             loanPurpose:rootState.loan.loanPurpose,
-            id:rootState.loan.loanId,
             otherComments:rootState.loan.otherComments,
-            signature:rootState.loan.loanSign,
-            guarantors
+            guarantors,
+            personalDetails : {
+              idCard:rootState.loan.loanId,
+              signature:rootState.loan.loanSign,
+              address:rootState.loan.address,
+              busstop:rootState.loan.busstop,
+              state:rootState.loan.statee,
+              yearsInAddress:rootState.loan.yearsInAddress,
+              meansOfId:rootState.loan.meansOfId,
+              otherId:rootState.loan.otherId
+            }
           },
           headers : {
             'x-auth-token': state.token
@@ -348,19 +492,26 @@ export default new Vuex.Store({
         })
         .then(({data})=>{
           console.log(data);
-          commit('setLoading', false)
           router.push('/profile/loan/loandetails/success');
   
         })
         .catch(({response}) => {
-          commit('setLoading', false)
+          console.error(response.data);
+          commit('setIsError', true)
           if (response.data=='Invalid Token') {
-            alert('Session Expired. kindly Re-Login');
-            router.push('/signin');
+            commit('setErrorMsg', `${response.data}. kindly re-login`);
+            setTimeout (_ => router.push('/signin'), 500);
             return;
           }
-          console.error(response.data);
-          
+          if(response.data=='image must be a valid jpg or png image') return commit('setErrorMsg', response.data);
+          if(response.data=='image must not be more than 2mb') return commit('setErrorMsg', response.data)
+          if (response.data[0]) {
+            if(response.data[0].error.code=='ENOTFOUND' && response.data[0].error.syscall=='getaddrinfo') {
+              commit('setIsError', true);
+              commit('setErrorMsg', `please check your internet connection`);
+              // setTimeout(()=>commit('setIsError', false), 2000)
+            }
+          }
         }) 
 
        },
@@ -369,7 +520,7 @@ export default new Vuex.Store({
      //  `${state.api_url}/loans/${state.loanId}`
     async getLoanDetailsOne ({commit, state}) {
         await axios({
-          url :  `${state.api_url}/loans/${state.loanId}`,
+          url :  `${state.api_url}/entities/loans/${state.loanId}`,
           method :'get'
         })
         .then(({data}) => {
@@ -387,18 +538,23 @@ export default new Vuex.Store({
           lastName: rootState.loan.lastname,
           phoneNumber:rootState.loan.phone,
           email:rootState.loan.email,
-          address:rootState.loan.address
+          address:rootState.loan.address,
+          idCard:rootState.loan.id,
+          signatureG:rootState.loan.signature
         }
       ];
       //check if second guarantors is supplied and add to the guarantors array if supplied
-      if(rootState.loan.title1 !== "" && rootState.loan.address2 !== "" &&rootState.loan.firstName1 !== "" && rootState.loan.lastName1 !== "" && rootState.loan.phone1 !== "" && rootState.loan.email1 !== ""  ) {
+      if(rootState.loan.title1 !== "" && rootState.loan.address2 !== "" &&rootState.loan.firstName1 !== "" && rootState.loan.lastName1 !== "" && rootState.loan.phone1 !== "" && rootState.loan.email1 !== "" && rootState.loan.id1!=="" && rootState.loan.signature1!==""  ) {
         guarantors.push({
           title: rootState.loan.title1,
           firstName: rootState.loan.firstname1,
           lastName: rootState.loan.lastname1,
           phoneNumber:rootState.loan.phone1,
           email:rootState.loan.email1,
-          address:rootState.loan.address2
+          address:rootState.loan.address2,
+          idCard:rootState.loan.id1,
+          signatureG:rootState.loan.signature1
+          
         })
       }
      //${state.api_url}/finance
@@ -443,6 +599,10 @@ export default new Vuex.Store({
           router.push('/signin');
           return;
         }
+        if(err.response.data[0].error.code=='ENOTFOUND' && err.response.data[0].error.syscall=='getaddrinfo') {
+          commit('setIsError', true);
+          setTimeout(()=>commit('setIsError', false), 2000)
+        }
         console.error(err.response.data);
         
       })
@@ -478,28 +638,44 @@ export default new Vuex.Store({
           itemPurchaseLocation:rootState.pawnshop.purchaseLocation,
           itemReleaseYear:rootState.pawnshop.releaseYear,
           swornAffidavit:rootState.pawnshop.isSworn,
-          signature:rootState.pawnshop.pawnSign
+          personalDetails : {
+            idCard:rootState.loan.loanId,
+            signature:rootState.loan.loanSign,
+            address:rootState.loan.address,
+            busstop:rootState.loan.busstop,
+            state:rootState.loan.statee,
+            yearsInAddress:rootState.loan.yearsInAddress,
+            meansOfId:rootState.loan.meansOfId,
+            otherId:rootState.loan.otherId
+          }
       },
       headers : {
         'x-auth-token': state.token
       }
     })
       .then(({data})=>{
-        console.log(data);
+        //console.log(data);
+       /// commit('setIsSuccess', true)
         router.push("/profile/pawnshop/pawndetails/success");
-        commit('setLoading', false)
       })
-      .catch (err=>{
-
-        commit('setLoading', false)
-        if (err.response.data=='Invalid Token') {
-          alert('Session Expired. kindly Re-Login');
-          router.push('/signin');
+      .catch(({response}) => {
+        console.error(response.data);
+        commit('setIsError', true)
+        if (response.data=='Invalid Token') {
+          commit('setErrorMsg', `${response.data}. kindly re-login`);
+          setTimeout (_ => router.push('/signin'), 500);
           return;
         }
-        console.error(err.response.data);
-       
-      })
+        if(response.data=='image must be a valid jpg or png image') return commit('setErrorMsg', response.data);
+        if(response.data=='image must not be more than 2mb') return commit('setErrorMsg', response.data)
+        if (response.data[0]) {
+          if(response.data[0].error.code=='ENOTFOUND' && response.data[0].error.syscall=='getaddrinfo') {
+            commit('setIsError', true);
+            commit('setErrorMsg', `please check your internet connection`);
+            // setTimeout(()=>commit('setIsError', false), 2000)
+          }
+        }
+      }) 
     },
 
      //post Investment
@@ -536,16 +712,21 @@ export default new Vuex.Store({
       .then(({data})=>{
         console.log(data);
         router.push("/profile/investment/investdetails/success");
-        commit('setLoading', false)
       })
       .catch (err=>{
-        commit('setLoading', false)
+        console.error(err.response.data);
         if (err.response.data=='Invalid Token') {
           alert('Session Expired. kindly Re-Login');
           router.push('/signin');
           return;
         }
-        console.error(err.response.data);
+       if(err.response.data[0]) {
+        if(err.response.data[0].error.code=='ENOTFOUND' && err.response.data[0].error.syscall=='getaddrinfo') {
+          commit('setIsError', true);
+          setTimeout(()=>commit('setIsError', false), 2000)
+        }
+       }
+       
         
       })
     },
@@ -730,7 +911,7 @@ export default new Vuex.Store({
          async getAllEntitiesAll ({commit, state}) {
           await axios({
             method:'get',
-            url:`http://localhost:3000/api/entities`
+            url:`${state.api_url}/entities`
           })
           .then(({data}) => {
             commit('setUserEntitiesAll', data)

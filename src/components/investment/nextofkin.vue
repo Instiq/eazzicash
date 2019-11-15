@@ -2,66 +2,98 @@
   <div>
       
           <div class="main-container">
-                 <form  @submit.prevent="validateBeforeSubmit"> 
+               <ValidationObserver v-slot="{ passes }">
+                  <form  @submit.prevent="passes(next_page)"> 
                      <span class="h5 mb-5 d-lg-none d-block ">Next of Kin Details</span>
                      <div class="form-row first mt-lg-0 mt-5">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Name <span class="text-danger">*</span></label>
-                                    <input type="text" v-model="nokName" class="form-control"  placeholder="" v-validate="'required|max:50'"  name="Next of kin Name"  >
-                                    <div class="mt-3" >
-                                    <i v-show="errors.has('Next of kin Name')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Next of kin Name')">{{ errors.first('Next of kin Name') }}</span>
-                                </div>
+                                <ValidationProvider name="Next of kin Name" rules="required" v-slot="{ errors }">
+                                     <label for="validationCustomUsername">Name <span class="text-danger">*</span></label>
+                                     <input type="text" v-model="nokName" class="form-control"  placeholder=""  name="Next of kin Name"  >
+                                     <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
                              </div>
 
                              <div class="col-md-2"></div>
 
                               <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Relationship <span class="text-danger">*</span></label>
-                                    <input type="text" v-model="nokRelationship" class="form-control"  placeholder="" v-validate="'required'"  name="Relationship with Next of kin"  >
-                                    <div class="mt-3" >
-                                    <i v-show="errors.has('Relationship with Next of kin')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Relationship with Next of kin')">{{ errors.first('Relationship with Next of kin') }}</span>
-                                </div>
+                                   <ValidationProvider name="Relationship with Next of kin" rules="required" v-slot="{ errors }">
+                                      <label for="validationCustomUsername">Relationship <span class="text-danger">*</span></label>
+                                      <input type="text" v-model="nokRelationship" class="form-control"  placeholder=""  name="Relationship with Next of kin"  >
+                                      <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                  </ValidationProvider>                               
                              </div>
                      </div>
 
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Address <span class="text-danger">*</span></label>
-                                    <input type="text" v-model="nokAddress" class="form-control"  placeholder="" v-validate="'required'"  name="Next of kin Address"  >
-                                    <div class="mt-3" >
-                                    <i v-show="errors.has('Next of kin Address')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Next of kin Address')">{{ errors.first('Next of kin Address') }}</span>
-                                </div>
+                                  <ValidationProvider name="Next of kin Address" rules="required" v-slot="{ errors }">
+                                      <label for="validationCustomUsername">Address <span class="text-danger">*</span></label>
+                                      <input type="text" v-model="nokAddress" class="form-control"  placeholder=""   name="Next of kin Address"  >
+                                      <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                  </ValidationProvider>  
                              </div>
 
                              <div class="col-md-2"></div>
 
                               <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">State <span class="text-danger">*</span></label>
-                                    <input type="text" v-model="nokState" class="form-control"  placeholder="" v-validate="'required'"  name="State"  >
-                                    <div class="mt-3" >
-                                    <i v-show="errors.has('State')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('State')">{{ errors.first('State') }}</span>
-                                </div>
+                                   <ValidationProvider name="state" rules="required" v-slot="{ errors }">
+                                            <label for="validationCustomUsername">State <span class="text-danger">*</span></label>
+                                            <select name="state" :selected='state' v-model="nokState"  id="state" class="browser-default custom-select">
+                                                <option value="" >Choose State</option>
+                                                <option value='Abia'>Abia</option>
+                                                <option value='Adamawa'>Adamawa</option>
+                                                <option value='AkwaIbom'>AkwaIbom</option>
+                                                <option value='Anambra'>Anambra</option>
+                                                <option value='Bauchi'>Bauchi</option>
+                                                <option value='Bayelsa'>Bayelsa</option>
+                                                <option value='Benue'>Benue</option>
+                                                <option value='Borno'>Borno</option>
+                                                <option value='Cross River'>Cross River</option>
+                                                <option value='Delta'>Delta</option>
+                                                <option value='Ebonyi'>Ebonyi</option>
+                                                <option value='Edo'>Edo</option>
+                                                <option value='Ekiti'>Ekiti</option>
+                                                <option value='Enugu'>Enugu</option>
+                                                <option value='FCT'>FCT</option>
+                                                <option value='Gombe'>Gombe</option>
+                                                <option value='Imo'>Imo</option>
+                                                <option value='Jigawa'>Jigawa</option>
+                                                <option value='Kaduna'>Kaduna</option>
+                                                <option value='Kano'>Kano</option>
+                                                <option value='Katsina'>Katsina</option>
+                                                <option value='Kebbi'>Kebbi</option>
+                                                <option value='Kogi'>Kogi</option>
+                                                <option value='Kwara'>Kwara</option>
+                                                <option value='Lagos'>Lagos</option>
+                                                <option value='Nasarawa'>Nasarawa</option>
+                                                <option value='Niger'>Niger</option>
+                                                <option value='Ogun'>Ogun</option>
+                                                <option value='Ondo'>Ondo</option>
+                                                <option value='Osun'>Osun</option>
+                                                <option value='Oyo'>Oyo</option>
+                                                <option value='Plateau'>Plateau</option>
+                                                <option value='Rivers'>Rivers</option>
+                                                <option value='Sokoto'>Sokoto</option>
+                                                <option value='Taraba'>Taraba</option>
+                                                <option value='Yobe'>Yobe</option>
+                                                <option value='Zamfara'>Zamafara</option>
+                                            </select>
+                                            <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                        </ValidationProvider>
                              </div>
                      </div>
 
                      <div class="form-row">
                           <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Phone Number <span class="text-danger">*</span></label>
-                                    <input type="text" v-model="nokPhone" class="form-control"  placeholder="" v-validate="'required|min:11|max:11|numeric'"  name="Phone Number"  >
-                                    <div class="mt-3" >
-                                    <i v-show="errors.has('Phone Number')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Phone Number')">{{ errors.first('Phone Number') }}</span>
-                                </div>
-                             </div>
+                               <ValidationProvider name="Phone Number" rules="required|min:11|max:11|numeric" v-slot="{ errors }">
+                                     <label for="validationCustomUsername">Phone Number <span class="text-danger">*</span></label>
+                                     <input type="text" v-model="nokPhone" class="form-control"  placeholder="" name="Phone Number"  >
+                                      <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>  
+                           </div>
                               
                      </div>
-
-
-                     
 
                      <div class="form-row">
                          <div class="col-md-5"></div>
@@ -71,9 +103,8 @@
                           </div>
                      </div>
 
-                 </form>
-               
-              
+                  </form>
+               </ValidationObserver>      
           </div>
      
   </div>
@@ -81,6 +112,7 @@
 
 <script>
 import {mdbInput, mdbBtn, mdbContainer,mdbRow, mdbCol, } from 'mdbvue';
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export default {
     name:'guarantor',
@@ -89,21 +121,19 @@ export default {
     mdbRow,
     mdbCol,
     mdbInput,
+    ValidationObserver, 
+    ValidationProvider
     },
     
     data () {
         return {
-          
+          state : ""
         }
     }, 
     methods: {
-    validateBeforeSubmit() {
-    this.$validator.validateAll().then((result) => {
-        if (result) {
+   next_page () {
         this.$router.push('/profile/investment/investdetails/signature')
-        }
-    })
-    }    
+   }
   },
 
   computed : {

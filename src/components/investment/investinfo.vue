@@ -2,50 +2,53 @@
   <div>
       
           <div class="main-container">
-                 <form  @submit.prevent="validateBeforeSubmit"> 
+              <ValidationObserver v-slot="{ passes }">
+                 <form  @submit.prevent="passes(next_page)"> 
                       <span class="h5 mb-5 d-lg-none d-block ">Investment Details</span>
                      <div class="form-row first">
                              <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Investment Amount <span class="text-danger">*</span></label>
-                                <div class="input-group mt-n1">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
-                                    </div>
-                                    <input type="text" v-model.number="investPrincipal" class="form-control"  placeholder="Enter Amount" v-validate="'required|min_value:100000'"  name="Investment Amount"  >
-                                    <div class="mt-3" >
-                                    <i v-show="errors.has('Investment Amount')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Investment Amount')">{{ errors.first('Investment Amount') }}</span>
-                                    </div>
-                                </div>
+                                  <ValidationProvider name="investPrincipal" rules="required|min_value:100000" v-slot="{ errors }">
+                                        <label for="validationCustomUsername">Investment Amount <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                 <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
+                                            </div>
+                                           <input type="text" v-model.number="investPrincipal" class="form-control"  placeholder="Enter Amount"  name="Investment Amount"  >
+                                        </div>
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
                             </div>
 
                             <div class="col-md-2"></div>
 
                              <div class="col-md-5">
-                                <span class="m">Investment Tenor <span class="text-danger">*</span></span>
-                                <select class="browser-default custom-select" v-model="investTenor" required>
-                                <option value="1">1 month</option>
-                                <option value="3">3 months</option>
-                                <option value="6">6 months</option>
-                                <option value="12">12 months</option>
-                                </select>
+                                  <ValidationProvider name="tenor" rules="required" v-slot="{ errors }">
+                                    <span class="m">Investment Tenor <span class="text-danger">*</span></span>
+                                    <select class="browser-default custom-select" name="tenor" v-model="investTenor">
+                                    <option value="1">1 month</option>
+                                    <option value="3">3 months</option>
+                                    <option value="6">6 months</option>
+                                    <option value="12">12 months</option>
+                                    </select>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                 </ValidationProvider> 
+                              
                             </div>
                      </div>
 
 
                      <div class="form-row second">
                         <div class="col-md-5 mt-4"> 
-                             <span class="m">Source of Income <span class="text-danger">*</span></span>
-                                <select class="browser-default custom-select" v-model="incomeSource" v-validate="'required|included:Salary,Gift,Business,Inheritance'" name="Source of income">
+                            <ValidationProvider name="Source of Income" rules="required" v-slot="{ errors }">
+                                <span class="m">Source of Income <span class="text-danger">*</span></span>
+                                <select class="browser-default custom-select" v-model="incomeSource"  name="Source of income">
                                 <option value="Salary">Salary</option>
                                 <option value="Gift">Gift</option>
                                 <option value="Business">Business proceeds</option>
                                 <option value="Inheritance">Inheritance</option>
                                 </select>
-                                 <div class="mt-3" >
-                                    <i v-show="errors.has('Source of income')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Source of income')">{{ errors.first('Source of income') }}</span>
-                                </div>
+                                <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                            </ValidationProvider>
                         </div>
 
                          <div class="col-md-2"></div>
@@ -64,12 +67,13 @@
                             <img style="max-width:100%; height:auto" class="img-fluid" :src="paymentEvidence"  alt=''>
                          </div>
                         <div class="mr-2 mt-2 mt-md-5">
-                            <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" @change="onFileChange"  name="Payment Evidence" v-validate="'required'" id="validatedCustomFile" >
-                            <label class="" for="validatedCustomFile"></label>
-                            <div class="mt-2" >
-                            <i v-show="errors.has('Payment Evidence')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('Payment Evidence')">{{ errors.first('Payment Evidence') }}</span>
-                            </div>
+                             <ValidationProvider name="payment Evidence" rules="required|image"  v-slot="{validate, errors }">
+                                 <label class="btn ml-n1 btn-info btn-file">
+                                    Choose File <input @change="onFileChange($event); validate($event)" type="file" name="Payment Evidence"  style="display: none;"> 
+                                  </label> <br>
+                                  
+                                <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                            </ValidationProvider>
                         </div>
                         </div>
 
@@ -81,12 +85,13 @@
                             <img style="max-width:100%; height:auto" class="img-fluid" :src="investId"  alt=''>
                          </div>
                         <div class="mr-2 mt-2 mt-md-5">
-                            <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" @change="onFileChange2"  name="ID" v-validate="'required'" id="validatedCustomFile" >
-                            <label class='' for="validatedCustomFile"></label>
-                            <div class="mt-2" >
-                            <i v-show="errors.has('ID')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('ID')">{{ errors.first('ID') }}</span>
-                            </div>
+                             <ValidationProvider name="idCard" rules="required|image"  v-slot="{validate, errors }">
+                                 <label class="btn ml-n1 btn-info btn-file">
+                                    Choose File <input @change="onFileChange2($event); validate($event)" type="file" name="idCard"  style="display: none;"> 
+                                  </label> <br>
+                                  
+                                <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                            </ValidationProvider>
                         </div>
                         </div>
                      </div>
@@ -101,15 +106,15 @@
                      </div>
 
                  </form>
-               
-              
-          </div>
+            </ValidationObserver>
+         </div>
      
   </div>
 </template>
 
 <script>
 import{mdbNavbar,mdbInput, mdbBtn, mdbNumericInput, mdbJumbotron, mdbContainer,mdbRow, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue';
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export default {
     name:'guarantor',
@@ -125,7 +130,9 @@ export default {
     mdbCol,
     mdbJumbotron,
     mdbInput,
-    mdbNumericInput
+    mdbNumericInput,
+    ValidationObserver, 
+    ValidationProvider
     },
     
     data () {
@@ -134,14 +141,9 @@ export default {
         }
     }, 
     methods: {
-    validateBeforeSubmit() {
-        this.$validator.validateAll().then((result) => {
-            if (result) {
-            this.$router.push('/profile/investment/investdetails/settlement')
-            }
-        })
+    next_page () {
+        this.$router.push('/profile/investment/investdetails/settlement')
     },
-    
     onFileChange(e) {
         let files = e.target.files || e.dataTransfer.files;
         if (!files.length) return;

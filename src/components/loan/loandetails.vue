@@ -10,10 +10,11 @@
                        </div>
                    </router-link>
                    <div class="loan-navigation container row small-screen-nav">
-                       <router-link class="col-md-3 ml-n2 text-dark p-0 loan-nav " to='#'><div class="nav-items text-center small-screen-nav"  style=" width:100px;" :class="{ active: isActive1 }" >Loan Details</div></router-link>
+                       <router-link class="col-md-3 text-dark  loan-nav" to="#"> <div class="nav-items  text-center signature small-screen-nav "  style=" width:120px; margin-left:-2vw"  :class="{ active: isActive4 }" >Personal Details</div></router-link>        
+                       <router-link class="col-md-3 m text-dark p-0 loan-nav " to='#'><div class="nav-items text-center small-screen-nav"  style=" width:100px; " :class="{ active: isActive1 }" >Loan Details</div></router-link>
                        <router-link class="col-md-3 text-dark p-0 loan-nav" to="#"><div class=" nav-items  small-screen-nav ml-n1 ml-xl-1 text-center" style=" width:140px;" :class="{ active: isActive2 }">Work Information</div></router-link>
                        <router-link class="col-md-3 text-dark  loan-nav"  to="#" ><div class="nav-items text-center nok text-center small-screen-nav " style=" width:135px;"  :class="{ active: isActive3 }" >Guarantor Details</div></router-link>
-                       <router-link class="col-md-3 text-dark  loan-nav" to="#"> <div class="nav-items  text-center signature small-screen-nav "  style=" width:80px;"  :class="{ active: isActive4 }" >Signature</div></router-link>        
+                       <!-- <router-link class="col-md-3 text-dark  loan-nav" to="#"> <div class="nav-items  text-center signature small-screen-nav "  style=" width:80px;"  :class="{ active: isActive4 }" >Signature</div></router-link>         -->
                    </div>
 
                    <div class="containe">
@@ -101,7 +102,7 @@ export default {
     /* margin:0px 5vw */
  }
  .jumbotron-head {
-     height: 10vh;
+     height: auto;
      margin-top:-10vh;
      background:rgb(208, 216, 224);
 
@@ -215,7 +216,7 @@ export default {
     max-width:120vw
  }
 .small-screen-jumbo {
-    width:84vw !important;
+    width:auto !important;
     height:auto !important
 } 
  .apply-btn {
@@ -224,7 +225,7 @@ export default {
      top:46vh;  
 }
 .jumbotron-head {
-     height: 15vh;
+     height: auto;
      margin-top:-10vh;
      background:rgb(208, 216, 224);
      padding-top : 60px !important

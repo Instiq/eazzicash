@@ -2,51 +2,86 @@
   <div>
       
           <div class="main-container">
-              <form  @submit.prevent="validateBeforeSubmit"> 
-                   <span class="h5 mb-5 d-lg-none d-block ">Work Information</span>
-                  <div class="form-row">
-                       <div class="col-md-5 mb-3">
-                            <span class="m">Employment Type <span class="text-danger">*</span></span>
-                            <select class="browser-default custom-select" v-model="employmentType" v-validate="'required|included:Self-Employed,Private-Sector,Public-Sector'" name="Employment-Type">
-                            <option value="Self-Employed">Self Employed</option>
-                            <option value="Private-Sector">Private Sector</option>
-                            <option value="Public-Sector">Public Sector</option>
-                            </select>
-                           <div class="mt-3" >
-                                <i v-show="errors.has('Employment-Type')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('Employment-Type')">{{ errors.first('Employment-Type') }}</span>
+               <ValidationObserver v-slot="{ passes }">
+                    <form @submit.prevent="passes(next_page)"> 
+                        <span class="h5 mb-5 d-lg-none d-block ">Work Information</span>
+                        <div class="form-row">
+                            <div class="col-md-5 mb-3">
+                                 <ValidationProvider name="Employment Type" rules="required" v-slot="{ errors }">
+                                        <span class="m">Employment Type <span class="text-danger">*</span></span>
+                                        <select class="browser-default custom-select" v-model="employmentType" name="Employment Type">
+                                            <option value="Self-Employed">Self Employed</option>
+                                            <option value="Private-Sector">Private Sector</option>
+                                            <option value="Public-Sector">Public Sector</option>
+                                        </select>
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>        
                             </div>
-                        </div>  
-                  </div>
-
-                  <div class="form-row">
-                        <div class="col-md-5 mb-3">
-                            <label for="validationCompanyName">Company Name <span class="text-danger">*</span></label>
-                            <input type="text"  v-model="companyName" class="form-control" v-validate="'required'" name="Company-name" id="validationCompanyName" placeholder=""  >
-                            <div class="mt-3" >
-                                <i v-show="errors.has('Company-name')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('Company-name')">{{ errors.first('Company-name') }}</span>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5 mb-3">
+                                    <ValidationProvider name="Company name" rules="required" v-slot="{ errors }">
+                                        <label for="validationCompanyName">Company Name <span class="text-danger">*</span></label>
+                                        <input type="text"  v-model="companyName" class="form-control" name="Company name" id="validationCompanyName" placeholder=""  >
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                   </ValidationProvider> 
                             </div>
+                        </div>    
+
+                        <div class="form-row">
+                                <div class="col-md-5 mb-3">
+                                    <ValidationProvider name="Company Address" rules="required" v-slot="{ errors }">
+                                        <label for="validationCompanyAddress">Company Address <span class="text-danger">*</span></label>
+                                        <input type="text"  v-model="companyAddress" class="form-control" name="Company Address" id="validationCompanyName" placeholder=""  >
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                   </ValidationProvider> 
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5 mb-3">
+                                    <ValidationProvider name="Official Address" rules="required|email" v-slot="{ errors }">
+                                        <label for="validationCompanyOfficial">Official Email Address <span class="text-danger">*</span></label>
+                                        <input type="email"  v-model="officialEmail" class="form-control" name="Official Address" id="validationCompanyName" placeholder=""  >
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                   </ValidationProvider> 
+                                </div>
                         </div>
-                  </div>
 
-                  <div class="form-row">
-                       <div class="col-md-5">
-                            <label for="exampleFormControlTextarea1">Other comments (optional)</label>
-                            <textarea style="background:whitesmoke" v-model="otherComments" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
+                         <div class="form-row">
+                                <div class="col-md-5 mb-3">
+                                    <ValidationProvider name="Phone Number" rules="required|numeric|min:11|max:15" v-slot="{ errors }">
+                                        <label for="validationCompanyPhone">Phone Number <span class="text-danger">*</span></label>
+                                        <input type="number"  v-model="phoneNumber" class="form-control" name="Phone Number" id="validationCompanyName" placeholder=""  >
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                   </ValidationProvider> 
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5">
+                                    <label for="exampleFormControlTextarea1">Other comments (optional)</label>
+                                    <textarea style="background:whitesmoke" v-model="otherComments" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
                         </div>
-                  </div>
-
-
-                  <div class="form-row">
-                      <div class="col-md-5"></div>
-                      <div class="col-md-2"></div>
-                      <div class="col-md-5">
-                            <mdb-btn type="submit" class="float-right btn-green mt-5" style="font-size:15px; border-radius:5px"> Next</mdb-btn>
-                          </div>
-                  </div>
-
-              </form>    
+                        <div class="row d-flex justify-content-between row2 borde">
+                                <!-- <div class="col-6 border"> -->
+                                    <div class="div3">
+                                        <div class="input-group ml-3 mt-2 mt-md-5">
+                                            <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                                     <!-- <input type="text"  @click="prev_page" class="btn btn-green" value="prev"> -->
+                                                     <button  @click="prev_page" class="btn btn-green">prev</button>
+                                            </ValidationProvider> 
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                                 <!-- <div class="col-6 border"> -->
+                                    <div class="div3">
+                                        <div class="input-group mt-2 mr-3 ml-3 mt-md-5" style="margin:right">
+                                            <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                                     <input type="submit" class="btn btn-green" value="next">
+                                            </ValidationProvider> 
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                           </div>
+                    </form>   
+               </ValidationObserver>   
               
           </div>
      
@@ -55,6 +90,7 @@
 
 <script>
 import{mdbNavbar,mdbInput,mdbBtn, mdbNumericInput, mdbJumbotron, mdbContainer,mdbRow, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue';
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export default {
     name:'guarantor',
@@ -70,16 +106,17 @@ export default {
     mdbCol,
     mdbJumbotron,
     mdbInput,
-    mdbNumericInput
+    mdbNumericInput,
+    ValidationObserver,
+    ValidationProvider 
     },
     methods: {
-     validateBeforeSubmit() {
-        this.$validator.validateAll().then((result) => {
-            if (result) {
-            this.$router.push('/profile/loan/loandetails/guarantor')
-            }
-        })
-    }    
+      next_page () {
+          this.$router.push('/profile/loan/loandetails/guarantor')
+      },
+      prev_page () {
+        this.$router.go(-1)
+    },
   },
 
   computed : {
@@ -97,6 +134,30 @@ export default {
           },
           set(value) {
               this.$store.dispatch('updateCompanyName', value)
+          }
+      },
+     companyAddress : {
+          get () {
+             return this.$store.getters.companyAddress
+          },
+          set(value) {
+              this.$store.dispatch('updateCompanyAddress', value)
+          }
+      },
+    officialEmail : {
+          get () {
+             return this.$store.getters.officialEmail
+          },
+          set(value) {
+              this.$store.dispatch('updateOfficialEmail', value)
+          }
+      },
+    phoneNumber : {
+          get () {
+             return this.$store.getters.phoneNumber
+          },
+          set(value) {
+              this.$store.dispatch('updatePhoneNumber', value)
           }
       },
       otherComments : {

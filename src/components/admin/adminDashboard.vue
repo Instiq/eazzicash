@@ -16,7 +16,7 @@
                                       </mdb-card-title>
                                      
                                       <mdb-card-text>
-                                         <span class="mt h5" v-if="loanEntities" style="font-weight:bold">{{loanEntities}} requests</span> 
+                                         <span class="mt h5" v-if="loanEntities" style="font-weight:bold">{{loanEntities.length}} <span v-if="loanEntities.length==1">request </span><span v-if="loanEntities.length>1"> requests </span> </span> 
                                          <span class="mt h5" v-else  style="font-weight:bold">0.00</span> 
                                       </mdb-card-text>
                                      
@@ -33,7 +33,7 @@
                                          
                                       </mdb-card-title>
                                       <mdb-card-text>
-                                         <span class="mt-5 h5" v-if="investmentEntities" style="font-weight:bold">{{investmentEntities}} requests</span> 
+                                         <span class="mt-5 h5" v-if="investmentEntities" style="font-weight:bold">{{investmentEntities.length}}  <span v-if="investmentEntities.length==1">request </span><span v-if="investmentEntities.length>1"> requests </span></span> 
                                          <span v-else class="mt-5 h5">0.00</span>
                                       </mdb-card-text>
                                       </mdb-card-body>
@@ -49,7 +49,7 @@
                                         
                                       </mdb-card-title>
                                       <mdb-card-text>
-                                         <span class="mt-5 h5"  v-if="financeEntities" style="font-weight:bold">{{financeEntities}} requests</span> 
+                                         <span class="mt-5 h5"  v-if="financeEntities" style="font-weight:bold">{{financeEntities.length}}  <span v-if="financeEntities.length==1">request </span><span v-if="financeEntities.length>1"> requests </span></span> 
                                          <span v-else class="mt-5 h5">0.00</span>
                                       </mdb-card-text>
                                       </mdb-card-body>
@@ -66,7 +66,7 @@
                                       </mdb-card-title>
                                     
                                       <mdb-card-text>
-                                         <span class="h5 mt-5" v-if="pawnEntities" style="font-weight:bold">{{pawnEntities}} requests</span>
+                                         <span class="h5 mt-5" v-if="pawnEntities" style="font-weight:bold">{{pawnEntities.length}}  <span v-if="pawnEntities.length==1">request </span><span v-if="pawnEntities.length>1"> requests </span></span>
                                          <span  class="h5 mt-5" v-else style="font-weight:bold">0.00</span>
                                       </mdb-card-text>
                                       
@@ -116,26 +116,25 @@ export default {
     
     computed : {
       loanEntities () {
-        let requests = this.$store.state.userEntitiesAll.loan;
-        let total = requests.length;
-        return total;
+        return this.$store.state.userEntitiesAll.loan;
       },
        pawnEntities () {
-        let requests = this.$store.state.userEntitiesAll.pawn;
-        let total = requests.length;
-        return total;
+        return this.$store.state.userEntitiesAll.pawn;
+       
       },
        investmentEntities () {
-        let requests = this.$store.state.userEntitiesAll.investment;
-        let total = requests.length;
-        return total;
+        return this.$store.state.userEntitiesAll.investment;
+       
       },
        financeEntities () {
-        let requests = this.$store.state.userEntitiesAll.finance;
-        let total = requests.length;
-        return total;
+        return this.$store.state.userEntitiesAll.finance;
+       
       }
-    }
+    },
+ 
+    mounted () {
+      this.$store.dispatch('getAllEntitiesAll');
+    }, 
 }
 </script>
 

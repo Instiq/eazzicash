@@ -92,7 +92,7 @@
                              </div>
 
                             <div class="input-group mr-2 mt-2 mt-md-5">
-                                <input type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate="'required'"   @change="onFileChange"  name="id" id="id">
+                                <input accept="image/*" type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate="'required'"   @change="onFileChange"  name="id" id="id">
                                 <label class="" for="id" aria-describedby="inputGroupFileAddon02"></label>
                                 
                             </div>
@@ -112,7 +112,7 @@
                              </div>
 
                             <div class="input-group mr-2 mt-2 mt-md-5">
-                                <input type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate="'required'"   @change="onFileChange1"  name="signature" id="signature">
+                                <input accept="image/*" type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate="'required'"   @change="onFileChange1"  name="signature" id="signature">
                                 <label class="" for="id" aria-describedby="inputGroupFileAddon02"></label>
                                 
                             </div>
@@ -222,7 +222,7 @@
                                 </div>
 
                                 <div class="input-group mr-2 mt-2 mt-md-5">
-                                    <input type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate=""   @change="onFileChange2"  name="id1" id="id1">
+                                    <input accept="image/*" type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate=""   @change="onFileChange2"  name="id1" id="id1">
                                     <label class="" for="id" aria-describedby="inputGroupFileAddon02"></label>
                                     
                                 </div>
@@ -242,7 +242,7 @@
                                 </div>
 
                                 <div class="input-group mr-2 mt-2 mt-md-5">
-                                    <input type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate=""   @change="onFileChange3"  name="signature1" id="signature1">
+                                    <input accept="image/*" type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id " v-validate=""   @change="onFileChange3"  name="signature1" id="signature1">
                                     <label class="" for="id" aria-describedby="inputGroupFileAddon02"></label>
                                     
                                 </div>

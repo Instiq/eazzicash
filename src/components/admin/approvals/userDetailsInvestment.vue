@@ -30,19 +30,19 @@
               <td class="col-sm-3 text-success"> {{userDetails.otherInformation}} </td>
             </tr>
             <tr class="row">
-              <td class="col-sm-3">ID Attachment</td>
-              <td class="col-sm-3">
+              <td class="col-sm-6">ID Attachment</td>
+              <td class="col-sm-6">
                 <form action="">
                   <div class="form-group" style= "width:auto; height:auto">
-                   <img class="img-fluid" :src="id" alt="id">
+                   <img class="img-fluid" :src="userDetails.id" alt="id">
                   </div>
                 </form>
               </td>
-               <td class="col-sm-3">Payment Evidence</td>
-              <td class="col-sm-3">
+               <td class="col-sm-6">Payment Evidence</td>
+              <td class="col-sm-6">
                 <form action="">
                   <div class="form-group" style= "width:auto; height:auto">
-                   <img class="img-fluid" :src="evidence" alt="id">
+                   <img class="img-fluid" :src="userDetails.paymentEvidence" alt="id">
                   </div>
                 </form>
               </td>
@@ -93,7 +93,7 @@
             <td class="col-sm-6">
              
                 <div class="form-group" style="height:auto; width:auto; border:2px solid whitesmoke">
-                    <img  class="img-fluid" :src="signature" alt="signature">
+                    <img  class="img-fluid" :src="userDetails.signature" alt="signature">
                 </div>
             </td>
           </tr>
@@ -216,15 +216,6 @@ export default {
      userDetails () {
         return this.$store.state.userDetails
      },
-     id () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.id}`
-     },
-     signature () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.signature}`
-     },
-     evidence () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.paymentEvidence}`
-     },
     investTenor : {
         get () {
             return this.$store.getters.investTenor
@@ -246,7 +237,10 @@ export default {
 
  mounted () {
      this.$store.commit('setInvestPrincipal', (this.userDetails.investmentAmount))
-      this.$store.commit('setInvestTenor', this.userDetails.investmentTenor)
+      this.$store.commit('setInvestTenor', this.userDetails.investmentTenor);
+       this.$store.dispatch('updateIsActive2')
+    
+      
 
  }
 }

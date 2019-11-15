@@ -40,7 +40,7 @@
               <td class="col-sm-6">
                 <form action="/action_page.php">
                   <div class="form-group" style= "width:auto; height:auto">
-                   <img class="img-fluid" :src="id" alt="id">
+                   <img class="img-fluid" :src="userDetails.id" alt="id">
                   </div>
                 </form>
               </td>
@@ -79,6 +79,16 @@
                                   <li>Name : {{userDetails.guarantors[index].firstName}} {{userDetails.guarantors[index].lastName}}</li>
                                   <li>Phone : {{userDetails.guarantors[index].phoneNumber}} </li>
                                   <li>Email :  {{userDetails.guarantors[index].email}}</li>
+                                  <li>idCard : 
+                                     <div class="form-group" style= "width:auto; height:auto">
+                                        <img class="img-fluid" :src="userDetails.guarantors[index].idCard" alt="id">
+                                     </div> 
+                                  </li>
+                                   <li>signature : 
+                                      <div class="form-group" style= "width:auto; height:auto">
+                                        <img class="img-fluid" :src="userDetails.guarantors[index].signatureG" alt="id">
+                                     </div>
+                                   </li>
                                 </ul>
                             </li>
                         </ul>
@@ -108,7 +118,7 @@
                 <td class="col-sm-6">Supporting Documents</td>
                 <td class="col-sm-6">
                     <div class="form-group" style="height:auto; width:auto; border:2px solid whitesmoke">
-                    <img  class="img-fluid" :src="supportingDocuments" alt="suporting documents">
+                    <img  class="img-fluid" :src="userDetails.collateral.supportingDocuments" alt="suporting documents">
                     </div>
                 </td>
             </tr>
@@ -116,7 +126,7 @@
                 <td class="col-sm-6">Other Documents</td>
                 <td class="col-sm-6">
                     <div class="form-group" style="height:auto; width:auto; border:2px solid whitesmoke">
-                    <img  class="img-fluid" :src="otherDocuments" alt="other documents">
+                    <img  class="img-fluid" :src="userDetails.collateral.otherDocuments" alt="other documents">
                     </div>
                 </td>
             </tr>
@@ -131,7 +141,7 @@
             <td class="col-sm-6">
              
                 <div class="form-group" style="height:auto; width:auto; border:2px solid whitesmoke">
-                    <img  class="img-fluid" :src="signature" alt="signature">
+                    <img  class="img-fluid" :src="userDetails.signature" alt="signature">
                 </div>
             </td>
           </tr>
@@ -263,18 +273,6 @@ export default {
      userDetails () {
         return this.$store.state.userDetails
      },
-     id () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.id}`
-     },
-     signature () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.signature}`
-     },
-     supportingDocuments () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.collateral.supportingDocuments}`
-     },
-      otherDocuments () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.collateral.otherDocuments}`
-     },
      tenor : {
           get () {
                 return this.$store.getters.tenor
@@ -295,7 +293,8 @@ export default {
 
  mounted () {
      this.$store.commit('setPrincipal', (this.userDetails.financeAmount))
-      this.$store.commit('setTenor', this.userDetails.financeTenor)
+      this.$store.commit('setTenor', this.userDetails.financeTenor);
+      this.$store.dispatch('updateIsActive3')
 
  }
 }

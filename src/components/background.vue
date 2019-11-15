@@ -22,7 +22,7 @@
                                                     <mdb-col class="col-md-1"></mdb-col>
                                                     <mdb-col class="col-md-6">
                                                         <mdb-card-body>
-                                                            <mdb-card-text class="text-white text-left" style="height:60px; width:200px">Bring your valued minimal items and use for exchange in cash. </mdb-card-text>
+                                                            <mdb-card-text class="text-white text-left" style="height:60px; width:200px">Pawn your valuable items for exchange to secure your loan.  </mdb-card-text>
                                                         </mdb-card-body>
                                                     </mdb-col>  
                                                 </mdb-row>   
@@ -44,7 +44,7 @@
                                                     <mdb-col class="col-md-1"></mdb-col>
                                                     <mdb-col class="col-md-6">
                                                         <mdb-card-body>
-                                                            <mdb-card-text class="text-white text-left" style="height:60px; width:200px">Get your business financed at a good financial rate and interest</mdb-card-text>
+                                                            <mdb-card-text class="text-white text-left" style="height:60px; width:200px">Get quick Financial support for your personal and business needs at competitive interest rate. </mdb-card-text>
                                                         </mdb-card-body>
                                                     </mdb-col>  
                                                 </mdb-row>   
@@ -64,7 +64,7 @@
                                                      <mdb-col class="col-md-1"></mdb-col>
                                                     <mdb-col class="col-md-6">
                                                         <mdb-card-body>
-                                                            <mdb-card-text class="text-white text-left" style="height:60px; width:200px">Get up to 3 million naira loan  instantly. Best interest offer is availaible for comfortable repayment</mdb-card-text>
+                                                            <mdb-card-text class="text-white text-left" style="height:60px; width:200px">Get the loan with the best interest rate and convenient repayment plan.</mdb-card-text>
                                                         </mdb-card-body>
                                                     </mdb-col>  
                                                 </mdb-row>   
@@ -111,7 +111,7 @@ export default {
 
 <style scoped>
 .image{
-    background: url('../assets/landingpage2.png') center ;
+    background: url('../assets/landing.png') center ;
     background-size:cover;
     height:100vh;
     background-repeat: no-repeat

@@ -18,9 +18,11 @@ import passwordResetLink from "./views/forgotPassword/passwordResetLink.vue";
 import changePassword from "./views/forgotPassword/changePassword.vue"
 import profile from "./views/profile.vue";
 import dashboard from "./components/dashboard.vue";
+import userProfile from "./views/userProfile.vue";
 //Loan routes
 import apply from "./components/loan/apply.vue";
 import loandetails from "./components/loan/loandetails.vue";
+import personalLoan from "./components/loan/personalLoan.vue";
 import loaninformation from "./components/loan/loaninformation.vue";
 import workinfo from "./components/loan/workinfo.vue";
 import guarantor from "./components/loan/guarantor.vue";
@@ -162,6 +164,11 @@ const router = new Router({
           component: dashboard
         },
         {
+          path: "/profile_",
+          name: "userProfile",
+          component: userProfile
+        },
+        {
           path: "/profile/loan/apply", // Loan routes
           name: "loan",
           component: apply
@@ -173,12 +180,17 @@ const router = new Router({
             {
               path: "/",
               name: "loan",
-              redirect: "/profile/loan/loandetails/loaninformation"
+              redirect: "/profile/loan/loandetails/personal"
             },
             {
               path: "/profile/loan/loandetails/loaninformation",
               name: "loan",
               component: loaninformation
+            },
+            {
+              path: "/profile/loan/loandetails/personal",
+              name: "loan",
+              component: personalLoan
             },
             {
               path: "/profile/loan/loandetails/workinfo",
@@ -190,11 +202,11 @@ const router = new Router({
               name: "loan",
               component: guarantor
             },
-            {
-              path: "/profile/loan/loandetails/signature",
-              name: "loan",
-              component: signature
-            },
+            // {
+            //   path: "/profile/loan/loandetails/signature",
+            //   name: "loan",
+            //   component: signature
+            // },
             {
               path: "/profile/loan/loandetails/success",
                name: "loan",
@@ -254,7 +266,12 @@ const router = new Router({
           children: [
             {
               path: "/",
-              redirect: "/profile/pawnshop/pawndetails/pawninfo"
+              redirect: "/profile/pawnshop/pawndetails/personal"
+            },
+            {
+              path: "/profile/pawnshop/pawndetails/personal",
+              name: "pawn",
+              component: personalLoan
             },
             {
               path: "/profile/pawnshop/pawndetails/pawninfo",
@@ -266,11 +283,11 @@ const router = new Router({
               name: "pawn",
               component: ownership
             },
-            {
-              path: "/profile/pawnshop/pawndetails/signature",
-              name: "pawn",
-              component: signatureP
-            },
+            // {
+            //   path: "/profile/pawnshop/pawndetails/signature",
+            //   name: "pawn",
+            //   component: signatureP
+            // },
             {
               path: "/profile/pawnshop/pawndetails/success",
               name: "pawn",

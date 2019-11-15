@@ -23,44 +23,45 @@
                                 </p>
 
                                 <p class="text-white h5 font-weight-light small-screen-text" style="width:40vw;">
-                                    You can now bring items such as mobile phones, Tv, cars e.t.c and receive money as exchange.
+                                    You can now pawn items such as mobile phones, Tv, cars e.t.c and receive money as exchange.
                                     The value of the item will determine the amount to be cashed out.
-                                </p>
-                                
+                                </p>  
                             </mdb-col>
 
                             <mdb-col class="col-md-4 col-10">
                                  <div class = 'card small-screen-card px-2 mt-n5'>
-                                    <form  @submit.prevent="validateBeforeSubmit">
+                                     <ValidationObserver v-slot="{ passes }">
+                                        <form  @submit.prevent="passes(userSignIn)">
 
-                                        <mdb-alert color="danger" v-if="isEmailorPasswordCorrect" class="mt-2" leaveAnimation="fadeOut"  @closeAlert="retfalse" dismiss> <i  class="fa fa-exclamation-triangle text-danger ml-2 mr-2"></i>Invalid email or password</mdb-alert>
-                                       
-                                        <mdb-card-body >
-                                                <section>
-                                                    <mdb-row>
-                                                        <mdb-col >
-                                                            <mdb-input type="text" name ='email' v-validate="'required|email'" v-model="email" label="Email" bg size="lg" />
-                                                               <div class="mt-3" >
-                                                                    <i v-show="errors.has('email')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                                                    <span class="text-warning" v-show="errors.has('email')">{{ errors.first('email') }}</span>
-                                                                </div>
-                                                            <mdb-input type="password" name ='password' v-validate="'required|min:6'" v-model="password" label="Password" bg size="lg" />
-                                                                <div class="mt-1" >
-                                                                    <i v-show="errors.has('password')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                                                    <span class="text-warning" v-show="errors.has('password')">{{ errors.first('password') }}</span>
-                                                                </div>
-                                                               <router-link to="/passwordResetLink"> <span class="float-right mt-1 mb-4" style="color:orange; cursor:pointer">Forgot password?</span></router-link>
-                                                        </mdb-col>
-                                                    </mdb-row>
-                                                </section>
+                                            <mdb-alert color="danger" v-if="isEmailorPasswordCorrect" class="mt-2" leaveAnimation="fadeOut"  @closeAlert="retfalse" dismiss> <i  class="fa fa-exclamation-triangle text-danger ml-2 mr-2"></i>Invalid email or password</mdb-alert>
+                                        
+                                            <mdb-card-body >
+                                                    <section>
+                                                        <mdb-row>
+                                                            <mdb-col >
+                                                                <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                                                                     <mdb-input type="text" name ='email' v-model="email" label="Email" bg size="lg" />
+                                                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                                                </ValidationProvider> 
 
-                                                <div class="text-center mb-4">
-                                                    <button  type='submit'  class="btn btn-block"><span class="login-size text-white"> Login <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span> </span></button>
-                                                </div>
+                                                                 <ValidationProvider name="password" rules="required|min:6" v-slot="{ errors }">
+                                                                      <mdb-input type="password" name ='password' v-model="password" label="Password" bg size="lg" />
+                                                                     <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                                                </ValidationProvider> 
+                                                               
+                                                                <router-link to="/passwordResetLink"> <span class="float-right mt-1 mb-4" style="color:orange; cursor:pointer">Forgot password?</span></router-link>
+                                                            </mdb-col>
+                                                        </mdb-row>
+                                                    </section>
 
-                                                <p class="text-center small-screen-txt" style="color:darkslateblue"> Don't have an account yet? <a href="/signup" style="color:limegreen; font-weight:bold"> SIGNUP</a> </p>
-                                        </mdb-card-body>
-                                    </form>    
+                                                    <div class="text-center mb-4">
+                                                        <button  type='submit'  class="btn btn-block"><span class="login-size text-white"> Login <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span> </span></button>
+                                                    </div>
+
+                                                    <p class="text-center small-screen-txt" style="color:darkslateblue"> Don't have an account yet? <a href="/signup" style="color:limegreen; font-weight:bold"> SIGNUP</a> </p>
+                                            </mdb-card-body>
+                                        </form>  
+                                     </ValidationObserver>  
                                 </div>  
                             </mdb-col>
                         </mdb-row>
@@ -73,6 +74,7 @@
 
 <script>
 import {mdbView, mdbMask, mdbRow, mdbCol, mdbIcon, mdbCard, mdbCardBody, mdbCardText, mdbNavbar, mdbNavbarBrand, mdbInput, mdbAlert} from 'mdbvue'
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 export default {
     name:'signin',
     components : {
@@ -87,12 +89,16 @@ export default {
         mdbNavbar,
         mdbNavbarBrand,
         mdbInput,
-        mdbAlert
+        mdbAlert,
+        ValidationObserver,
+        ValidationProvider 
     },
     data () {
         return {
             email:'',
-            password:''
+            password:'',
+            isLoading:false
+
         }
     },
 
@@ -107,27 +113,21 @@ export default {
 
     methods : {
         userSignIn () {
+            this.isLoading = true;
             this.$store.dispatch('userSignIn', {
                 email:this.email,
                 password:this.password
-            } )
+            })
+            .then(_ => this.isLoading = false)
+            .catch(_ => this.isLoading= false)
         },
         retfalse () {
             this.$store.commit('setIsEmailorPasswordCorrect', false)
         },
-        validateBeforeSubmit() {
-            this.$validator.validateAll().then((result) => {
-            if (result) {
-              this.$store.commit('setLoading', true)
-              this.userSignIn() 
-            }
-          })
-       },
     },
 
      created () {
            this.$store.commit('setIsEmailorPasswordCorrect', false);
-           this.$store.commit('setLoading', false)
        }
 }
 </script>
@@ -136,7 +136,7 @@ export default {
 <style scoped>
 
 .image{
-    background: url('../assets/naira3.png') center ;
+    background: url('../assets/money.png') center ;
     background-size:cover;
     height:100vh;
     background-repeat: no-repeat;

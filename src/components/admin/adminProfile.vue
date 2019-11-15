@@ -44,10 +44,10 @@
             <a href="javascript:void(0)" class="closebtn sidenav-items" @click="closeNav">&times;</a>
 
             <!-- profile items -->
-            <router-link to="/adminProfile/adminDashboard"> <img src="./adminIcons/Home.svg" height="15vh" style="" alt=""> <span class="sidenav-items" style="margin-left:16px">Dashboard</span></router-link>
-            <a href="/adminProfile/userManagement">   <i class="fas fa-user"></i><span class="sidenav-items" style="margin-left:18px">User Management</span></a>
-            <a href="/adminProfile/approvals"> <i class="fas fa-check"></i> <span class="sidenav-items" style="margin-left:15px"> Approvals</span></a>
-            <a href="#"> <img src="./adminIcons/Investments.svg" height="14vh" style="" alt=""> <span class="sidenav-items" style="margin-left:9px">Reports</span></a>
+            <router-link to="/adminProfile/adminDashboard" > <img src="./adminIcons/Home.svg" height="15vh" style="" alt=""> <span class="sidenav-items"  style="margin-left:16px">Dashboard</span></router-link>
+            <router-link to="/adminProfile/userManagement">   <i class="fas fa-user"></i><span class="sidenav-items" style="margin-left:18px">User Management</span></router-link>
+            <router-link to="/adminProfile/approvals"> <i class="fas fa-check"></i> <span class="sidenav-items" style="margin-left:15px"> Approvals</span></router-link>
+            <router-link to="#"> <img src="./adminIcons/Investments.svg" height="14vh" style="" alt=""> <span class="sidenav-items" style="margin-left:9px">Reports</span></router-link>
     
         </section>
 
@@ -107,7 +107,7 @@ export default {
 
         userSignOut () {
          this.$store.dispatch('userSignOut')
-        }
+        },
         
     },
     computed : {
@@ -117,7 +117,8 @@ export default {
     },
 
     mounted () {
-      this.openNav()
+      this.openNav();
+      this.$store.dispatch('getAllEntitiesAll')
      },
   
 }

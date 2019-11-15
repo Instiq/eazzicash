@@ -10,9 +10,10 @@
                        </div>
                    </router-link>
                    <div class="loan-navigation container row small-screen-nav">
+                       <router-link class="col-md-4  text-center text-dark ml-3 ml-lg-3  loan-nav"  to="#" ><div class="nav-items  small-screen-nav" style="border:2px solid blu; width:120px; margin-left:-3vw" :class="{ active: isActive3P }" >Personal Details</div></router-link>
                        <router-link class="col-md-4 text-center  text-dark p-0  loan-nav " to='#'><div class="nav-items small-screen-nav" style="border:2px solid blu; width:100px;" :class="{ active: isActive1P }"> Pawn Details</div></router-link>
                        <router-link class="col-md-4 text-center  text-dark ml-n4 ml-lg-n3 p-0 loan-nav"  to="#"><div class=" nav-items ml-4 ml-lg-5 small-screen-nav" style="border:2px solid blu; width:150px;"  :class="{ active: isActive2P }">Proof of Ownership</div></router-link>
-                       <router-link class="col-md-4  text-center text-dark ml-3 ml-lg-3  loan-nav"  to="#" ><div class="nav-items ml-md-5 signature small-screen-nav" style="border:2px solid blu; width:80px;" :class="{ active: isActive3P }" >Signature</div></router-link>
+                       <!-- <router-link class="col-md-4  text-center text-dark ml-3 ml-lg-3  loan-nav"  to="#" ><div class="nav-items ml-md-5 signature small-screen-nav" style="border:2px solid blu; width:80px;" :class="{ active: isActive3P }" >Signature</div></router-link> -->
                    </div>
 
                    <div class="">
@@ -164,10 +165,7 @@ export default {
 
 
 @media (min-width:1170px){
-    .signature {
-        margin-left: 100px !important
 
-    }
     .loan-nav {
      border : 2px solid blac;
      position: relative;
@@ -192,7 +190,7 @@ export default {
     max-width:120vw
  }
 .small-screen-jumbo {
-    width:84vw !important;
+    width:auto !important;
     height:auto !important
 } 
  .apply-btn {
@@ -201,8 +199,8 @@ export default {
      top:46vh;  
  }
   .jumbotron-head {
-     height: 15vh;
-     margin-top:-10vh;
+     height: auto;
+     /* margin-top:10vh; */
      background:rgb(208, 216, 224);
      padding-top : 60px !important
  }

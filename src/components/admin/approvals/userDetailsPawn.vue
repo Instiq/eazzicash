@@ -6,9 +6,9 @@
   <div class="row" style="margin-left:5%;margin-right:5%;">
     <div class="col">
       <p><a href="/adminProfile/approvals/pawn"><i style='font-size:24px' class='fas'>&#xf060;</i></a></p>
-      <p class="text-success font-weight-bold">Pawn Request Details</p>
       
-      <div class="container table-responsive">            
+       <p class="text-success font-weight-bold">Personal Details</p>
+       <div class="container table-responsive">            
         <table class="table table-striped table-bordered">
           <tbody>
              <tr class="row">
@@ -17,6 +17,50 @@
               <td class="col-sm-3">Customer Phone</td>
               <td class="col-sm-3 text-success"> {{userDetails.userDetails.phoneNumber}}</td>
             </tr>
+            <tr class="row">
+              <td class="col-sm-3">Address</td>
+              <td class="text-success col-sm-3"> {{userDetails.personalDetails.address}}</td>
+              <td class="col-sm-3">Years Lived in Address</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.yearsInAddress}}</td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Bus Stop</td>
+              <td class="text-success col-sm-3">{{userDetails.personalDetails.busstop}}</td>
+               <td class="col-sm-3">State</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.state}} </td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Means of Identification</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.meansOfId}} </td>
+              <td class="col-sm-2">ID Card</td>
+              <td class="col-sm-4">
+                  <form action="/action_page.php">
+                    <div class="form-group" style= "width:auto; height:auto">
+                    <a :href="userDetails.personalDetails.idCard" download><img class="img-fluid" :src="userDetails.personalDetails.idCard" alt="id"></a>
+                    </div>
+                </form>
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Other ID</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.otherId}}  </td>
+              <td class="col-sm-2">Signature</td>
+              <td class="col-sm-4">
+                 <form action="/action_page.php">
+                    <div class="form-group" style= "width:auto; height:auto">
+                    <a :href="userDetails.personalDetails.signature" download><img class="img-fluid" :src="userDetails.personalDetails.signature" alt="id"></a>
+                    </div>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-success font-weight-bold">Pawn Request Details</p>
+      <div class="container table-responsive">            
+        <table class="table table-striped table-bordered">
+          <tbody>
             <tr class="row">
               <td class="col-sm-3">Pawn Amount</td>
               <td class="text-success col-sm-3"> &#8358; {{formatAmount(userDetails.pawnAmount)}}</td>
@@ -37,19 +81,19 @@
             </tr>
             <tr class="row">
               <td class="col-sm-3">Item Purchase Date</td>
-              <td class="col-sm-3 text-success"> {{userDetails.itemPurchaseDate}}  </td>
+              <td class="col-sm-3 text-success"> {{moment(userDetails.itemPurchaseDate)}}  </td>
               <td class="col-sm-3">Item Purchase Location</td>
               <td class="col-sm-3"><b class="text-success">{{userDetails.itemPurchaseLocation}}</b></td>
             </tr>
 
             <tr class="row">
                  <td class="col-sm-2">Sworn Afidavit?</td>
-                  <td class="col-sm-3">{{userDetails.swornAffidavit}}</td>
-              <td class="col-sm-2">Item Receipt</td>
-              <td class="col-sm-5">
+                  <td class="col-sm-1">{{userDetails.swornAffidavit}}</td>
+              <td class="col-sm-3">Item Receipt</td>
+              <td class="col-sm-6">
                 <form action="/action_page.php">
                   <div class="form-group" style= "width:auto; height:auto">
-                   <img class="img-fluid" :src="receipt" alt="id">
+                  <a :href="userDetails.itemReceipt" download> <img class="img-fluid" :src="userDetails.itemReceipt" alt="id"></a>
                   </div>
                 </form>
               </td>
@@ -57,21 +101,6 @@
           </tbody>
         </table>
       </div>
-     
-      <p class="font-weight-bold text-success">Signatures</p><hr>
-      <table class="table table-borderless">
-        <tbody>
-          <tr class="row">
-            <td class="col-sm-6">Applicant's Signature</td>
-            <td class="col-sm-6">
-             
-                <div class="form-group" style="height:auto; width:auto; border:2px solid whitesmoke">
-                    <img  class="img-fluid" :src="signature" alt="signature">
-                </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
 
       
           <div class="row mb-3">
@@ -118,6 +147,8 @@
 
 <script>
 import{ mdbTbl, mdbModal, mdbBtn, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbTblHead, mdbTblBody,mdbListGroup, mdbListGroupItem, mdbBadge,mdbNavbar, mdbContainer,mdbCard, mdbRow,mdbCardBody, mdbCardTitle, mdbCardText, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
+import moment from 'moment';
+
 export default {
  name:'userDetails',
  components :{
@@ -172,18 +203,15 @@ export default {
          this.$store.dispatch('updatePawnStatusDecline')
             .then(_ => this.isLoading2=false)
             .catch(_ => this.isLoading2=false)
-    }
+    },
+    moment (date) {
+            return moment(date).format('MMMM Do YYYY');
+        },
  },
 
  computed : {
      userDetails () {
         return this.$store.state.userDetails
-     },
-     receipt () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.itemReceipt}`
-     },
-    signature () {
-         return `https://still-bastion-19162.herokuapp.com/images/${this.userDetails.signature}`
      },
     pawnAmount : {
         get () {

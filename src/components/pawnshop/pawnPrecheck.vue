@@ -4,71 +4,77 @@
           <div class="container main-container">
 
               <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
-                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Pawn Repayment pre-check</span></div>
+                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Pawn Calculator</span></div>
 
                     <section class="container  mt-3">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-9 col-md-10 mb-3">
+                                <span class="m">Item Category</span>
+                                <select class="browser-default custom-select" v-model="itemCategory" v-validate="'required'" name="Item Category" >
+                                <option value="Mobile Phones">Mobile Phones</option>
+                                <option value="Jewelries">Jewelries (pure Gold & Silver)</option>
+                                <option value="Camera">Digital Camera</option>
+                                <option value="Cars">Cars</option>
+                                <option value="Laptops">Laptops</option>
+                                <option value="TV">TV</option>
+                                <option value="Generators">Moveable Generators</option>
+                                <option value="Smart Watches">Smart Watches</option>
+                                <option value="Game Console">Game Console (Xbox/PS4)</option>
+                                <option value="Wrist Watch">Wrist Watch</option>
+                                
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                             <div class="col-xl-6 col-lg-9 col-md-10 mb-3">
+                                <span class="m">Present Item Worth</span>
+                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"> &#8358;</div>
+                                    </div>
+                                    <input type="text"  v-model.number="pawnWorth" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
+                                </div>
+                                <!-- <p class="text-danger" style="font-size:14px; width:auto">Please Note: All pawn items are to be redeemed within 30 days as failure to do that will imply forfeiture of the item.  </p> -->
+                             </div>
+                        </div>   
 
-                          <div class="col-xl-6 col-lg-9 col-md-10 mb-3">
-                            <span class="m">Item Category</span>
-                            <select class="browser-default custom-select" v-model="itemCategory" v-validate="'required'" name="Item Category" >
-                            <option value="Mobile Phones">Mobile Phones</option>
-                            <option value="Jewelries">Jewelries (pure Gold & Silver)</option>
-                            <option value="Camera">Digital Camera</option>
-                            <option value="Cars">Cars</option>
-                              <option value="Laptops">Laptops</option>
-                              <option value="TV">TV</option>
-                              <option value="Generators">Moveable Generators</option>
-                              <option value="Smart Watches">Smart Watches</option>
-                              <option value="Game Console">Game Console (Xbox/PS4)</option>
-                             <option value="Wrist Watch">Wrist Watch</option>
                             
-                            </select>
-                          </div>
-
-
-                        <div class="col-xl-6 col-lg-9 col-md-10 mb-3">
-                            <span class="m">Pawn Amount (the amount you want to borrow)</span>
-                            <label class="sr-only" for="inlineFormInputGroup"></label>
-                            <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"> &#8358;</div>
-                            </div>
-                            <input type="text"  v-model.number="pawnAmount" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
-                            </div>
-                            <p class="text-danger" style="font-size:14px; width:auto">Please Note: All pawn items are to be redeemed within 30 days. Failure to do so, will result in forfeiture of the item.  </p>
-                        </div>
-
-                      
-                         <div class="col-xl-6 col-lg-9 col-md-10">
-                            <span class="m">Estimated Repayment Amount</span>
-                            <label class="sr-only" for="inlineFormInputGroup"></label>
-                            <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"> &#8358;</div>
-                            </div>
-                            <input type="text" disabled v-model.number="pawnMra" class="form-control font-weight-bold py-0" id="inlineFormInputGroup" placeholder="amount">
+                        <div class="row">
+                             <div class="col-xl-6 col-lg-9 col-md-10 mb-3">
+                                <span class="m">Estimated Pawn Amount (the amount you are elligible to receive)</span>
+                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"> &#8358;</div>
+                                </div>
+                                <input type="text" disabled v-model.number="pawnAmount" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
+                                </div>
+                                <p class="text-danger" style="font-size:14px; width:auto">Please Note: All pawn items are to be redeemed within 30 days as failure to do so will imply forfeiture of the item.  </p>
                             </div>
                         </div>
 
-                       
-
-                        <div class="col-md-6 mt-2 text-white float-right apply-btn" >
-                          <router-link to="/profile/pawnshop/pawndetails"><button class="btn text-white " style="background:rgb(0, 85, 0); width:auto; padding:15px 20px; font-size:18px; border-radius:5px">Apply for Pawn</button></router-link>  
+                        <div class="row">
+                             <div class="col-xl-6 col-lg-9 col-md-10">
+                                <span class="m">Estimated Repayment Amount</span>
+                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"> &#8358;</div>
+                                </div>
+                                <input type="text" disabled v-model.number="pawnMra" class="form-control font-weight-bold py-0" id="inlineFormInputGroup" placeholder="amount">
+                                </div>
+                             </div>
                         </div>
+                           
+                        <div class="row d-flex justify-content-around">
+                            <div class=""></div>
+                             <div class="mt-3  text-white  apply-bt" >
+                                <router-link to="/profile/pawnshop/pawndetails"><button class="btn text-white " style="background:rgb(0, 85, 0); width:auto;  font-size:18px; border-radius:5px">Apply Now</button></router-link>  
+                             </div>
+                        </div>  
                      </section>  
-
-                    
-
-
-
-  
-
-
-                    
-
-              </mdb-jumbotron>
-
-              
+              </mdb-jumbotron>  
           </div>
       </div>
   </div>
@@ -94,17 +100,25 @@ export default {
 
     data () {
         return {
-            investRate:18,    
+            investRate:18, 
+            pawnWorth:0   
         }
     },
 
     methods :{
     calculate () {
         let r = 12.5;
-        let pawnAmount = this.pawnAmount
+        let pawnAmount = this.calculatePawnAmount()
         let mra = Math.round((pawnAmount * (r/100) )+ pawnAmount);
         let formattedMra = this.formatAmount(mra)   
         this.$store.dispatch('updatePawnMra',formattedMra)     
+    },
+    calculatePawnAmount () {
+        let presentWorth = this.pawnWorth
+        let r = 0.4;
+        let pawnAmount = r * presentWorth;
+        this.pawnAmount = this.formatAmount(pawnAmount)
+        return pawnAmount
     },
     formatAmount (x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
@@ -137,6 +151,9 @@ export default {
        pawnAmount (newval) {
             this.calculate()
         },
+        pawnWorth (newval) {
+            this.calculatePawnAmount();
+        }
     },
 
     mounted () {
@@ -154,7 +171,7 @@ export default {
  }
 
  .jumbotron-head {
-     height: 10vh;
+     height: auto;
      margin-top:-10.3vh;
      background:rgb(208, 216, 224)
  }
@@ -162,11 +179,11 @@ export default {
      font-size:20px
  }
 
- .apply-btn {
+ /* .apply-btn {
      padding-left:200px;
      top:-70px;  
     
- }
+ } */
 
  input:focus, select:focus {
      border-color: rgba(75, 148, 8, 0.8);
@@ -184,7 +201,7 @@ export default {
  }
 .small-screen-jumbo {
     width:auto!important;
-    height:65vh !important
+    height:auto !important
 } 
  .apply-btn {
      padding:10px 7vw;
@@ -203,7 +220,7 @@ export default {
  }
 .small-screen-jumbo {
     width:75vw!important;
-    height:65vh !important
+    height:auto !important
 } 
  .apply-btn {
      padding:10px 20vw;
@@ -222,8 +239,8 @@ export default {
     max-width:120vw
  }
 .small-screen-jumbo {
-    width:100vw !important;
-    height:70vh !important
+    width:auto !important;
+    height:auto !important
 } 
  .apply-btn {
      padding:10px 20vw;
@@ -236,9 +253,7 @@ export default {
      background:rgb(208, 216, 224);
      padding-top : 60px !important
  }
- .small-screen-jumbo{
-     height: 75vh !important;
- }
+
  }
 
  @media (max-width:320px){ 
@@ -251,7 +266,7 @@ export default {
  }
 .small-screen-jumbo {
     width:100vw !important;
-    height:77vh !important
+    height:auto !important
 } 
  .apply-btn {
      padding:10px 10vw;

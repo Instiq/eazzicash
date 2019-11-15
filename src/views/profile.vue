@@ -12,12 +12,22 @@
             <!-- <span class="text-white" @click="openNav" style="font-size:22px; position:absolute; margin-left:55px; margin-top:18px; cursor:pointer">Dashboard</span>    -->
           </div>
   
-          <div icon='envelope' right class="float-right py-4 d-flex" style="border:2px solid blu;flex-direction:row">
+          <div icon='envelope' right class="float-right py-4 px-5 d-flex" style="border:2px solid blu;flex-direction:row">
             <!-- <a href="#" icon='envelope' class="mr-5 text-white"> <i class="fas fa-envelope mr-1"></i> <span class="d-none d-sm-inline-block" >Contact</span></a> -->
             
-            <a  @click="userSignOut" class="mr-5  text-white"><i class="fas fa-sign-out-alt mr-1"></i><span class="d-none d-sm-inline-block">Logout</span></a>
+            <!-- <a  @click="userSignOut" class="mr-5  text-white"><i class="fas fa-sign-out-alt mr-1"></i><span class="d-none d-sm-inline-block">Logout</span></a>
             
-            <!-- <a href="#" class="mr-5   text-white" ><i class="fas fa-user mr-1"></i><span class="d-none d-sm-inline-block"> Account</span></a> -->
+            <a href="#" class="mr-5   text-white" ><i class="fas fa-user mr-1"></i><span class="d-none d-sm-inline-block"> Account</span></a>  -->
+             
+            <mdb-dropdown>
+              <mdb-dropdown-toggle slot="toggle" class="text-white mt-n2 small-screen-acc"><i class="fas fa-user mr-1"></i> <span class="d-none d-md-inline-block"> Account</span></mdb-dropdown-toggle>
+              <mdb-dropdown-menu class="small-screen-menu mt-sm-1 mt-xl-3">
+                <mdb-dropdown-item  @click="profile"> Profile</mdb-dropdown-item>
+                 <div class="dropdown-divider"></div>
+                <mdb-dropdown-item  @click="userSignOut"> Signout</mdb-dropdown-item>
+              </mdb-dropdown-menu>
+            </mdb-dropdown>
+
           </div>       
         </section>
 
@@ -31,8 +41,12 @@
 
           <!-- avatar image -->
             <div class="row mt-n4 avatar-main">
-                <div class="col-6">
-                  <img src="../assets/avatar2.jpg" class="avatar rounded-pill" alt="">
+                <div class="col-6" >
+                   <div >
+                       <img v-if="profilePicture" :src="profilePicture" class="avatar rounded-pill" alt="">
+                        <img v-if="!profilePicture" src="../assets/avatar2.jpg" class="avatar rounded-pill" alt="">
+                   </div>
+                
                 </div>
                 <div class="col-6">
                    <span class="avatar-welcome">Welcome! <br> {{name}}</span>
@@ -67,7 +81,7 @@
 </template>
 
 <script>
-import{mdbNavbar, mdbContainer,mdbRow, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
+import{mdbNavbar,  mdbContainer,mdbRow, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
 export default {
     name:'profile',
     components:{
@@ -78,7 +92,11 @@ export default {
     mdbNavbarBrand,
     mdbIcon,
     mdbRow,
-    mdbCol
+    mdbCol,
+    mdbDropdown,
+    mdbDropdownItem, 
+    mdbDropdownMenu, 
+    mdbDropdownToggle,
     },
 
     data () {
@@ -107,15 +125,23 @@ export default {
         userSignOut () {
          this.$store.dispatch('userSignOut')
         },
+
+        profile () {
+         this.$router.push('/profile_')
+        },
     },
     computed : {
       name () {
         return this.$store.getters.name
+      },
+      profilePicture () {
+        return this.$store.state.userProfile.displayPicture
       }
     },
 
     mounted () {
-      this.openNav()
+      this.openNav();
+      this.$store.dispatch('getUserProfile');
      },
   
 }
@@ -271,4 +297,32 @@ export default {
   margin-left:50% !important
 }
 }
+
+@media (max-width: 424px) {
+  .small-screen-acc {
+  top:-5px  !important;
+  padding-bottom:0px !important;
+  margin:0px -20px !important;
+}
+ .small-screen-menu {
+  top:40px  !important;
+  /* padding-bottom:0px !important; */
+  margin:0px -20px !important;
+}
+}
+
+@media (min-width: 425px) and (max-width:575px) {
+  .small-screen-acc {
+  top:5px  !important;
+  padding-bottom:10px !important;
+  margin:0px -20px !important;
+}
+ .small-screen-menu {
+  top:40px  !important;
+  /* padding-bottom:0px !important; */
+  margin:0px -20px !important;
+}
+}
+
+
 </style>

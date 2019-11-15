@@ -7,6 +7,16 @@ const state = {
   isActive3: null,
   isActive4: null,
   isActive5: null,
+  //state for personal details
+  currentAddress:"",
+  busstop:"",
+  yearsInAddress:"",
+  statee:"",
+  meansOfId:"",
+  otherId:"",
+  loanId : "",
+  loanSign:'',
+
   //state for loandetails
   tenor: 1,
   principal: 0.00,
@@ -14,12 +24,14 @@ const state = {
   isPicked: "",
   loanIndebtedness: "",
   loanPurpose: "",
-  loanId : "",
 
   //state for workinfo
   employmentType: "",
   companyName: "",
   otherComments: "",
+  companyAddress:"",
+  officialEmail: "",
+  phoneNumber:"",
   //state for guarantor
   title: "",
   title1: "",
@@ -37,13 +49,11 @@ const state = {
   id1:'',
   signature:'',
   signature1:"",
-
-
-  //state for signature
-  loanSign:'',
+ 
   
 };
 const mutations = {
+
   //Mutations for Apply
   setIsActive1(state, payload) {
     state.isActive1 = payload;
@@ -59,6 +69,25 @@ const mutations = {
   },
   setIsActive5(state, payload) {
     state.isActive5 = payload;
+  },
+  //Mutations for Personal details
+  setCurrentAddress(state, payload) {
+    state.currentAddress = payload;
+  },
+  setBusstop(state, payload) {
+    state.busstop = payload;
+  },
+  setYearsInAddress(state, payload) {
+    state.yearsInAddress = payload;
+  },
+  setState(state, payload) {
+    state.statee = payload;
+  },
+  setMeansOfId(state, payload) {
+    state.meansOfId = payload;
+  },
+  setOtherId(state, payload) {
+    state.otherId = payload;
   },
   //Mutations for Loandetails
   addTenor(state, payload) {
@@ -97,6 +126,15 @@ const mutations = {
   },
   setOtherComments(state, payload) {
     state.otherComments = payload;
+  },
+  setCompanyAddress(state, payload) {
+    state.companyAddress = payload;
+  },
+  setOfficialEmail(state, payload) {
+    state.officialEmail = payload;
+  },
+  setPhoneNumber(state, payload) {
+    state.phoneNumber = payload;
   },
   //Mutations for guarantor
   setTitle(state, payload) {
@@ -192,6 +230,25 @@ const actions = {
     commit("setIsActive4", false);
     commit("setIsActive5", true);
   },
+  //Actions for Personal details
+  updateCurrentAddress({commit}, value) {
+    commit('setCurrentAddress', value)
+  },
+  updateNearestBusstop({commit}, value) {
+    commit('setBusstop', value)
+  },
+  updateYearsInAddress({commit}, value) {
+    commit('setYearsInAddress', value)
+  },
+  updateState({commit}, value) {
+    commit('setState', value)
+  },
+  updateMeansOfId({commit}, value) {
+    commit('setMeansOfId', value)
+  },
+  updateOtherId({commit}, value) {
+    commit('setOtherId', value)
+  },
   //Actions for Loandetails
   increment({ commit, state }) {
     if (state.tenor >= 6) {
@@ -233,43 +290,52 @@ const actions = {
   updateOtherComments({ commit }, value) {
     commit("setOtherComments", value);
   },
+  updateCompanyAddress({ commit }, value) {
+    commit("setCompanyAddress", value);
+  },
+  updateOfficialEmail({ commit }, value) {
+    commit("setOfficialEmail", value);
+  },
+  updatePhoneNumber({ commit }, value) {
+    commit("setPhoneNumber", value);
+  },
   //Actions for guarantor
   updateTitle({ commit }, value) {
     commit("setTitle", value);
   },
-  updateTitle1({ commit }, value) {
-    commit("setTitle1", value);
-  },
+  // updateTitle1({ commit }, value) {
+  //   commit("setTitle1", value);
+  // },
   updateFirstName({ commit }, value) {
     commit("setFirstname", value);
   },
-  updateFirstName1({ commit }, value) {
-    commit("setFirstname1", value);
-  },
+  // updateFirstName1({ commit }, value) {
+  //   commit("setFirstname1", value);
+  // },
   updateLastname({ commit }, value) {
     commit("setLastname", value);
   },
-  updateLastname1({ commit }, value) {
-    commit("setLastname1", value);
-  },
+  // updateLastname1({ commit }, value) {
+  //   commit("setLastname1", value);
+  // },
   updatePhone({ commit }, value) {
     commit("setPhone", value);
   },
-  updatePhone1({ commit }, value) {
-    commit("setPhone1", value);
-  },
+  // updatePhone1({ commit }, value) {
+  //   commit("setPhone1", value);
+  // },
   updateEmail({ commit }, value) {
     commit("setEmail2", value);
   },
-  updateEmail1({ commit }, value) {
-    commit("setEmail1", value);
-  },
+  // updateEmail1({ commit }, value) {
+  //   commit("setEmail1", value);
+  // },
   updateAddress({ commit }, value) {
     commit("setAddress", value);
   },
-  updateAddress2({ commit }, value) {
-    commit("setAddress2", value);
-  }
+  // updateAddress2({ commit }, value) {
+  //   commit("setAddress2", value);
+  // }
 };
 const getters = {
   // getters for Apply
@@ -287,6 +353,25 @@ const getters = {
   },
   isActive5: state => {
     return state.isActive5;
+  },
+  //getetrs for Personal Details
+  currentAddress: state => {
+    return state.currentAddress;
+  },
+  yearsInAddress: state => {
+    return state.yearsInAddress;
+  },
+  busstop: state => {
+    return state.busstop;
+  },
+  statee: state => {
+    return state.statee;
+  },
+  meansOfId: state => {
+    return state.meansOfId;
+  },
+  otherId: state => {
+    return state.otherId;
   },
   // getters for Loandetails
   tenor: state => {
@@ -318,6 +403,15 @@ const getters = {
   companyName: state => {
     return state.companyName;
   },
+  companyAddress: state => {
+    return state.companyAddress;
+  },
+  officialEmail: state => {
+    return state.officialEmail;
+  },
+  phoneNumber: state => {
+    return state.phoneNumber;
+  },
   otherComments: state => {
     return state.otherComments;
   },
@@ -325,51 +419,51 @@ const getters = {
   title: state => {
     return state.title;
   },
-  title1: state => {
-    return state.title1;
-  },
+  // title1: state => {
+  //   return state.title1;
+  // },
   firstname: state => {
     return state.firstname;
   },
-  firstname1: state => {
-    return state.firstname1;
-  },
+  // firstname1: state => {
+  //   return state.firstname1;
+  // },
   lastname: state => {
     return state.lastname;
   },
-  lastname1: state => {
-    return state.lastname1;
-  },
+  // lastname1: state => {
+  //   return state.lastname1;
+  // },
   phone: state => {
     return state.phone;
   },
-  phone1: state => {
-    return state.phone1;
-  },
+  // phone1: state => {
+  //   return state.phone1;
+  // },
   email: state => {
     return state.email;
   },
-  email1: state => {
-    return state.email1;
-  },
+  // email1: state => {
+  //   return state.email1;
+  // },
   address: state => {
     return state.address;
   },
-  address2: state => {
-    return state.address2;
-  },
+  // address2: state => {
+  //   return state.address2;
+  // },
   id : state => {
     return state.id
   },
-  id1 : state => {
-    return state.id1
-  },
+  // id1 : state => {
+  //   return state.id1
+  // },
   signature : state => {
     return state.signature
   },
-  signature1 : state => {
-    return state.signature1
-  },
+  // signature1 : state => {
+  //   return state.signature1
+  // },
   //getters for signature
   loanSign: state => {
     return state.loanSign;

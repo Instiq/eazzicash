@@ -67,7 +67,7 @@
                                          <span class="h6" v-else style="font-weight:500">Item : <span style="font-weight:300">0.00</span></span> 
                                       </mdb-card-text>
                                       <mdb-card-text>
-                                         <span class=" h6" v-if="filteredPawnApproved()[0]" style="font-weight:500">days left : <span style="font-weight:300">{{filteredPawnApproved()[0].pawnTenor}}</span> </span> 
+                                         <span class=" h6" v-if="filteredPawnApproved()[0]" style="font-weight:500">days left : <span style="font-weight:300">{{remainderDays}}</span> </span> 
                                          <span class=" h6" v-else style="font-weight:500">days left : <span style="font-weight:300">0.00</span> </span> 
                                       </mdb-card-text>
                                       </mdb-card-body>
@@ -192,7 +192,7 @@
                                 </tr>
                                  <tr scope="row" >
                                     <td>Item Purchase Date</td>
-                                    <td>{{pawnPending.itemPurchaseDate}}</td>
+                                    <td>{{customFormatter(pawnPending.itemPurchaseDate)}}</td>
                                 </tr>
                                  <tr scope="row" >
                                     <td>Item Purchase Location</td>
@@ -269,7 +269,7 @@
                                     <td >
                                        <ul class="ml-n4" v-for="(item, index) in loanPending.guarantors" :key="index">
                                            <li>
-                                              Guarantor {{index+1}} :  {{loanPending.guarantors[index].status}}
+                                             {{loanPending.guarantors[index].status}}
                                            </li>
                                        </ul>
                                     </td>
@@ -439,6 +439,7 @@
 <script>
 import moment from 'moment'
 import{ mdbTbl, mdbModal, mdbBtn, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbTblHead, mdbTblBody,mdbListGroup, mdbListGroupItem, mdbBadge,mdbNavbar, mdbContainer,mdbCard, mdbRow,mdbCardBody, mdbCardTitle, mdbCardText, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
+
 export default {
     name:'dashboard',
     components:{
@@ -486,12 +487,21 @@ export default {
         userEntitiesOne () {
             return this.$store.state.userEntitiesOne
         },
+
+        remainderDays () {
+            let maturity = this.filteredPawnApproved()[0].maturity;
+            let given = moment(maturity, "YYYY-MM-DD");
+            let current = moment().startOf('day');
+            let daysLeft =  moment.duration(given.diff(current)).asDays();
+            return daysLeft
+        }
         
     },
     methods : {
         formatAmount (x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
         },
+
        //truncate the id length to the first 10 characters
          text_truncate(str, length, ending) {
             if(length==null) {
@@ -528,63 +538,67 @@ export default {
         },
         moment (x) {
         return moment(x).format("DD/MM/YYYY")
-     },
+       },
 
-     addOne () {
-        let td = document.querySelectorAll('.td')
-        td.forEach((item, index) => {
-            return item
-        })
-        
-     },
-    //filter pawn  by approval status
-     filteredPawnApproved () {
-         let pawnItems = this.userEntitiesOne.pawn;
-        let newPawnItem = pawnItems.filter(data => data.approved=='approved');
-         return newPawnItem
-     },
+        addOne () {
+            let td = document.querySelectorAll('.td')
+            td.forEach((item, index) => {
+                return item
+            })
+            
+        },
 
-     filteredPawnPending () {
-         let pawnItems = this.userEntitiesOne.pawn;
-         let newPawnItem = pawnItems.filter(data => data.approved=='pending');
-         return newPawnItem
-     },
-      //filter Loan by approval status
-     filteredLoanApproved () {
-         let loanItems = this.userEntitiesOne.loan;
-        let newloanItem = loanItems.filter(data => data.approved=='approved');
-         return newloanItem
-     },
+        customFormatter(date) {
+            return moment(date).format('MMMM Do YYYY');
+        },
+        //filter pawn  by approval status
+        filteredPawnApproved () {
+            let pawnItems = this.userEntitiesOne.pawn;
+            let newPawnItem = pawnItems.filter(data => data.approved=='Approved');
+            return newPawnItem
+        },
 
-     filteredLoanPending () {
-         let loanItems = this.userEntitiesOne.loan;
-         let newLoanItem = loanItems.filter(data => data.approved=='pending');
-         return newLoanItem
-     },
-      //filter Finance  by approval status
-     filteredFinanceApproved () {
-         let financeItems = this.userEntitiesOne.finance;
-        let newFinanceItem = financeItems.filter(data => data.approved=='approved');
-         return newFinanceItem
-     },
+        filteredPawnPending () {
+            let pawnItems = this.userEntitiesOne.pawn;
+            let newPawnItem = pawnItems.filter(data => data.approved=='Pending');
+            return newPawnItem
+        },
+        //filter Loan by approval status
+        filteredLoanApproved () {
+            let loanItems = this.userEntitiesOne.loan;
+            let newloanItem = loanItems.filter(data => data.approved=='Approved');
+            return newloanItem
+        },
 
-     filteredFinancePending () {
-         let financeItems = this.userEntitiesOne.finance;
-         let newFinanceItem = financeItems.filter(data => data.approved=='pending');
-         return newFinanceItem
-     },
-      //filter investment  by approval ststus
-     filteredInvestmentApproved () {
-         let investmentItems = this.userEntitiesOne.investment;
-        let newInvestmentItem = investmentItems.filter(data => data.approved=='approved');
-         return newInvestmentItem
-     },
+        filteredLoanPending () {
+            let loanItems = this.userEntitiesOne.loan;
+            let newLoanItem = loanItems.filter(data => data.approved=='Pending');
+            return newLoanItem
+        },
+        //filter Finance  by approval status
+        filteredFinanceApproved () {
+            let financeItems = this.userEntitiesOne.finance;
+            let newFinanceItem = financeItems.filter(data => data.approved=='Approved');
+            return newFinanceItem
+        },
 
-     filteredInvestmentPending () {
-         let investmentItems = this.userEntitiesOne.investment;
-         let newInvestmentItem = investmentItems.filter(data => data.approved=='pending');
-         return newInvestmentItem
-     },
+        filteredFinancePending () {
+            let financeItems = this.userEntitiesOne.finance;
+            let newFinanceItem = financeItems.filter(data => data.approved=='Pending');
+            return newFinanceItem
+        },
+        //filter investment  by approval ststus
+        filteredInvestmentApproved () {
+            let investmentItems = this.userEntitiesOne.investment;
+            let newInvestmentItem = investmentItems.filter(data => data.approved=='Approved');
+            return newInvestmentItem
+        },
+
+        filteredInvestmentPending () {
+            let investmentItems = this.userEntitiesOne.investment;
+            let newInvestmentItem = investmentItems.filter(data => data.approved=='Pending');
+            return newInvestmentItem
+        },
 
 //function to conditionally show  details of pending ppawn items
    pawnPend(n) {

@@ -2,91 +2,83 @@
   <div>
       
           <div class="main-container">
-               
-            <form   @submit.prevent="validateBeforeSubmit">\
-                 <span class="h5 mb-5 d-lg-none d-block ">Signature</span>
-
-                <div class="form-row"> <div class="mb-3">Applicant's Signature <span class="text-danger">*</span></div> </div>
-                 <div class="ml-n3 col-md-5 mb-3 mt-3 mt-md-0">
-                    <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
-                        <img style="max-width:100%; height:auto" class="img-fluid" :src="pawnSign"  alt=''>
-                    </div>
-                </div>
-
-                <div class="custom-file form-row col-md-5 mb-3">
-                    <input type="file" class="mt-3 ml-n2 mt-md-0 mb-2 mb-md-1 small-screen-id "  @change="onFileChange"  name="file" v-validate="'required'" id="validatedCustomFile" >
-                    <label class="" for="validatedCustomFile"></label>
-                    <div class="mt-2" >
-                       <i v-show="errors.has('file')" class="fa fa-exclamation-triangle text-danger mr-2"></i> 
-                        <span class="text-danger" v-show="errors.has('file')">{{ errors.first('file') }}</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                        <div class="mt-3 ">
-                            <label class="checkbox">
-                                <input name="terms" v-validate="'required'"  @change="isChecked" v-model="checked" type="checkbox"  >
-                                <span class="ml-2" :class="{valid:isValid, invalid:isInvalid}">I agree to the </span> 
-                            </label>
-                            <span :class="{valid:isValid}" class="ml-2" style="cursor:pointer;color:blue"  @click="showModal12a = true">terms and conditions.</span>
-                            <div class="mt-1 ml-2" >
-                                <i v-show="errors.has('terms')" class="fa fa-exclamation-triangle text-danger mr-2"></i> 
-                                <span class="text-danger" v-show="errors.has('terms')">{{ errors.first('terms') }}</span>
+                <ValidationObserver v-slot="{ passes }">
+                    <form  @submit.prevent="passes(postPawn)">
+                        <span class="h5 mb-5 d-lg-none d-block ">Signature</span>
+                        <div class="form-row"> <div class="mb-3 ml-1">Applicant's Signature <span class="text-danger">*</span></div> </div>
+                        <div class="ml-n3 col-md-5 mb-3 mt-3 mt-md-0">
+                            <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
+                                <img style="max-width:100%; height:auto" class="img-fluid" :src="pawnSign"  alt=''>
                             </div>
-                       </div>
-                 
-                 </div>
+                        </div>
 
-                <mdb-modal :show="showModal12a" @close="showModal12a = false" scrollable>
-                    <mdb-modal-header class="text-center bg-info text-white" style="font-weight:400">
-                    <mdb-modal-title >Terms & Conditions</mdb-modal-title>
-                    </mdb-modal-header>
-                    <mdb-modal-body>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                    </mdb-modal-body>
-                    <mdb-modal-footer>
-                    <mdb-btn color="info" @click.native="showModal12a = false">Done</mdb-btn>
-                    <!-- <mdb-btn color="primary">Save changes</mdb-btn> -->
-                    </mdb-modal-footer>
-                </mdb-modal>    
+                        <div class="custom-file form-row col-md-5 mb-3 ml-n3">
+                             <ValidationProvider name="signature" rules="required|image"  v-slot="{validate, errors }">
+                                 <label class="btn ml-n1 btn-info btn-file">
+                                    Choose File <input @change="onFileChange($event); validate($event)" type="file" name="signature"  style="display: none;"> 
+                                  </label> <br>
+                                  
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                            </ValidationProvider>
+                        </div>
+
+                        <div class="form-group">
+                                <div class="mt-3 ">
+                                    <ValidationProvider name="id" rules="required"  v-slot="{validate, errors }">
+                                           <label class="checkbox">
+                                                <input name="terms"  @change="isChecked" v-model="checked" type="checkbox"  >
+                                                <span class="ml-2" :class="{valid:isValid, invalid:isInvalid}">I agree to the </span> 
+                                            </label>
+                                           <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                    </ValidationProvider>  
+                                    <span :class="{valid:isValid}" class="ml-2" style="cursor:pointer;color:blue"  @click="showModal12a = true">terms and conditions.</span>
+                                   
+                            </div>
+                        
+                        </div>
+
+                        <mdb-modal :show="showModal12a" @close="showModal12a = false" scrollable>
+                            <mdb-modal-header class="text-center bg-info text-white" style="font-weight:400">
+                            <mdb-modal-title >Terms & Conditions</mdb-modal-title>
+                            </mdb-modal-header>
+                            <mdb-modal-body>
+                                <p class="font-weight-bold"> GENERAL TERMS AND CONDITIONS</p>
+                                    <p>The below Terms and Conditions stated herein governs this Pawn Agreement between MyEazzi Solution Limited (“the Lender”) and the Borrower.  It is important that the Borrower carefully reads and keep these terms and conditions especially for future reference.</p>
+                            </mdb-modal-body>
+                            <mdb-modal-footer>
+                            <mdb-btn color="info" @click.native="showModal12a = false">Done</mdb-btn>
+                            <!-- <mdb-btn color="primary">Save changes</mdb-btn> -->
+                            </mdb-modal-footer>
+                        </mdb-modal>    
 
 
 
-                 <div class="form-row">
-                      <div class="col-md-5"></div>
-                      <div class="col-md-2"></div>
-                      <div class="col-md-5">
-                         <mdb-btn type="submit" :disabled='isCheckedd' class="float-right btn-green mt-5" style="font-size:15px; border-radius:5px">Submit <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></mdb-btn>
-                      </div> 
-                  </div>
-            </form>
+                        <div class="form-row">
+                            <div class="col-md-5"></div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+                                <mdb-btn type="submit" :disabled='isCheckedd' class="float-right btn-green mt-5" style="font-size:15px; border-radius:5px">Submit <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></mdb-btn>
+                            </div> 
+                        </div>
+                            <mdb-alert color="danger" v-if="isError"  class="mt-2" leaveAnimation="fadeOut"  @closeAlert="retfalse" dismiss> <i  class="fa fa-exclamation-triangle text-danger ml-2 mr-2"></i>Please check your internet connection and try again</mdb-alert>
+                    </form>
+             </ValidationObserver>  
           </div>
      
   </div>
 </template>
 
 <script>
-import{mdbNavbar,mdbInput, mdbModal, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbBtn, mdbJumbotron, mdbContainer,mdbRow, mdbCol,mdbIcon } from 'mdbvue';
+
+import{mdbNavbar,mdbInput,mdbAlert, mdbModal, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbBtn, mdbJumbotron, mdbContainer,mdbRow, mdbCol,mdbIcon } from 'mdbvue';
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export default {
     name:'guarantor',
     components:{
     mdbRow,
     mdbIcon,
+    mdbAlert,
     mdbCol,
     mdbBtn,
     mdbJumbotron,
@@ -95,7 +87,9 @@ export default {
     mdbModalHeader,
     mdbModalTitle, 
     mdbModalBody, 
-    mdbModalFooter
+    mdbModalFooter,
+    ValidationObserver,
+    ValidationProvider
     },
 
     data () {
@@ -105,6 +99,7 @@ export default {
             checked:'',
             isCheckedd:true,
             showModal12a: false,
+            isLoading:false
         }
     },
 
@@ -124,16 +119,12 @@ export default {
               this.isInvalid=false;
               this.isCheckedd=false
          }
-     },    
+     },   
+     
+      retfalse () {
+            this.$store.commit('setIsError', false)
+        },
 
-    validateBeforeSubmit() {
-        this.$validator.validateAll().then((result) => {
-            if (result) {
-                this.$store.commit('setLoading', true)
-                this.postPawn()     
-            }
-        })
-    },
     onFileChange(e) {
         let files = e.target.files || e.dataTransfer.files;
         if (!files.length) return;
@@ -152,7 +143,10 @@ export default {
     },
 
      postPawn () {
+        this.isLoading = true;
         this.$store.dispatch('postPawn')
+        .then(_ => this.isLoading= false)
+        .catch(_ => this.isLoading= false)
     }
   
   },
@@ -163,7 +157,10 @@ export default {
         },
         loading () {
             return this.$store.state.loading
-        }
+        },
+          isError () {
+          return this.$store.state.isError
+      }
     },
 
     mounted () {

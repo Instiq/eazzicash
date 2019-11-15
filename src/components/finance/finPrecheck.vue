@@ -4,7 +4,7 @@
           <div class="container main-container">
 
               <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
-                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Repayment pre-check</span></div>
+                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Finance calculator</span></div>
 
                     <section class="container  mt-3">
                         <div class="col-xl-6 col-lg-9 col-md-10">
