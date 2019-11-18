@@ -11,9 +11,7 @@
             <mdb-jumbotron  style=" box-shadow:0px 0px; height:100%; background:whitesmoke">
                 <section class="sec2 container">
                     <ValidationObserver v-slot="{ passes }">
-                      <form  @submit.prevent="passes(userSignUp)">   
-
-                        <mdb-alert color="danger" v-if="isEmailRegistered"  leaveAnimation="fadeOut"  @closeAlert="retfalse" dismiss> <i  class="fa fa-exclamation-triangle text-danger ml-2 mr-2"></i> Oopss...User already registered </mdb-alert>
+                      <form  @submit.prevent="passes(userSignUp)"> 
                       
                         <mdb-row>
                             <div class="col-md-3"></div>
@@ -467,8 +465,15 @@ export default {
     },
 
     computed : {
-         loading () {
-            return this.$store.state.loading
+
+         isSuccess () {
+         return this.$store.state.isSuccess
+        },
+        isError () {
+            return this.$store.state.isError
+        },
+        errorMsg () {
+            return this.$store.state.errorMsg
         },
 
          userFirstname : {
@@ -529,32 +534,56 @@ export default {
         //         this.$store.dispatch('updateUserState', value )
         //     }
         //  },
-          isEmailRegistered () {
-        return this.$store.state.isEmailRegistered;
     },
-    },
-     methods: {
 
-    retfalse () {
-            this.$store.commit('setIsEmailRegistered', false)
+    watch : {
+         isSuccess (newval) {
+             if(newval==true) return this.showToastrSuccess()
+        },
+        
+        isError (newval) {
+            if(newval==true) return this.showToastrError()
+        }
     },
+    methods: {
+
+        retfalse () {
+                this.$store.commit('setIsEmailRegistered', false)
+        },
     
-    userSignUp () {
-        this.isLoading = true;
-        this.$store.dispatch ('userSignUp', {
-            email:this.userEmail,
-            password:this.userPassword,
-            firstName:this.userFirstname,
-            lastName:this.userLastname,
-            // state:this.userState,
-            // country:this.userCountry,
-            phoneNumber:this.userPhone,
-            address:this.userAddress
-        })
-        .then(_ => this.isLoading = false)
-        .catch(_ => this.isLoading = false)
-    }
-  },
+        userSignUp () {
+            this.isLoading = true;
+            this.$store.dispatch ('userSignUp', {
+                email:this.userEmail,
+                password:this.userPassword,
+                firstName:this.userFirstname,
+                lastName:this.userLastname,
+                // state:this.userState,
+                // country:this.userCountry,
+                phoneNumber:this.userPhone,
+                address:this.userAddress
+            })
+            .then(_ => this.isLoading = false)
+            .catch(_ => this.isLoading = false)
+        },
+
+         showToastrSuccess () {
+                this.$toastr.defaultProgressBar = false;
+                this.$toastr.defaultStyle = { "background-color": "limegreen" };
+                this.$toastr.s( "<strong class='h6'>Success</strong> <br> Submitted Sucessfully!");
+                this.$store.commit('setIsSuccess', false)
+            },
+        showToastrError () {
+            this.$toastr.defaultProgressBar = false;
+            this.$toastr.defaultStyle = { "background-color": "firebrick" };
+            this.$toastr.e(`<strong class='h6'>Error</strong><br>${this.errorMsg}`);
+            this.$store.commit('setIsError', false)
+        },
+    },
+
+       
+
+
 
 }
 </script>

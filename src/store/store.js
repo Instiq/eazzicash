@@ -156,19 +156,16 @@ export default new Vuex.Store({
   actions: {
    //Signup
    //${context.state.api_url}/users
-    async userSignUp(context, {email, password, firstName, lastName,state,country,phoneNumber,address }) {
+    async userSignUp(context, {email, password, firstName, lastName,phoneNumber }) {
       await axios({
           method: "post",
-          url: `${state.api_url}/users`,
+          url: `${context.state.api_url}/users`,
           data: {
             email,
             password,
             firstName,
             lastName,
-            // state,
-            // country,
             phoneNumber,
-            address
           }
         })
         .then(({data})=>{
@@ -180,9 +177,10 @@ export default new Vuex.Store({
           router.push('/verifyEmail?path=signup');
         })
         .catch(({response}) => {
-         // console.log(response.data);
+          console.log(response.data);
+          context.commit('setIsError', true)
           if (response.data.msg=="User already registered.") {
-            context.commit('setIsEmailRegistered', true);
+            context.commit('setErrorMsg', response.data.msg);
           }
           
         }) 
