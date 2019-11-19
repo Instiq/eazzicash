@@ -108,10 +108,15 @@ export default {
     }, 
 
     //function to conditionally show loan details for a particulasr user
-   userDetails(n) {
-        let newObject  = this.loanRequests[n]
-        this.$store.commit('setUserDetails', newObject)
-        this.$router.push('/adminProfile/approvals/loanDetails')
+  async userDetails(n) {
+       let newPromise = new Promise ((res, rej) => {
+          let newObject  = this.loanRequests[n]
+          res(this.$store.commit('setUserDetails', newObject))
+       }) 
+       newPromise
+       .then(_ =>  this.$router.push('/adminProfile/approvals/loanDetails'))
+       .catch(_ => this.$router.push('/adminProfile/approvals/loan'))
+       
     }, 
 
     //delete loan request

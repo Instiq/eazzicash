@@ -42,7 +42,7 @@
                       <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
                       <td class="text-center"> {{item.approved}} </td>
                       <td class="text-center"> {{moment(item.createdAt)}} </td>
-                      <td @click="userDetailsAdmin(index); deleteInvestment()" class="text-center text-danger" style="cursor:pointer">   Delete </td>
+                      <td @click="userDetailsAdmin(index); deleteInvestment()" class="text-center text-danger" disabled style="cursor:pointer">   Delete </td>
                     </tr>
                   </tbody>
                 </table>
@@ -117,7 +117,7 @@ data () {
        this.$store.commit('setLoading', true)
         this.$store.dispatch('deleteInvestment')
     },
-    
+
      // change first letter of search input to uppercase
     toUpperCase (name) {
         this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
