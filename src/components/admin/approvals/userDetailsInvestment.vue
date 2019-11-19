@@ -6,9 +6,10 @@
   <div class="row" style="margin-left:5%;margin-right:5%;">
     <div class="col">
       <p><a href="/adminProfile/approvals/investment"><i style='font-size:24px' class='fas'>&#xf060;</i></a></p>
-      <p class="text-success font-weight-bold">Investment Request Details</p>
       
-      <div class="container table-responsive">            
+      
+        <p class="text-success font-weight-bold">Personal Details</p>
+       <div class="container table-responsive">            
         <table class="table table-striped table-bordered">
           <tbody>
              <tr class="row">
@@ -17,6 +18,53 @@
               <td class="col-sm-3">Customer Phone</td>
               <td class="col-sm-3 text-success"> {{userDetails.userDetails.phoneNumber}}</td>
             </tr>
+            <tr class="row">
+              <td class="col-sm-3">Address</td>
+              <td class="text-success col-sm-3"> {{userDetails.personalDetails.address}}</td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Occupation</td>
+              <td class="text-success col-sm-3">{{userDetails.personalDetails.occupation}}</td>
+               <td class="col-sm-3">State</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.state}} </td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Means of Identification</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.meansOfId}} </td>
+              <td class="col-sm-2">ID Card</td>
+              <td class="col-sm-4">
+                  <form action="/action_page.php">
+                    <div class="form-group" style= "width:auto; height:auto">
+                    <a :href="userDetails.personalDetails.idCard" download=""><img class="img-fluid" :src="userDetails.personalDetails.idCard" alt="id"></a>
+                    </div>
+                </form>
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Other ID</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.otherId}}  </td>
+              <td class="col-sm-2">Signature</td>
+              <td class="col-sm-4">
+                 <form action="/action_page.php">
+                    <div class="form-group" style= "width:auto; height:auto">
+                    <a :href="userDetails.personalDetails.signature" download><img class="img-fluid" :src="userDetails.personalDetails.signature" alt="id"></a>
+                    </div>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      
+      
+      
+      
+      <p class="text-success font-weight-bold">Investment Request Details</p>
+      
+      <div class="container table-responsive">            
+        <table class="table table-striped table-bordered">
+          <tbody>
             <tr class="row">
               <td class="col-sm-3">Investment Amount</td>
               <td class="col-sm-3 text-success"> &#8358; {{formatAmount(userDetails.investmentAmount)}}</td>
@@ -30,19 +78,11 @@
               <td class="col-sm-3 text-success"> {{userDetails.otherInformation}} </td>
             </tr>
             <tr class="row">
-              <td class="col-sm-6">ID Attachment</td>
-              <td class="col-sm-6">
-                <form action="">
-                  <div class="form-group" style= "width:auto; height:auto">
-                   <img class="img-fluid" :src="userDetails.id" alt="id">
-                  </div>
-                </form>
-              </td>
                <td class="col-sm-6">Payment Evidence</td>
               <td class="col-sm-6">
                 <form action="">
                   <div class="form-group" style= "width:auto; height:auto">
-                   <img class="img-fluid" :src="userDetails.paymentEvidence" alt="id">
+                  <a :href="userDetails.paymentEvidence" download> <img class="img-fluid" :src="userDetails.paymentEvidence" alt="id"></a>
                   </div>
                 </form>
               </td>
@@ -85,21 +125,6 @@
         </tbody>
       </table>
        </div>
-      <p class="font-weight-bold text-success">Signatures</p><hr>
-      <table class="table table-borderless">
-        <tbody>
-          <tr class="row">
-            <td class="col-sm-6">Applicant's Signature</td>
-            <td class="col-sm-6">
-             
-                <div class="form-group" style="height:auto; width:auto; border:2px solid whitesmoke">
-                    <img  class="img-fluid" :src="userDetails.signature" alt="signature">
-                </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
       
           <div class="row mb-3">
            <div class="col-md-5 mb-3">

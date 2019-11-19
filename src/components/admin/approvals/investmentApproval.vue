@@ -5,7 +5,20 @@
     <div class="container ">
       <div class="row  p-1 mb-5" style="margin-top:-30px">
         <div class="col">
-          <p class="text-success mt-5 h6 font-weight-bold">Investment Requests</p>
+           <div class="row mt-5">
+               <p class="text-success col-md-3 mt- h6 font-weight-bold">Investment Requests</p>
+              <div class="col-md-4"></div>
+              <div class="col-md-5 mb-3">
+                 <div class="input-group">
+                    <input type="search" placeholder="search by name, status, date, month or year" v-model="name" class="form-control" name="" id=""> 
+                    <div class="input-group-append" style="cursor:pointer">
+                       <div class="input-group-text"> <i class="fas fa-search"></i></div>
+                    </div>
+                 
+                 </div>
+                
+              </div>
+          </div>
           <!-- <div class="form-group has-search main">
             <span class="fa fa-search form-control-feedback"></span>
             <input type="text" class="form-control" placeholder="Search">
@@ -22,8 +35,8 @@
                       <th scope="col" class="text-center">Delete</th>
                     </tr>
                   </thead>
-                  <tbody v-if="investmentRequests"   >
-                    <tr v-for="(item, index) in investmentRequests" :key="'a' + index">
+                  <tbody v-if="filteredInvestmentRequests"   >
+                    <tr v-for="(item, index) in filteredInvestmentRequests" :key="'a' + index">
                       <th scope="row" class="text-success">{{item.userDetails.firstName}} {{item.userDetails.lastName}}</th>
                       <td class="text-center"> &#8358; {{formatAmount(item.investmentAmount)}}  </td>
                       <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
@@ -71,6 +84,11 @@ export default {
 
  },
 
+data () {
+   return {
+     name:""
+   }
+ },
  methods : {
     isActiveTwo () {
         this.$store.dispatch('updateIsActive2')
@@ -98,13 +116,52 @@ export default {
     deleteInvestment () {
        this.$store.commit('setLoading', true)
         this.$store.dispatch('deleteInvestment')
-    }
+    },
+    
+     // change first letter of search input to uppercase
+    toUpperCase (name) {
+        this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
+    },
  },
 
  computed : {
    investmentRequests () {
-        return this.$store.state.userEntitiesAll.investment
+        return this.$store.state.userEntitiesAll.investment.sort().reverse()
     },
+    filteredInvestmentRequests () {
+       if (this.name=='') {
+            return this.$store.state.userEntitiesAll.investment.sort().reverse()
+        }
+
+        else {
+           this.toUpperCase()
+            let result = this.$store.state.userEntitiesAll.investment.sort().reverse()
+            
+            return result.filter(value=> {
+              let fullName = value.userDetails.firstName + " " +  value.userDetails.lastName;
+              let fullNameReverse = value.userDetails.lastName + " " +  value.userDetails.firstName;
+              let formattedTime = this.moment(value.createdAt);
+              let check = moment(value.createdAt, 'YYYY/MM/DD');
+              let month = check.format('M');              
+              // let day   = check.format('D');
+              let year  = check.format('YYYY');
+              let monthAndYear = month + "/" + year
+
+
+              return  value.userDetails.firstName.indexOf(this.name)==0 ||
+                      value.userDetails.lastName.indexOf(this.name)==0 ||
+                      value.approved.indexOf(this.name)==0 || 
+                      fullName.indexOf(this.name) == 0 || 
+                      fullNameReverse.indexOf(this.name) == 0 ||
+                      formattedTime.indexOf(this.name) == 0 ||
+                      year.indexOf(this.name) == 0 ||
+                      month.indexOf(this.name) == 0 ||
+                      // day.indexOf(this.name) == 0 ||
+                      monthAndYear.indexOf(this.name) == 0
+            } )
+        }
+          return final
+    }
  },
   mounted () {
       this.$store.dispatch('getAllEntitiesAll');
@@ -119,6 +176,10 @@ export default {
     margin-left:0vw;
     height: auto;
     overflow-x: hidden
+ }
+
+  ::placeholder {
+   font-size: 13px
  }
 
 </style>
