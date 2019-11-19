@@ -254,6 +254,19 @@ export default {
  }
  }
  
+ @media (min-width:1200px){ 
+    .main-container {
+    border:2px solid blac;
+    margin-left:7vw;
+    height: auto;
+    width:auto
+ }
+.small-screen-jumbo {
+    width:70vw!important;
+    height:auto !important
+} 
+ }
+
  @media (max-width:767px){ 
     .main-container {
     border:2px solid blac;
