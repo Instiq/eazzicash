@@ -11,6 +11,12 @@
        <div class="container table-responsive">            
         <table class="table table-striped table-bordered">
           <tbody>
+              <tr class="row">
+              <td class="col-sm-3">Customer Firstname</td>
+              <td class="col-sm-3 text-success"> {{userDetails.userDetails.firstName}}</td>
+              <td class="col-sm-3">Customer Lastname</td>
+              <td class="col-sm-3 text-success"> {{userDetails.userDetails.lastName}}</td>
+            </tr>
              <tr class="row">
               <td class="col-sm-3">Customer Email</td>
               <td class="col-sm-3 text-success"> {{userDetails.userDetails.email}}</td>

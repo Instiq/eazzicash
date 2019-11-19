@@ -102,13 +102,13 @@ export default {
      },
 //function to update current finance details by admin
     userDetailsAdmin(n) {
-        let newObject  = this.financeRequests[n]
+        let newObject  = this.filteredFinanceRequests[n]
         this.$store.commit('setUserDetails', newObject);
     }, 
 
     //function to conditionally show finance details for a particulasr user
    userDetails(n) {
-        let newObject  = this.financeRequests[n]
+        let newObject  = this.filteredFinanceRequests[n]
         this.$store.commit('setUserDetails', newObject)
         this.$router.push('/adminProfile/approvals/financeDetails')
     }, 
@@ -126,9 +126,9 @@ export default {
  },
 
  computed : {
-    financeRequests () {
-        return this.$store.state.userEntitiesAll.finance.sort().reverse()
-    },
+    // financeRequests () {
+    //     return this.$store.state.userEntitiesAll.finance.sort().reverse()
+    // },
     filteredFinanceRequests () {
        if (this.name=='') {
             return this.$store.state.userEntitiesAll.finance.sort().reverse()

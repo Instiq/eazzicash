@@ -103,20 +103,17 @@ export default {
      },
 //function to update current loan details by admin
     userDetailsAdmin(n) {
-        let newObject  = this.loanRequests[n]
+        let newObject  = this.filteredLoanRequests[n]
         this.$store.commit('setUserDetails', newObject);
     }, 
 
     //function to conditionally show loan details for a particulasr user
   async userDetails(n) {
-       let newPromise = new Promise ((res, rej) => {
-          let newObject  = this.loanRequests[n]
-          res(this.$store.commit('setUserDetails', newObject))
-       }) 
-       newPromise
-       .then(_ =>  this.$router.push('/adminProfile/approvals/loanDetails'))
-       .catch(_ => this.$router.push('/adminProfile/approvals/loan'))
-       
+
+        let newObject  = this.filteredLoanRequests[n]
+        this.$store.commit('setUserDetails', newObject);
+        this.$router.push('/adminProfile/approvals/loanDetails')
+        
     }, 
 
     //delete loan request
@@ -133,13 +130,13 @@ export default {
  },
 
  computed : {
-    loanRequests () {
-        return this.$store.state.userEntitiesAll.loan.sort().reverse()
-    },
+    // loanRequests () {
+    //     return this.$store.state.userEntitiesAll.loan.sort().reverse()
+    // },
     filteredLoanRequests () {
        if (this.name=='') {
             return this.$store.state.userEntitiesAll.loan.sort().reverse()
-        }
+       }
 
         else {
            this.toUpperCase()
@@ -175,7 +172,7 @@ export default {
     }
  },
 
-  mounted () {
+  created () {
       this.$store.dispatch('getAllEntitiesAll');
       this.isActiveOne()
   }, 

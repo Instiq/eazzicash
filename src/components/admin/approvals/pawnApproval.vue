@@ -102,13 +102,13 @@ export default {
      },
 //function to update current pawn details by admin
     userDetailsAdmin(n) {
-        let newObject  = this.pawnRequests[n]
+        let newObject  = this.filteredPawnRequests[n]
         this.$store.commit('setUserDetails', newObject);
     }, 
 
     //function to conditionally show pawn details for a particulasr user
    userDetails(n) {
-        let newObject  = this.pawnRequests[n]
+        let newObject  = this.filteredPawnRequests[n]
         this.$store.commit('setUserDetails', newObject)
         this.$router.push('/adminProfile/approvals/pawnDetails')
     }, 
@@ -126,9 +126,9 @@ export default {
  },
 
  computed : {
-    pawnRequests () {
-        return this.$store.state.userEntitiesAll.pawn.sort().reverse()
-    },
+    // pawnRequests () {
+    //     return this.$store.state.userEntitiesAll.pawn.sort().reverse()
+    // },
      filteredPawnRequests () {
        if (this.name=='') {
             return this.$store.state.userEntitiesAll.pawn.sort().reverse()

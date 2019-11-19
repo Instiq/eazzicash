@@ -101,13 +101,13 @@ data () {
      },
 //function to update current investment details by admin
     userDetailsAdmin(n) {
-        let newObject  = this.investmentRequests[n]
+        let newObject  = this.filteredInvestmentRequests[n]
         this.$store.commit('setUserDetails', newObject);
     }, 
 
     //function to conditionally show investment details for a particulasr user
    userDetails(n) {
-        let newObject  = this.investmentRequests[n]
+        let newObject  = this.filteredInvestmentRequests[n]
         this.$store.commit('setUserDetails', newObject)
         this.$router.push('/adminProfile/approvals/investmentDetails')
     }, 
@@ -125,9 +125,9 @@ data () {
  },
 
  computed : {
-   investmentRequests () {
-        return this.$store.state.userEntitiesAll.investment.sort().reverse()
-    },
+  //  investmentRequests () {
+  //       return this.$store.state.userEntitiesAll.investment.sort().reverse()
+  //   },
     filteredInvestmentRequests () {
        if (this.name=='') {
             return this.$store.state.userEntitiesAll.investment.sort().reverse()
