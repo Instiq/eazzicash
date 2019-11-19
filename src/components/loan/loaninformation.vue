@@ -7,9 +7,8 @@
                      <span class="h5 mb-5 d-lg-none d-block ">Loan Details</span> 
                      <div class="form-row first">
                             <div class="col-md-5 mb-3">
-                                    <ValidationProvider name="principal" rules="required|min_value:100000|max_value:3000000" v-slot="{ errors }">
+                                <ValidationProvider name="principal" rules="required|min_value:100000|max_value:3000000" v-slot="{ errors }">
                                         <label for="v">Loan Amount<span class="text-danger">*</span></label>
-                                       
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
@@ -86,27 +85,22 @@
                     </div>
 
                     <div class="row d-flex justify-content-between row2 borde">
-                                <!-- <div class="col-6 border"> -->
-                                    <div class="div3">
-                                        <div class="input-group mt-2 ml-3 mt-md-5">
-                                            <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
-                                                     <!-- <input type="submit" @click="prev_page" class="btn btn-green" value="prev"> -->
-                                                      <button  @click="prev_page" class="btn btn-green">prev</button>
-                                            </ValidationProvider> 
-                                        </div>
-                                    </div>
-                                <!-- </div> -->
-                                 <!-- <div class="col-6 border"> -->
-                                    <div class="div3">
-                                        <div class="input-group mt-2  mr-3 ml-3 mt-md-5">
-                                            <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
-                                                     <input type="submit" class="btn btn-green" value="next">
-                                            </ValidationProvider> 
-                                        </div>
-                                    </div>
-                                <!-- </div> -->
-                           </div>
-                 </form>
+                            <div class="div3">
+                                <div class="input-group mt-2 ml-3 mt-md-5">
+                                    <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                        <button  @click="prev_page" class="btn btn-green">prev</button>
+                                    </ValidationProvider> 
+                                </div>
+                            </div>
+                            <div class="div3">
+                                <div class="input-group mt-2  mr-3 ml-3 mt-md-5">
+                                    <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                         <input type="submit" class="btn btn-green" value="next">
+                                    </ValidationProvider> 
+                                </div>
+                            </div>
+                    </div>
+                </form>
              </ValidationObserver>   
         </div>
   </div>

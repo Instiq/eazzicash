@@ -15,7 +15,7 @@
                                                 <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider> 
                                     </div>
-                                    <div class="div2i mb-3">
+                                    <div class="div2i mb-3" v-if="currentRoute != 'investment'">
                                         <ValidationProvider name="busstop" rules="required" v-slot="{ errors }">
                                                 <label for="v">Nearest Bus-Stop <span class="text-danger">*</span></label>
                                                 <div class="input-group">
@@ -24,12 +24,22 @@
                                                 <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider> 
                                     </div>
-                                    <div class="div3i mb-3">
+                                    <div class="div3i mb-3" v-if="currentRoute != 'investment'">
                                         <ValidationProvider name="yearsInAddress" rules="required" v-slot="{ errors }">
                                                 <label for="v">Years lived in address <span class="text-danger">*</span></label>
                                                 <div class="input-group">
                                                     
                                                     <input type="text"  v-model="yearsInAddress" class="form-control"  placeholder=""  name="yearsInAddress"  >
+                                                </div>
+                                                <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                        </ValidationProvider> 
+                                    </div>
+                                    <div class="div3i mb-3" v-if="currentRoute == 'investment'">
+                                        <ValidationProvider name="occupation" rules="required" v-slot="{ errors }">
+                                                <label for="v">Occupation <span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    
+                                                    <input type="text"  v-model="occupation" class="form-control"  placeholder=""  name="occupation"  >
                                                 </div>
                                                 <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider> 
@@ -209,6 +219,8 @@ export default {
     next_page () {
        if(this.$router.currentRoute.name == 'loan') return this.$router.push('/profile/loan/loandetails/loaninformation');
        if(this.$router.currentRoute.name == 'pawn') return this.$router.push('/profile/pawnshop/pawndetails/pawninfo')
+       if(this.$router.currentRoute.name == 'investment') return this.$router.push('/profile/investment/investdetails/investinfo')
+       if(this.$router.currentRoute.name == 'finance') return this.$router.push('/profile/finance/loandetails/loaninfo')
     },
 
     prev_page () {
@@ -254,6 +266,9 @@ export default {
   },
 
   computed : {
+      currentRoute () {
+          return this.$router.currentRoute.name
+      },
       loanId : {
         get () {
               return this.$store.getters.loanId
@@ -289,6 +304,14 @@ export default {
                this.$store.dispatch('updateYearsInAddress', checked)
            }
        },
+       occupation : {
+           get () {
+              return this.$store.getters.occupation
+           },
+           set (value) {
+               this.$store.dispatch('updateOccupation', value)
+           }
+       },
        state : {
            get () {
               return  this.$store.getters.statee
@@ -320,6 +343,8 @@ export default {
     mounted () {
         if(this.$router.currentRoute.name == 'loan') return this.$store.dispatch('updateIsActive4')
         if(this.$router.currentRoute.name == 'pawn') return this.$store.dispatch('updateIsActive3P')
+        if(this.$router.currentRoute.name == 'investment') return  this.$store.dispatch('updateIsActive4I')
+        if(this.$router.currentRoute.name == 'finance') return  this.$store.dispatch('updateIsActive4')
     }
 }
 </script>

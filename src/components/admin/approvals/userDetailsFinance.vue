@@ -6,9 +6,10 @@
   <div class="row" style="margin-left:5%;margin-right:5%;">
     <div class="col">
       <p><a href="/adminProfile/approvals/finance"><i style='font-size:24px' class='fas'>&#xf060;</i></a></p>
-      <p class="text-success font-weight-bold">Finance Request Details</p>
       
-      <div class="container table-responsive">            
+
+      <p class="text-success font-weight-bold">Personal Details</p>
+       <div class="container table-responsive">            
         <table class="table table-striped table-bordered">
           <tbody>
              <tr class="row">
@@ -17,6 +18,52 @@
               <td class="col-sm-3">Customer Phone</td>
               <td class="col-sm-3 text-success"> {{userDetails.userDetails.phoneNumber}}</td>
             </tr>
+            <tr class="row">
+              <td class="col-sm-3">Address</td>
+              <td class="text-success col-sm-3"> {{userDetails.personalDetails.address}}</td>
+              <td class="col-sm-3">Years Lived in Address</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.yearsInAddress}}</td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Bus Stop</td>
+              <td class="text-success col-sm-3">{{userDetails.personalDetails.busstop}}</td>
+               <td class="col-sm-3">State</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.state}} </td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Means of Identification</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.meansOfId}} </td>
+              <td class="col-sm-2">ID Card</td>
+              <td class="col-sm-4">
+                  <form action="/action_page.php">
+                    <div class="form-group" style= "width:auto; height:auto">
+                    <a :href="userDetails.personalDetails.idCard" download=""><img class="img-fluid" :src="userDetails.personalDetails.idCard" alt="id"></a>
+                    </div>
+                </form>
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-3">Other ID</td>
+              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.otherId}}  </td>
+              <td class="col-sm-2">Signature</td>
+              <td class="col-sm-4">
+                 <form action="/action_page.php">
+                    <div class="form-group" style= "width:auto; height:auto">
+                    <a :href="userDetails.personalDetails.signature" download><img class="img-fluid" :src="userDetails.personalDetails.signature" alt="id"></a>
+                    </div>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      
+      
+      <p class="text-success font-weight-bold">Finance Request Details</p>
+      <div class="container table-responsive">            
+        <table class="table table-striped table-bordered">
+          <tbody>
             <tr class="row">
               <td class="col-sm-3">Finance Purpose</td>
               <td class="col-sm-3 text-success"> {{userDetails.financePurpose}}</td>
@@ -35,16 +82,6 @@
               <td class="col-sm-3">List indebtedness</td>
               <td class="col-sm-3"><b class="text-success">{{userDetails.listIndebtedness}}</b></td>
             </tr>
-            <tr class="row">
-              <td class="col-sm-6">ID Attachment</td>
-              <td class="col-sm-6">
-                <form action="/action_page.php">
-                  <div class="form-group" style= "width:auto; height:auto">
-                   <img class="img-fluid" :src="userDetails.id" alt="id">
-                  </div>
-                </form>
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -54,50 +91,69 @@
         <table class="table table-striped table-bordered">
             <tbody>
             <tr class="row">
-                <td class="col-sm-6">Employment Type</td>
-                <td class="col-sm-6"><b class="text-success"> {{userDetails.employmentType}}</b></td>
+                <td class="col-sm-3">Employment Type</td>
+                <td class="col-sm-3"><b class="text-success"> {{userDetails.employmentType}}</b></td>
+                <td class="col-sm-3">Company Name</td>
+                <td class="col-sm-3 text-success"> {{userDetails.companyName}} </td>
             </tr>
-            <tr class="row">
-                <td class="col-sm-6">Company Name</td>
-                <td class="col-sm-6 text-success"> {{userDetails.companyName}} </td>
+             <tr class="row">
+                <td class="col-sm-3">Phone Number</td>
+                <td class="col-sm-3 text-success"> {{userDetails.companyPhone}} </td>
+                <td class="col-sm-3">Official Email</td>
+                <td class="col-sm-3 text-success"> {{userDetails.officialEmail}} </td>
+            </tr>
+             <tr class="row">
+                <td class="col-sm-3">Company Address</td>
+                <td class="col-sm-3 text-success"> {{userDetails.companyAddress}} </td>
+                <td class="col-sm-3">Rc Number</td>
+                <td class="col-sm-3"><b class="text-success"> {{userDetails.rcNumber}}</b></td>
             </tr>
             </tbody>
       </table>
       </div>
+
+
       <p class="font-weight-bold text-success">Guarantor Details</p><hr>
        <div class="container table-responsive">
          <table class="table table-striped table-bordered">
             <tbody>
                 <tr class="row">
-                    <td class="col-sm-4">Guarantors </td>
-                    <td class="col-sm-8">
-                        <ul class="ml-n4" v-for="(item, index) in userDetails.guarantors" :key="index">
-                            <li>
-                                Guarantor {{index+1}} : 
-                                <ul>
-                                  <li>Status : {{userDetails.guarantors[index].status}}</li>
-                                  <li>Name : {{userDetails.guarantors[index].firstName}} {{userDetails.guarantors[index].lastName}}</li>
-                                  <li>Phone : {{userDetails.guarantors[index].phoneNumber}} </li>
-                                  <li>Email :  {{userDetails.guarantors[index].email}}</li>
-                                  <li>idCard : 
-                                     <div class="form-group" style= "width:auto; height:auto">
-                                        <img class="img-fluid" :src="userDetails.guarantors[index].idCard" alt="id">
-                                     </div> 
-                                  </li>
-                                   <li>signature : 
-                                      <div class="form-group" style= "width:auto; height:auto">
-                                        <img class="img-fluid" :src="userDetails.guarantors[index].signatureG" alt="id">
-                                     </div>
-                                   </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </td>
+                  <td class="col-sm-3">Status</td>
+                  <td class="col-sm-3 text-success">{{userDetails.guarantors[0].status}}</td>
+                  <td class="col-sm-3">Name</td>
+                  <td class="col-sm-3 text-success"> {{userDetails.guarantors[0].firstName}} {{userDetails.guarantors[0].lastName}}</td>
                 </tr>
-        </tbody>
-      </table>
-       </div>
-        <p class="font-weight-bold text-success">Collateral details</p>
+
+                <tr class="row">
+                  <td class="col-sm-3">Email</td>
+                  <td class="col-sm-3 text-success">{{userDetails.guarantors[0].email}}</td>
+                  <td class="col-sm-3">Phone Number</td>
+                  <td class="col-sm-3 text-success"> {{userDetails.guarantors[0].phoneNumber}}</td>
+                </tr>
+
+                <tr class="row">
+                  <td class="col-sm-3">ID Card</td>
+                  <td class="col-sm-3 text-success">
+                      <form action="/action_page.php">
+                        <div class="form-group" style= "width:auto; height:auto">
+                        <a :href="userDetails.guarantors[0].idCard" download><img class="img-fluid" :src="userDetails.guarantors[0].idCard" alt="id"></a>
+                        </div>
+                      </form>
+                  </td>
+                  <td class="col-sm-3">Signature</td>
+                  <td class="col-sm-3 text-success">
+                      <form action="/action_page.php">
+                        <div class="form-group" style= "width:auto; height:auto">
+                        <a :href="userDetails.guarantors[0].signature" download><img class="img-fluid" :src="userDetails.guarantors[0].signature" alt="id"></a>
+                        </div>
+                      </form>
+                  </td>
+                </tr>           
+              </tbody>
+            </table>
+          </div>
+     
+      <p class="font-weight-bold text-success">Collateral details</p>
       <hr>
       <div class="container table-responsive">
         <table class="table table-striped table-bordered">
@@ -109,16 +165,26 @@
                 <td class="col-sm-3 text-success"> {{userDetails.collateral.collateralDescription}} </td>
             </tr>
             <tr class="row">
+                <td class="col-sm-6">Collateral Title</td>
+                <td class="col-sm-6"><b class="text-success"> {{userDetails.collateral.collateralTitle}}</b></td>
+            </tr>
+            <tr class="row">
                 <td class="col-sm-3">Joint Receivable Account</td>
                 <td class="col-sm-3 text-success"> {{userDetails.collateral.jointReceivableAccount}} </td>
                  <td class="col-sm-3">Contract Receivable Account</td>
                 <td class="col-sm-3 text-success"> {{userDetails.collateral.contractReceivableAccount}} </td>
             </tr>
+             <tr class="row">
+                <td class="col-sm-3">Contract Duration (From)</td>
+                <td class="col-sm-3 text-success"> {{moment(userDetails.collateral.contractDuration.from)}} </td>
+                 <td class="col-sm-3">Contract Duration (To)</td>
+                <td class="col-sm-3 text-success"> {{moment(userDetails.collateral.contractDuration.to)}} </td>
+            </tr>
             <tr class="row">
                 <td class="col-sm-6">Supporting Documents</td>
                 <td class="col-sm-6">
                     <div class="form-group" style="height:auto; width:auto; border:2px solid whitesmoke">
-                    <img  class="img-fluid" :src="userDetails.collateral.supportingDocuments" alt="suporting documents">
+                    <a :href="userDetails.collateral.supportingDocuments" download><img class="img-fluid" :src="userDetails.collateral.supportingDocuments" alt="suporting documents"></a>
                     </div>
                 </td>
             </tr>
@@ -126,27 +192,14 @@
                 <td class="col-sm-6">Other Documents</td>
                 <td class="col-sm-6">
                     <div class="form-group" style="height:auto; width:auto; border:2px solid whitesmoke">
-                    <img  class="img-fluid" :src="userDetails.collateral.otherDocuments" alt="other documents">
+                    <a :href="userDetails.collateral.otherDocuments" download><img class="img-fluid" :src="userDetails.collateral.otherDocuments" alt="other documents"></a>
                     </div>
                 </td>
             </tr>
             </tbody>
       </table>
       </div>
-      <p class="font-weight-bold text-success">Signatures</p><hr>
-      <table class="table table-borderless">
-        <tbody>
-          <tr class="row">
-            <td class="col-sm-6">Applicant's Signature</td>
-            <td class="col-sm-6">
-             
-                <div class="form-group" style="height:auto; width:auto; border:2px solid whitesmoke">
-                    <img  class="img-fluid" :src="userDetails.signature" alt="signature">
-                </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
 
       
           <div class="row mb-3">
@@ -206,6 +259,8 @@
 
 <script>
 import{ mdbTbl, mdbModal, mdbBtn, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbTblHead, mdbTblBody,mdbListGroup, mdbListGroupItem, mdbBadge,mdbNavbar, mdbContainer,mdbCard, mdbRow,mdbCardBody, mdbCardTitle, mdbCardText, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
+import moment from 'moment';
+
 export default {
  name:'userDetails',
  components :{
@@ -266,7 +321,10 @@ export default {
          this.$store.dispatch('updateFinanceStatusDecline')
             .then(_ => this.isLoading2=false)
             .catch(_ => this.isLoading2=false)
-    }
+    },
+     moment (date) {
+            return moment(date).format('MMMM Do YYYY');
+        },
  },
 
  computed : {

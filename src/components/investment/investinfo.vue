@@ -1,28 +1,25 @@
 <template>
-  <div>
-      
-          <div class="main-container">
-              <ValidationObserver v-slot="{ passes }">
-                 <form  @submit.prevent="passes(next_page)"> 
-                      <span class="h5 mb-5 d-lg-none d-block ">Investment Details</span>
-                     <div class="form-row first">
-                             <div class="col-md-5 mb-3">
-                                  <ValidationProvider name="investPrincipal" rules="required|min_value:100000" v-slot="{ errors }">
-                                        <label for="validationCustomUsername">Investment Amount <span class="text-danger">*</span></label>
+    <div>
+        <div class="main-container">
+            <ValidationObserver v-slot="{ passes }">
+                <form  @submit.prevent="passes(next_page)"> 
+                    <span class="h5 mb-5 d-lg-none d-block ">Investment Details</span>
+                    <div class="form-row first">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <ValidationProvider name="investPrincipal" rules="required|min_value:100000" v-slot="{ errors }">
+                                        <label for="validationCustomUsername">Investment Amount (min:  &#8358;100,000) <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                 <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
+                                                <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
                                             </div>
-                                           <input type="text" v-model.number="investPrincipal" class="form-control"  placeholder="Enter Amount"  name="Investment Amount"  >
+                                        <input type="text" v-model.number="investPrincipal" class="form-control"  placeholder="Enter Amount"  name="Investment Amount"  >
                                         </div>
                                         <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                 </ValidationProvider> 
                             </div>
-
-                            <div class="col-md-2"></div>
-
-                             <div class="col-md-5">
-                                  <ValidationProvider name="tenor" rules="required" v-slot="{ errors }">
+                            <div class="mb-3">
+                                <ValidationProvider name="tenor" rules="required" v-slot="{ errors }">
                                     <span class="m">Investment Tenor <span class="text-danger">*</span></span>
                                     <select class="browser-default custom-select" name="tenor" v-model="investTenor">
                                     <option value="1">1 month</option>
@@ -31,85 +28,72 @@
                                     <option value="12">12 months</option>
                                     </select>
                                     <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                 </ValidationProvider> 
-                              
+                                </ValidationProvider>
                             </div>
-                     </div>
+                            <div class="mb-3"> 
+                                <ValidationProvider name="Source of Income" rules="required" v-slot="{ errors }">
+                                    <span class="m">Source of Income <span class="text-danger">*</span></span>
+                                    <select class="browser-default custom-select" v-model="incomeSource"  name="Source of income">
+                                    <option value="Salary">Salary</option>
+                                    <option value="Gift">Gift</option>
+                                    <option value="Business">Business proceeds</option>
+                                    <option value="Inheritance">Inheritance</option>
+                                    </select>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1">Other Information</label>
+                                <textarea style="background:whitesmoke" v-model="otherInfo"   name="Loan Indebtedness" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                            </div> 
 
-
-                     <div class="form-row second">
-                        <div class="col-md-5 mt-4"> 
-                            <ValidationProvider name="Source of Income" rules="required" v-slot="{ errors }">
-                                <span class="m">Source of Income <span class="text-danger">*</span></span>
-                                <select class="browser-default custom-select" v-model="incomeSource"  name="Source of income">
-                                <option value="Salary">Salary</option>
-                                <option value="Gift">Gift</option>
-                                <option value="Business">Business proceeds</option>
-                                <option value="Inheritance">Inheritance</option>
-                                </select>
-                                <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                            </ValidationProvider>
                         </div>
 
-                         <div class="col-md-2"></div>
-
-                        <div class="col-md-5 mb-3">
-                            <label for="exampleFormControlTextarea1">Other Information</label>
-                            <textarea style="background:whitesmoke" v-model="otherInfo"   name="Loan Indebtedness" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-                        </div>    
-                     </div>
-
-                     <div class="">
-                         <div class="form-row">
-                        <div class="col-md-5">
-                        <span class="mb-3">Evidence of Payment <span class="text-danger">*</span></span>
-                         <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
-                            <img style="max-width:100%; height:auto" class="img-fluid" :src="paymentEvidence"  alt=''>
-                         </div>
-                        <div class="mr-2 mt-2 mt-md-5">
-                             <ValidationProvider name="payment Evidence" rules="required|image"  v-slot="{validate, errors }">
-                                 <label class="btn ml-n1 btn-info btn-file">
-                                    Choose File <input @change="onFileChange($event); validate($event)" type="file" name="Payment Evidence"  style="display: none;"> 
-                                  </label> <br>
-                                  
-                                <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                            </ValidationProvider>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-9">
+                                    <div class="">
+                                        <span class="mb-3">Evidence of Payment <span class="text-danger">*</span></span>
+                                        <div class=" mb-4 mb-md-0 " style="height:105px; width:170px; border:1px solid blue"> 
+                                            <img style="max-width:100%; height:100px; width:auto" class="img-fluid" :src="paymentEvidence"  alt=''>
+                                        </div>
+                                        <span  style="font-size:13px; color:red">maximum file size : 2mb</span>
+                                        <div class="mr-2 mt-2 mt-md-5">
+                                            <ValidationProvider name="payment Evidence" rules="required|image|size:2000"  v-slot="{validate, errors }">
+                                                <label class="btn ml-n1 btn-info btn-file">
+                                                    Choose File <input @change="onFileChange($event); validate($event)" type="file" name="Payment Evidence"  style="display: none;"> 
+                                                </label> <br>
+                                                
+                                                <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                            </ValidationProvider>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        </div>
+                    </div>   
 
-                        <div class="col-md-2"></div>
-
-                        <div class="col-md-5">
-                        <span class="mb-3">ID Attachment <span class="text-danger">*</span></span>
-                         <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
-                            <img style="max-width:100%; height:auto" class="img-fluid" :src="investId"  alt=''>
-                         </div>
-                        <div class="mr-2 mt-2 mt-md-5">
-                             <ValidationProvider name="idCard" rules="required|image"  v-slot="{validate, errors }">
-                                 <label class="btn ml-n1 btn-info btn-file">
-                                    Choose File <input @change="onFileChange2($event); validate($event)" type="file" name="idCard"  style="display: none;"> 
-                                  </label> <br>
-                                  
-                                <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                            </ValidationProvider>
-                        </div>
-                        </div>
-                     </div>
-                     </div>
-
-                     <div class="form-row">
-                         <div class="col-md-5"></div>
-                         <div class="col-md-2"></div>
-                         <div class="col-md-5">
-                              <mdb-btn type="submit" class="float-right btn-green mt-5"  style="font-size:15px; border-radius:5px"> Next</mdb-btn>
-                          </div>
-                     </div>
-
-                 </form>
+                    <div class="row d-flex justify-content-between row2 borde">
+                            <div class="div3">
+                                <div class="input-group mr-2 ml-2 mt-2 mt-md-5">
+                                    <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                        <button  @click="prev_page" class="btn btn-green">prev</button>
+                                    </ValidationProvider> 
+                                </div>
+                            </div>
+                            <div class="div3">
+                                <div class="input-group mt-2 mr-2 mt-md-5" style="margin:right">
+                                    <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                        <input type="submit" class="btn btn-green" value="next">
+                                    </ValidationProvider> 
+                                </div>
+                            </div>
+                    </div>
+                </form>
             </ValidationObserver>
-         </div>
-     
-  </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -143,6 +127,9 @@ export default {
     methods: {
     next_page () {
         this.$router.push('/profile/investment/investdetails/settlement')
+    },
+    prev_page () {
+        this.$router.go(-1)
     },
     onFileChange(e) {
         let files = e.target.files || e.dataTransfer.files;

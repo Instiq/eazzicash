@@ -25,7 +25,7 @@
                              </div>
                      </div>
 
-                     <div class="form-row">
+                     <div class="form-row mb-3">
                          <div class="col-md-5">
                                <ValidationProvider name="Bank Name" rules="required" v-slot="{ errors }">
                                     <span class="m">Bank Name <span class="text-danger">*</span></span>
@@ -56,16 +56,30 @@
                                 </ValidationProvider>
                             </div>
                      </div>
-                     <div class="form-row">
-                         <div class="col-md-5"></div>
-                         <div class="col-md-2"></div>
-                         <div class="col-md-5">
-                              <mdb-btn type="submit" class="float-right btn-green mt-5"  style="font-size:15px; border-radius:5px"> Next</mdb-btn>
-                          </div>
-                     </div>
-                 </form>
-               </ValidationObserver>  
-          </div>
+                     <div class="row d-flex justify-content-between row2 borde">
+                                <!-- <div class="col-6 border"> -->
+                                    <div class="div3">
+                                        <div class="input-group mr-2 ml-3 mt-2 mt-md-5">
+                                            <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                                     <!-- <input type="text"  @click="prev_page" class="btn btn-green" value="prev"> -->
+                                                     <button  @click="prev_page" class="btn btn-green">prev</button>
+                                            </ValidationProvider> 
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                                 <!-- <div class="col-6 border"> -->
+                                    <div class="div3">
+                                        <div class="input-group mt-2 mr-3 mt-md-5" style="margin:right">
+                                            <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                                     <input type="submit" class="btn btn-green" value="next">
+                                            </ValidationProvider> 
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                    </div>
+                </form>
+            </ValidationObserver>  
+        </div>
   </div>
 </template>
 
@@ -92,7 +106,10 @@ export default {
     methods: {
         next_page () {
             this.$router.push('/profile/investment/investdetails/nextofkin')
-        }
+        },
+        prev_page () {
+            this.$router.go(-1)
+        },
    },
 
   computed : {

@@ -4,11 +4,11 @@
           <div class="container main-container">
 
               <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
-                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Investment calculator</span></div>
+                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Returns Calculator</span></div>
 
                     <section class="container  mt-3">
                         <div class="col-xl-6 col-lg-9 col-md-10">
-                            <span class="m">Investment Amount (min:100k)</span>
+                            <span class="m">Investment Amount (min:  &#8358;100,000)</span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
                             <div class="input-group mb-2">
                             <div class="input-group-prepend">
@@ -49,7 +49,7 @@
                             </div>
                             <input type="text" disabled v-model="investMra" class="form-control font-weight-bold py-0" style="background:whitesmoke" id="inlineFormInputGroup"  placeholder="amount">
                             </div>
-                             <p class="text-danger mb-2" style="font-size:15px; width:auto"> Please note that the return on investment is accrued interest plus investment amount </p>
+                             <p class="text-danger mb-2" style="font-size:15px; width:auto"> Please note that the return on investment is investment amount plus accrued interest. </p>
                             
                         </div> <br> <br> <br>
 

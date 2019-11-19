@@ -10,10 +10,11 @@
                        </div>
                    </router-link>
                    <div class="loan-navigation container row small-screen-nav">
+                        <router-link class="ml- col-md-3 text-dark loan-nav" to="#"> <div class="nav-items text-center small-screen-nav" style="border:2px solid blu; width:120px; margin-left:-2vw"  :class="{ active: isActive4I }" >Personal Details</div></router-link>
                        <router-link class="col-md-3 ml-lg-n2  text-dark loan-nav p-0 " to='#'><div class="nav-items text-center small-screen-nav" style="border:2px solid blu; width:140px;"  :class="{ active: isActive1I }" >Investment Details</div></router-link>
                        <router-link class="col-md-3 text-dark loan-nav " to="#"><div class=" nav-items text-center ml-xl-3  small-screen-nav" style="border:2px solid blu; width:150px;"  :class="{ active: isActive2I }"  >Settlement Account</div></router-link>
                        <router-link class="col-md-3 text-dark loan-nav"  to="#" ><div class="nav-items text-center nok small-screen-nav" style="border:2px solid blu; width:136px;"  :class="{ active: isActive3I }" >Next of Kin Details</div></router-link>
-                       <router-link class="ml- col-md-3 text-dark loan-nav" to="#"> <div class="nav-items text-center ml-lg-5 signature small-screen-nav" style="border:2px solid blu; width:77px;"  :class="{ active: isActive4I }" >Signature</div></router-link>        
+                       <!-- <router-link class="ml- col-md-3 text-dark loan-nav" to="#"> <div class="nav-items text-center ml-lg-5 signature small-screen-nav" style="border:2px solid blu; width:77px;"  :class="{ active: isActive4I }" >Signature</div></router-link>         -->
                    </div>
 
                    <div class="containe">

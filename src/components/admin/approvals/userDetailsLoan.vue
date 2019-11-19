@@ -89,16 +89,25 @@
         <table class="table table-striped table-bordered">
             <tbody>
             <tr class="row">
-                <td class="col-sm-6">Employment Type</td>
-                <td class="col-sm-6"><b class="text-success"> {{userDetails.employmentType}}</b></td>
+                <td class="col-sm-3">Employment Type</td>
+                <td class="col-sm-3"><b class="text-success"> {{userDetails.employmentType}}</b></td>
+                <td class="col-sm-3">Company Name</td>
+                <td class="col-sm-3 text-success"> {{userDetails.companyName}} </td>
             </tr>
-            <tr class="row">
-                <td class="col-sm-6">Company Name</td>
-                <td class="col-sm-6 text-success"> {{userDetails.companyName}} </td>
+             <tr class="row">
+                <td class="col-sm-3">Phone Number</td>
+                <td class="col-sm-3 text-success"> {{userDetails.companyPhone}} </td>
+                <td class="col-sm-3">Official Email</td>
+                <td class="col-sm-3 text-success"> {{userDetails.officialEmail}} </td>
+            </tr>
+             <tr class="row">
+                <td class="col-sm-6">Company Address</td>
+                <td class="col-sm-6 text-success"> {{userDetails.companyAddress}} </td>
             </tr>
             </tbody>
       </table>
       </div>
+
       <p class="font-weight-bold text-success">Guarantor Details</p><hr>
        <div class="container table-responsive">
          <table class="table table-striped table-bordered">
@@ -134,12 +143,10 @@
                         </div>
                       </form>
                   </td>
-                </tr>
-                  
-                     
-        </tbody>
-      </table>
-       </div>
+                </tr>           
+              </tbody>
+            </table>
+          </div>
 
       
           <div class="row mb-3">

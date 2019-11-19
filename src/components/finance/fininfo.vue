@@ -1,143 +1,127 @@
 <template>
   <div>
-      
-          <div class="main-container">
-                 <form  @submit.prevent="validateBeforeSubmit"> 
-                     <span class="h5 mb-5 d-lg-none d-block ">Finance Details</span>
+        <div class="main-container">
+             <ValidationObserver v-slot="{ passes }">
+                 <form   @submit.prevent="passes(next_page)"> 
+                     <span class= "h5 mb-5 d-lg-none d-bloc "> Finance Details</span>
                      <div class="form-row first">
                           <div class="col-md-5 mb-3">
-                                <span class="m">Finance  Type <span class="text-danger">*</span></span>
-                                <select class="browser-default custom-select" v-model="financeType" v-validate="'required'" name="Finance Type">
-                                <option value="LPO Finance">LPO Finance</option>
-                                <option value="Asset" >Asset</option>
-                                <option value="Contract">Contract</option>
-                                </select>
-                                <div class="mt-3" >
-                                    <i v-show="errors.has('Finance Type')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Finance Type')">{{ errors.first('Finance Type') }}</span>
-                                </div>
+                                <ValidationProvider name="Finance Type" rules="required" v-slot="{ errors }">
+                                    <span class="m">Finance  Type <span class="text-danger">*</span></span>
+                                    <select class="browser-default custom-select" v-model="financeType" v-validate="'required'" name="Finance Type">
+                                        <option value="LPO Finance">LPO Finance</option>
+                                        <option value="Asset" >Asset</option>
+                                        <option value="Contract">Contract</option>
+                                    </select>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>    
                            </div>  
                             
 
                             <div class="col-md-2"></div>
 
                             <div class="col-md-5 mb-3">
-                                <label for="validationCustom02">Finance Tenor <span class="text-danger">*</span></label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text" style="cursor:pointer" v-on:click="minus" id="inputGroupPrepend">-</span>
+                                 <ValidationProvider name="principal" rules="required" v-slot="{ errors }">
+                                   <label for="validationCustom02">Finance Tenor <span class="text-danger">*</span></label>
+                                   <div class="input-group">
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text" style="cursor:pointer" v-on:click="minus" id="inputGroupPrepend">-</span>
+                                        </div>
+                                        <input type="text" class="form-control" style="background:whitesmoke" disabled v-model.number="tenor" id="validationCustom02" placeholder="Duration (months)" aria-describedby="inputGroupPrepend" required>
+                                        <div class="input-group-append">
+                                        <span class="input-group-text" style="cursor:pointer" @click='add' id="inputGroupAppend">+</span>
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control" style="background:whitesmoke" disabled v-model.number="tenor" id="validationCustom02" placeholder="Duration (months)" aria-describedby="inputGroupPrepend" required>
-                                    <div class="input-group-append">
-                                    <span class="input-group-text" style="cursor:pointer" @click='add' id="inputGroupAppend">+</span>
-                                    </div>
-                                </div>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>    
                             </div>
                      </div>
 
 
                      <div class="form-row second">
                         <div class="col-md-5 mt-4"> 
-                               Any Indebtedness? <span class="text-danger">*</span>
-                            <div class="custom-control custom-radio ml-2 d-inline"> 
-                                <input type="radio" v-model="isPicked" value="yes" class="custom-control-input form-check-input" id="invalidCheck" name="indebtedness" v-validate="'included:yes,no|required'" >
-                                 <label class="custom-control-label" for="invalidCheck">Yes</label> 
-                            </div>
+                             <ValidationProvider name="indebtedness" rules="required" v-slot="{ errors }">
+                                    Any Indebtedness? <span class="text-danger">*</span>
+                                    <div class="custom-control custom-radio ml-2 d-inline"> 
+                                        <input type="radio" v-model="isPicked" value="yes" class="custom-control-input form-check-input" id="invalidCheck" name="indebtedness" v-validate="'included:yes,no|required'" >
+                                        <label class="custom-control-label" for="invalidCheck">Yes</label> 
+                                    </div>
 
-                            <div class="custom-control custom-radio ml-2 d-inline"> 
-                                <input type="radio" v-model="isPicked" value='no' class="custom-control-input" id="customControlValidation3" name="indebtedness" >
-                                 <label class="custom-control-label"  for="customControlValidation3">No</label>    
-                            </div>
-
-                             <div class="mt-3" >
-                                    <i v-show="errors.has('indebtedness')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('indebtedness')">{{ errors.first('indebtedness') }}</span>
-                            </div>
+                                    <div class="custom-control custom-radio ml-2 d-inline"> 
+                                        <input type="radio" v-model="isPicked" value='no' class="custom-control-input" id="customControlValidation3" name="indebtedness" >
+                                        <label class="custom-control-label"  for="customControlValidation3">No</label>    
+                                    </div> <br>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
                         </div>
 
                          <div class="col-md-2"></div>
 
                           <div class="col-md-5 mb-3">
-                                <label for="validationCustomUsername">Finance Amount (min:100k max:3m) <span class="text-danger">*</span></label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
-                                    </div>
-                                    <input type="text"  v-model="principal" class="form-control"  placeholder="Enter Amount" v-validate="'required|min_value:100000|max_value:3000000'"  name="Finance Amount"  >
-                                    <div class="mt-3" >
-                                    <i v-show="errors.has('Finance Amount')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Finance Amount')">{{ errors.first('Finance Amount') }}</span>
-                                    </div>
-                                </div>
+                               <ValidationProvider name="principal" rules="required|min_value:100000|max_value:3000000" v-slot="{ errors }">
+                                    <label for="validationCustomUsername">Finance Amount <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
+                                        </div>
+                                        <input type="text"  v-model="principal" class="form-control"  placeholder="Enter Amount"  name="principal"  >
+                                    </div> 
+                                     <span class="text-success" style="font-size:15px"> (min: &#8358;100,000 max: &#8358;3,000,000 ) </span> <br>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>    
                           </div>
 
                      </div>
 
                     <div class="form-row third">
-                         <div class="col-md-5 mb-3">
-                            <label for="exampleFormControlTextarea1">List Indebtednes</label>
-                            <textarea :disabled='isPickedd' style="background:whitesmoke" v-model="loanIndebtedness" v-validate="''"  name="Loan Indebtedness" class="form-control text-area" id="exampleFormControlTextarea1" rows="2"></textarea>
-                         <div class="mt-3" >
-                            <i v-show="errors.has('Loan Indebtedness')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                            <span class="text-warning" v-show="errors.has('Loan Indebtedness')">{{ errors.first('Loan Indebtedness') }}</span>
-                        </div>
+                         <div class="col-md-5 mb-3"  v-if='isPickedd'>
+                              <ValidationProvider name="principal" rules="required" v-slot="{ errors }">
+                                    <label for="exampleFormControlTextarea1">List Indebtednes</label>
+                                    <textarea  style="background:whitesmoke" v-model="loanIndebtedness" name="Loan Indebtedness" class="form-control text-area" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                             </ValidationProvider>
                         </div>
 
-                       
+                         <div class="col-md-5" v-else></div>
 
                          <div class="col-md-2"></div>
 
-                        <div class="col-md-5 mt-4 mt4sm">
-                            <div class=" mb-4 mb-md-0 " style="height:auto; border:1px solid white"> 
-                                 <img style="max-width:100%; height:auto" class="img-fluid" :src="loanId"  alt=''>
-                             </div>
+                         <div class="col-md-5 small-screen-pp">
+                             <ValidationProvider name="Finance Purpose" rules="required" v-slot="{ errors }">
+                                    <label for="exampleFormControlTextarea1">Finance Purpose <span class="text-danger">*</span></label>
+                                    <textarea style="background:whitesmoke" v-model="loanPurpose"   name="Finance Purpose" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                             </ValidationProvider>
+                        </div>
+                    </div>
 
-                            <div class="input-group mr-2 mt-5">
-                                 <span class="mt-md-n4 mb-md-3">Upload ID  <span class="text-danger">*</span> </span>
-                                <input type="file" class="mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" v-validate="'required'"  name="id" @change="onFileChange" id="inputGroupFile02">
-                                <label class="" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"></label>
+                     <div class="row d-flex justify-content-between row2 borde">
+                            <div class="div3">
+                                <div class="input-group mt-2 ml-3 mt-md-5">
+                                    <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                        <button  @click="prev_page" class="btn btn-green">prev</button>
+                                    </ValidationProvider> 
+                                </div>
                             </div>
-
-                             <div class="mt-3" >
-                                <i v-show="errors.has('id')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                <span class="text-warning" v-show="errors.has('id')">{{ errors.first('id') }}</span>
-                             </div>
-                        </div>
+                            <div class="div3">
+                                <div class="input-group mt-2  mr-3 ml-3 mt-md-5">
+                                    <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
+                                        <input type="submit" class="btn btn-green" value="next">
+                                    </ValidationProvider> 
+                                </div>
+                            </div>
                     </div>
 
-                    <div class="form-row fourth">
-                        <div class="col-md-5 small-screen-pp">
-                            <label for="exampleFormControlTextarea1">Finance Purpose <span class="text-danger">*</span></label>
-                            <textarea style="background:whitesmoke" v-model="loanPurpose" v-validate="'required'"  name="Finance purpose" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            <div class="mt-3" >
-                                    <i v-show="errors.has('Finance purpose')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                                    <span class="text-warning" v-show="errors.has('Finance purpose')">{{ errors.first('Finance purpose') }}</span>
-                        </div>
-                        </div>
 
-                        
-
-                         <div class="col-md-2"></div>
-
-                          <div class="col-md-5">
-                              <mdb-btn type="submit" class="float-right btn-green mt-5"  style="font-size:15px; border-radius:5px"> Next</mdb-btn>
-                          </div>
-
-                    </div>
-                            
-          
-                 
-
-                 </form>
-               
-              
-          </div>
-     
+                </form>
+             </ValidationObserver>    
+        </div>
   </div>
 </template>
 
 <script>
 import{mdbNavbar,mdbInput, mdbBtn, mdbNumericInput, mdbJumbotron, mdbContainer,mdbRow, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue';
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export default {
     name:'guarantor',
@@ -153,13 +137,15 @@ export default {
     mdbCol,
     mdbJumbotron,
     mdbInput,
-    mdbNumericInput
+    mdbNumericInput,
+    ValidationObserver,
+    ValidationProvider 
     },
     
     data () {
         return {
             selected:'',
-            isPickedd:''
+            isPickedd:false
         }
     }, 
     methods: {
@@ -169,13 +155,14 @@ export default {
     minus () {
            this.$store.dispatch('decrement')
         },
-    validateBeforeSubmit() {
-        this.$validator.validateAll().then((result) => {
-            if (result) {
-            this.$router.push('/profile/finance/loandetails/workinfo')
-            }
-        })
+     next_page () {
+         this.$router.push('/profile/finance/loandetails/workinfo')
     },
+
+    prev_page () {
+        this.$router.go(-1)
+    },
+   
     onFileChange(e) {
         let files = e.target.files || e.dataTransfer.files;
         if (!files.length) return;
@@ -251,9 +238,9 @@ export default {
     watch : {
         isPicked (newval) {
            
-            if (newval=='yes') return  this.isPickedd=false;
+            if (newval=='yes') return  this.isPickedd=true;
             
-            if (newval=='no')   return  this.isPickedd=true;
+            if (newval=='no')   return  this.isPickedd=false;
         }
     },
     mounted () {

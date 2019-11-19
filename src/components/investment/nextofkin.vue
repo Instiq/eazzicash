@@ -3,7 +3,7 @@
       
           <div class="main-container">
                <ValidationObserver v-slot="{ passes }">
-                  <form  @submit.prevent="passes(next_page)"> 
+                  <form  @submit.prevent="passes(postInvestment)"> 
                      <span class="h5 mb-5 d-lg-none d-block ">Next of Kin Details</span>
                      <div class="form-row first mt-lg-0 mt-5">
                              <div class="col-md-5 mb-3">
@@ -95,13 +95,56 @@
                               
                      </div>
 
-                     <div class="form-row">
-                         <div class="col-md-5"></div>
-                         <div class="col-md-2"></div>
-                         <div class="col-md-5">
-                              <mdb-btn type="submit" class="float-right btn-green mt-5"  style="font-size:15px; border-radius:5px"> Next</mdb-btn>
-                          </div>
-                     </div>
+                    <div class="form-group">
+                        <div class="mt-3 ">
+                            <ValidationProvider name="id" rules="required"  v-slot="{errors }">
+                                    <label class="checkbox">
+                                        <input name="terms"  @change="isChecked" v-model="checked" type="checkbox"  >
+                                        <span class="ml-2" :class="{valid:isValid, invalid:isInvalid}">I agree that I have read and accepted the </span> 
+                                    </label>
+                                     <span :class="{valid:isValid}" class="ml-2" style="cursor:pointer;color:blue"  @click="showModal12a = true">terms and conditions.</span> <br>      
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                            </ValidationProvider>  
+                           
+                        </div>           
+                    </div>
+
+                    <mdb-modal :show="showModal12a" @close="showModal12a = false" scrollable>
+                            <mdb-modal-header class="text-center bg-info text-white" style="font-weight:400">
+                            <mdb-modal-title >Terms & Conditions</mdb-modal-title>
+                            </mdb-modal-header>
+                            <mdb-modal-body>
+                                <p class="font-weight-bold"> GENERAL TERMS AND CONDITIONS</p>
+                                    <p>The below Terms and Conditions stated herein governs this investment Agreement between MyEazzi Solution Limited (“the Lender”) and the Borrower.  It is important that the Borrower carefully reads and keep these terms and conditions especially for future reference.</p>
+                            </mdb-modal-body>
+                            <mdb-modal-footer>
+                            <mdb-btn color="info" @click.native="showModal12a = false">Done</mdb-btn>
+                            <!-- <mdb-btn color="primary">Save changes</mdb-btn> -->
+                            </mdb-modal-footer>
+                    </mdb-modal> 
+
+
+                      <div class="row d-flex justify-content-between row2 borde">
+                                <!-- <div class="col-6 border"> -->
+                                    <div class="div3">
+                                        <div class="input-group mr-2 ml-2 mt-2 mt-md-5">
+                                            <ValidationProvider name="id" rules=""  v-slot="{errors }">
+                                                     <!-- <input type="text"  @click="prev_page" class="btn btn-green" value="prev"> -->
+                                                     <button  @click="prev_page" class="btn btn-green">prev</button>
+                                            </ValidationProvider> 
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                                 <!-- <div class="col-6 border"> -->
+                                    <div class="div3">
+                                        <div class="input-group mt-2 ml- mr-4 mt-md-5" >
+                                            <ValidationProvider name="id" rules=""  v-slot="{errors }">
+                                                      <mdb-btn type="submit" :disabled='isCheckedd' class="btn-green" style="font-size:15px; border-radius:5px">Submit <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></mdb-btn>
+                                            </ValidationProvider> 
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                    </div>
 
                   </form>
                </ValidationObserver>      
@@ -111,7 +154,7 @@
 </template>
 
 <script>
-import {mdbInput, mdbBtn, mdbContainer,mdbRow, mdbCol, } from 'mdbvue';
+import {mdbInput, mdbBtn, mdbContainer,mdbRow, mdbCol, mdbModal, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter } from 'mdbvue';
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export default {
@@ -121,22 +164,79 @@ export default {
     mdbRow,
     mdbCol,
     mdbInput,
+    mdbModal,
+    mdbModalHeader,
+    mdbModalTitle, 
+    mdbModalBody, 
+    mdbModalFooter,
     ValidationObserver, 
     ValidationProvider
     },
     
     data () {
         return {
-          state : ""
+            state : "",
+            isValid:false,
+            isInvalid:false,
+            checked:'',
+            isCheckedd:true,
+            showModal12a: false,
+            isLoading : false
         }
     }, 
     methods: {
-   next_page () {
-        this.$router.push('/profile/investment/investdetails/signature')
-   }
+        next_page () {
+                this.$router.push('/profile/investment/investdetails/signature')
+        },
+        prev_page () {
+          this.$router.go(-1)
+        },
+        isChecked () {
+         if (this.checked=='') {
+           //failed
+             this.isInvalid=true;
+             this.isCheckedd=true; 
+             this.isValid=false
+
+         }
+
+         else if (this.checked!='')  {
+            //passed
+              this.isValid=true
+              this.isInvalid=false;
+              this.isCheckedd=false
+         }
+       }, 
+        showToastrSuccess () {
+                this.$toastr.defaultProgressBar = false;
+                this.$toastr.defaultStyle = { "background-color": "limegreen" };
+                this.$toastr.s( "<strong class='h6'>Success</strong> <br> Submitted Sucessfully!");
+                this.$store.commit('setIsSuccess', false)
+            },
+        showToastrError () {
+            this.$toastr.defaultProgressBar = false;
+            this.$toastr.defaultStyle = { "background-color": "firebrick" };
+            this.$toastr.e(`<strong class='h6'>Error</strong><br>${this.errorMsg}`);
+            this.$store.commit('setIsError', false)
+        }, 
+        postInvestment () {
+            this.isLoading = true
+            this.$store.dispatch('postInvestment')
+            .then(_ => this.isLoading=false)
+            .catch(_ => this.isLoading=false)
+    }
   },
 
   computed : {
+        isSuccess () {
+            return this.$store.state.isSuccess
+        },
+        isError () {
+            return this.$store.state.isError
+        },
+        errorMsg () {
+            return this.$store.state.errorMsg
+        },
       nokName : {
           get () {
                 return this.$store.getters.nokName
@@ -177,6 +277,15 @@ export default {
                 this.$store.dispatch('updateNokState', value )
             }
        },
+    },
+    watch : {
+          isSuccess (newval) {
+             if(newval==true) return this.showToastrSuccess()
+        },
+        
+        isError (newval) {
+            if(newval==true) return this.showToastrError()
+        }
     },
     mounted () {
         this.$store.dispatch('updateIsActive3I')

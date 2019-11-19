@@ -4,11 +4,11 @@
           <div class="container main-container">
 
               <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
-                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Finance calculator</span></div>
+                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Finance Calculator</span></div>
 
                     <section class="container  mt-3">
                         <div class="col-xl-6 col-lg-9 col-md-10">
-                            <span class="m">Finance Amount (min:100k max:3m)</span>
+                            <span class="m">Finance Amount (min: &#8358;100,000 max: &#8358;3,000,000)</span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
                             <div class="input-group mb-2">
                             <div class="input-group-prepend">
@@ -27,6 +27,7 @@
                             <input type="text" @input='updateTenor'  style="background:whitesmoke" disabled v-model.number="tenor"  class="form-control py-0"  placeholder="months">
 
                             <div class="input-group-append">
+                                <div  class="input-group-text" style="color:darkgray">month(s)</div>
                                 <div class="input-group-text"  style="cursor:pointer" @click='add' >+</div>
                             </div>
                               </div>

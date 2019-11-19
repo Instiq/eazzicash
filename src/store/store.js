@@ -14,6 +14,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    //http://localhost:3000/api
+    //https://still-bastion-19162.herokuapp.com/api
     api_url : 'https://still-bastion-19162.herokuapp.com/api',
     name:"",
     userFirstname:'',
@@ -470,6 +472,9 @@ export default new Vuex.Store({
             listIndebtedness:rootState.loan.loanIndebtedness,
             employmentType: rootState.loan.employmentType,
             companyName:rootState.loan.companyName,
+            companyAddress:rootState.loan.companyAddress,
+            companyPhone:rootState.loan.phoneNumber,
+            officialEmail:rootState.loan.officialEmail,
             loanPurpose:rootState.loan.loanPurpose,
             otherComments:rootState.loan.otherComments,
             guarantors,
@@ -538,23 +543,10 @@ export default new Vuex.Store({
           email:rootState.loan.email,
           address:rootState.loan.address,
           idCard:rootState.loan.id,
-          signatureG:rootState.loan.signature
+          signature:rootState.loan.signature
         }
       ];
-      //check if second guarantors is supplied and add to the guarantors array if supplied
-      if(rootState.loan.title1 !== "" && rootState.loan.address2 !== "" &&rootState.loan.firstName1 !== "" && rootState.loan.lastName1 !== "" && rootState.loan.phone1 !== "" && rootState.loan.email1 !== "" && rootState.loan.id1!=="" && rootState.loan.signature1!==""  ) {
-        guarantors.push({
-          title: rootState.loan.title1,
-          firstName: rootState.loan.firstname1,
-          lastName: rootState.loan.lastname1,
-          phoneNumber:rootState.loan.phone1,
-          email:rootState.loan.email1,
-          address:rootState.loan.address2,
-          idCard:rootState.loan.id1,
-          signatureG:rootState.loan.signature1
-          
-        })
-      }
+     
      //${state.api_url}/finance
       await axios({
         method:'post',
@@ -567,42 +559,61 @@ export default new Vuex.Store({
           listIndebtedness:rootState.loan.loanIndebtedness,
           employmentType:rootState.loan.employmentType,
           companyName:rootState.loan.companyName,
+          companyAddress:rootState.loan.companyAddress,
+          companyPhone:rootState.loan.phoneNumber,
+          officialEmail:rootState.loan.officialEmail,
+          rcNumber : rootState.loan.rcNumber,
           financePurpose:rootState.loan.loanPurpose,
-          id:rootState.loan.loanId,
           otherComments:rootState.loan.otherComments,
-          signature:rootState.loan.loanSign,
           guarantors,
           collateral: {
               collateralType:rootState.finance.collateralType,
+              collateralTitle: rootState.finance.collateralTitle,
               collateralDescription: rootState.finance.collateralDescription,
               jointReceivableAccount: rootState.finance.jointAccount,
               contractReceivableAccount: rootState.finance.contractAccount,
               supportingDocuments: rootState.finance.supportingDocs,
+              contractDuration : {
+                from : rootState.finance.contractDate,
+                to : rootState.finance.contractDate1
+              },
               otherDocuments :  rootState.finance.otherDocs
           },
+          personalDetails : {
+            idCard:rootState.loan.loanId,
+            signature:rootState.loan.loanSign,
+            address:rootState.loan.address,
+            busstop:rootState.loan.busstop,
+            state:rootState.loan.statee,
+            yearsInAddress:rootState.loan.yearsInAddress,
+            meansOfId:rootState.loan.meansOfId,
+            otherId:rootState.loan.otherId
+          }
       },
       headers : {
         'x-auth-token': state.token
       }
     })
       .then(({data})=>{
-        console.log(data);
-        commit('setLoading', false);
         router.push('/profile/finance/loandetails/success')
       })
-      .catch (err=>{
-        commit('setLoading', false)
-        if (err.response.data=='Invalid Token') {
-          alert('Session Expired. kindly Re-Login');
-          router.push('/signin');
+      .catch (({response})=>{
+        console.error(response.data);
+        commit('setIsError', true)
+        if (response.data=='Invalid Token') {
+          commit('setErrorMsg', `${response.data}. You will be redirected re-login`);
+          setTimeout (_ => router.push('/signin'), 500);
           return;
         }
-        if(err.response.data[0].error.code=='ENOTFOUND' && err.response.data[0].error.syscall=='getaddrinfo') {
-          commit('setIsError', true);
-          setTimeout(()=>commit('setIsError', false), 2000)
+        if(response.data=='image must be a valid jpg or png image') return commit('setErrorMsg', response.data);
+        if(response.data=='image must not be more than 2mb') return commit('setErrorMsg', response.data)
+        if (response.data[0]) {
+          if(response.data[0].error.code=='ENOTFOUND' || response.data[0].error.code=='ECONNRESET' || response.data[0].error.syscall=='getaddrinfo') {
+            commit('setIsError', true);
+            commit('setErrorMsg', `please check your internet connection`);
+            // setTimeout(()=>commit('setIsError', false), 2000)
+          }
         }
-        console.error(err.response.data);
-        
       })
     },
 
@@ -660,14 +671,14 @@ export default new Vuex.Store({
         console.error(response.data);
         commit('setIsError', true)
         if (response.data=='Invalid Token') {
-          commit('setErrorMsg', `${response.data}. kindly re-login`);
+          commit('setErrorMsg', `${response.data}. You will be redirected re-login`);
           setTimeout (_ => router.push('/signin'), 500);
           return;
         }
         if(response.data=='image must be a valid jpg or png image') return commit('setErrorMsg', response.data);
         if(response.data=='image must not be more than 2mb') return commit('setErrorMsg', response.data)
         if (response.data[0]) {
-          if(response.data[0].error.code=='ENOTFOUND' && response.data[0].error.syscall=='getaddrinfo') {
+          if(response.data[0].error.code=='ENOTFOUND' || response.data[0].error.code=='ECONNRESET' || response.data[0].error.syscall=='getaddrinfo') {
             commit('setIsError', true);
             commit('setErrorMsg', `please check your internet connection`);
             // setTimeout(()=>commit('setIsError', false), 2000)
@@ -688,8 +699,15 @@ export default new Vuex.Store({
           incomeSource:rootState.investment.incomeSource,
           otherInformation:rootState.investment.otherInfo,
           paymentEvidence:rootState.investment.paymentEvidence,
-          id:rootState.investment.investId,
-          signature:rootState.investment.investSign,
+          personalDetails : {
+            idCard:rootState.loan.loanId,
+            signature:rootState.loan.loanSign,
+            address:rootState.loan.address,
+            state:rootState.loan.statee,
+            occupation:rootState.loan.occupation,
+            meansOfId:rootState.loan.meansOfId,
+            otherId:rootState.loan.otherId
+          },
           accountDetails : {
             Name:rootState.investment.accountName,
             Number:rootState.investment.accountNumber,
@@ -711,20 +729,23 @@ export default new Vuex.Store({
         console.log(data);
         router.push("/profile/investment/investdetails/success");
       })
-      .catch (err=>{
-        console.error(err.response.data);
-        if (err.response.data=='Invalid Token') {
-          alert('Session Expired. kindly Re-Login');
-          router.push('/signin');
+      .catch (({response}) => {
+        console.error(response.data);
+        commit('setIsError', true)
+        if (response.data=='Invalid Token') {
+          commit('setErrorMsg', `${response.data}. You will be redirected re-login`);
+          setTimeout (_ => router.push('/signin'), 500);
           return;
         }
-       if(err.response.data[0]) {
-        if(err.response.data[0].error.code=='ENOTFOUND' && err.response.data[0].error.syscall=='getaddrinfo') {
-          commit('setIsError', true);
-          setTimeout(()=>commit('setIsError', false), 2000)
+        if(response.data=='image must be a valid jpg or png image') return commit('setErrorMsg', response.data);
+        if(response.data=='image must not be more than 2mb') return commit('setErrorMsg', response.data)
+        if (response.data[0]) {
+          if(response.data[0].error.code=='ENOTFOUND' || response.data[0].error.code=='ECONNRESET' || response.data[0].error.syscall=='getaddrinfo') {
+            commit('setIsError', true);
+            commit('setErrorMsg', `please check your internet connection`);
+            // setTimeout(()=>commit('setIsError', false), 2000)
+          }
         }
-       }
-       
         
       })
     },

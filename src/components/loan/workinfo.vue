@@ -46,7 +46,7 @@
                         </div>
 
                          <div class="form-row">
-                                <div class="col-md-5 mb-3">
+                                <div class="col-md-5 mb-2">
                                     <ValidationProvider name="Phone Number" rules="required|numeric|min:11|max:15" v-slot="{ errors }">
                                         <label for="validationCompanyPhone">Phone Number <span class="text-danger">*</span></label>
                                         <input type="number"  v-model="phoneNumber" class="form-control" name="Phone Number" id="validationCompanyName" placeholder=""  >
@@ -58,6 +58,15 @@
                                     <label for="exampleFormControlTextarea1">Other comments (optional)</label>
                                     <textarea style="background:whitesmoke" v-model="otherComments" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
+                        </div>
+                        <div class="form-row" v-if="currentRoute == 'finance'">
+                            <div class="col-md-5 mb-3">
+                                <ValidationProvider name="RC Number" rules="numeric" v-slot="{ errors }">
+                                    <label for="validationCompanyPhone">RC Number</label>
+                                    <input type="text"  v-model="rcNumber" class="form-control" name="RC Number" id="validationCompanyName" placeholder=""  >
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
+                            </div>
                         </div>
                         <div class="row d-flex justify-content-between row2 borde">
                                 <!-- <div class="col-6 border"> -->
@@ -112,7 +121,8 @@ export default {
     },
     methods: {
       next_page () {
-          this.$router.push('/profile/loan/loandetails/guarantor')
+         if (this.currentRoute == 'loan')  return this.$router.push('/profile/loan/loandetails/guarantor')
+          if (this.currentRoute == 'finance')  return this.$router.push('/profile/finance/loandetails/guarantor')
       },
       prev_page () {
         this.$router.go(-1)
@@ -120,6 +130,10 @@ export default {
   },
 
   computed : {
+      currentRoute () {
+          return this.$router.currentRoute.name
+
+      },
       employmentType : {
           get () {
              return  this.$store.getters.employmentType
@@ -158,6 +172,14 @@ export default {
           },
           set(value) {
               this.$store.dispatch('updatePhoneNumber', value)
+          }
+      },
+    rcNumber : {
+          get () {
+             return this.$store.getters.rcNumber
+          },
+          set(value) {
+              this.$store.dispatch('updateRcNumber', value)
           }
       },
       otherComments : {

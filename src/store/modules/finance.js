@@ -5,6 +5,9 @@ const state = {
   jointAccount: "",
   supportingDocs:"",
   otherDocs:"",
+  contractDate:"",
+  contractDate1:"",
+  collateralTitle:"",
   //state for finance type
   financeType:''
 };
@@ -28,6 +31,15 @@ const mutations = {
   setOtherDocs(state, payload) {
     state.otherDocs = payload;
   },
+  setContractDate(state, payload) {
+    state.contractDate = payload;
+  },
+  setContractDate1(state, payload) {
+    state.contractDate1 = payload;
+  },
+  setCollateralTitle(state, payload) {
+    state.collateralTitle= payload;
+  },
   //mutations for finance type
   setFinanceType(state, payload) {
     state.financeType = payload;
@@ -46,6 +58,15 @@ const actions = {
   },
   updateJointAccount({ commit }, value) {
     commit("setJointAccount", value);
+  },
+  updateContractDate({ commit }, value) {
+    commit("setContractDate", value);
+  },
+  updateContractDate1({ commit }, value) {
+    commit("setContractDate1", value);
+  },
+  updateCollateralTitle({ commit }, value) {
+    commit("setCollateralTitle", value);
   },
   //actions for finance type
   updateFinanceType({ commit }, value) {
@@ -71,6 +92,15 @@ const getters = {
   },
   otherDocs: state => {
     return state.otherDocs;
+  },
+  contractDate: state => {
+    return state.contractDate;
+  },
+  contractDate1: state => {
+    return state.contractDate1;
+  },
+  collateralTitle: state => {
+    return state.collateralTitle;
   },
   //getters for finance type
   financeType: state => {

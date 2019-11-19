@@ -5,7 +5,20 @@
     <div class="container ">
       <div class="row  p-1 mb-5" style="margin-top:-30px">
         <div class="col">
-          <p class="text-success mt-5 h6 font-weight-bold">Finance Requests</p>
+         <div class="row mt-5">
+               <p class="text-success col-md-3 mt- h6 font-weight-bold">Finance Requests</p>
+              <div class="col-md-4"></div>
+              <div class="col-md-5 mb-3">
+                 <div class="input-group">
+                    <input type="search" placeholder="search by name, status, date, month or year" v-model="name" class="form-control" name="" id=""> 
+                    <div class="input-group-append" style="cursor:pointer">
+                       <div class="input-group-text"> <i class="fas fa-search"></i></div>
+                    </div>
+                 
+                 </div>
+                
+              </div>
+          </div>
           <!-- <div class="form-group has-search main">
             <span class="fa fa-search form-control-feedback"></span>
             <input type="text" class="form-control" placeholder="Search">
@@ -103,7 +116,7 @@ export default {
 
  computed : {
     financeRequests () {
-        return this.$store.state.userEntitiesAll.finance
+        return this.$store.state.userEntitiesAll.finance.sort().reverse()
     },
  },
   mounted () {
@@ -119,6 +132,10 @@ export default {
     margin-left:0vw;
     height: auto;
     overflow-x: hidden
+ }
+
+  ::placeholder {
+   font-size: 13px
  }
 
 </style>

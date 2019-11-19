@@ -45,8 +45,6 @@ import signatureP from "./components/pawnshop/signatureP.vue";
 import finPrecheck from "./components/finance/finPrecheck.vue";
 import findetails from "./components/finance/findetails.vue";
 import fininfo from "./components/finance/fininfo.vue";
-import finworkinfo from "./components/finance/finworkinfo.vue";
-import finguarantor from "./components/finance/finguarantor.vue";
 import collateral from "./components/finance/collateral.vue";
 import signatureF from "./components/finance/signatureF.vue";
 //Admin routes
@@ -226,6 +224,16 @@ const router = new Router({
             {
               path: "/",
               name: "investment",
+              redirect: "/profile/investment/investdetails/personal"
+            },
+            {
+              path: "/profile/investment/investdetails/personal",
+              name: "investment",
+              component: personalLoan
+            },
+            {
+              path: "/",
+              name: "investment",
               redirect: "/profile/investment/investdetails/investinfo"
             },
             {
@@ -243,11 +251,11 @@ const router = new Router({
               name: "investment",
               component: nextofkin
             },
-            {
-              path: "/profile/investment/investdetails/signature",
-              name: "investment",
-              component: signatureI
-            },
+            // {
+            //   path: "/profile/investment/investdetails/signature",
+            //   name: "investment",
+            //   component: signatureI
+            // },
             {
               path: "/profile/investment/investdetails/success",
               name: "investment",
@@ -307,7 +315,12 @@ const router = new Router({
             {
               path: "/",
               name: "finance",
-              redirect: "/profile/finance/loandetails/loaninfo"
+              redirect: "/profile/finance/loandetails/personal"
+            },
+            {
+              path: "/profile/finance/loandetails/personal",
+              name: "finance",
+              component:personalLoan
             },
             {
               path: "/profile/finance/loandetails/loaninfo",
@@ -317,18 +330,18 @@ const router = new Router({
             {
               path: "/profile/finance/loandetails/workinfo",
               name: "finance",
-              component: finworkinfo
+              component: workinfo
             },
             {
               path: "/profile/finance/loandetails/guarantor",
               name: "finance",
-              component: finguarantor
+              component: guarantor
             },
-            {
-              path: "/profile/finance/loandetails/signature",
-              name: "finance",
-              component: signatureF
-            },
+            // {
+            //   path: "/profile/finance/loandetails/signature",
+            //   name: "finance",
+            //   component: signatureF
+            // },
             {
               path: "/profile/finance/loandetails/collateral",
               name: "finance",

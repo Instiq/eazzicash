@@ -11,6 +11,7 @@ const state = {
   currentAddress:"",
   busstop:"",
   yearsInAddress:"",
+  occupation:"",
   statee:"",
   meansOfId:"",
   otherId:"",
@@ -32,6 +33,7 @@ const state = {
   companyAddress:"",
   officialEmail: "",
   phoneNumber:"",
+  rcNumber:"",
   //state for guarantor
   title: "",
   title1: "",
@@ -79,6 +81,9 @@ const mutations = {
   },
   setYearsInAddress(state, payload) {
     state.yearsInAddress = payload;
+  },
+  setOccupation(state, payload) {
+    state.occupation = payload;
   },
   setState(state, payload) {
     state.statee = payload;
@@ -136,30 +141,21 @@ const mutations = {
   setPhoneNumber(state, payload) {
     state.phoneNumber = payload;
   },
+  setRcNumber(state, payload) {
+    state.rcNumber = payload;
+  },
   //Mutations for guarantor
   setTitle(state, payload) {
     state.title = payload;
   },
-  setTitle1(state, payload) {
-    state.title1 = payload;
-  },
   setFirstname(state, payload) {
     state.firstname = payload;
-  },
-  setFirstname1(state, payload) {
-    state.firstname1 = payload;
   },
   setLastname(state, payload) {
     state.lastname = payload;
   },
-  setLastname1(state, payload) {
-    state.lastname1 = payload;
-  },
   setPhone(state, payload) {
     state.phone = payload;
-  },
-  setPhone1(state, payload) {
-    state.phone1 = payload;
   },
   setEmail2(state, payload) {
     state.email = payload;
@@ -170,20 +166,14 @@ const mutations = {
   setAddress(state, payload) {
     state.address = payload;
   },
-  setAddress2(state, payload) {
-    state.address2 = payload;
-  },
+  // setAddress2(state, payload) {
+  //   state.address2 = payload;
+  // },
   setId (state, payload) {
     state.id = payload
   },
-  setId1 (state, payload) {
-    state.id1 = payload
-  },
   setSignature (state, payload) {
     state.signature = payload
-  },
-  setSignature1 (state, payload) {
-    state.signature1 = payload
   },
 
   //mutations for signature
@@ -239,6 +229,9 @@ const actions = {
   },
   updateYearsInAddress({commit}, value) {
     commit('setYearsInAddress', value)
+  },
+  updateOccupation({commit}, value) {
+    commit('setOccupation', value)
   },
   updateState({commit}, value) {
     commit('setState', value)
@@ -299,43 +292,28 @@ const actions = {
   updatePhoneNumber({ commit }, value) {
     commit("setPhoneNumber", value);
   },
+  updateRcNumber({ commit }, value) {
+    commit("setRcNumber", value);
+  },
   //Actions for guarantor
   updateTitle({ commit }, value) {
     commit("setTitle", value);
   },
-  // updateTitle1({ commit }, value) {
-  //   commit("setTitle1", value);
-  // },
   updateFirstName({ commit }, value) {
     commit("setFirstname", value);
   },
-  // updateFirstName1({ commit }, value) {
-  //   commit("setFirstname1", value);
-  // },
   updateLastname({ commit }, value) {
     commit("setLastname", value);
   },
-  // updateLastname1({ commit }, value) {
-  //   commit("setLastname1", value);
-  // },
   updatePhone({ commit }, value) {
     commit("setPhone", value);
   },
-  // updatePhone1({ commit }, value) {
-  //   commit("setPhone1", value);
-  // },
   updateEmail({ commit }, value) {
     commit("setEmail2", value);
   },
-  // updateEmail1({ commit }, value) {
-  //   commit("setEmail1", value);
-  // },
   updateAddress({ commit }, value) {
     commit("setAddress", value);
   },
-  // updateAddress2({ commit }, value) {
-  //   commit("setAddress2", value);
-  // }
 };
 const getters = {
   // getters for Apply
@@ -360,6 +338,9 @@ const getters = {
   },
   yearsInAddress: state => {
     return state.yearsInAddress;
+  },
+  occupation: state => {
+    return state.occupation;
   },
   busstop: state => {
     return state.busstop;
@@ -411,6 +392,9 @@ const getters = {
   },
   phoneNumber: state => {
     return state.phoneNumber;
+  },
+  rcNumber: state => {
+    return state.rcNumber;
   },
   otherComments: state => {
     return state.otherComments;

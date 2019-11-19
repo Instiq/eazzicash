@@ -403,12 +403,12 @@
                                     <td>Company Name</td>
                                     <td>{{financePending.companyName}}</td>
                                 </tr>
-                                 <tr scope="row" >
+                                  <tr scope="row" >
                                     <td>Guarantor Status</td>
                                     <td >
                                        <ul class="ml-n4" v-for="(item, index) in financePending.guarantors" :key="index">
                                            <li>
-                                              Guarantor {{index+1}} :  {{financePending.guarantors[index].status}}
+                                             {{financePending.guarantors[index].status}}
                                            </li>
                                        </ul>
                                     </td>

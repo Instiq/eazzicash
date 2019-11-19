@@ -9,7 +9,7 @@
                     <section class="container  mt-3">
                         <div class="row">
                             <div class="col-xl-6 col-lg-9 col-md-10">
-                                <span class="m">Loan Amount (min: &#8358;100,000 max: &#8358;3,000,000 )</span>
+                                <span class="m">Loan Amount (min: &#8358;100,000 max: &#8358;3,000,000)</span>
                                 <label class="sr-only" for="inlineFormInputGroup"></label>
                                 <div class="input-group mb-2">
                                 <div class="input-group-prepend">
@@ -123,37 +123,37 @@ export default {
         let principal = this.principal
 
         if (tenor==1) {
-             let mra = Math.round((principal * ((a/100)+ 1))/tenor);
+             let mra = ((principal * ((a/100)+ 1))/tenor);
              let formattedMra = this.formatAmount(mra)   
              this.$store.dispatch('updateMra',formattedMra)
         }
     
         if (tenor==2) {
-             let mra = Math.round((principal * ((b/100)+ 1))/tenor);
+             let mra = ((principal * ((b/100)+ 1))/tenor);
              let formattedMra = this.formatAmount(mra)   
              this.$store.dispatch('updateMra',formattedMra)
         }
 
         if (tenor==3) {
-             let mra = Math.round((principal * ((c/100)+ 1))/tenor);
+             let mra = ((principal * ((c/100)+ 1))/tenor);
              let formattedMra = this.formatAmount(mra)   
              this.$store.dispatch('updateMra',formattedMra) 
         }
 
         if (tenor==4) {
-             let mra = Math.round((principal * ((d/100)+ 1))/tenor);
+             let mra = ((principal * ((d/100)+ 1))/tenor);
              let formattedMra = this.formatAmount(mra)   
              this.$store.dispatch('updateMra',formattedMra)
         }
 
         if (tenor==5) {
-             let mra = Math.round((principal * ((e/100)+ 1))/tenor);
+             let mra = ((principal * ((e/100)+ 1))/tenor);
              let formattedMra = this.formatAmount(mra)   
              this.$store.dispatch('updateMra',formattedMra)
         }
 
         if (tenor==6) {
-             let mra = Math.round((principal * ((f/100)+ 1))/tenor);
+             let mra = ((principal * ((f/100)+ 1))/tenor);
              let formattedMra = this.formatAmount(mra)   
              this.$store.dispatch('updateMra',formattedMra)
         }
