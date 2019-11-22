@@ -94,12 +94,13 @@ export default {
 
 <style scoped>
 
+
  .main-container {
     border:2px solid bla;
     /* margin-left:3vw; */
     height: auto;
     width:auto;
-    /* margin:0px 5vw */
+    margin:0px 5vw
  }
  .jumbotron-head {
      height: auto;
@@ -115,7 +116,8 @@ export default {
      border-bottom : 2px solid gainsboro;
      position: relative;
      height: 6vh;
-     margin:0px 9vw;
+     margin:0px 8vw;
+     margin-left: 7vw;
      width:auto
  }
 
@@ -180,13 +182,18 @@ export default {
   }
  }
 
- @media (min-width:1200px){
+  @media (min-width:1200px){
    
-     .loan-navigation {
+     /* .loan-navigation {
      margin:0px 9vw;
      width:auto
- }
+ } */
 
+ .small-screen-jumbo {
+    width:69vw !important;
+    height:auto !important
+} 
+/* 
  .nok {
      margin-left:30px
  }
@@ -198,8 +205,8 @@ export default {
   .loan-nav {
      top:0;
     
+ }  */
  } 
- }
 
  @media (max-width:991px){
    .small-screen-nav{
@@ -219,11 +226,6 @@ export default {
     width:auto !important;
     height:auto !important
 } 
- .apply-btn {
-     padding:10px 20vw;
-     position: absolute !important;
-     top:46vh;  
-}
 .jumbotron-head {
      height: auto;
      margin-top:-10vh;

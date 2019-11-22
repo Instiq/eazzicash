@@ -6,7 +6,7 @@
                  <form  @submit.prevent="passes(next_page)"> 
                       <span class="h5 mb-5 d-lg-none d-block ">Settlement Account</span>
                      <div class="form-row first">
-                             <div class="col-md-5 mb-3">
+                             <div class="col-md-6 mb-3">
                                 <ValidationProvider name="Account Number" rules="required|min:10|max:10|numeric" v-slot="{ errors }">
                                      <label for="validationCustomUsername">Account Number <span class="text-danger">*</span></label>
                                      <input type="text" v-model="accountNumber" class="form-control"  placeholder=""  name="Account Number"  >
@@ -16,7 +16,7 @@
                      </div>
 
                      <div class="form-row first">
-                             <div class="col-md-5 mb-3">
+                             <div class="col-md-6 mb-3">
                                  <ValidationProvider name="Account Name" rules="required" v-slot="{ errors }">
                                     <label for="validationCustomUsername">Account Name <span class="text-danger">*</span></label>
                                     <input type="text" v-model="accountName" class="form-control"  placeholder=""  name="Account Name"  >
@@ -26,7 +26,7 @@
                      </div>
 
                      <div class="form-row mb-3">
-                         <div class="col-md-5">
+                         <div class="col-md-6">
                                <ValidationProvider name="Bank Name" rules="required" v-slot="{ errors }">
                                     <span class="m">Bank Name <span class="text-danger">*</span></span>
                                     <select class="browser-default custom-select" name="Bank Name"  v-model="bankName">

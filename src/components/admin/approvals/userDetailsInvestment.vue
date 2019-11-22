@@ -8,7 +8,7 @@
       <p><a href="/adminProfile/approvals/investment"><i style='font-size:24px' class='fas'>&#xf060;</i></a></p>
       
       
-        <p class="text-success font-weight-bold">Personal Details</p>
+      <p class="text-success font-weight-bold">Personal Details</p>
        <div class="container table-responsive">            
         <table class="table table-striped table-bordered">
           <tbody>

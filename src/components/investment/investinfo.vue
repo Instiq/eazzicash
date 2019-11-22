@@ -44,7 +44,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1">Other Information</label>
-                                <textarea style="background:whitesmoke" v-model="otherInfo"   name="Loan Indebtedness" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                <textarea  v-model="otherInfo"   name="Loan Indebtedness" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div> 
 
                         </div>
@@ -59,7 +59,7 @@
                                             <img style="max-width:100%; height:100px; width:auto" class="img-fluid" :src="paymentEvidence"  alt=''>
                                         </div>
                                         <span  style="font-size:13px; color:red">maximum file size : 2mb</span>
-                                        <div class="mr-2 mt-2 mt-md-5">
+                                        <div class="mr-2 mt-2">
                                             <ValidationProvider name="payment Evidence" rules="required|image|size:2000"  v-slot="{validate, errors }">
                                                 <label class="btn ml-n1 btn-info btn-file">
                                                     Choose File <input @change="onFileChange($event); validate($event)" type="file" name="Payment Evidence"  style="display: none;"> 

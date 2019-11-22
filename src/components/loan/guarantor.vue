@@ -1,6 +1,6 @@
 <template>
   <div>
-        <div class="main-container">
+        <div class="main-containe">
                 <ValidationObserver v-slot="{ passes }">
                     <form  @submit.prevent="passes(postLoan)" > 
                         <span class="h5 mb-5 d-lg-none d-block ">Guarantor Details</span>
@@ -19,6 +19,21 @@
                                             <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider>  
                                    </div> 
+                                    <div class=" mb-3">
+                                        <ValidationProvider name="firstname" rules="required|max:50" v-slot="{ errors }">
+                                            <span class="m">First Name <span class="text-danger">*</span></span>
+                                            <input type="text"   v-model="firstname" class="form-control" name="firstname"  placeholder="" require>
+                                            <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                        </ValidationProvider> 
+                                    </div> 
+                                     <div class=" mb-3">
+                                         <ValidationProvider name="lastname" rules="required|max:50" v-slot="{ errors }">
+                                            <span class="m">Last Name <span class="text-danger">*</span></span>
+                                            <input type="text"   v-model="lastname" class="form-control" name="lastname" placeholder="">
+                                            <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                        </ValidationProvider> 
+                                        <div class="text-warning mt-2" v-if="nameDuplicate1">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor name must be different from your name</div>
+                                    </div> 
                                    <div class="mb-3">
                                         <ValidationProvider name="phone number" rules="required|min:11|max:15" v-slot="{ errors }">
                                             <span class="m">Phone Number <span class="text-danger">*</span></span>
@@ -27,13 +42,7 @@
                                             <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider> 
                                    </div>
-                                    <div class=" mb-3">
-                                        <ValidationProvider name="firstname" rules="required|max:50" v-slot="{ errors }">
-                                            <span class="m">First Name <span class="text-danger">*</span></span>
-                                            <input type="text"   v-model="firstname" class="form-control" name="firstname"  placeholder="" require>
-                                            <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                        </ValidationProvider> 
-                                    </div> 
+                                   
                                     <div class="mb-3">
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                             <span class="m">Email Address <span class="text-danger">*</span></span>
@@ -46,15 +55,7 @@
                                             <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider> 
                                         <div class="text-warning mt-2" v-if="emailDuplicate1">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor email must not be same as your email</div>
-                                    </div>  
-                                    <div class=" mb-3">
-                                         <ValidationProvider name="lastname" rules="required|max:50" v-slot="{ errors }">
-                                            <span class="m">Last Name <span class="text-danger">*</span></span>
-                                            <input type="text"   v-model="lastname" class="form-control" name="lastname" placeholder="">
-                                            <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                        </ValidationProvider> 
-                                        <div class="text-warning mt-2" v-if="nameDuplicate1">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor name must be different from your name</div>
-                                    </div>   
+                                    </div>    
                                     <div class="mb-3">
                                           <ValidationProvider name="address" rules="required|max:100" v-slot="{ errors }">
                                             <span class="m">Home Address <span class="text-danger">*</span></span>
@@ -73,7 +74,7 @@
                                                     <img style="max-width:100%; height:100px" class="img-fluid" :src="id"  alt=''>
                                                 </div>
                                                  <span  style="font-size:13px; color:red">maximum file size : 2mb</span>
-                                                <div class="input-group ml-1 mt-2 mt-md-5">
+                                                <div class="input-group ml-1 mt-2">
                                                     <ValidationProvider name="idCard" rules="required|image"  v-slot="{validate, errors }">
                                                         <label class="btn ml-n1 btn-info btn-file">
                                                                 BROWSE  <input  type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" style="display:none"  @change="onFileChange($event); validate($event)"  name="idCard" id="id">
@@ -88,7 +89,7 @@
                                                     <img style="max-width:100%; height:100px" class="img-fluid" :src="signature"  alt=''>
                                                 </div>
                                                  <span  style="font-size:13px; color:red">maximum file size : 2mb</span>
-                                                <div class="input-group ml-1 mt-2 mt-md-5">
+                                                <div class="input-group ml-1 mt-2">
                                                     <ValidationProvider name="signature" rules="required|image|size:2000"  v-slot="{validate, errors }">
                                                         <label class="btn ml-n1 btn-info btn-file">
                                                                 BROWSE  <input  type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" style="display:none"  @change="onFileChange1($event); validate($event)"  name="signature" id="signature">
@@ -298,9 +299,9 @@
                                 </mdb-modal>   
                             </div>
                         </section>
-                        <div class="row d-flex justify-content-between row2 borde">
+                        <div class="row d-flex justify-content-between borde">
                                     <div class="div3">
-                                        <div class="input-group mr-2 mt-2 mt-md-5">
+                                        <div class="input-group mr-2 mt-2">
                                             <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
                                                      <!-- <input type="text"  @click="prev_page" class="btn btn-green" value="prev"> -->
                                                      <button  @click="prev_page" class="btn btn-green">prev</button>
@@ -308,14 +309,14 @@
                                         </div>
                                     </div>
                                     <div class="div3" v-if="currentRoute == 'loan'">
-                                        <div class="input-group mt-2 mt-md-5" style="margin:right">
+                                        <div class="input-group mt-2" style="margin:right">
                                             <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
-                                                    <mdb-btn type="submit" :disabled='isCheckedd' class="btn-green" style="font-size:15px; border-radius:3px">Submit <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></mdb-btn>
+                                                 <mdb-btn type="submit" :disabled='isCheckedd' class="btn-green" style="font-size:15px; border-radius:3px">Submit <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></mdb-btn>
                                             </ValidationProvider> 
                                         </div>
                                     </div>
                                      <div class="div3" v-if="currentRoute == 'finance'">
-                                        <div class="input-group mt-2 mt-md-5" style="margin:right">
+                                        <div class="input-group mt-2" style="margin:right">
                                             <ValidationProvider name="id" rules=""  v-slot="{validate, errors }">
                                                <button  @click="passes(next_page)" class="btn btn-green">next</button>
                                             </ValidationProvider> 

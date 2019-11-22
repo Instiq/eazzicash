@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div class="main-container">
+      <div class="main-containe">
             <ValidationObserver v-slot="{ passes }">
                 <form  @submit.prevent="passes(postFinance)"> 
                      <span class="h5 mb-5 d-lg-none d-block ">Collateral Details</span>

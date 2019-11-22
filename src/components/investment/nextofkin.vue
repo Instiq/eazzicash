@@ -29,7 +29,7 @@
                              <div class="col-md-5 mb-3">
                                   <ValidationProvider name="Next of kin Address" rules="required" v-slot="{ errors }">
                                       <label for="validationCustomUsername">Address <span class="text-danger">*</span></label>
-                                      <input type="text" v-model="nokAddress" class="form-control"  placeholder=""   name="Next of kin Address"  >
+                                      <textarea type="text" v-model="nokAddress" class="form-control"  placeholder="" rows="3"  name="Next of kin Address"> </textarea>
                                       <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                   </ValidationProvider>  
                              </div>

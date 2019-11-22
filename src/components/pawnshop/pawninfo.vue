@@ -6,7 +6,7 @@
                 <form  @submit.prevent="passes(next_page)"> 
                     <span class="h5 mb-5 d-lg-none d-block ">Pawn Details</span>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-7">
                             <div class=" mb-3">
                                <ValidationProvider name="Item Category" rules="required" v-slot="{ errors }">
                                     <span class="m">Item Category  <span class="text-danger">*</span></span>
@@ -28,7 +28,7 @@
                             <div class="mb-3">
                                 <ValidationProvider name="Item Description" rules="required" v-slot="{ errors }">
                                     <span class="m">Item Description  <span class="text-danger">*</span> </span>
-                                    <input type="text"  name="Item Description" v-model="itemDescription" placeholder="e.g Samsung Galaxy S9" class="form-control">
+                                    <textarea rows="3" type="text"  name="Item Description" v-model="itemDescription" placeholder="e.g Samsung Galaxy S9" class="form-control"> </textarea>
                                     <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                 </ValidationProvider> 
                             </div>
@@ -86,27 +86,8 @@
                                
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <!-- <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-9">
-                                    <div class="" >
-                                        <span class="mb-3">Receipt of Item <span class="text-danger">*</span></span>
-                                        <div class=" mb-4 mb-md-0 " style="height:105px; width:170px; border:1px solid blue"> 
-                                            <img style="max-width:100%; height:100px" class="img-fluid" :src="itemReceipt"  alt=''>
-                                        </div>
-                                        
-                                        <div class="input-group mt-5">
-                                            <ValidationProvider name="Item Receipt" rules="required|image"  v-slot="{validate, errors }">
-                                                <label class="btn btn-info btn-file">
-                                                    Choose File <input @change="onFileChange($event); validate($event)" type="file" name="Item Receipt"  style="display: none;"> 
-                                                </label> <br>
-                                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                            </ValidationProvider> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+                        <div class="col-md-5">
+                    
                         </div>
                      </div> 
                     

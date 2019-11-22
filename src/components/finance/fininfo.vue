@@ -1,6 +1,6 @@
 <template>
   <div>
-        <div class="main-container">
+        <div class="main-containe">
              <ValidationObserver v-slot="{ passes }">
                  <form   @submit.prevent="passes(next_page)"> 
                      <span class= "h5 mb-5 d-lg-none d-bloc "> Finance Details</span>
@@ -77,7 +77,7 @@
                          <div class="col-md-5 mb-3"  v-if='isPickedd'>
                               <ValidationProvider name="principal" rules="required" v-slot="{ errors }">
                                     <label for="exampleFormControlTextarea1">List Indebtednes</label>
-                                    <textarea  style="background:whitesmoke" v-model="loanIndebtedness" name="Loan Indebtedness" class="form-control text-area" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                    <textarea   v-model="loanIndebtedness" name="Loan Indebtedness" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                              </ValidationProvider>
                         </div>
@@ -89,7 +89,7 @@
                          <div class="col-md-5 small-screen-pp">
                              <ValidationProvider name="Finance Purpose" rules="required" v-slot="{ errors }">
                                     <label for="exampleFormControlTextarea1">Finance Purpose <span class="text-danger">*</span></label>
-                                    <textarea style="background:whitesmoke" v-model="loanPurpose"   name="Finance Purpose" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea  v-model="loanPurpose"   name="Finance Purpose" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                              </ValidationProvider>
                         </div>

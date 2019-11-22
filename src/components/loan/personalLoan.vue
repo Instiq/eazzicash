@@ -1,16 +1,17 @@
 <template>
   <div>
-             <div class="main-container">
+             <div class="main-containe">
                 <ValidationObserver v-slot="{ passes }">
                   <form  @submit.prevent="passes(next_page)">
+                      <span class="h5 mb-5 d-lg-none d-block ">Personal Details</span> 
                        <div class="container">
                           <div class="row">
-                              <div class="col-md-6 borde">
+                              <div class="col-md-7 borde">
                                     <div class="div1i mb-3">
                                         <ValidationProvider name="address" rules="required" v-slot="{ errors }">
                                                 <label for="v">Current Address <span class="text-danger">*</span></label>
                                                 <div class="input-group">
-                                                    <input type="text"  v-model="address" class="form-control"  placeholder=""  name="address"  >
+                                                    <textarea  type="text"  v-model="address" class="form-control"  placeholder="" rows="3"  name="address"> </textarea>
                                                 </div>
                                                 <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider> 
@@ -49,7 +50,8 @@
                                                 <label for="" class="d-inline">State <span class="text-danger">*</span></label>
                                                 <select name="state" :selected='statee' v-model="state"  id="state" class="browser-default custom-select">
                                                     <option value=""  >Choose State</option>
-                                                    <option value='Abia'>Abia</option>
+                                                    <option value='Lagos'>Lagos</option>
+                                                    <!-- <option value='Abia'>Abia</option>
                                                     <option value='Adamawa'>Adamawa</option>
                                                     <option value='AkwaIbom'>AkwaIbom</option>
                                                     <option value='Anambra'>Anambra</option>
@@ -85,8 +87,9 @@
                                                     <option value='Sokoto'>Sokoto</option>
                                                     <option value='Taraba'>Taraba</option>
                                                     <option value='Yobe'>Yobe</option>
-                                                    <option value='Zamfara'>Zamafara</option>
+                                                    <option value='Zamfara'>Zamafara</option> -->
                                                 </select>
+                                                <span style="font-size:13px; color:red" >Lagos residents only</span> <br>
                                                 <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider> 
                                     </div>
@@ -116,7 +119,7 @@
                                         </ValidationProvider> 
                                     </div>
                               </div>
-                               <div class="col-md-6  borde">
+                               <div class="col-md-5  borde">
                                     <div class="row">
                                         <div class="col-md-3"></div>
                                         <div class="col-md-9">
@@ -127,7 +130,7 @@
                                                 </div>
                                                  <span  style="font-size:13px; color:red">maximum file size : 2mb</span>
 
-                                                <div class="input-group mt-2 mt-md-5">
+                                                <div class="input-group mt-2">
                                                     <ValidationProvider name="idCard" rules="required|image|size:2000"  v-slot="{validate, errors }">
                                                             <label class="btn ml-n1 btn-info btn-file">
                                                                 BROWSE  <input  type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" style="display:none"  @change="onFileChange($event); validate($event)"  name="idCard" id="id">
@@ -143,7 +146,7 @@
                                                 </div>
                                                  <span  style="font-size:13px; color:red">maximum file size : 2mb</span>
 
-                                                <div class="input-group mr-2 mt-2 mt-md-5">
+                                                <div class="input-group mr-2 mt-2">
                                                     <ValidationProvider name="signature" rules="required|image|size:2000"  v-slot="{validate, errors }">
                                                             <label class="btn ml-n1 btn-info btn-file">
                                                                 BROWSE  <input  type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id"  @change="onFileChange1($event); validate($event)" style="display:none"  name="signature" id="signature">

@@ -1,7 +1,7 @@
 <template>
   <div>
       
-          <div class="main-container">
+          <div class="main-containe">
                 <ValidationObserver v-slot="{ passes }">
                   <form  @submit.prevent="passes(next_page)">
                      <span class="h5 mb-5 d-lg-none d-block ">Loan Details</span> 
@@ -15,7 +15,7 @@
                                             </div>
                                             <input type="text"  v-model="principal" class="form-control"  placeholder="Enter Amount"  name="Loan Amount"  >
                                         </div>
-                                         <span class="text-success" style="font-size:15px"> (min: &#8358;100,000 max: &#8358;3,000,000 ) </span> <br>
+                                         <span class="text-success" style="font-size:15px"> (min: &#8358;100,000 max: &#8358;3,000,000) </span> <br>
                                         <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                 </ValidationProvider> 
                             </div>
@@ -61,7 +61,7 @@
                          <div class="col-md-5 mb-3 mt-3"  v-if='isPickedd'>
                              <ValidationProvider name="Loan Indebtedness" rules="required" v-slot="{ errors }">
                                         <label for="exampleFormControlTextarea1">List Indebtednes <span class="text-danger">*</span> </label>
-                                        <textarea style="background:whitesmoke" v-model="loanIndebtedness"  name="Loan Indebtedness" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <textarea v-model="loanIndebtedness"  name="Loan Indebtedness" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                              </ValidationProvider> 
                             
@@ -75,7 +75,7 @@
                          <div class="col-md-5 mt-3 loanPurpose">
                              <ValidationProvider name="loanPurpose" rules="required" v-slot="{ errors }">
                                     <label for="exampleFormControlTextarea1">Loan Purpose <span class="text-danger">*</span></label>
-                                    <textarea style="background:whitesmoke" v-model="loanPurpose" name="loanPurpose" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea v-model="loanPurpose" name="loanPurpose" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                              </ValidationProvider> 
                            
@@ -229,6 +229,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 
  .main-container {
     border:2px solid blac;

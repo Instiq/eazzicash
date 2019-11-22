@@ -21,7 +21,7 @@
                             <div class="col-md-5 mb-3">
                                     <ValidationProvider name="Company name" rules="required" v-slot="{ errors }">
                                         <label for="validationCompanyName">Company Name <span class="text-danger">*</span></label>
-                                        <input type="text"  v-model="companyName" class="form-control" name="Company name" id="validationCompanyName" placeholder=""  >
+                                        <input type="text"  v-model="companyName" class="form-control" name="Company name" id="validationCompanyName"  placeholder="">
                                         <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                    </ValidationProvider> 
                             </div>
@@ -31,7 +31,7 @@
                                 <div class="col-md-5 mb-3">
                                     <ValidationProvider name="Company Address" rules="required" v-slot="{ errors }">
                                         <label for="validationCompanyAddress">Company Address <span class="text-danger">*</span></label>
-                                        <input type="text"  v-model="companyAddress" class="form-control" name="Company Address" id="validationCompanyName" placeholder=""  >
+                                        <textarea  type="text"  v-model="companyAddress" class="form-control" name="Company Address" id="validationCompanyName" rows="3" placeholder=""> </textarea>
                                         <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                    </ValidationProvider> 
                                 </div>
@@ -56,7 +56,7 @@
                                 <div class="col-md-2"></div>
                                 <div class="col-md-5">
                                     <label for="exampleFormControlTextarea1">Other comments (optional)</label>
-                                    <textarea style="background:whitesmoke" v-model="otherComments" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea  v-model="otherComments" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
                         </div>
                         <div class="form-row" v-if="currentRoute == 'finance'">

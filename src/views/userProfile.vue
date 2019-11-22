@@ -491,7 +491,7 @@ export default {
 <style scoped>
  .main-container {
     border:2px solid blu;
-    width:auto;
+    width:75vw;
     margin-left:6vw;
     height: auto;
     overflow-x: hidden

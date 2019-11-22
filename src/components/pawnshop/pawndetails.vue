@@ -88,7 +88,7 @@ export default {
     border:2px solid blac;
     /* margin-left:3vw; */
     height: auto;
-    width:70vw;
+    width:auto;
     margin:0px 5vw
  }
  .jumbotron-head {
@@ -106,9 +106,12 @@ export default {
      position: relative;
      height: 6vh;
      margin:0px 9vw;
-     width:50vw
+     /* width:50vw; */
+     margin-left: 7vw;
+     width:auto
  }
 
+ 
  .back-arrow-div {
      /* border: 2px solid blue; */
      position:absolute;
@@ -164,16 +167,18 @@ export default {
 }
 
 
-@media (min-width:1170px){
+ @media (min-width:1200px){
 
     .loan-nav {
      border : 2px solid blac;
      position: relative;
      top:-1px;
-     /* height: 6vh; */
-     /* margin:0px 9vw;  */ 
  }
-}
+  .small-screen-jumbo {
+    width:65vw !important;
+    height:auto !important
+} 
+} 
 
  @media (max-width:990px){
    .small-screen-nav{
@@ -193,11 +198,6 @@ export default {
     width:auto !important;
     height:auto !important
 } 
- .apply-btn {
-     padding:10px 20vw;
-     position: absolute !important;
-     top:46vh;  
- }
   .jumbotron-head {
      height: auto;
      /* margin-top:10vh; */

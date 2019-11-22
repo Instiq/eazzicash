@@ -112,7 +112,7 @@ export default {
     margin:0px 5vw
  }
  .jumbotron-head {
-     height: 10vh;
+     height: auto;
      margin-top:-10vh;
      background:rgb(208, 216, 224);
 
@@ -179,6 +179,14 @@ export default {
     /* position: relative; */
  }
 
+ 
+  /* @media (min-width:1200px){
+   .small-screen-jumbo {
+    width:71vw !important;
+    height:auto !important
+} 
+} */
+
 
   @media (max-width:991px){
    .small-screen-nav{
@@ -189,14 +197,9 @@ export default {
 
  @media (max-width:576px){ 
 .small-screen-jumbo {
-    width:84vw !important;
+    width:auto !important;
     height:auto !important
 } 
- .apply-btn {
-     padding:10px 20vw;
-     position: absolute !important;
-     top:46vh;  
- }
  .main-container {
     border:2px solid blac;
     margin-left:15vw !important;
@@ -206,10 +209,10 @@ export default {
     margin:0px 1vw
  }
  .jumbotron-head {
-     height: 15vh;
+     height: auto;
      margin-top:-10vh;
      background:rgb(208, 216, 224);
-     padding: 60px 25px !important
+     padding-top: 60px !important
  }
  }
 </style>

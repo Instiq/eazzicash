@@ -26,7 +26,6 @@ import personalLoan from "./components/loan/personalLoan.vue";
 import loaninformation from "./components/loan/loaninformation.vue";
 import workinfo from "./components/loan/workinfo.vue";
 import guarantor from "./components/loan/guarantor.vue";
-import signature from "./components/loan/signature.vue";
 import thankyou from "./components/loan/thankyou.vue";
 //Investment routes
 import precheck from "./components/investment/precheck.vue";
@@ -34,19 +33,16 @@ import investdetails from "./components/investment/investdetails.vue";
 import investinfo from "./components/investment/investinfo.vue";
 import settlement from "./components/investment/settlement.vue";
 import nextofkin from "./components/investment/nextofkin.vue";
-import signatureI from "./components/investment/signatureI.vue";
 //Pawn routes
 import pawnPrecheck from "./components/pawnshop/pawnPrecheck.vue";
 import pawninfo from "./components/pawnshop/pawninfo.vue";
 import pawndetails from "./components/pawnshop/pawndetails.vue";
 import ownership from "./components/pawnshop/ownership.vue";
-import signatureP from "./components/pawnshop/signatureP.vue";
 //Finance routes
 import finPrecheck from "./components/finance/finPrecheck.vue";
 import findetails from "./components/finance/findetails.vue";
 import fininfo from "./components/finance/fininfo.vue";
 import collateral from "./components/finance/collateral.vue";
-import signatureF from "./components/finance/signatureF.vue";
 //Admin routes
 import adminProfile from "./components/admin/adminProfile.vue";
 import adminDashboard from "./components/admin/adminDashboard.vue";

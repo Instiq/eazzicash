@@ -8,7 +8,7 @@
 
                     <section class="container  mt-3">
                         <div class="row">
-                            <div class="col-xl-6 col-lg-9 col-md-10 mb-3">
+                            <div class="col-12 mb-2">
                                 <span class="m">Item Category</span>
                                 <select class="browser-default custom-select" v-model="itemCategory" v-validate="'required'" name="Item Category" >
                                 <option value="Mobile Phones">Mobile Phones</option>
@@ -27,7 +27,7 @@
                              <div class="col-xl-6 col-lg-3 col-md-2 d-none d-md-block"></div>
                         </div>
                         <div class="row">
-                             <div class="col-xl-6 col-lg-9 col-md-10 mb-3">
+                             <div class="col-12 mb-2">
                                 <span class="m">Present Item Worth</span>
                                 <label class="sr-only" for="inlineFormInputGroup"></label>
                                 <div class="input-group mb-2">
@@ -43,7 +43,7 @@
 
                             
                         <div class="row">
-                             <div class="col-xl-6 col-lg-9 col-md-10 mb-3">
+                             <div class="col-12 mb-2">
                                 <span class="m">Estimated Pawn Amount (the amount you are elligible to receive)</span>
                                 <label class="sr-only" for="inlineFormInputGroup"></label>
                                 <div class="input-group mb-2">
@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="row">
-                             <div class="col-xl-6 col-lg-9 col-md-10">
+                             <div class="col-12">
                                 <span class="m">Estimated Repayment Amount</span>
                                 <label class="sr-only" for="inlineFormInputGroup"></label>
                                 <div class="input-group mb-2">
@@ -72,10 +72,13 @@
                         </div>
                            
                         <div class="row d-flex justify-content-around">
-                            <div class=""></div>
+                             <div></div>
+                             <div></div>
                              <div class="mt-3  text-white  apply-bt" >
                                 <router-link to="/profile/pawnshop/pawndetails"><button class="btn text-white " style="background:rgb(0, 85, 0); width:auto;  font-size:18px; border-radius:5px">Apply Now</button></router-link>  
                              </div>
+                              <div></div>
+                              <div></div>
                         </div>  
                      </section>  
               </mdb-jumbotron>  
@@ -217,12 +220,12 @@ export default {
   @media (min-width:1200px){ 
     .main-container {
     border:2px solid blac;
-    margin-left:7vw;
+    margin-left:15vw !important;
     height: auto;
     width:auto
  }
 .small-screen-jumbo {
-    width:70vw!important;
+    width:auto !important;
     height:auto !important
 } 
  }

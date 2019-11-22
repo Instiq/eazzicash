@@ -8,7 +8,7 @@
 
                     <section class="container  mt-3">
                         <div class="row">
-                            <div class="col-xl-6 col-lg-9 col-md-10">
+                            <div class="col-12 mb-2">
                                 <span class="m">Loan Amount (min: &#8358;100,000 max: &#8358;3,000,000)</span>
                                 <label class="sr-only" for="inlineFormInputGroup"></label>
                                 <div class="input-group mb-2">
@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-xl-6 col-lg-9 col-md-10 ">
+                            <div class="col-12 mb-2">
                                 <span class="m">Repayment Duration</span>
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
@@ -40,7 +40,7 @@
                         </div>
                         
                         <div class="row">
-                            <div class="col-xl-6 col-lg-9 col-md-10">
+                            <div class="col-12">
                                 <span class="m">Monthly Repayment Amount</span>
                                 <label class="sr-only" for="inlineFormInputGroup"></label>
                                 <div class="input-group mb-2">
@@ -55,26 +55,15 @@
 
                         <div class="row d-flex justify-content-around">
                              <div></div>
-                             <div class="mt-3 text-whit" >
+                             <div></div>
+                             <div class="mt-3 text-white" >
                                 <router-link to="/profile/loan/loandetails"><button class="btn text-white " style="background:rgb(0, 85, 0);width:auto; padding:15px 20px; font-size:18px; border-radius:5px">APPLY NOW</button></router-link>  
                             </div>
-                        </div>
-
-                       
+                            <div></div>
+                            <div></div>
+                        </div> 
                      </section>  
-
-                    
-
-
-
-  
-
-
-                    
-
-              </mdb-jumbotron>
-
-              
+              </mdb-jumbotron>  
           </div>
       </div>
   </div>
@@ -197,20 +186,6 @@ export default {
         },
         tenor (newval) {
              this.calculate()
-        //     if (newval>6) {
-        //        this.$store.dispatch('updateTenor', 6 ) 
-        //        this.calculate()   
-        //     }
-
-        //      else  if (newval<0) {
-        //        this.$store.dispatch('updateTenor', 1 ) 
-        //        this.calculate()
-        //      }
-
-        //     else  {
-        //         this.$store.dispatch('updateTenor', newval) 
-        //         this.calculate() 
-        //     }
         }
     },
 
@@ -253,7 +228,7 @@ export default {
  @media (max-width:1200px){ 
     .main-container {
     border:2px solid blac;
-    margin-left:7vw;
+    margin-left:15vw;
     height: auto;
     width:auto
  }
@@ -267,12 +242,12 @@ export default {
  @media (min-width:1200px){ 
     .main-container {
     border:2px solid blac;
-    margin-left:7vw;
+    margin-left:15vw !important;;
     height: auto;
     width:auto
  }
 .small-screen-jumbo {
-    width:70vw!important;
+    width:auto!important;
     height:auto !important
 } 
  }
@@ -287,8 +262,8 @@ export default {
     max-width:120vw
  }
 .small-screen-jumbo {
-    width:75vw!important;
-    height:60vh !important
+    width:auto!important;
+    height:auto !important
 } 
 
  }

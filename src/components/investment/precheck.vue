@@ -7,26 +7,30 @@
                   <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Returns Calculator</span></div>
 
                     <section class="container  mt-3">
-                        <div class="col-xl-6 col-lg-9 col-md-10">
-                            <span class="m">Investment Amount (min:  &#8358;100,000)</span>
-                            <label class="sr-only" for="inlineFormInputGroup"></label>
-                            <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"> &#8358;</div>
-                            </div>
-                            <input type="number"  v-model.number="investPrincipal" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
-                            </div>
-                        </div>
+                       <div class="row">
+                            <div class="col-12 mb-2">
+                                <span class="m">Investment Amount (min:  &#8358;100,000)</span>
+                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"> &#8358;</div>
+                                    </div>
+                                    <input type="number"  v-model.number="investPrincipal" class="form-control py-0" id="inlineFormInputGroup" placeholder="amount">
+                                </div>
+                           </div>
+                       </div>
 
-                        <div class="col-xl-6 col-lg-9 col-md-10 mb-2">
-                            <span class="m">Repayment Duration</span>
-                            <select class="browser-default custom-select" v-model="investTenor" required>
-                            <option value="1">1 month</option>
-                            <option value="3">3 months</option>
-                            <option value="6">6 months</option>
-                            <option value="12">12 months</option>
-                            </select>
-                        </div>
+                       <div class="row">
+                            <div class="col-12 mb-2">
+                                <span class="m">Repayment Duration</span>
+                                <select class="browser-default custom-select" v-model="investTenor" required>
+                                    <option value="1">1 month</option>
+                                    <option value="3">3 months</option>
+                                    <option value="6">6 months</option>
+                                    <option value="12">12 months</option>
+                                </select>
+                            </div>
+                       </div>
 <!-- 
                         <div class="col-xl-6 col-lg-9 col-md-10">
                             <span class="m">Interest rate (per month)</span>
@@ -40,34 +44,32 @@
                             <p class="text-danger mb-2" style="font-size:15px; width:auto">please note that Interest rate is calculated on principal</p>
                         </div> -->
 
-                         <div class="col-xl-6 col-lg-9 col-md-10">
+                        <div class="row">
+                             <div class="col-12">
                             <span class="m">Return on Investment </span>
                             <label class="sr-only" for="inlineFormInputGroup"></label>
                             <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">&#8358;</div>
-                            </div>
-                            <input type="text" disabled v-model="investMra" class="form-control font-weight-bold py-0" style="background:whitesmoke" id="inlineFormInputGroup"  placeholder="amount">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">&#8358;</div>
+                                </div>
+                                <input type="text" disabled v-model="investMra" class="form-control font-weight-bold py-0" style="background:whitesmoke" id="inlineFormInputGroup"  placeholder="amount">
                             </div>
                              <p class="text-danger mb-2" style="font-size:15px; width:auto"> Please note that the return on investment is investment amount plus accrued interest. </p>
-                            
                         </div> <br> <br> <br>
+                        </div>
 
                        
 
-                        <div class="col-md-6 mt-2 text-white float-right apply-btn" >
-                          <router-link to="/profile/investment/investdetails"><button class="btn text-white " style="background:rgb(0, 85, 0);width:auto; padding:15px 20px; font-size:18px; border-radius:5px">INVEST NOW</button></router-link>  
+                        <div class="row d-flex justify-content-around">
+                             <div></div>
+                             <div></div>
+                            <div class="mt-3 text-white" >
+                                <router-link to="/profile/investment/investdetails"><button class="btn text-white " style="background:rgb(0, 85, 0);width:auto; padding:15px 20px; font-size:18px; border-radius:5px">INVEST NOW</button></router-link>  
+                            </div>
+                            <div></div>
+                            <div></div>
                         </div>
                      </section>  
-
-                    
-
-
-
-  
-
-
-                    
 
               </mdb-jumbotron>
 
@@ -183,7 +185,7 @@ export default {
  }
 
  .jumbotron-head {
-     height: 10vh;
+     height: auto;
      margin-top:-10.3vh;
      background:rgb(208, 216, 224)
  }
@@ -209,17 +211,30 @@ export default {
     border:2px solid blac;
     margin-left:7vw;
     height: auto;
-    width:70vw
+    width:auto
  }
 .small-screen-jumbo {
     width:auto!important;
-    height:65vh !important
+    height:auto !important
 } 
  .apply-btn {
      padding:10px 7vw;
      position: absolute;
      top:46vh;  
  }
+ }
+
+ @media (min-width:1200px){ 
+    .main-container {
+    border:2px solid blac;
+    margin-left:15vw !important;;
+    height: auto;
+    width:auto
+ }
+.small-screen-jumbo {
+    width:auto!important;
+    height:auto !important
+} 
  }
  
  @media (max-width:767px){ 
@@ -231,14 +246,9 @@ export default {
     max-width:120vw
  }
 .small-screen-jumbo {
-    width:75vw!important;
-    height:60vh !important
+    width:auto!important;
+    height:auto !important
 } 
- .apply-btn {
-     padding:10px 20vw;
-     position: absolute;
-     top:46vh;  
- }
  }
 
 
@@ -252,22 +262,17 @@ export default {
  }
 .small-screen-jumbo {
     width:100vw !important;
-    height:60vh !important
+    height:auto !important
 } 
- .apply-btn {
-     padding:10px 20vw;
-     position: absolute !important;
-     top:50vh;  
- }
   .jumbotron-head {
-     height: 15vh;
+     height: auto;
      margin-top:-10vh;
      background:rgb(208, 216, 224);
      padding-top : 60px !important
  }
 
  .small-screen-jumbo{
-     height: 65vh !important;
+     height: auto !important;
  }
 
  }
@@ -284,12 +289,6 @@ export default {
     width:100vw !important;
     height:72vh !important
 } 
- .apply-btn {
-     padding:10px 10vw;
-     position: absolute;
-     top:55vh;  
-     border: 2px solid blu
- }
 
  }
 

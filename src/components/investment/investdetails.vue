@@ -95,11 +95,11 @@ export default {
     border:2px solid blac;
     /* margin-left:3vw; */
     height: auto;
-    width:70vw;
+    width:auto;
     margin:0px 5vw
  }
  .jumbotron-head {
-     height: 10vh;
+     height: auto;
      margin-top:-10vh;
      background:rgb(208, 216, 224);
 
@@ -113,7 +113,9 @@ export default {
      position: relative;
      height: 6vh;
      margin:0px 9vw;
-     width:50vw
+     /* width:50vw; */
+     margin-left: 7vw;
+     width:auto
  }
 
  .back-arrow-div {
@@ -172,12 +174,17 @@ export default {
  }
  }
 
- @media (min-width:1200px){
+ /* @media (min-width:1200px){
    
      .loan-navigation {
      margin:0px 9vw;
      width:51vw
  }
+
+ .small-screen-jumbo {
+    width:70vw !important;
+    height:auto !important
+} 
 
  .nok {
      margin-left:50px
@@ -186,9 +193,7 @@ export default {
  .signature {
      margin-left: 80px !important
  }
- }
-
- 
+ } */
 
 
 
@@ -200,7 +205,7 @@ export default {
 
 
  @media (max-width:576px){ 
-    .main-container {
+.main-container {
     border:2px solid blac;
     margin-left:15vw;
     height: auto;
@@ -208,16 +213,11 @@ export default {
     max-width:120vw
  }
 .small-screen-jumbo {
-    width:85vw !important;
+    width:auto !important;
     height:auto !important
 } 
- .apply-btn {
-     padding:10px 20vw;
-     position: absolute !important;
-     top:46vh;  
- }
   .jumbotron-head {
-     height: 15vh;
+     height: auto;
      margin-top:-10vh;
      background:rgb(208, 216, 224);
      padding-top : 60px !important
