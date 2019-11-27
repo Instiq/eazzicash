@@ -1,48 +1,50 @@
 <template>
-  <div>
-          <div class="main-container">
-               <ValidationObserver v-slot="{ passes }">
-                  <form  @submit.prevent="passes(postPawn)"> 
-                       <span class="h5 mb-5 d-lg-none d-block ">Proof of Ownership</span>
-                       <div class="form-row first">
-                            <div class="col-md-6">
-                                <div class=" mb-3">
-                                    <ValidationProvider name="Date of Purchase" rules="required" v-slot="{ errors }">
-                                            <span class="m">Date of Purchase <span class="text-danger">*</span></span>
-                                            <div class="example mt-2">  
-                                                 <datepicker id ='date' style="border:1px solid blu; border-radius:3px;" placeholder="Select Date" :format='customFormatter' v-model="itemDate"></datepicker>
-                                                <!-- <label class="btn ml-n1  btn-primary" for="date">
-                                                   Select Date
-                                                </label>  -->
-                                            </div> 
-                                            <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                        </ValidationProvider>  
-                                </div>
-                                <div class="mb-3">
-                                        <ValidationProvider name="Purchase Location" rules="required" v-slot="{ errors }">
-                                            <label for="validationCustomUsername">Purchase Location <span class="text-danger">*</span></label>
-                                            <input type="text" v-model="purchaseLocation" class="form-control mt-n2"  placeholder=""  name="Purchase Location">
-                                            <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                        </ValidationProvider>  
-                                </div>
-                                <div class="mb-3"> 
-                                        <ValidationProvider name="Sworn Affidavit" rules="required" v-slot="{ errors }">
-                                                Sworn Affidavit? <span class="text-danger">*</span>
-                                                <div class="custom-control custom-radio ml-2 d-inline"> 
-                                                    <input type="radio" v-model="isSworn" value="yes" class="custom-control-input form-check-input" id="invalidCheck" name="radio-stack" >
-                                                    <label class="custom-control-label" for="invalidCheck">Yes</label> 
-                                                </div>
+    <div>
+        <div class="main-container">
+            <ValidationObserver v-slot="{ passes }">
+                <form  @submit.prevent="passes(postPawn)"> 
+                    <span class="h5 mb-5 d-lg-none d-block ">Proof of Ownership</span>
+                    <div class="form-row first">
+                        <div class="col-md-6">
+                            <div class=" mb-3">
+                                <ValidationProvider name="Date of Purchase" rules="required" v-slot="{ errors }">
+                                    <span class="m">Date of Purchase <span class="text-danger">*</span></span>
+                                    <div class="example mt-2">  
+                                        <div class="input-group">
+                                            <datepicker id ='date' style="border:1px solid blu; border-radius:3px;" placeholder="Select Date" :format='customFormatter' v-model="itemDate"></datepicker>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" style="height:30px" id="inputGroupPrepend"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>  
+                            </div>
+                            <div class="mb-3">
+                                <ValidationProvider name="Purchase Location" rules="required" v-slot="{ errors }">
+                                    <label for="validationCustomUsername">Purchase Location <span class="text-danger">*</span></label>
+                                    <input type="text" v-model="purchaseLocation" class="form-control mt-n2"  placeholder=""  name="Purchase Location">
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>  
+                            </div>
+                            <div class="mb-3"> 
+                                <ValidationProvider name="Sworn Affidavit" rules="required" v-slot="{ errors }">
+                                        Sworn Affidavit? <span class="text-danger">*</span>
+                                        <div class="custom-control custom-radio ml-2 d-inline"> 
+                                            <input type="radio" v-model="isSworn" value="yes" class="custom-control-input form-check-input" id="invalidCheck" name="radio-stack" >
+                                            <label class="custom-control-label" for="invalidCheck">Yes</label> 
+                                        </div>
 
-                                                <div class="custom-control custom-radio ml-2 d-inline"> 
-                                                    <input type="radio" v-model="isSworn" value='no' class="custom-control-input" id="customControlValidation3" name="radio-stack" >
-                                                    <label class="custom-control-label"  for="customControlValidation3">No</label>    
-                                                </div> <br>
-                                                <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                        </ValidationProvider>  
-                                </div>
-                            </div>  
-                            <div class="col-md-6">
-                                <div class="row">
+                                        <div class="custom-control custom-radio ml-2 d-inline"> 
+                                            <input type="radio" v-model="isSworn" value='no' class="custom-control-input" id="customControlValidation3" name="radio-stack" >
+                                            <label class="custom-control-label"  for="customControlValidation3">No</label>    
+                                        </div> <br>
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>  
+                            </div>
+                        </div>  
+                        <div class="col-md-6">
+                            <div class="row">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-9">
                                     <div class="" >
@@ -62,9 +64,9 @@
                                         </div>
                                     </div>
                                 </div>
-                             </div>
                             </div>
-                       </div>
+                        </div>
+                    </div>
 
                     <div class="form-group second">
                         <div class="mt-3">
@@ -169,10 +171,10 @@ export default {
 
     methods: {
         next_page () {
-             this.$router.push('/profile/pawnshop/pawndetails/signature')
+            this.$router.push('/profile/pawnshop/pawndetails/signature')
         },
         prev_page () {
-          this.$router.go(-1)
+            this.$router.go(-1)
         },
         customFormatter(date) {
             return moment(date).format('MMMM Do YYYY');

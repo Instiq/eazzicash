@@ -159,7 +159,7 @@
                                             <label for="" class="d-inline">Number</label>
                                             <input name="Account_Number" v-model="Account_Number" type="text" class="form-control">
                                             <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                        </ValidationProvider>
+                                         </ValidationProvider>
                                     </div>
                                     <div class="form-group">
                                          <ValidationProvider name="Account_Type" rules="" v-slot="{ errors }">

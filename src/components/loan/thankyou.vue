@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="main-container h3">
-           Thank you for your Application  <span style="color:green; border-radius:20px;border:5px solid green; background:green" class="fas text-white fa-check"></span>
+           Thank you for your Application.  <span style="color:green; border-radius:20px;border:5px solid green; background:green" class="fas text-white fa-check"></span>
 
       </div>
   </div>

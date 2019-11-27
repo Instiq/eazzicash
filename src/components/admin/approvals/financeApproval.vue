@@ -14,9 +14,7 @@
                       <div class="input-group-append" style="cursor:pointer">
                         <div class="input-group-text"> <i class="fas fa-search"></i></div>
                       </div>
-                  
-                  </div>
-                  
+                  </div> 
                 </div>
             </div>
           <!-- <div class="form-group has-search main">
@@ -161,7 +159,7 @@ export default {
                       monthAndYear.indexOf(this.name) == 0
             } )
         }
-          return final
+       
     }
  },
   mounted () {

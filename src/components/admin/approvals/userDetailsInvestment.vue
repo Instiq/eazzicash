@@ -5,7 +5,7 @@
 <div class="container p-3 mb-5" style="margin-top:30px;margin-bottom:30px">
   <div class="row" style="margin-left:5%;margin-right:5%;">
     <div class="col">
-      <p><a href="/adminProfile/approvals/investment"><i style='font-size:24px' class='fas'>&#xf060;</i></a></p>
+      <p><router-link to="/adminProfile/approvals/investment"><i style='font-size:24px' class='fas'>&#xf060;</i></router-link></p>
       
       
       <p class="text-success font-weight-bold">Personal Details</p>

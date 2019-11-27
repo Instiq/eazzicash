@@ -47,6 +47,8 @@ import collateral from "./components/finance/collateral.vue";
 import adminProfile from "./components/admin/adminProfile.vue";
 import adminDashboard from "./components/admin/adminDashboard.vue";
 import userManagement from "./components/admin/userManagement.vue";
+import reports from "./components/admin/reports/reports.vue";
+import demo from "./components/admin/reports/demo.vue";
 import approvals from "./components/admin/approvals/approvals.vue";
 import loanApproval from "./components/admin/approvals/loanApproval.vue";
 import investmentApproval from "./components/admin/approvals/investmentApproval.vue";
@@ -368,6 +370,16 @@ const router = new Router({
           path: "/adminProfile/adminDashboard",
           name: "adminDashboard",
           component: adminDashboard
+        },
+        {
+          path: "/adminProfile/reports",
+          name: "reports",
+          component: reports
+        },
+        {
+          path: "/adminProfile/demo",
+          name: "demo",
+          component: demo
         },
         {
           path: "/adminProfile/approvals",

@@ -4,7 +4,7 @@
           <div class="container main-container">
 
               <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
-                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Loan Calculator</span></div>
+                  <div class="border py-4 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6">Loan Calculator</span></div>
 
                     <section class="container  mt-3">
                         <div class="row">
@@ -131,7 +131,8 @@ export default {
 
         if (tenor==4) {
              let mra = ((principal * ((d/100)+ 1))/tenor);
-             let formattedMra = this.formatAmount(mra)   
+             let newMra =  Math.round(mra * 100) / 100
+             let formattedMra = this.formatAmount(newMra)   
              this.$store.dispatch('updateMra',formattedMra)
         }
 
@@ -206,7 +207,7 @@ export default {
 
  .jumbotron-head {
      height: auto;
-     margin-top:-10.3vh;
+     margin-top:-10vh;
      background:rgb(208, 216, 224)
  }
  .jumbotron-head-text {

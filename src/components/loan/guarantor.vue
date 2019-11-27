@@ -190,12 +190,12 @@
                                         <p>2.Copies of incorporation documents (Memart & certification of incorporation) (For companies)</p>
                                         <p>3.Board resolution to access a loan( For Companies).</p>
                                         <p>4.Lender Statements of account of the Borrower and for the last one year</p>
-                                        <p>5.Postdated cheques for repayment including 5,000.00 cheque for signature verification</p>
+                                        <p>5.Postdated cheques for repayment including &#8358;5,000.00 cheque for signature verification</p>
                                         <p>6.Residential utility bills, passports and identity cards of the borrower or all the directors (companies).</p>
                                         <p>7.A corporate guarantor/individual guarantor</p>
                                         <p>8.Incorporation documents of the Guarantor if a corporate guarantor but if an individual guarantor, residential utility bill, passport and identity card of individual.</p>
                                         <p>9.Lender Statements of account of guarantor</p>   
-                                        <p>10.Guarantors cheque in the loan amount and signature verification cheque of 2,000</p>    
+                                        <p>10.Guarantors cheque in the loan amount and signature verification cheque of &#8358;2,000</p>    
                                         <p>11.Collateral worth 200% of loan amount and the title documents for the said collateral.</p>
                                         <p>12.Contingent liability details and any other reasonable information relating to the Borrower and /or the Borrower’s financial affairs.</p>                            
 

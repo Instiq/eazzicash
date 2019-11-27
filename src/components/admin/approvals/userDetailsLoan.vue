@@ -5,7 +5,7 @@
 <div class="container p-3 mb-5" style="margin-top:30px;margin-bottom:30px">
   <div class="row" style="margin-left:5%;margin-right:5%;">
     <div class="col">
-      <p><a href="/adminProfile/approvals/loan"><i style='font-size:24px' class='fas'>&#xf060;</i></a></p>
+      <p><router-link to="/adminProfile/approvals/loan"><i style='font-size:24px' class='fas'>&#xf060;</i></router-link></p>
       
        <p class="text-success font-weight-bold">Personal Details</p>
        <div class="container table-responsive">            
@@ -78,13 +78,21 @@
               <td class="col-sm-3">Loan Amount</td>
               <td class="text-success col-sm-3"> &#8358; {{formatAmount(userDetails.loanAmount)}}</td>
                <td class="col-sm-3">Other Comments</td>
-              <td class="col-sm-3 text-success"> {{userDetails.otherComments}} </td>
+              <td class="col-sm-3 text-success"> {{userDetails.workInformation.otherComments}} </td>
             </tr>
             <tr class="row">
               <td class="col-sm-3">Any indebtedness?</td>
               <td class="col-sm-3 text-success"> {{userDetails.indebtedness}}  </td>
               <td class="col-sm-3">List indebtedness</td>
               <td class="col-sm-3"><b class="text-success">{{userDetails.listIndebtedness}}</b></td>
+            </tr>
+            <tr class="row">
+              <td class="col-sm-2">Repayment Mode</td>
+              <td class="col-sm-2 text-success"> {{userDetails.repaymentMode}}  </td>
+              <td class="col-sm-2">Account Number</td>
+              <td class="col-sm-2"><b class="text-success">{{userDetails.accountNumber}}</b></td>
+              <td class="col-sm-2">Bank Name</td>
+              <td class="col-sm-2"><b class="text-success">{{userDetails.bankName}}</b></td>
             </tr>
           </tbody>
         </table>
@@ -96,19 +104,33 @@
             <tbody>
             <tr class="row">
                 <td class="col-sm-3">Employment Type</td>
-                <td class="col-sm-3"><b class="text-success"> {{userDetails.employmentType}}</b></td>
+                <td class="col-sm-3"><b class="text-success"> {{userDetails.workInformation.employmentType}}</b></td>
                 <td class="col-sm-3">Company Name</td>
-                <td class="col-sm-3 text-success"> {{userDetails.companyName}} </td>
+                <td class="col-sm-3 text-success"> {{userDetails.workInformation.companyName}} </td>
             </tr>
              <tr class="row">
                 <td class="col-sm-3">Phone Number</td>
-                <td class="col-sm-3 text-success"> {{userDetails.companyPhone}} </td>
+                <td class="col-sm-3 text-success"> {{userDetails.workInformation.companyPhone}} </td>
                 <td class="col-sm-3">Official Email</td>
-                <td class="col-sm-3 text-success"> {{userDetails.officialEmail}} </td>
+                <td class="col-sm-3 text-success"> {{userDetails.workInformation.officialEmail}} </td>
             </tr>
              <tr class="row">
-                <td class="col-sm-6">Company Address</td>
-                <td class="col-sm-6 text-success"> {{userDetails.companyAddress}} </td>
+                <td class="col-sm-3">Company Address</td>
+                <td class="col-sm-3 text-success"> {{userDetails.workInformation.companyAddress}} </td>
+                <td class="col-sm-3">Position</td>
+                <td class="col-sm-3 text-success"> {{userDetails.workInformation.position}} </td>
+            </tr>
+             <tr class="row">
+                <td class="col-sm-3">Salary Date</td>
+                <td class="col-sm-3 text-success"> {{moment(userDetails.workInformation.salaryDate)}} </td>
+                <td class="col-sm-3">Quarterly Date</td>
+                <td class="col-sm-3 text-success"> {{moment(userDetails.workInformation.quarterlyDate)}} </td>
+            </tr>
+             <tr class="row">
+                <td class="col-sm-3">Monthly Income</td>
+                <td class="col-sm-3 text-success"> &#8358;{{formatAmount(userDetails.workInformation.monthlyIncome)}} </td>
+                <td class="col-sm-3">Annual Income</td>
+                <td class="col-sm-3 text-success"> &#8358;{{formatAmount(userDetails.workInformation.annualIncome)}} </td>
             </tr>
             </tbody>
       </table>
@@ -212,6 +234,8 @@
 
 <script>
 import{ mdbTbl, mdbModal, mdbBtn, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbTblHead, mdbTblBody,mdbListGroup, mdbListGroupItem, mdbBadge,mdbNavbar, mdbContainer,mdbCard, mdbRow,mdbCardBody, mdbCardTitle, mdbCardText, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
+import moment from 'moment';
+
 export default {
  name:'userDetails',
  components :{
@@ -272,7 +296,10 @@ export default {
          this.$store.dispatch('updateLoanStatusDecline')
             .then(_ => this.isLoading2=false)
             .catch(_ => this.isLoading2=false)
-    }
+    },
+    moment (date) {
+            return moment(date).format('MMMM Do YYYY');
+    },
  },
 
  computed : {

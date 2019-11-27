@@ -447,20 +447,6 @@ export default new Vuex.Store({
        //postLoan
       async postLoan ({commit, state, rootState}) {
 
-      //guarantors schema
-      let guarantors = [
-        {
-          title: rootState.loan.title,
-          firstName: rootState.loan.firstname,
-          lastName: rootState.loan.lastname,
-          phoneNumber:rootState.loan.phone,
-          email:rootState.loan.email,
-          address:rootState.loan.address,
-          idCard:rootState.loan.id,
-          signature:rootState.loan.signature
-        }
-      ];
-
       //  `${state.api_url}/loans`
         await axios({
           method: "post",
@@ -468,16 +454,35 @@ export default new Vuex.Store({
           data: {
             loanAmount : rootState.loan.principal,
             loanTenor : rootState.loan.tenor,
+            loanPurpose:rootState.loan.loanPurpose,
             indebtedness: rootState.loan.isPicked,
             listIndebtedness:rootState.loan.loanIndebtedness,
-            employmentType: rootState.loan.employmentType,
-            companyName:rootState.loan.companyName,
-            companyAddress:rootState.loan.companyAddress,
-            companyPhone:rootState.loan.phoneNumber,
-            officialEmail:rootState.loan.officialEmail,
-            loanPurpose:rootState.loan.loanPurpose,
-            otherComments:rootState.loan.otherComments,
-            guarantors,
+            repaymentMode:rootState.loan.repaymentMode,
+            accountNumber:rootState.investment.accountNumber,
+            bankName:rootState.investment.bankName,
+            workInformation : {
+              employmentType: rootState.loan.employmentType,
+              companyName:rootState.loan.companyName,
+              companyAddress:rootState.loan.companyAddress,
+              companyPhone:rootState.loan.phoneNumber,
+              officialEmail:rootState.loan.officialEmail,
+              position:rootState.loan.position,
+              salaryDate:rootState.loan.salaryDate,
+              quarterlyDate:rootState.loan.quarterlyDate,
+              monthlyIncome:rootState.loan.monthlyIncome,
+              annualIncome:rootState.loan.annualIncome,
+              otherComments:rootState.loan.otherComments,
+            },
+            guarantors : [
+              {title: rootState.loan.title,
+              firstName: rootState.loan.firstname,
+              lastName: rootState.loan.lastname,
+              phoneNumber:rootState.loan.phone,
+              email:rootState.loan.email,
+              address:rootState.loan.address,
+              idCard:rootState.loan.id,
+              signature:rootState.loan.signature}
+            ],
             personalDetails : {
               idCard:rootState.loan.loanId,
               signature:rootState.loan.loanSign,
@@ -533,19 +538,6 @@ export default new Vuex.Store({
 
     //Post Finance
     async postFinance ({commit, state, rootState}) {
-      //guarantors
-      let guarantors = [
-        {
-          title: rootState.loan.title,
-          firstName: rootState.loan.firstname,
-          lastName: rootState.loan.lastname,
-          phoneNumber:rootState.loan.phone,
-          email:rootState.loan.email,
-          address:rootState.loan.address,
-          idCard:rootState.loan.id,
-          signature:rootState.loan.signature
-        }
-      ];
      
      //${state.api_url}/finance
       await axios({
@@ -557,15 +549,36 @@ export default new Vuex.Store({
           financeType:rootState.finance.financeType,
           indebtedness:rootState.loan.isPicked,
           listIndebtedness:rootState.loan.loanIndebtedness,
-          employmentType:rootState.loan.employmentType,
-          companyName:rootState.loan.companyName,
-          companyAddress:rootState.loan.companyAddress,
-          companyPhone:rootState.loan.phoneNumber,
-          officialEmail:rootState.loan.officialEmail,
-          rcNumber : rootState.loan.rcNumber,
           financePurpose:rootState.loan.loanPurpose,
-          otherComments:rootState.loan.otherComments,
-          guarantors,
+          repaymentMode:rootState.loan.repaymentMode,
+          accountNumber:rootState.investment.accountNumber,
+          bankName:rootState.investment.bankName,
+          workInformation : {
+            employmentType: rootState.loan.employmentType,
+            companyName:rootState.loan.companyName,
+            companyAddress:rootState.loan.companyAddress,
+            companyPhone:rootState.loan.phoneNumber,
+            officialEmail:rootState.loan.officialEmail,
+            position:rootState.loan.position,
+            rcNumber : rootState.loan.rcNumber,
+            salaryDate:rootState.loan.salaryDate,
+            quarterlyDate:rootState.loan.quarterlyDate,
+            monthlyIncome:rootState.loan.monthlyIncome,
+            annualIncome:rootState.loan.annualIncome,
+            otherComments:rootState.loan.otherComments,
+          },
+          guarantors : [
+            {
+              title: rootState.loan.title,
+              firstName: rootState.loan.firstname,
+              lastName: rootState.loan.lastname,
+              phoneNumber:rootState.loan.phone,
+              email:rootState.loan.email,
+              address:rootState.loan.address,
+              idCard:rootState.loan.id,
+              signature:rootState.loan.signature
+            }
+          ],
           collateral: {
               collateralType:rootState.finance.collateralType,
               collateralTitle: rootState.finance.collateralTitle,

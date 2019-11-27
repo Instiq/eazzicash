@@ -25,6 +25,7 @@ const state = {
   isPicked: "",
   loanIndebtedness: "",
   loanPurpose: "",
+  repaymentMode:"",
 
   //state for workinfo
   employmentType: "",
@@ -34,6 +35,12 @@ const state = {
   officialEmail: "",
   phoneNumber:"",
   rcNumber:"",
+  position : "",
+  monthlyIncome:"",
+  annualIncome:"",
+  salaryDate:"",
+  quarterlyDate:"",
+
   //state for guarantor
   title: "",
   title1: "",
@@ -122,6 +129,9 @@ const mutations = {
   setLoanId (state, payload) {
     state.loanId=payload
   },
+  setRepaymentMode (state, payload) {
+    state.repaymentMode=payload
+  },
   //Mutations for workinfo
   setEmploymentType(state, payload) {
     state.employmentType = payload;
@@ -144,6 +154,22 @@ const mutations = {
   setRcNumber(state, payload) {
     state.rcNumber = payload;
   },
+  setPosition(state, payload) {
+    state.position = payload;
+  },
+  setSalaryDate(state, payload) {
+    state.salaryDate = payload;
+  },
+  setQuarterlyDate(state, payload) {
+    state.quarterlyDate = payload;
+  },
+  setMonthlyIncome(state, payload) {
+    state.monthlyIncome = payload;
+  },
+  setAnnualIncome(state, payload) {
+    state.annualIncome = payload;
+  },
+
   //Mutations for guarantor
   setTitle(state, payload) {
     state.title = payload;
@@ -273,6 +299,9 @@ const actions = {
   updateLoanPurpose({ commit }, value) {
     commit("setLoanPurpose", value);
   },
+  updateRepaymentMode({ commit }, value) {
+    commit("setRepaymentMode", value);
+  },
   //Actions for Workinfo
   updateEmploymentType({ commit }, value) {
     commit("setEmploymentType", value);
@@ -295,6 +324,22 @@ const actions = {
   updateRcNumber({ commit }, value) {
     commit("setRcNumber", value);
   },
+  updatePosition({ commit }, value) {
+    commit("setPosition", value);
+  },
+  updateSalaryDate({ commit }, value) {
+    commit("setSalaryDate", value);
+  },
+  updateQuarterlyDate({ commit }, value) {
+    commit("setQuarterlyDate", value);
+  },
+  updateMonthlyIncome({ commit }, value) {
+    commit("setMonthlyIncome", value);
+  },
+  updateAnnualIncome({ commit }, value) {
+    commit("setAnnualIncome", value);
+  },
+
   //Actions for guarantor
   updateTitle({ commit }, value) {
     commit("setTitle", value);
@@ -376,6 +421,9 @@ const getters = {
   loanId: state => {
     return state.loanId;
   },
+  repaymentMode: state => {
+    return state.repaymentMode;
+  },
   
   // getters for Workinfo
   employmentType: state => {
@@ -398,6 +446,21 @@ const getters = {
   },
   otherComments: state => {
     return state.otherComments;
+  },
+  position: state => {
+    return state.position;
+  },
+  salaryDate: state => {
+    return state.salaryDate;
+  },
+  quarterlyDate: state => {
+    return state.quarterlyDate;
+  },
+  monthlyIncome: state => {
+    return state.monthlyIncome;
+  },
+  annualIncome: state => {
+    return state.annualIncome;
   },
   // getters for Guarantor
   title: state => {

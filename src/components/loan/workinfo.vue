@@ -1,7 +1,7 @@
 <template>
   <div>
       
-          <div class="main-container">
+          <div class="main-containe">
                <ValidationObserver v-slot="{ passes }">
                     <form @submit.prevent="passes(next_page)"> 
                         <span class="h5 mb-5 d-lg-none d-block ">Work Information</span>
@@ -45,7 +45,7 @@
                                 </div>
                         </div>
 
-                         <div class="form-row">
+                         <div class="form-row mb-3">
                                 <div class="col-md-5 mb-2">
                                     <ValidationProvider name="Phone Number" rules="required|numeric|min:11|max:15" v-slot="{ errors }">
                                         <label for="validationCompanyPhone">Phone Number <span class="text-danger">*</span></label>
@@ -55,12 +55,80 @@
                                 </div>
                                 <div class="col-md-2"></div>
                                 <div class="col-md-5">
-                                    <label for="exampleFormControlTextarea1">Other comments (optional)</label>
-                                    <textarea  v-model="otherComments" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                     <ValidationProvider name="position" rules="required" v-slot="{ errors }">
+                                        <label for="validationCompanyPhone">Position <span class="text-danger">*</span></label>
+                                        <input type="text"  v-model="position" class="form-control" name="position" id="validationCompanyName" placeholder=""  >
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                   </ValidationProvider> 
                                 </div>
                         </div>
-                        <div class="form-row" v-if="currentRoute == 'finance'">
-                            <div class="col-md-5 mb-3">
+
+                         <div class="form-row mb-3">
+                                <div class="col-md-5 mb-2">
+                                    <ValidationProvider name="Salary Payment" rules="required" v-slot="{ errors }">
+                                        <label for="validationCompanyPhone">Salary Payment Date <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <datepicker id ='date' class="date-picker" placeholder="Select Date" :format='customFormatter' v-model="salaryDate"></datepicker>
+                                            <div class="input-group-append">
+                                              <span class="input-group-text" style="height:30px" id="inputGroupPrepend"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
+                                            </div>
+                                        </div>
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                   </ValidationProvider> 
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5">
+                                    <ValidationProvider name="Quarterly Payment" rules="required" v-slot="{ errors }">
+                                        <label for="validationCompanyPhone">Quarterly Payment Date <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <datepicker id ='date' class="date-picker" placeholder="Select Date" :format='customFormatter' v-model="quarterlyDate"></datepicker>
+                                            <div class="input-group-append">
+                                              <span class="input-group-text" style="height:30px" id="inputGroupPrepend"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
+                                            </div>
+                                        </div>
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                   </ValidationProvider> 
+                                </div>
+                        </div>
+
+                        <div class="form-row">
+                             <div class="col-md-5 mb-3">
+                                <ValidationProvider name="Monthly Income" rules="required" v-slot="{ errors }">
+                                        <label for="">Monthly Income <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
+                                            </div>
+                                            <input type="text"  v-model="monthlyIncome" class="form-control"  placeholder=""  name="Monthly Income"  >
+                                        </div>
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
+                            </div>
+                            <div class="col-md-2"></div>
+                             <div class="col-md-5 mb-3">
+                                <ValidationProvider name="Annual Income" rules="required" v-slot="{ errors }">
+                                        <label for="v">Annual Income <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupPrepend">&#8358;</span>
+                                            </div>
+                                            <input type="text"  v-model="annualIncome" class="form-control"  placeholder=""  name="Annual Income"  >
+                                        </div>
+                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-5">
+                                    <label for="exampleFormControlTextarea1">Other comments (optional)</label>
+                                    <textarea  v-model="otherComments" class="form-control text-area" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+
+                            <div class="col-md-2"></div>
+
+                            <div class="col-md-5 mb-3" v-if="currentRoute == 'finance'">
                                 <ValidationProvider name="RC Number" rules="numeric" v-slot="{ errors }">
                                     <label for="validationCompanyPhone">RC Number</label>
                                     <input type="text"  v-model="rcNumber" class="form-control" name="RC Number" id="validationCompanyName" placeholder=""  >
@@ -68,6 +136,8 @@
                                 </ValidationProvider> 
                             </div>
                         </div>
+
+                      
                         <div class="row d-flex justify-content-between row2 borde">
                                 <!-- <div class="col-6 border"> -->
                                     <div class="div3">
@@ -100,10 +170,13 @@
 <script>
 import{mdbNavbar,mdbInput,mdbBtn, mdbNumericInput, mdbJumbotron, mdbContainer,mdbRow, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue';
 import { ValidationObserver, ValidationProvider } from "vee-validate";
+import Datepicker from 'vuejs-datepicker';
+import moment from 'moment';
 
 export default {
     name:'guarantor',
     components:{
+    Datepicker,
     mdbNavbar,
     mdbBtn,
     mdbNavItem, 
@@ -126,6 +199,9 @@ export default {
       },
       prev_page () {
         this.$router.go(-1)
+    },
+    customFormatter(date) {
+        return moment(date).format('MMMM Do YYYY');
     },
   },
 
@@ -189,6 +265,46 @@ export default {
           set(value) {
               this.$store.dispatch('updateOtherComments', value)
           }
+      },
+       position : {
+          get () {
+             return this.$store.getters.position
+          },
+          set(value) {
+              this.$store.dispatch('updatePosition', value)
+          }
+      },
+       monthlyIncome : {
+          get () {
+             return this.$store.getters.monthlyIncome
+          },
+          set(value) {
+              this.$store.dispatch('updateMonthlyIncome', value)
+          }
+      },
+       annualIncome : {
+          get () {
+             return this.$store.getters.annualIncome
+          },
+          set(value) {
+              this.$store.dispatch('updateAnnualIncome', value)
+          }
+      },
+       salaryDate : {
+          get () {
+             return this.$store.getters.salaryDate
+          },
+          set(value) {
+              this.$store.dispatch('updateSalaryDate', value)
+          }
+      },
+       quarterlyDate : {
+          get () {
+             return this.$store.getters.quarterlyDate
+          },
+          set(value) {
+              this.$store.dispatch('updateQuarterlyDate', value)
+          }
       }
   },
 
@@ -213,6 +329,10 @@ export default {
      box-shadow: 0 0 5px rgb(75, 148, 8, 1);
      outline: 0 none;
  }
+
+.date-picker  {
+    display: non;
+}
 
  @media (max-width: 576px) {
     .main-container {

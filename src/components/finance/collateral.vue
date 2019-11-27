@@ -46,7 +46,13 @@
                              <div class="mb-3">
                                 <ValidationProvider name="Contract Duration" rules="required" v-slot="{ errors }">
                                     <span class="m">Contract Duration <span class="text-danger">*</span></span> <br>
-                                    <span>From</span> <datepicker id ='date' class="mb-2" style="border:1px solid blu; border-radius:3px;" placeholder="Select Date" :format='customFormatter' v-model="itemDate"></datepicker> 
+                                    <span>From</span> 
+                                    <div class="input-group">
+                                        <datepicker id ='date' class="mb-2" style="border:1px solid blu; border-radius:3px;" placeholder="Select Date" :format='customFormatter' v-model="itemDate"></datepicker> 
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" style="height:30px" id="inputGroupPrepend"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
                                     <!-- <span>To</span><datepicker id ='date1' style="border:1px solid blu; border-radius:3px;" placeholder="Select Date" :format='customFormatter' v-model="itemDate1"></datepicker> -->
                                     <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                 </ValidationProvider> 
@@ -54,9 +60,13 @@
 
                              <div class="mb-3">
                                 <ValidationProvider name="Contract Duration1" rules="required" v-slot="{ errors }">
-                                    <!-- <span class="m">Contract Duration <span class="text-danger">*</span></span> <br> -->
-                                    <!-- <span>From</span> <datepicker id ='date' class="mb-2" style="border:1px solid blu; border-radius:3px;" placeholder="Select Date" :format='customFormatter' v-model="itemDate"></datepicker>  -->
-                                    <span>To</span><datepicker id ='date1' style="border:1px solid blu; border-radius:3px;" placeholder="Select Date" :format='customFormatter' v-model="itemDate1"></datepicker>
+                                    <span>To</span>
+                                    <div class="input-group">
+                                        <datepicker id ='date1' style="border:1px solid blu; border-radius:3px;" placeholder="Select Date" :format='customFormatter' v-model="itemDate1"></datepicker>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" style="height:30px" id="inputGroupPrepend"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
                                     <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                 </ValidationProvider> 
                             </div>  
