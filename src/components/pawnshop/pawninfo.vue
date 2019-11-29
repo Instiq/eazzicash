@@ -82,9 +82,44 @@
                                     <div class="input-group-append">
                                         <div  class="input-group-text" style="color:darkgray">days</div>
                                     </div>
-                                </div>
-                               
+                                </div>  
                             </div>
+                            <div class="mb-3">
+                                <ValidationProvider name="Account_Number" rules="required|numeric|min:10|max:10" v-slot="{ errors }">
+                                    <label for="" class="d-inline">Account Number <span class="text-danger">*</span></label>
+                                    <input name="Account_Number" v-model="accountNumber" type="text" class="form-control">
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider>
+                            </div>
+
+                        <div class="mb-3">
+                            <ValidationProvider name="Bank_Name" rules="required" v-slot="{ errors }">
+                                <label for="" class="d-inline">Bank <span class="text-danger">*</span></label>
+                                <select  class="browser-default custom-select" name="Bank_Name"  v-model="bankName">
+                                <option >Choose</option>
+                                <option selected value="access">Access Bank</option>
+                                <option value="citibank">Citibank</option>
+                                <option value="ecobank">Ecobank</option>
+                                <option value="fidelity">Fidelity Bank</option>
+                                <option value="fcmb">First City Monument Bank (FCMB)</option>
+                                <option value="fsdh">FSDH Merchant Bank</option>
+                                <option value="gtb">Guarantee Trust Bank (GTB)</option>
+                                <option value="heritage">Heritage Bank</option>
+                                <option value="Keystone">Keystone Bank</option>
+                                <option value="rand">Rand Merchant Bank</option>
+                                <option value="skye">Polaris Bank</option>
+                                <option value="stanbic">Stanbic IBTC Bank</option>
+                                <option value="standard">Standard Chartered Bank</option>
+                                <option value="sterling">Sterling Bank</option>
+                                <option value="suntrust">Suntrust Bank</option>
+                                <option value="union">Union Bank</option>
+                                <option value="uba">United Bank for Africa (UBA)</option>
+                                <option value="unity">Unity Bank</option>
+                                <option value="wema">Wema Bank</option>
+                                <option value="zenith">Zenith Bank</option>
+                                </select>
+                            </ValidationProvider>
+                        </div>
                         </div>
                         <div class="col-md-5">
                     
@@ -218,6 +253,22 @@ export default {
                 this.$store.dispatch('updateItemCondition', value )
             }
        },
+        accountNumber : {
+           get () {
+              return  this.$store.getters.accountNumber
+           },
+           set (value) {
+              this.$store.dispatch('updateAccountNumber', value)
+           }
+       },
+        bankName : {
+           get () {
+              return  this.$store.getters.bankName
+           },
+           set (value) {
+              this.$store.dispatch('updateBankName', value)
+           }
+       }
     },
     mounted () {
         this.$store.dispatch('updateIsActive1P')

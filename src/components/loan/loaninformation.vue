@@ -38,7 +38,7 @@
 
 
                      <div class="form-row second">
-                        <div class="col-md-5 mt-3"> 
+                        <div class="col-md-5 mt-3 mb-3"> 
                                Any Indebtedness? <span class="text-danger">*</span>
                                 <ValidationProvider name="" rules="required" v-slot="{ errors }">
                                       <div class="custom-control custom-radio ml-2 d-inline"> 
@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="col-md-5">
+                        <div class="col-md-5 mb-3">
                             <ValidationProvider name="Account_Number" rules="required|numeric|min:10|max:10" v-slot="{ errors }">
                                 <label for="" class="d-inline">Account Number <span class="text-danger">*</span></label>
                                 <input name="Account_Number" v-model="accountNumber" type="text" class="form-control">

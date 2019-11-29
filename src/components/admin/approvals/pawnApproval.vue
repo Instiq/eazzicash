@@ -30,9 +30,10 @@
                       <th scope="col">Name</th>
                       <th scope="col" class="text-center">Amount</th>
                       <th scope="col" class="text-center">Details</th>
+                       <th  v-if="currentRoute == 'Pawn Report'" scope="col" class="text-center">Print</th>
                       <th scope="col" class="text-center">Status</th>
                       <th scope="col" class="text-center">Date Applied</th>
-                      <th scope="col" class="text-center">Delete</th>
+                      <th  v-if="currentRoute == 'Pawn Approval'" scope="col" class="text-center">Delete</th>
                     </tr>
                   </thead>
                   <tbody v-if="filteredPawnRequests" >
@@ -40,9 +41,10 @@
                       <th scope="row" class="text-success">{{item.userDetails.firstName}} {{item.userDetails.lastName}}</th>
                       <td class="text-center"> &#8358; {{formatAmount(item.pawnAmount)}}  </td>
                       <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
+                      <td v-if="currentRoute == 'Pawn Report'" class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >Download</span></td>
                       <td class="text-center"> {{item.approved}} </td>
                       <td class="text-center"> {{moment(item.createdAt)}} </td>
-                      <td @click="userDetailsAdmin(index); deletePawn()" class="text-center text-danger" style="cursor:pointer">   Delete </td>
+                      <td v-if="currentRoute == 'Pawn Approval'"  @click="userDetailsAdmin(index); deletePawn()" class="text-center text-danger" style="cursor:pointer">   Delete </td>
                     </tr>
                   </tbody>
                 </table>
@@ -126,9 +128,9 @@ export default {
  },
 
  computed : {
-    // pawnRequests () {
-    //     return this.$store.state.userEntitiesAll.pawn.sort().reverse()
-    // },
+   currentRoute () {
+        return this.$router.currentRoute.name
+    },
      filteredPawnRequests () {
        if (this.name=='') {
             return this.$store.state.userEntitiesAll.pawn.sort().reverse()
@@ -161,9 +163,6 @@ export default {
                       monthAndYear.indexOf(this.name) == 0
             } )
         }
-           
-
-            return final
         
     }
  },

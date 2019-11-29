@@ -660,6 +660,8 @@ export default new Vuex.Store({
           itemPurchaseLocation:rootState.pawnshop.purchaseLocation,
           itemReleaseYear:rootState.pawnshop.releaseYear,
           swornAffidavit:rootState.pawnshop.isSworn,
+          accountNumber:rootState.investment.accountNumber,
+          bankName:rootState.investment.bankName,
           personalDetails : {
             idCard:rootState.loan.loanId,
             signature:rootState.loan.loanSign,

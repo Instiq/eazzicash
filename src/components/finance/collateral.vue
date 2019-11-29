@@ -36,16 +36,16 @@
                             </div>     
 
                             <div class="mb-3">
-                                <ValidationProvider name="Contract Receivable Account Number" rules="required|numeric|min:10|max:10" v-slot="{ errors }">
-                                    <span class="m">Contract Receivable Account Number <span class="text-danger">*</span></span>
+                                <ValidationProvider name="Contract Receivable Account Number" rules="min:10|max:10" v-slot="{ errors }">
+                                    <span class="m">Contract Receivable Account Number</span>
                                     <input type="text"  v-model="contractAccount" name="Contract Receivable Account Number" class="form-control"  placeholder="">
                                     <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                 </ValidationProvider> 
                             </div>  
 
                              <div class="mb-3">
-                                <ValidationProvider name="Contract Duration" rules="required" v-slot="{ errors }">
-                                    <span class="m">Contract Duration <span class="text-danger">*</span></span> <br>
+                                <ValidationProvider name="Contract Duration" rules="" v-slot="{ errors }">
+                                    <span class="m">Contract Duration</span> <br>
                                     <span>From</span> 
                                     <div class="input-group">
                                         <datepicker id ='date' class="mb-2" style="border:1px solid blu; border-radius:3px;" placeholder="Select Date" :format='customFormatter' v-model="itemDate"></datepicker> 
@@ -59,7 +59,7 @@
                             </div> 
 
                              <div class="mb-3">
-                                <ValidationProvider name="Contract Duration1" rules="required" v-slot="{ errors }">
+                                <ValidationProvider name="Contract Duration1" rules="" v-slot="{ errors }">
                                     <span>To</span>
                                     <div class="input-group">
                                         <datepicker id ='date1' style="border:1px solid blu; border-radius:3px;" placeholder="Select Date" :format='customFormatter' v-model="itemDate1"></datepicker>

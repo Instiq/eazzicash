@@ -3,7 +3,7 @@
         <div class="container">
             <div class="container main-container">
                 <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
-                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Finance Calculator</span></div>
+                  <div class="border py-4 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Finance Calculator</span></div>
 
                     <section class="container mt-3">
                        <div class="row">
@@ -221,7 +221,7 @@ export default {
 
  .jumbotron-head {
      height: auto;
-     margin-top:-10.3vh;
+     margin-top:-11vh;
      background:rgb(208, 216, 224)
  }
  .jumbotron-head-text {
@@ -248,7 +248,8 @@ export default {
  }
 .small-screen-jumbo {
     width:auto!important;
-    height:auto !important
+    height:auto !important;
+    margin-top:50px
 } 
  }
  
@@ -261,7 +262,8 @@ export default {
  }
 .small-screen-jumbo {
     width:auto !important;
-    height:auto !important
+    height:auto !important;
+    margin-top:50px
 } 
  }
 
@@ -296,7 +298,7 @@ export default {
      height: auto;
      /* margin-top:-10vh; */
      background:rgb(208, 216, 224);
-     padding-top : 60px !important
+     padding-top : 30px !important
  }
  }
 
@@ -312,12 +314,7 @@ export default {
     width:100vw !important;
     height:72vh !important
 } 
- .apply-btn {
-     padding:10px 10vw;
-     position: absolute;
-     top:55vh;  
-     border: 2px solid blu
- }
+
 
  }
 

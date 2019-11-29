@@ -1,51 +1,50 @@
+<template>
 
+  <div>
+    <navigation/>
+  </div>
+
+</template>
 
 <script>
-import { Bar } from 'vue-chartjs'
+import navigation from './navigation.vue';
+import{ mdbTbl, mdbJumbotron, mdbModal, mdbBtn, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbTblHead, mdbTblBody,mdbListGroup, mdbListGroupItem, mdbBadge,mdbNavbar, mdbContainer,mdbCard, mdbRow,mdbCardBody, mdbCardTitle, mdbCardText, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
 
 export default {
-  extends: Bar,
-  data: () => ({
-    chartdata: {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      datasets: [
-        {
-          label: 'Registered Users',
-          backgroundColor: 'green',
-          data: [20, 20]
+  name : "reports",
+  components : {
+    navigation
+  },
+  
+methods : {
+        isActiveOne () {
+            this.$store.dispatch('updateIsActive1')
         },
-         {
-          label: 'Loan Requests',
-          backgroundColor: 'cyan',
-          data: [25, 40]
+        isActiveTwo () {
+            this.$store.dispatch('updateIsActive2')
         },
-        {
-          label: 'Pawn Requests',
-          backgroundColor: 'crimson',
-          data: [15, 60]
+        isActiveThree () {
+            this.$store.dispatch('updateIsActive3')
         },
-        {
-          label: 'Investment Requests',
-          backgroundColor: 'blue',
-          data: [35, 75]
-        },
-        {
-          label: 'Finance Requests',
-          backgroundColor: 'orange',
-          data: [41, 29]
+        isActiveFour () {
+           this.$store.dispatch('updateIsActive4')
         }
-
-      ]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false
-    }
-  }),
 
-  mounted () {
-    this.renderChart(this.chartdata, this.options)
-  }
+computed : {
+    isActive1 () {
+        return this.$store.getters.isActive1
+    },
+    isActive2 () {
+        return this.$store.getters.isActive2
+    },
+    isActive3 () {
+        return this.$store.getters.isActive3
+    },
+    isActive4 () {
+        return this.$store.getters.isActive4
+    }
+}
 }
 </script>
 

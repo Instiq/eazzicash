@@ -48,7 +48,7 @@ import adminProfile from "./components/admin/adminProfile.vue";
 import adminDashboard from "./components/admin/adminDashboard.vue";
 import userManagement from "./components/admin/userManagement.vue";
 import reports from "./components/admin/reports/reports.vue";
-import demo from "./components/admin/reports/demo.vue";
+// import navigation from "./components/admin/reports/navigation.vue";
 import approvals from "./components/admin/approvals/approvals.vue";
 import loanApproval from "./components/admin/approvals/loanApproval.vue";
 import investmentApproval from "./components/admin/approvals/investmentApproval.vue";
@@ -374,13 +374,39 @@ const router = new Router({
         {
           path: "/adminProfile/reports",
           name: "reports",
-          component: reports
+          component: reports,
+          children : [
+            {
+              path: "/",
+              redirect: "/adminProfile/reports/loan"
+            },
+            {
+              path: "/adminProfile/reports/loan",
+              name:'Loan Report',
+              component: loanApproval
+            },
+            {
+              path: "/adminProfile/reports/investment",
+              name:'Investment Report',
+              component: investmentApproval
+            },
+            {
+              path: "/adminProfile/reports/pawn",
+              name:'Pawn Report',
+              component: pawnApproval
+            },
+            {
+              path: "/adminProfile/reports/finance",
+              name:'Finance Report',
+              component: financeApproval
+            },
+          ]
         },
-        {
-          path: "/adminProfile/demo",
-          name: "demo",
-          component: demo
-        },
+        // {
+        //   path: "/adminProfile/demo",
+        //   name: "demo",
+        //   component: demo
+        // },
         {
           path: "/adminProfile/approvals",
           name: "approvals",
@@ -408,7 +434,7 @@ const router = new Router({
             },
             {
               path: "/adminProfile/approvals/finance",
-              name:'Finance  Approval',
+              name:'Finance Approval',
               component: financeApproval
             },
             {

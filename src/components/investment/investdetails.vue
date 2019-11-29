@@ -3,7 +3,7 @@
       <div class="container">
           <div class="container main-container">
                <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
-                   <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Investment Application Form</span></div>
+                   <div class="border py-4 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Investment Application Form</span></div>
                    <router-link to="/profile/investment/precheck">
                        <div class="back-arrow-div ml-lg-4 ml-xl-5 ml-md-4 small-screen-nav">
                          <i class="fas fa-arrow-left text-white"></i>   
@@ -100,7 +100,7 @@ export default {
  }
  .jumbotron-head {
      height: auto;
-     margin-top:-10vh;
+     margin-top:-11vh;
      background:rgb(208, 216, 224);
 
  }
@@ -120,7 +120,7 @@ export default {
 
  .back-arrow-div {
      /* border: 2px solid blue; */
-     position:absolute;
+     position: relative;;
      height: 20px;
      background: dodgerblue;
      margin:0px 60px;
@@ -128,7 +128,7 @@ export default {
      border-radius:60px;
      text-align: center;
      padding:-7vh;
-     top:13vh
+     top:6vh
      
  }
 
@@ -144,6 +144,10 @@ export default {
       border-bottom:4px solid green;
       color:green;
       font-weight:500
+ }
+
+  .small-screen-jumbo {
+     margin-top: 50px!important
  }
 
  .router-div {
@@ -174,26 +178,16 @@ export default {
  }
  }
 
- /* @media (min-width:1200px){
-   
-     .loan-navigation {
-     margin:0px 9vw;
-     width:51vw
- }
+ @media (min-width:1200px){
+
 
  .small-screen-jumbo {
-    width:70vw !important;
-    height:auto !important
+     /* margin-top:50px */
+    /* width:70vw !important;
+    height:auto !important */
 } 
 
- .nok {
-     margin-left:50px
  }
-
- .signature {
-     margin-left: 80px !important
- }
- } */
 
 
 
@@ -220,7 +214,7 @@ export default {
      height: auto;
      margin-top:-10vh;
      background:rgb(208, 216, 224);
-     padding-top : 60px !important
+     padding-top : 30px !important
  }
  }
 </style>

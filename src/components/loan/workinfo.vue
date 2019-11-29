@@ -28,71 +28,71 @@
                         </div>    
 
                         <div class="form-row">
-                                <div class="col-md-5 mb-3">
-                                    <ValidationProvider name="Company Address" rules="required" v-slot="{ errors }">
-                                        <label for="validationCompanyAddress">Company Address <span class="text-danger">*</span></label>
-                                        <textarea  type="text"  v-model="companyAddress" class="form-control" name="Company Address" id="validationCompanyName" rows="3" placeholder=""> </textarea>
-                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                   </ValidationProvider> 
-                                </div>
-                                <div class="col-md-2"></div>
-                                <div class="col-md-5 mb-3">
-                                    <ValidationProvider name="Official Address" rules="required|email" v-slot="{ errors }">
-                                        <label for="validationCompanyOfficial">Official Email Address <span class="text-danger">*</span></label>
-                                        <input type="email"  v-model="officialEmail" class="form-control" name="Official Address" id="validationCompanyName" placeholder=""  >
-                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                   </ValidationProvider> 
-                                </div>
+                            <div class="col-md-5 mb-3">
+                                <ValidationProvider name="Company Address" rules="required" v-slot="{ errors }">
+                                    <label for="validationCompanyAddress">Company Address <span class="text-danger">*</span></label>
+                                    <textarea  type="text"  v-model="companyAddress" class="form-control" name="Company Address" id="validationCompanyName" rows="3" placeholder=""> </textarea>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5 mb-3">
+                                <ValidationProvider name="Official Address" rules="required|email" v-slot="{ errors }">
+                                    <label for="validationCompanyOfficial">Official Email Address <span class="text-danger">*</span></label>
+                                    <input type="email"  v-model="officialEmail" class="form-control" name="Official Address" id="validationCompanyName" placeholder=""  >
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
+                            </div>
                         </div>
 
                          <div class="form-row mb-3">
-                                <div class="col-md-5 mb-2">
-                                    <ValidationProvider name="Phone Number" rules="required|numeric|min:11|max:15" v-slot="{ errors }">
-                                        <label for="validationCompanyPhone">Phone Number <span class="text-danger">*</span></label>
-                                        <input type="number"  v-model="phoneNumber" class="form-control" name="Phone Number" id="validationCompanyName" placeholder=""  >
-                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                   </ValidationProvider> 
-                                </div>
-                                <div class="col-md-2"></div>
-                                <div class="col-md-5">
-                                     <ValidationProvider name="position" rules="required" v-slot="{ errors }">
-                                        <label for="validationCompanyPhone">Position <span class="text-danger">*</span></label>
-                                        <input type="text"  v-model="position" class="form-control" name="position" id="validationCompanyName" placeholder=""  >
-                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                   </ValidationProvider> 
-                                </div>
+                            <div class="col-md-5 mb-2">
+                                <ValidationProvider name="Phone Number" rules="required|numeric|min:11|max:15" v-slot="{ errors }">
+                                    <label for="validationCompanyPhone">Phone Number <span class="text-danger">*</span></label>
+                                    <input type="number"  v-model="phoneNumber" class="form-control" name="Phone Number" id="validationCompanyName" placeholder=""  >
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+                                    <ValidationProvider name="position" rules="required" v-slot="{ errors }">
+                                    <label for="validationCompanyPhone">Position <span class="text-danger">*</span></label>
+                                    <input type="text"  v-model="position" class="form-control" name="position" id="validationCompanyName" placeholder=""  >
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
+                            </div>
                         </div>
 
-                         <div class="form-row mb-3">
-                                <div class="col-md-5 mb-2">
-                                    <ValidationProvider name="Salary Payment" rules="required" v-slot="{ errors }">
-                                        <label for="validationCompanyPhone">Salary Payment Date <span class="text-danger">*</span></label>
-                                        <div class="input-group">
-                                            <datepicker id ='date' class="date-picker" placeholder="Select Date" :format='customFormatter' v-model="salaryDate"></datepicker>
-                                            <div class="input-group-append">
-                                              <span class="input-group-text" style="height:30px" id="inputGroupPrepend"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
-                                            </div>
+                        <div class="form-row mb-3">
+                            <div class="col-md-5 mb-3">
+                                <ValidationProvider name="Salary Payment" rules="required" v-slot="{ errors }">
+                                    <label for="validationCompanyPhone">Salary Payment Date <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <datepicker id ='date' class="date-picker" placeholder="Select Date" :format='customFormatter' v-model="salaryDate"></datepicker>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" style="height:30px" id="inputGroupPrepend"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
                                         </div>
-                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                   </ValidationProvider> 
-                                </div>
-                                <div class="col-md-2"></div>
-                                <div class="col-md-5">
-                                    <ValidationProvider name="Quarterly Payment" rules="required" v-slot="{ errors }">
-                                        <label for="validationCompanyPhone">Quarterly Payment Date <span class="text-danger">*</span></label>
-                                        <div class="input-group">
-                                            <datepicker id ='date' class="date-picker" placeholder="Select Date" :format='customFormatter' v-model="quarterlyDate"></datepicker>
-                                            <div class="input-group-append">
-                                              <span class="input-group-text" style="height:30px" id="inputGroupPrepend"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
-                                            </div>
+                                    </div>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+                                <ValidationProvider name="Quarterly Payment" rules="" v-slot="{ errors }">
+                                    <label for="validationCompanyPhone">Quarterly Payment Date</label>
+                                    <div class="input-group">
+                                        <datepicker id ='date' class="date-picker" placeholder="Select Date" :format='customFormatter' v-model="quarterlyDate"></datepicker>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" style="height:30px" id="inputGroupPrepend"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
                                         </div>
-                                        <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                   </ValidationProvider> 
-                                </div>
+                                    </div>
+                                    <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                </ValidationProvider> 
+                            </div>
                         </div>
 
                         <div class="form-row">
-                             <div class="col-md-5 mb-3">
+                            <div class="col-md-5 mb-3">
                                 <ValidationProvider name="Monthly Income" rules="required" v-slot="{ errors }">
                                         <label for="">Monthly Income <span class="text-danger">*</span></label>
                                         <div class="input-group">

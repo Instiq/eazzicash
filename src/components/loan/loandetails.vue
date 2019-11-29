@@ -3,7 +3,7 @@
       <div class="container">
           <div class="container main-container">
                <div class=" jumbotron jumbotron-fluid small-screen-jumbo borde" style="height:auto; width:auto">
-                   <div class="borde py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Loan Application Form</span></div>
+                   <div class="borde py-4 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Loan Application Form</span></div>
                    <router-link to="/profile/loan/apply">
                        <div class="back-arrow-div  ml-lg-4 ml-xl-5 small-screen-nav">
                          <i class="fas fa-arrow-left text-white"></i>   
@@ -104,7 +104,7 @@ export default {
  }
  .jumbotron-head {
      height: auto;
-     margin-top:-10vh;
+     margin-top:-11vh;
      background:rgb(208, 216, 224);
 
  }
@@ -123,7 +123,7 @@ export default {
 
  .back-arrow-div {
      /* border: 2px solid blue; */
-     position:absolute;
+     position: relative;;
      height: 20px;
      background: dodgerblue;
      margin:0px 60px;
@@ -131,7 +131,7 @@ export default {
      border-radius:60px;
      text-align: center;
      padding:-7vh;
-     top:13vh
+     top:6vh
      
  }
 
@@ -147,6 +147,10 @@ export default {
       border-bottom:4px solid green;
       color:green;
       font-weight:500
+ }
+
+ .small-screen-jumbo {
+     margin-top: 50px!important
  }
 
  .router-div {
@@ -184,29 +188,12 @@ export default {
 
   @media (min-width:1200px){
    
-     /* .loan-navigation {
-     margin:0px 9vw;
-     width:auto
- } */
-
- .small-screen-jumbo {
-    width:69vw !important;
-    height:auto !important
+    .small-screen-jumbo {
+        width:69vw !important;
+        height:auto !important;
+        margin-top:50px
+    }  
 } 
-/* 
- .nok {
-     margin-left:30px
- }
-
- .signature {
-     margin-left: 70px
- }
-
-  .loan-nav {
-     top:0;
-    
- }  */
- } 
 
  @media (max-width:991px){
    .small-screen-nav{
@@ -230,7 +217,7 @@ export default {
      height: auto;
      margin-top:-10vh;
      background:rgb(208, 216, 224);
-     padding-top : 60px !important
+     padding-top : 30px !important
  }
 
 

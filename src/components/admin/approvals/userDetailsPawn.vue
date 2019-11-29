@@ -92,6 +92,13 @@
               <td class="col-sm-3"><b class="text-success">{{userDetails.itemPurchaseLocation}}</b></td>
             </tr>
 
+             <tr class="row">
+              <td class="col-sm-3">Account Number</td>
+              <td class="col-sm-3 text-success"> {{(userDetails.accountNumber)}}  </td>
+              <td class="col-sm-3">Bank Name</td>
+              <td class="col-sm-3"><b class="text-success">{{userDetails.bankName}}</b></td>
+            </tr>
+
             <tr class="row">
                  <td class="col-sm-2">Sworn Afidavit?</td>
                   <td class="col-sm-1">{{userDetails.swornAffidavit}}</td>

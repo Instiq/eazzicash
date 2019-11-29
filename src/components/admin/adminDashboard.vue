@@ -5,7 +5,7 @@
                       <div class="row">
                           <div class="col-md-6 entities-card ">
                             
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:auto">
                                   <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:orange">
 
@@ -26,7 +26,7 @@
                               </mdb-card>
                           </div>
                           <div class="col-md-6 entities-card">
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:auto">
                                     <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:mediumseagreen">
                                          Total  Investment Requests
@@ -42,7 +42,7 @@
                               
                           </div>  
                           <div class="col-md-6 entities-card">
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:auto">
                                    <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:deepskyblue">
                                         Total Finance Requests
@@ -58,7 +58,7 @@
                               
                           </div>
                           <div class="col-md-6 entities-card">
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:27vh">
                                    <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:orangered">
                                        Total Pawn Requests
@@ -79,11 +79,14 @@
                   </div>
       </section>
 
+      <demo/>
+
   </div>
 </template>
 
 <script>
 import{ mdbTbl, mdbModal, mdbBtn, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbTblHead, mdbTblBody,mdbListGroup, mdbListGroupItem, mdbBadge,mdbNavbar, mdbContainer,mdbCard, mdbRow,mdbCardBody, mdbCardTitle, mdbCardText, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
+import demo from './reports/demo.vue'
 
 export default {
  name:'adminDashboard',
@@ -110,8 +113,9 @@ export default {
     mdbModalBody, 
     mdbModalFooter,
     mdbTbl,
-     mdbTblHead,
-      mdbTblBody,
+    mdbTblHead,
+    mdbTblBody,
+    demo
     },
     
     computed : {

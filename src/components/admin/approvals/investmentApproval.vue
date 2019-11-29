@@ -30,9 +30,10 @@
                       <th scope="col">Name</th>
                       <th scope="col" class="text-center">Amount</th>
                       <th scope="col" class="text-center">Details</th>
+                       <th  v-if="currentRoute == 'Investment Report'" scope="col" class="text-center">Print</th>
                       <th scope="col" class="text-center">Status</th>
                       <th scope="col" class="text-center">Date Applied</th>
-                      <th scope="col" class="text-center">Delete</th>
+                      <th v-if="currentRoute == 'Investment Approval'" scope="col" class="text-center">Delete</th>
                     </tr>
                   </thead>
                   <tbody v-if="filteredInvestmentRequests"   >
@@ -40,9 +41,10 @@
                       <th scope="row" class="text-success">{{item.userDetails.firstName}} {{item.userDetails.lastName}}</th>
                       <td class="text-center"> &#8358; {{formatAmount(item.investmentAmount)}}  </td>
                       <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
+                      <td v-if="currentRoute == 'Investment Report'" class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >Download</span></td>
                       <td class="text-center"> {{item.approved}} </td>
                       <td class="text-center"> {{moment(item.createdAt)}} </td>
-                      <td @click="userDetailsAdmin(index); deleteInvestment()" class="text-center text-danger" disabled style="cursor:pointer">   Delete </td>
+                      <td v-if="currentRoute == 'Investment Approval'" @click="userDetailsAdmin(index); deleteInvestment()" class="text-center text-danger" disabled style="cursor:pointer">   Delete </td>
                     </tr>
                   </tbody>
                 </table>
@@ -125,9 +127,9 @@ data () {
  },
 
  computed : {
-  //  investmentRequests () {
-  //       return this.$store.state.userEntitiesAll.investment.sort().reverse()
-  //   },
+   currentRoute () {
+        return this.$router.currentRoute.name
+    },
     filteredInvestmentRequests () {
        if (this.name=='') {
             return this.$store.state.userEntitiesAll.investment.sort().reverse()
