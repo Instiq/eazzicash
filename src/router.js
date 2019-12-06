@@ -48,7 +48,10 @@ import adminProfile from "./components/admin/adminProfile.vue";
 import adminDashboard from "./components/admin/adminDashboard.vue";
 import userManagement from "./components/admin/userManagement.vue";
 import reports from "./components/admin/reports/reports.vue";
-// import navigation from "./components/admin/reports/navigation.vue";
+import loanReport from "./components/admin/reports/loanReport.vue";
+import pawnReport from "./components/admin/reports/pawnReport.vue";
+import financeReport from "./components/admin/reports/financeReport.vue";
+import investmentReport from "./components/admin/reports/investmentReport.vue";
 import approvals from "./components/admin/approvals/approvals.vue";
 import loanApproval from "./components/admin/approvals/loanApproval.vue";
 import investmentApproval from "./components/admin/approvals/investmentApproval.vue";
@@ -249,11 +252,6 @@ const router = new Router({
               name: "investment",
               component: nextofkin
             },
-            // {
-            //   path: "/profile/investment/investdetails/signature",
-            //   name: "investment",
-            //   component: signatureI
-            // },
             {
               path: "/profile/investment/investdetails/success",
               name: "investment",
@@ -289,11 +287,6 @@ const router = new Router({
               name: "pawn",
               component: ownership
             },
-            // {
-            //   path: "/profile/pawnshop/pawndetails/signature",
-            //   name: "pawn",
-            //   component: signatureP
-            // },
             {
               path: "/profile/pawnshop/pawndetails/success",
               name: "pawn",
@@ -335,11 +328,6 @@ const router = new Router({
               name: "finance",
               component: guarantor
             },
-            // {
-            //   path: "/profile/finance/loandetails/signature",
-            //   name: "finance",
-            //   component: signatureF
-            // },
             {
               path: "/profile/finance/loandetails/collateral",
               name: "finance",
@@ -383,30 +371,25 @@ const router = new Router({
             {
               path: "/adminProfile/reports/loan",
               name:'Loan Report',
-              component: loanApproval
+              component: loanReport
             },
             {
               path: "/adminProfile/reports/investment",
               name:'Investment Report',
-              component: investmentApproval
+              component: investmentReport
             },
             {
               path: "/adminProfile/reports/pawn",
               name:'Pawn Report',
-              component: pawnApproval
+              component: pawnReport
             },
             {
               path: "/adminProfile/reports/finance",
               name:'Finance Report',
-              component: financeApproval
+              component: financeReport
             },
           ]
         },
-        // {
-        //   path: "/adminProfile/demo",
-        //   name: "demo",
-        //   component: demo
-        // },
         {
           path: "/adminProfile/approvals",
           name: "approvals",

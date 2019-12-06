@@ -1,48 +1,11 @@
 <template>
   <div class="container">
       <div class="jumbotron-fluid">
-            <div class="mt-sm-n5 mb-3 mb-sm-0" style="height:"><a href="/"><img class="img-fluid" style="height:10vh" src="../assets/logomain.png" alt=""></a></div>
-        <section class="container table" style="width:70%">
-             <h4 class="text-center mb-3">Review Loan Details</h4>
-                <mdb-tbl striped bordered>
-                    <mdb-tbl-head>
-                        <tr>
-                            <th>S/N</th>
-                            <th class="font-weight-bold h6">Type</th>
-                            <th class="font-weight-bold h6">Value</th>
-                        </tr>
-                    </mdb-tbl-head>
-                    <mdb-tbl-body scope="row" >
-                        <tr >
-                            <td>1</td>
-                            <td>Name</td>
-                            <td>{{loanDetailsOne.userId.firstName}} {{loanDetailsOne.userId.lastName}}</td>
-                        </tr>
-                        <tr >
-                            <td>2</td>
-                            <td>Email</td>
-                            <td>{{loanDetailsOne.userId.email}}</td>
-                        </tr>
-                        <tr >
-                            <td>3</td>
-                            <td>Loan Amount</td>
-                            <td> <span style="font-weight:normal">&#8358;{{formatAmount(loanDetailsOne.loanAmount)}} </span></td>
-                        </tr>
-                        <tr >
-                            <td>4</td>
-                            <td>Loan Tenor</td>
-                            <td>{{loanDetailsOne.loanTenor}}</td>
-                        </tr>
-                        <tr >
-                            <td>5</td>
-                            <td>Indebtedness</td>
-                            <td>{{loanDetailsOne.indebtedness}}</td>
-                        </tr>
-                    </mdb-tbl-body>
-                </mdb-tbl>
-        </section>
-            
+            <div class="mt-md-5 mb-3" style="height:"><a href="/"><img class="img-fluid" style="height:10vh" src="../assets/logomain.png" alt=""></a></div>
 
+            <section class="container" style="width:80%">
+                <reviewLoan/>
+            </section>
 
             <p class="text-center"> Reason for Rejection  <span class="text-danger">*</span></p> 
             <div class="form-row">
@@ -51,19 +14,13 @@
 
                 <div class="col-md-6">
                     <form @submit.prevent = 'declineGuarantor'>
-                        <textarea style="background:whitesmoke" required v-model="rejectionReason" v-validate="'required'"  name="Loanpurpose" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        <p class="text-center mt-4"> <button  type="submit" class="btn btn-danger"><span class="h6">Confirm Rejection</span></button> </p>
+                        <textarea style="background:whitesmoke" required v-model="rejectionReason"  name="Loanpurpose" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <p class="text-center mt-4"> <button  type="submit" class="btn btn-danger"><span class="h6">Confirm Rejection <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></span></button> </p>
                     </form>
                 </div>
 
                 <div class="col-md-3"></div>
                
-               
-                <!-- <div class="mt-3" >
-                        <i v-show="errors.has('Loanpurpose')" class="fa fa-exclamation-triangle text-warning mr-2"></i> 
-                        <span class="text-warning" v-show="errors.has('Loanpurpose')">{{ errors.first('Loanpurpose') }}</span>
-                </div> -->
-                  
             </div>
         </div>
         
@@ -72,13 +29,22 @@
 </template>
 
 <script>
-import {mdbTbl, mdbTblHead, mdbTblBody,} from 'mdbvue'
+import {mdbTbl, mdbTblHead, mdbTblBody,} from 'mdbvue';
+import reviewLoan from '../components/reviewLoanDetails.vue'
+
 export default {
 name:"declineLoan",
  components:{
      mdbTbl,
      mdbTblHead,
      mdbTblBody,
+     reviewLoan
+ },
+ data () {
+     return {
+         isLoading:false,
+         rejectionReason:""
+     }
  },
  computed : {
      loanToken () {
@@ -97,9 +63,12 @@ name:"declineLoan",
 
 methods : {
     declineGuarantor () {
+        this.isLoading = true
         this.$store.commit('setLoanToken', this.loanToken);
         this.$store.commit('setGuarantorId', this.guarantorId);
-        this.$store.dispatch('declineLoanGuarantor')
+        this.$store.dispatch('declineLoanGuarantor', this.rejectionReason)
+        .then(_ => this.isLoading = false)
+        .catch(_ => this.isLoading = false)
     },
     //function to format loan amount
     formatAmount (x) {

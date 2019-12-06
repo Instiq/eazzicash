@@ -18,10 +18,10 @@
               <td class="col-sm-3 text-success"> {{userDetails.userDetails.lastName}}</td>
             </tr>
              <tr class="row">
-              <td class="col-sm-3">Customer Email</td>
-              <td class="col-sm-3 text-success"> {{userDetails.userDetails.email}}</td>
+              <td class="col-sm-2">Customer Email</td>
+              <td class="col-sm-5 text-success"> {{userDetails.userDetails.email}}</td>
               <td class="col-sm-3">Customer Phone</td>
-              <td class="col-sm-3 text-success"> {{userDetails.userDetails.phoneNumber}}</td>
+              <td class="col-sm-2 text-success"> {{userDetails.userDetails.phoneNumber}}</td>
             </tr>
             <tr class="row">
               <td class="col-sm-3">Address</td>

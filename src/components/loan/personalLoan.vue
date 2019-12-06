@@ -285,10 +285,10 @@ export default {
       },
        address : {
           get () {
-                return this.$store.getters.address
+                return this.$store.getters.currentAddress
             },
           set (value) {
-                this.$store.dispatch('updateAddress', value )
+                this.$store.dispatch('updateCurrentAddress', value )
             }
        },
        busstop : {

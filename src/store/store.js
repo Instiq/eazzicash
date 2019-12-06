@@ -486,7 +486,7 @@ export default new Vuex.Store({
             personalDetails : {
               idCard:rootState.loan.loanId,
               signature:rootState.loan.loanSign,
-              address:rootState.loan.address,
+              address:rootState.loan.currentAddress,
               busstop:rootState.loan.busstop,
               state:rootState.loan.statee,
               yearsInAddress:rootState.loan.yearsInAddress,
@@ -528,7 +528,7 @@ export default new Vuex.Store({
      //  `${state.api_url}/loans/${state.loanId}`
     async getLoanDetailsOne ({commit, state}) {
         await axios({
-          url :  `${state.api_url}/entities/loans/${state.loanId}`,
+          url :  `${state.api_url}/loans/${state.loanId}`,
           method :'get'
         })
         .then(({data}) => {
@@ -595,7 +595,7 @@ export default new Vuex.Store({
           personalDetails : {
             idCard:rootState.loan.loanId,
             signature:rootState.loan.loanSign,
-            address:rootState.loan.address,
+            address:rootState.loan.currentAddress,
             busstop:rootState.loan.busstop,
             state:rootState.loan.statee,
             yearsInAddress:rootState.loan.yearsInAddress,
@@ -827,60 +827,112 @@ export default new Vuex.Store({
 
       //Approve Loan  Guarantor Status
       //${state.api_url}/loans/loanStatusApprove/${state.loanToken}/${state.guarantorId}
-      async approveLoanGuarantor ({commit, state}) {
+      async approveLoanGuarantor ({commit, state}, {firstName, title, lastName, phoneNumber, email, address, idCard, signature}) {
         await axios({
           method:'put',
           url:`${state.api_url}/loans/loanStatusApprove/${state.loanToken}/${state.guarantorId}`,
+          data : {
+            guarantors : [
+              {
+                firstName,
+                title,
+                lastName,
+                phoneNumber,
+                email,
+                address,
+                idCard,
+                signature
+              }
+            ]
+          }
         })
-          .then(({data})=>{
-            console.log(data);
+          .then( _ =>{
             router.push('/loanApprovalStatus?path=approveLoan')
           })
           
-          .catch (err=>{
-            if (err.response.data=="expired token") {
-              return router.push('/expiredToken')
+          .catch (({response})=>{
+            console.error(response.data);
+            commit('setIsError', true);
+            commit('setErrorMsg', response.data)
+            if(response.data == 'Invalid Token') {
+              commit('setErrorMsg', `${response.data}. kindly re-login`);
+              setTimeout (_ => router.push('/signin'), 1000);
+              return;
             }
-
-            if (err.response.data=='Loan request does not exist') {
+            if (response.data=='Loan request does not exist') {
               return router.push('/loanApprovalStatus?path=404')
             }
-
-            console.error(err.response.data);
+            if(response.data=='image must be a valid jpg or png image') return commit('setErrorMsg', response.data);
+            if(response.data=='image must not be more than 2mb') return commit('setErrorMsg', response.data)
+            if(response.data[0]) {
+              if(response.data[0].error.code=='ENOTFOUND' && response.data[0].error.syscall=='getaddrinfo') {
+                  return commit('setErrorMsg', 'please check your internet connection');
+                }
+            }  
           })
         },
 
           //Approve Finance Guarantor Status
       //${state.api_url}/finance/financeStatusApprove/${state.loanToken}/${state.guarantorId}
-      async approveFinanceGuarantor ({commit, state}) {
+      async approveFinanceGuarantor ({commit, state}, {firstName, title, lastName, phoneNumber, email, address, idCard, signature}) {
         await axios({
           method:'put',
           url:`${state.api_url}/finance/financeStatusApprove/${state.loanToken}/${state.guarantorId}`,
+          data : {
+            guarantors : [
+              {
+                firstName,
+                title,
+                lastName,
+                phoneNumber,
+                email,
+                address,
+                idCard,
+                signature
+              }
+            ]
+          }
         })
           .then(({data})=>{
             console.log(data);
             router.push('/loanApprovalStatus?path=approveLoan')
           })
           
-          .catch (err=>{
-            if (err.response.data=="expired token") {
-              return router.push('/expiredToken')
+          .catch (({response})=>{
+            console.error(response.data);
+            commit('setIsError', true);
+            commit('setErrorMsg', response.data)
+            if(response.data == 'Invalid Token') {
+              commit('setErrorMsg', `${response.data}. kindly re-login`);
+              setTimeout (_ => router.push('/signin'), 1000);
+              return;
             }
-
-            if (err.response.data=='Finance request does not exist') {
+            if (response.data=='Finance request does not exist') {
               return router.push('/loanApprovalStatus?path=404')
             }
-
-            console.error(err.response.data);
+            if(response.data=='image must be a valid jpg or png image') return commit('setErrorMsg', response.data);
+            if(response.data=='image must not be more than 2mb') return commit('setErrorMsg', response.data)
+            if(response.data[0]) {
+              if(response.data[0].error.code=='ENOTFOUND' && response.data[0].error.syscall=='getaddrinfo') {
+                  return commit('setErrorMsg', 'please check your internet connection');
+                }
+            }  
           })
         },
 
-      //Decline Loan  Guarantor Status
+      //Decline Loan  Guarantor Status by he guarantor
       //${state.api_url}/loans/loanStatusDecline/${state.loanToken}/${state.guarantorId}
-      async declineLoanGuarantor ({commit, state}) {
+      async declineLoanGuarantor ({commit, state}, data) {
         await axios({
           method:'put',
           url:`${state.api_url}/loans/loanStatusDecline/${state.loanToken}/${state.guarantorId}`,
+          data : {
+            guarantors : [
+              {
+                rejectionReason : data             
+               }
+            ]
+          }
         })
           .then(({data})=>{
             console.log(data);
@@ -900,19 +952,26 @@ export default new Vuex.Store({
           })
         },
 
-      //Decline Finance  Guarantor Status
+      //Decline Finance  Guarantor Status by the guarantor
       //${state.api_url}/finance/financeStatusDecline/${state.loanToken}/${state.guarantorId}
-      async declineFinanceGuarantor ({commit, state}) {
+      async declineFinanceGuarantor ({commit, state}, data) {
         await axios({
           method:'put',
           url:`${state.api_url}/finance/financeStatusDecline/${state.loanToken}/${state.guarantorId}`,
+          data : {
+            guarantors : [
+              {
+                rejectionReason : data
+              }
+            ]
+          }
         })
-          .then(({data})=>{
-            console.log(data);
+          .then(_ => {
             router.push('/loanApprovalStatus?path=declineLoan')
           })
           
           .catch (err=>{
+            console.error(err.response.data);
             if (err.response.data=="expired token") {
               return router.push('/expiredToken')
             }
@@ -920,8 +979,6 @@ export default new Vuex.Store({
             if (err.response.data=='Finance request does not exist') {
               return router.push('/loanApprovalStatus?path=404')
             }
-
-            console.error(err.response.data);
           })
         },
 

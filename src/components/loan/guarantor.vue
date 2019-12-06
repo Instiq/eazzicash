@@ -34,16 +34,7 @@
                                         </ValidationProvider> 
                                         <div class="text-warning mt-2" v-if="nameDuplicate1">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor name must be different from your name</div>
                                     </div> 
-                                   <div class="mb-3">
-                                        <ValidationProvider name="phone number" rules="required|min:11|max:15" v-slot="{ errors }">
-                                            <span class="m">Phone Number <span class="text-danger">*</span></span>
-                                            <input type="text"  v-model="phone" name="phone number" class="form-control" placeholder="">
-                                             <div class="text-warning mt-2" v-if="phoneDuplicate1">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor's phoneNumber must not be same as yours</div>
-                                            <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
-                                        </ValidationProvider> 
-                                   </div>
-                                   
-                                    <div class="mb-3">
+                                     <div class="mb-3">
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                             <span class="m">Email Address <span class="text-danger">*</span></span>
                                             <div class="input-group">
@@ -55,11 +46,21 @@
                                             <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider> 
                                         <div class="text-warning mt-2" v-if="emailDuplicate1">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor email must not be same as your email</div>
-                                    </div>    
+                                    </div>
+                                   <div class="mb-3">
+                                        <ValidationProvider name="phone number" rules="min:11|max:15" v-slot="{ errors }">
+                                            <span class="m">Phone Number</span>
+                                            <input type="text" :disabled='guarantorOnly' v-model="phone" name="phone number" class="form-control" placeholder="">
+                                            <span class="text-danger" style="font-size:13px"> ** to be filled by guarantor</span>
+                                             <div class="text-warning mt-2" v-if="phoneDuplicate1">  <i  class="fa fa-exclamation-triangle text-warning ml-2 mr-2"></i>guarantor's phoneNumber must not be same as yours</div>
+                                            <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
+                                        </ValidationProvider> 
+                                   </div>    
                                     <div class="mb-3">
-                                          <ValidationProvider name="address" rules="required|max:100" v-slot="{ errors }">
-                                            <span class="m">Home Address <span class="text-danger">*</span></span>
-                                            <textarea type="text"  v-model="address" name="address" class="form-control textarea" rows="3"  placeholder=""></textarea>
+                                          <ValidationProvider name="address" rules="" v-slot="{ errors }">
+                                            <span class="m">Home Address</span>
+                                            <textarea type="text" :disabled='guarantorOnly'  v-model="address" name="address" class="form-control textarea" rows="3"  placeholder=""></textarea>
+                                             <span class="text-danger" style="font-size:13px"> ** to be filled by guarantor</span>
                                             <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider> 
                                     </div>   
@@ -69,31 +70,33 @@
                                         <div class="col-md-3"></div>
                                         <div class="col-md-9">
                                             <div class="mb-5 mt-md-0 ml2">
-                                                <span class="mt-md-n4 mb-md-3">Guarantor's ID Card  <span class="text-danger">*</span> </span>
+                                                <span class="mt-md-n4 mb-md-3">Guarantor's ID Card </span>
                                                 <div class=" mb-4 mb-md-0 " style="height:105px; width:170px; border:1px solid blue"> 
                                                     <img style="max-width:100%; height:100px" class="img-fluid" :src="id"  alt=''>
                                                 </div>
                                                  <span  style="font-size:13px; color:red">maximum file size : 2mb</span>
                                                 <div class="input-group ml-1 mt-2">
-                                                    <ValidationProvider name="idCard" rules="required|image"  v-slot="{validate, errors }">
+                                                    <ValidationProvider name="idCard" rules="image|size:2000"  v-slot="{validate, errors }">
                                                         <label class="btn ml-n1 btn-info btn-file">
-                                                                BROWSE  <input  type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" style="display:none"  @change="onFileChange($event); validate($event)"  name="idCard" id="id">
+                                                                BROWSE  <input  :disabled='guarantorOnly' type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" style="display:none"  @change="onFileChange($event); validate($event)"  name="idCard" id="id">
                                                         </label> <br>
+                                                         <span class="text-danger" style="font-size:13px"> ** to be filled by guarantor</span>
                                                         <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                                     </ValidationProvider>  
                                                 </div>
                                             </div>
                                              <div class="mb-3 mt-3 mt-md-0 ">
-                                                <span class="mt-md-n4 mb-md-3">Guarantor's Signature  <span class="text-danger">*</span> </span>
+                                                <span class="mt-md-n4 mb-md-3">Guarantor's Signature </span>
                                                 <div class=" mb-4 mb-md-0" style="height:105px; width:170px; border:1px solid blue"> 
                                                     <img style="max-width:100%; height:100px" class="img-fluid" :src="signature"  alt=''>
                                                 </div>
                                                  <span  style="font-size:13px; color:red">maximum file size : 2mb</span>
                                                 <div class="input-group ml-1 mt-2">
-                                                    <ValidationProvider name="signature" rules="required|image|size:2000"  v-slot="{validate, errors }">
+                                                    <ValidationProvider name="signature" rules="image|size:2000"  v-slot="{validate, errors }">
                                                         <label class="btn ml-n1 btn-info btn-file">
-                                                                BROWSE  <input  type="file" class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" style="display:none"  @change="onFileChange1($event); validate($event)"  name="signature" id="signature">
+                                                                BROWSE  <input  type="file" :disabled='guarantorOnly' class=" mt-3 mt-md-0 mb-2 mb-md-1 small-screen-id" style="display:none"  @change="onFileChange1($event); validate($event)"  name="signature" id="signature">
                                                         </label> <br>
+                                                         <span class="text-danger" style="font-size:13px"> ** to be filled by guarantor</span>
                                                         <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -367,7 +370,8 @@ export default {
             checked:'',
             isCheckedd:true,
             showModal12a: false,
-            isLoading:false
+            isLoading:false,
+            guarantorOnly:true
         }
     },
 
@@ -473,8 +477,7 @@ export default {
             set (value) {
                 this.$store.dispatch('updateTitle', value)
             }
-        },
-        
+        }, 
         phone : {
             get () {
                 return this.$store.getters.phone

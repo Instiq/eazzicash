@@ -192,9 +192,6 @@ const mutations = {
   setAddress(state, payload) {
     state.address = payload;
   },
-  // setAddress2(state, payload) {
-  //   state.address2 = payload;
-  // },
   setId (state, payload) {
     state.id = payload
   },

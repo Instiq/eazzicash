@@ -1,52 +1,17 @@
 <template>
- <div class="container">
+ <div class="container mt-3" style="background:whitesmoke; border:2px solid grey; border-radius:5px">
      <div class="jumbotron-fluid">
-        <div class="mt-sm-n5 mb-3 mb-sm-0" style="height:"><a href="/"><img class="img-fluid" style="height:10vh" src="../assets/logomain.png" alt=""></a></div>
+        <div class="mt-5 mb-3" style="height:"><a href="/"><img class="img-fluid" style="height:10vh" src="../assets/logomain.png" alt=""></a></div>
 
-         <section class="container table" style="width:70%">
-             <h4 class="text-center mb-3">Review Finance Details</h4>
-                <mdb-tbl striped bordered>
-                    <mdb-tbl-head>
-                        <tr>
-                            <th>S/N</th>
-                            <th class="font-weight-bold h6">Type</th>
-                            <th class="font-weight-bold h6">Value</th>
-                        </tr>
-                    </mdb-tbl-head>
-                    <mdb-tbl-body scope="row" >
-                        <tr >
-                            <td>1</td>
-                            <td>Name</td>
-                            <td>{{financeDetailsOne.userId.firstName}} {{financeDetailsOne.userId.lastName}}</td>
-                        </tr>
-                        <tr >
-                            <td>2</td>
-                            <td>Email</td>
-                            <td>{{financeDetailsOne.userId.email}}</td>
-                        </tr>
-                        <tr >
-                            <td>3</td>
-                            <td>Finance Amount</td>
-                            <td> <span style="font-weight:normal">&#8358;{{formatAmount(financeDetailsOne.financeAmount)}} </span></td>
-                        </tr>
-                        <tr >
-                            <td>4</td>
-                            <td>Finance Tenor</td>
-                            <td>{{financeDetailsOne.financeTenor}}</td>
-                        </tr>
-                        <tr >
-                            <td>5</td>
-                            <td>Indebtedness</td>
-                            <td>{{financeDetailsOne.indebtedness}}</td>
-                        </tr>
-                    </mdb-tbl-body>
-                </mdb-tbl>
+         <section class="container table" style="width:80%">
+             <guarantor class="mb-3" :isLoading='isLoading' message="Guarantor Details" @guarantorInputs="approveGuarantor"/>
+
+              <!-- this code doesnt do anything, i dont understand why if i remove it, the page rendering scatters  -->
+                <tr class="d-none" >
+                    <td> <span style="font-weight:normal">&#8358;{{formatAmount(financeDetailsOne.financeAmount)}} </span></td>
+                </tr>
+
         </section>
-
-
-
-
-         <p class="text-center"> <button class="btn btn-success" @click="approveFinGuarantor" ><span class="h6">Confirm Approval</span></button></p>
      </div>
    
 
@@ -55,13 +20,23 @@
 </template>
 
 <script>
-import {mdbTbl, mdbTblHead, mdbTblBody,} from 'mdbvue'
+import {mdbTbl, mdbTblHead, mdbTblBody,} from 'mdbvue';
+import guarantor from '../components/guarantorDetails.vue';
+
+
 export default {
  name:"approveFinance",
  components:{
      mdbTbl,
      mdbTblHead,
      mdbTblBody,
+     guarantor
+ },
+
+ data () {
+     return {
+         isLoading : false
+     }
  },
  computed : {
      loanToken () {
@@ -79,10 +54,13 @@ export default {
  },
 
 methods : {
-    approveFinGuarantor () {
+    approveGuarantor (data) {
+        this.isLoading = true
         this.$store.commit('setLoanToken', this.loanToken);
         this.$store.commit('setGuarantorId', this.guarantorId);
-        this.$store.dispatch('approveFinanceGuarantor')
+        this.$store.dispatch('approveFinanceGuarantor', data)
+        .then(_ => this.isLoading = false)
+        .catch(_ => this.isLoading = false)
     },
 
     //function to format finance amount

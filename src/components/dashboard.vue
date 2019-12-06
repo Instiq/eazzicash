@@ -255,7 +255,7 @@
                                     <td>Loan Purpose</td>
                                     <td>{{loanPending.loanPurpose}}</td>
                                 </tr>
-                                 <tr scope="row" >
+                                 <!-- <tr scope="row" >
                                     <td>Employment Type</td>
                                     <td>{{loanPending.employmentType}}</td>
                                 </tr>
@@ -263,7 +263,7 @@
                                  <tr scope="row" >
                                     <td>Company Name</td>
                                     <td>{{loanPending.companyName}}</td>
-                                </tr>
+                                </tr> -->
                                  <tr scope="row" >
                                     <td>Guarantor Status</td>
                                     <td >
@@ -394,15 +394,15 @@
                                     <td>Finance Purpose</td>
                                     <td>{{financePending.financePurpose}}</td>
                                 </tr>
-                                 <tr scope="row" >
+                                 <!-- <tr scope="row" >
                                     <td>Employment Type</td>
-                                    <td>{{financePending.employmentType}}</td>
-                                </tr>
+                                    <td>{{financePending.workInformation.employmentType}}</td>
+                                </tr> -->
                                 
-                                 <tr scope="row" >
+                                 <!-- <tr scope="row" >
                                     <td>Company Name</td>
-                                    <td>{{financePending.companyName}}</td>
-                                </tr>
+                                    <td>{{financePending.collateral}}</td>
+                                </tr> -->
                                   <tr scope="row" >
                                     <td>Guarantor Status</td>
                                     <td >

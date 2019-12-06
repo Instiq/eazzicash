@@ -19,10 +19,10 @@
                 <td class="col-sm-3 text-success"> {{userDetails.userDetails.lastName}}</td>
               </tr>
              <tr class="row">
-              <td class="col-sm-3">Customer Email</td>
-              <td class="col-sm-3 text-success"> {{userDetails.userDetails.email}}</td>
+              <td class="col-sm-2">Customer Email</td>
+              <td class="col-sm-5 text-success"> {{userDetails.userDetails.email}}</td>
               <td class="col-sm-3">Customer Phone</td>
-              <td class="col-sm-3 text-success"> {{userDetails.userDetails.phoneNumber}}</td>
+              <td class="col-sm-2 text-success"> {{userDetails.userDetails.phoneNumber}}</td>
             </tr>
             <tr class="row">
               <td class="col-sm-3">Address</td>
@@ -112,9 +112,9 @@
             </tr>
              <tr class="row">
                 <td class="col-sm-3">Phone Number</td>
-                <td class="col-sm-3 text-success"> {{userDetails.workInformation.companyPhone}} </td>
-                <td class="col-sm-3">Official Email</td>
-                <td class="col-sm-3 text-success"> {{userDetails.workInformation.officialEmail}} </td>
+                <td class="col-sm-2 text-success"> {{userDetails.workInformation.companyPhone}} </td>
+                <td class="col-sm-2">Official Email</td>
+                <td class="col-sm-5 text-success"> {{userDetails.workInformation.officialEmail}} </td>
             </tr>
              <tr class="row">
                 <td class="col-sm-3">Company Address</td>
@@ -130,7 +130,8 @@
                 <td class="col-sm-3">Salary Date</td>
                 <td class="col-sm-3 text-success"> {{moment(userDetails.workInformation.salaryDate)}} </td>
                 <td class="col-sm-3">Quarterly Date</td>
-                <td class="col-sm-3 text-success"> {{moment(userDetails.workInformation.quarterlyDate)}} </td>
+                <td class="col-sm-3 text-success" v-if="userDetails.workInformation.quarterlyDate"> {{moment(userDetails.workInformation.quarterlyDate)}} </td>
+                <td class="col-sm-3" v-else ></td>
             </tr>
              <tr class="row">
                 <td class="col-sm-3">Monthly Income</td>
@@ -155,11 +156,16 @@
                 </tr>
 
                 <tr class="row">
-                  <td class="col-sm-3">Email</td>
-                  <td class="col-sm-3 text-success">{{userDetails.guarantors[0].email}}</td>
+                  <td class="col-sm-2">Email</td>
+                  <td class="col-sm-5 text-success">{{userDetails.guarantors[0].email}}</td>
                   <td class="col-sm-3">Phone Number</td>
-                  <td class="col-sm-3 text-success"> {{userDetails.guarantors[0].phoneNumber}}</td>
+                  <td class="col-sm-2 text-success"> {{userDetails.guarantors[0].phoneNumber}}</td>
                 </tr>
+
+                 <tr class="row">
+                  <td class="col-sm-6">Address</td>
+                  <td class="col-sm-6 text-success"> {{userDetails.guarantors[0].address}}</td>
+                </tr>  
 
                 <tr class="row">
                   <td class="col-sm-3">ID Card</td>
@@ -178,7 +184,11 @@
                         </div>
                       </form>
                   </td>
-                </tr>           
+                </tr>    
+                 <tr class="row" v-if="userDetails.guarantors[0].rejectionReason">
+                  <td class="col-sm-4">Reason for Rejection</td>
+                  <td class="col-sm-6 text-success">{{userDetails.guarantors[0].rejectionReason}}</td>
+                </tr> 
               </tbody>
             </table>
           </div>
@@ -200,15 +210,19 @@
             </tr>
             <tr class="row">
                 <td class="col-sm-3">Joint Receivable Account</td>
-                <td class="col-sm-3 text-success"> {{userDetails.collateral.jointReceivableAccount}} </td>
-                 <td class="col-sm-3">Contract Receivable Account</td>
-                <td class="col-sm-3 text-success"> {{userDetails.collateral.contractReceivableAccount}} </td>
+                <td class="col-sm-3 text-success" v-if="userDetails.collateral.jointReceivableAccount"> {{userDetails.collateral.jointReceivableAccount}} </td>
+                <td class="col-sm-3" v-else></td>
+                <td class="col-sm-3">Contract Receivable Account</td>
+                <td class="col-sm-3 text-success" v-if="userDetails.collateral.contractReceivableAccount"> {{userDetails.collateral.contractReceivableAccount}} </td>
+                <td class="col-sm-3" v-else></td>
             </tr>
              <tr class="row">
                 <td class="col-sm-3">Contract Duration (From)</td>
-                <td class="col-sm-3 text-success"> {{moment(userDetails.collateral.contractDuration.from)}} </td>
-                 <td class="col-sm-3">Contract Duration (To)</td>
-                <td class="col-sm-3 text-success"> {{moment(userDetails.collateral.contractDuration.to)}} </td>
+                <td class="col-sm-3 text-success" v-if="userDetails.collateral.contractDuration.from"> {{moment(userDetails.collateral.contractDuration.from)}} </td>
+                <td class="col-sm-3" v-else></td>
+                <td class="col-sm-3">Contract Duration (To)</td>
+                <td class="col-sm-3 text-success" v-if="userDetails.collateral.contractDuration.to"> {{moment(userDetails.collateral.contractDuration.to)}} </td>
+                <td class="col-sm-3" v-else></td>
             </tr>
             <tr class="row">
                 <td class="col-sm-6">Supporting Documents</td>
