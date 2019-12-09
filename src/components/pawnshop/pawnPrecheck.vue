@@ -10,7 +10,7 @@
                         <div class="row">
                             <div class="col-12 mb-2">
                                 <span class="m">Item Category</span>
-                                <select class="browser-default custom-select" v-model="itemCategory" v-validate="'required'" name="Item Category" >
+                                <select class="browser-default custom-select" v-model="itemCategory"  name="Item Category" >
                                 <option value="Mobile Phones">Mobile Phones</option>
                                 <option value="Jewelries">Jewelries (pure Gold & Silver)</option>
                                 <option value="Camera">Digital Camera</option>
@@ -108,25 +108,30 @@ export default {
     data () {
         return {
             investRate:18, 
-            pawnWorth:0   
+            pawnWorth:0,
+            pawnAmountt : 0 //this is to be used  in the calculate function for small screens instead of the computed 'pawnAmount'; which has been formatted to display commas in the values where necessary"
         }
     },
 
     methods :{
-    calculate () {
-        let r = 12.5;
-        let pawnAmount = this.calculatePawnAmount()
-        let mra = Math.round((pawnAmount * (r/100) )+ pawnAmount);
-        let formattedMra = this.formatAmount(mra)   
-        this.$store.dispatch('updatePawnMra',formattedMra)     
-    },
     calculatePawnAmount () {
         let presentWorth = this.pawnWorth
         let r = 0.4;
         let pawnAmount = r * presentWorth;
         this.pawnAmount = this.formatAmount(pawnAmount)
+        this.pawnAmountt = pawnAmount
         return pawnAmount
     },
+    calculate () {
+        let r = 12.5;
+        let pawnAmount;
+        if(window.innerWidth>576) pawnAmount = this.calculatePawnAmount(); //this only works for screens greater than 576px
+        if(window.innerWidth<=576) pawnAmount = this.pawnAmountt //this only works for screens less than 576px
+        let mra = Math.round((pawnAmount * (r/100) )+ pawnAmount);
+        let formattedMra = this.formatAmount(mra)   
+        this.$store.dispatch('updatePawnMra',formattedMra)     
+    },
+    
     formatAmount (x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
     },
