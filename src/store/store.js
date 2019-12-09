@@ -256,7 +256,7 @@ export default new Vuex.Store({
         commit('setLoanId', '')
         commit('setLoanToken', '');
         commit('setUserId', '')
-        console.log(state.token);
+       // console.log(state.token);
         
        },
 
@@ -474,14 +474,16 @@ export default new Vuex.Store({
               otherComments:rootState.loan.otherComments,
             },
             guarantors : [
-              {title: rootState.loan.title,
-              firstName: rootState.loan.firstname,
-              lastName: rootState.loan.lastname,
-              phoneNumber:rootState.loan.phone,
-              email:rootState.loan.email,
-              address:rootState.loan.address,
-              idCard:rootState.loan.id,
-              signature:rootState.loan.signature}
+              {
+                title: rootState.loan.title,
+                firstName: rootState.loan.firstname,
+                lastName: rootState.loan.lastname,
+                phoneNumber:rootState.loan.phone,
+                email:rootState.loan.email,
+                address:rootState.loan.address,
+                idCard:rootState.loan.id,
+                signature:rootState.loan.signature
+              }
             ],
             personalDetails : {
               idCard:rootState.loan.loanId,
