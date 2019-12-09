@@ -164,9 +164,6 @@ export default {
     let start = this.pageNumber * this.size;
     let end = start + this.size;
     let order =  this.$store.state.userEntitiesAll.loan.sort((a, b) => moment(b.createdAt) - moment (a.createdAt)); //sort the array from the most recent date
-//    let ordered = array.sort(function(a,b){
-//    return new Date(b.date) - new Date(a.date);
-// });
     return order.slice(start, end)
   },
   
