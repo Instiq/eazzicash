@@ -40,7 +40,6 @@
                              </div>
                               <div class="col-xl-6 col-lg-3 col-md-2 d-none d-md-block"></div>
                         </div>   
-
                             
                         <div class="row">
                              <div class="col-12 mb-2">
@@ -55,6 +54,12 @@
                                 <p class="text-danger" style="font-size:14px; width:auto">Please Note: All pawn items are to be redeemed within 30 days as failure to do so will imply forfeiture of the item.  </p>
                             </div>
                              <div class="col-xl-6 col-lg-3 col-md-2 d-none d-md-block"></div>
+                        </div>
+
+                         <div class="row ml-1 mb-3">
+                            <button @click="calculate" class="btn btn-primary">
+                                calculate
+                            </button>
                         </div>
 
                         <div class="row">
@@ -156,13 +161,17 @@ export default {
        },
        pawnMra () {
            return this.$store.getters.pawnMra
+       },
+       screenWidth () {
+           return window.innerWidth
        }
     },
 
     watch :  {
-       pawnAmount (newval) {
-            this.calculate()
-        },
+    //    pawnAmount (newval) {
+    //        if(this.screenWidth<=576) return;
+    //        this.calculate()
+    //     },
         pawnWorth (newval) {
             this.calculatePawnAmount();
         }
