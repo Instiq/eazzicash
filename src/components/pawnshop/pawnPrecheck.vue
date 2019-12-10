@@ -109,7 +109,7 @@ export default {
         return {
             investRate:18, 
             pawnWorth:0,
-            pawnAmountt : 0 //this is to be used  in the calculate function for small screens instead of the computed 'pawnAmount'; which has been formatted to display commas in the values where necessary"
+            pawnAmountt : 0 // this is to be used in the calculate() function for small screens instead of the computed 'pawnAmount'; which has been formatted to display commas in the values where necessary"
         }
     },
 
