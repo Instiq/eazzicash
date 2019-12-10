@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <section class="container main-container " style="height:auto">
+      <section class="container main-container " style="height:auto; width:80vw">
 
         <div class="container p-3 mb-5" style="margin-top:30px;margin-bottom:30px">
         <div class="row container" style="margin-left:5%;margin-right:5%;">
@@ -11,22 +11,22 @@
                 <table class="table table-striped table-bordered">
                 <tbody>
                     <tr class="row">
-                    <td class="col-sm-3">ID</td>
-                    <td class="col-sm-3 text-success"> {{userDetails._id}}</td>
-                    <td class="col-sm-3">Name</td>
-                    <td class="col-sm-3 text-success"> {{userDetails.firstName}} {{userDetails.lastName}}</td>
+                    <td class="col-sm-1">ID</td>
+                    <td class="col-sm-5 text-success"> {{userDetails._id}}</td>
+                    <td class="col-sm-1">Name</td>
+                    <td class="col-sm-5 text-success"> {{userDetails.firstName}} {{userDetails.lastName}}</td>
                     </tr>
                     <tr class="row">
-                    <td class="col-sm-3">Email</td>
-                    <td class="col-sm-3 text-success"> {{userDetails.email}}</td>
-                    <td class="col-sm-3">Phone</td>
-                    <td class="col-sm-3 text-success"> {{userDetails.phoneNumber}}</td>
+                    <td class="col-sm-1">Email</td>
+                    <td class="col-sm-5 text-success"> {{userDetails.email}}</td>
+                    <td class="col-sm-1">Phone</td>
+                    <td class="col-sm-5 text-success"> {{userDetails.phoneNumber}}</td>
                     </tr>
-                    <tr class="row">
-                    <td class="col-sm-3">Address</td>
-                    <td class="text-success col-sm-3"> {{userDetails.address}}</td>
-                    <td class="col-sm-3">State</td>
-                    <td class="col-sm-3 text-success"> {{userDetails.state}} </td>
+                    <!-- <tr class="row">
+                    <td class="col-sm-2">Address</td>
+                    <td class="text-success col-sm-5"> {{userDetails.address}}</td>
+                    <td class="col-sm-1">State</td>
+                    <td class="col-sm-4 text-success"> {{userDetails.state}} </td>
                     </tr>
                     <tr class="row">
                     <td class="col-sm-3">Country</td>
@@ -39,7 +39,7 @@
                         </div>
                         </form>
                     </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
                 </table>
             </div> 

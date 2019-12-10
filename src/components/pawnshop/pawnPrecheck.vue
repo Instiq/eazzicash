@@ -43,7 +43,7 @@
                             
                         <div class="row">
                              <div class="col-12 mb-2">
-                                <span class="m">Estimated Pawn Amount (the amount you are elligible to receive)</span>
+                                <span class="m">Estimated Pawn Amount (the amount you are eligible to receive)</span>
                                 <label class="sr-only" for="inlineFormInputGroup"></label>
                                 <div class="input-group mb-2">
                                 <div class="input-group-prepend">

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <div class="main-container">
-          <section class="container main-container " style="height:auto">
+          <section class="container main-container" style="height:auto; width:75vw">
             <div class="container ">
                 <div class="row  p-1 mb-5" style="margin-top:-30px">
                     <div class="col">
@@ -113,7 +113,7 @@ export default {
 
         }
     },
-    mounted () {
+    created () {
         this.$store.dispatch('getAllUsers')
     }
 
