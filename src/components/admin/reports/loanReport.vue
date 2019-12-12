@@ -45,14 +45,14 @@
               </div>
           </div>
           
-          <div class="table-responsive" ref="html" >
+          <div class="table-responsive" ref="html" id="html" >
               <span v-if="fromDate && toDate" class="font-weight-bold"> Loan Report from {{customFormatter(fromDate)}} to {{customFormatter(toDate)}}</span>
               <table class="table table-striped table-bordered mt-3">
                   <thead class="thead-dark">
                     <tr>
                       <th scope="col">Name</th>
                       <th scope="col" class="text-center">Amount</th>
-                      <th scope="col" class="text-center">Details</th>
+                      <!-- <th scope="col" class="text-center">Details</th> -->
                       <!-- <th scope="col" class="text-center">Print</th> -->
                       <th scope="col" class="text-center">Status</th>
                       <th scope="col" class="text-center">Date Applied</th>
@@ -62,7 +62,7 @@
                     <tr v-for="(item, index) in downloadLoanRequests" :key="'a' + index">
                       <th scope="row" class="text-success">{{item.userDetails.firstName}} {{item.userDetails.lastName}}</th>
                       <td class="text-center"> &#8358; {{formatAmount(item.loanAmount)}}  </td>
-                      <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
+                      <!-- <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td> -->
                       <!-- <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >Download</span></td> -->
                       <td class="text-center"> {{item.approved}} </td>
                       <td class="text-center"> {{moment(item.createdAt)}} </td>
@@ -105,11 +105,9 @@
       <div class="btn btn-success" v-show='backward' @click="prevPage"> <i class="fas fa-angle-double-left"></i> Prev </div>
       
       <div class="btn btn-success" v-show='forward' @click="nextPage">Next <i class="fas fa-angle-double-right"></i> </div> -->
-      <div></div>
-      <div></div>
-      <div></div>
-      
-      <div class="btn btn-primary float-right" v-show="pageCount>0"  @click="exportToPDF"> Download <i class="fa fa-download"></i></div>
+      <div class="btn btn-primary float-right" v-show="pageCount>0"  @click="exportTableToExcel('html')"> Download excel <i class="fa fa-download"></i></div>
+     <div class="btn btn-primary float-right" v-show="pageCount>0"  @click="exportToWord('html')"> Download Word <i class="fa fa-download"></i></div>
+      <div class="btn btn-primary float-right" v-show="pageCount>0"  @click="exportToPDF"> Download pdf <i class="fa fa-download"></i></div>
    </div>   
   </section>  
   </div>
@@ -208,12 +206,81 @@ export default {
     exportToPDF () {
         html2pdf(this.$refs.html, {
             margin: 1,
-            filename: 'document.pdf',
+            filename: 'loan report.pdf',
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { dpi: 192, letterRendering: true },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
         })
       },
+
+    //download html as excel
+    exportTableToExcel (tableID, filename = 'loan report'){
+    let downloadLink;
+    let dataType = 'application/vnd.ms-excel';
+    let tableSelect = document.querySelector(`#${tableID}`)
+    let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        const blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+},
+
+ //download html as word
+ exportToWord(element, filename = 'loan report'){
+    let preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+    let postHtml = "</body></html>";
+    let html = preHtml+document.querySelector(`#${element}`).innerHTML+postHtml;
+
+    let blob = new Blob(['\ufeff', html], {
+        type: 'application/msword'
+    });
+    
+    // Specify link url
+    let url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+    
+    // Specify file name
+    filename = filename?filename+'.docx':'document.doc';
+    
+    // Create download link element
+    let downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob ){
+        navigator.msSaveOrOpenBlob(blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = url;
+        
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+    
+    document.body.removeChild(downloadLink);
+},
       
     //filter data by date
      sortedDataByDate () {

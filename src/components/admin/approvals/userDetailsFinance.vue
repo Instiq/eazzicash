@@ -5,9 +5,11 @@
 <div class="container p-3 mb-5" style="margin-top:30px;margin-bottom:30px">
   <div class="row" style="margin-left:5%;margin-right:5%;">
     <div class="col">
-      <p><router-link to="/adminProfile/approvals/finance"><i style='font-size:24px' class='fas'>&#xf060;</i></router-link></p>
-      
-
+       <div class="d-flex justify-content-between">
+        <p><router-link to="/adminProfile/approvals/finance"><i style='font-size:24px' class='fas'>&#xf060;</i></router-link></p>
+        <button @click="resendConfirmation" class="btn btn-info">Resend Confirmation  <span v-if="isLoading4"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span> </button>
+     </div>
+     
       <p class="text-success font-weight-bold">Personal Details</p>
        <div class="container table-responsive">            
         <table class="table table-striped table-bordered">
@@ -304,6 +306,7 @@
 <script>
 import{ mdbTbl, mdbModal, mdbBtn, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbTblHead, mdbTblBody,mdbListGroup, mdbListGroupItem, mdbBadge,mdbNavbar, mdbContainer,mdbCard, mdbRow,mdbCardBody, mdbCardTitle, mdbCardText, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
 import moment from 'moment';
+import {mapState} from 'vuex'
 
 export default {
  name:'userDetails',
@@ -333,7 +336,8 @@ export default {
      return {
          isLoading1:false,
          isLoading2:false,
-         isLoading3:false
+         isLoading3:false,
+         isLoading4:false
      }
  },
 
@@ -368,13 +372,32 @@ export default {
     },
      moment (date) {
             return moment(date).format('MMMM Do YYYY');
-        },
+    },
+     resendConfirmation () {
+      this.isLoading4 = true;
+      this.$store.dispatch('resendConfirmationFinance', this.userDetails._id)
+      .then(_ => this.isLoading4=false)
+      .catch(_ => this.isLoading4=false)
+    },
+     showToastrSuccess () {
+        this.$toastr.defaultProgressBar = false;
+        this.$toastr.defaultStyle = { "background-color": "limegreen" };
+        this.$toastr.s( "<strong class='h6'>Success</strong> <br> Resent Sucessfully!");
+        this.$store.commit('setIsSuccess', false)
+     },
+    showToastrError () {
+        this.$toastr.defaultProgressBar = false;
+        this.$toastr.defaultStyle = { "background-color": "firebrick" };
+        this.$toastr.e(`<strong class='h6'>Error</strong><br>${this.errorMsg}`);
+        this.$store.commit('setIsError', false)
+     },
+ 
  },
 
  computed : {
-     userDetails () {
-        return this.$store.state.userDetails
-     },
+
+     ...mapState(['isSuccess', 'isError', "errorMsg", 'userDetails' ]),
+
      tenor : {
           get () {
                 return this.$store.getters.tenor
@@ -392,6 +415,16 @@ export default {
         }
     }, 
  },
+
+  watch : {
+     isSuccess (newval) {
+        if(newval==true) return this.showToastrSuccess()
+     },
+    
+    isError (newval) {
+        if(newval==true) return this.showToastrError()
+    },
+  },
 
  mounted () {
      this.$store.commit('setPrincipal', (this.userDetails.financeAmount))

@@ -1,7 +1,8 @@
 <template>
- <div >
+ <div class="" style="width:auto" >
 
-             <span class="h5">Review Loan Details</span>
+             <span class="h5" v-if="currentRoute == 'approveLoan' || currentRoute == 'declineLoan'">Review Loan Details</span>
+              <span class="h5" v-else>Review Finance Details</span>
                 <div class="table-responsive">
                     <div class="table">
                         <mdb-tbl class="mt-5" striped bordered>

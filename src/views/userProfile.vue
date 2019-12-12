@@ -208,7 +208,7 @@
                                 
                             </form>  <br> <br> <br> <br> -->
 
-                            <form action="" class="col-row"  @submit.prevent="updateProfileSignature">
+                            <!-- <form action="" class="col-row"  @submit.prevent="updateProfileSignature">
                                 <div class="border mb-2"></div>
                                 <span class="h6">Signature</span> <br>
                                 <div style="width:200px; height:auto">
@@ -222,7 +222,7 @@
                                 <div class="form-group  float-right">
                                     <button type="submit" class="btn btn-primary">Update  <span v-if="isLoading4"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button>
                                 </div>  <br> <br> <br> 
-                            </form>
+                            </form> -->
                         </div>
                   </div>
                </div>
@@ -425,14 +425,14 @@ export default {
         .catch(_ => this.isLoading2=false)
      },
 
-     updateProfileSignature () {
-           this.isLoading3=true
-           this.$store.dispatch('updateUserProfile2', {
-            signature:this.signature,
-         })   
-         .then(_ =>  this.isLoading3=false)  
-         .catch(_ => this.isLoading3=false)
-     },
+    //  updateProfileSignature () {
+    //        this.isLoading3=true
+    //        this.$store.dispatch('updateUserProfile2', {
+    //         signature:this.signature,
+    //      })   
+    //      .then(_ =>  this.isLoading3=false)  
+    //      .catch(_ => this.isLoading3=false)
+    //  },
 
      showToastrSuccess () {
         this.$toastr.defaultProgressBar = false;

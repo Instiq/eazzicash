@@ -352,38 +352,38 @@ export default new Vuex.Store({
       },
 
        //update user Profile (Signature)
-       async updateUserProfile2 ({commit, state}, {signature}) {
-        await axios({
-          method:'put',
-          url:`${state.api_url}/users/me`,
-          data : {
-             signature
-          },
-          headers : {
-            'x-auth-token':state.token
-          }
-        })
-        .then( _  => {
-          commit('setIsSuccess', true);
-        })
-        .catch(({response}) => {
-         console.error(response.data);
-         commit('setIsError', true);
-         if(response.data == 'Invalid Token') {
-           commit('setErrorMsg', `${response.data}. kindly re-login`);
-           setTimeout (_ => router.push('/signin'), 500);
-           return;
-         }
-         if(response.data=='image must be a valid jpg or png image') return commit('setErrorMsg', response.data);
-         if(response.data=='image must not be more than 2mb') return commit('setErrorMsg', response.data)
-         if(response.data[0]) {
-            if(response.data[0].error.code=='ENOTFOUND' && response.data[0].error.syscall=='getaddrinfo') {
-                return commit('setErrorMsg', 'please check your internet connection');
-              }
-         }
+      //  async updateUserProfile2 ({commit, state}, {signature}) {
+      //   await axios({
+      //     method:'put',
+      //     url:`${state.api_url}/users/me`,
+      //     data : {
+      //        signature
+      //     },
+      //     headers : {
+      //       'x-auth-token':state.token
+      //     }
+      //   })
+      //   .then( _  => {
+      //     commit('setIsSuccess', true);
+      //   })
+      //   .catch(({response}) => {
+      //    console.error(response.data);
+      //    commit('setIsError', true);
+      //    if(response.data == 'Invalid Token') {
+      //      commit('setErrorMsg', `${response.data}. kindly re-login`);
+      //      setTimeout (_ => router.push('/signin'), 500);
+      //      return;
+      //    }
+      //    if(response.data=='image must be a valid jpg or png image') return commit('setErrorMsg', response.data);
+      //    if(response.data=='image must not be more than 2mb') return commit('setErrorMsg', response.data)
+      //    if(response.data[0]) {
+      //       if(response.data[0].error.code=='ENOTFOUND' && response.data[0].error.syscall=='getaddrinfo') {
+      //           return commit('setErrorMsg', 'please check your internet connection');
+      //         }
+      //    }
           
-        })
-      },
+      //   })
+      // },
 
 
        //send password reset Link
@@ -538,6 +538,26 @@ export default new Vuex.Store({
         })
     } , 
 
+    //Resend confirmation email to guarantor by admin
+    async resendConfirmationLoan ({commit, state}, data) {
+      await axios({
+        url :  `${state.api_url}/loans/resendGuarantorConfirmation/${data}`,
+        method :'post',
+        headers : {
+          'x-auth-token' : state.token
+        }
+      })
+
+      .then(_  => {
+        commit('setIsSuccess', true)
+      })
+      .catch (({response}) => {
+        console.error(response.data);
+        commit('setIsError', true)
+        commit('setErrorMsg', response.data)
+      })
+    },
+
     //Post Finance
     async postFinance ({commit, state, rootState}) {
      
@@ -644,6 +664,25 @@ export default new Vuex.Store({
         commit('setLoanDetailsOne', data)
       })
   } , 
+
+   //Resend confirmation email to guarantor by admin
+   async resendConfirmationFinance ({commit, state}, data) {
+    await axios({
+      url :  `${state.api_url}/finance/resendGuarantorConfirmation/${data}`,
+      method :'post',
+      headers : {
+        'x-auth-token' : state.token
+      }
+    })
+    .then(_  => {
+      commit('setIsSuccess', true)
+    })
+    .catch (({response}) => {
+      console.error(response.data);
+      commit('setIsError', true)
+      commit('setErrorMsg', response.data)
+    })
+  },
      
     //post Pawn
     //${state.api_url}/pawn

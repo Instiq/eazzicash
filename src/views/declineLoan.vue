@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-3" style="background:whitesmoke; border:2px solid grey; border-radius:5px">
       <div class="jumbotron-fluid">
             <div class="mt-md-5 mb-3" style="height:"><a href="/"><img class="img-fluid" style="height:10vh" src="../assets/logomain.png" alt=""></a></div>
 
