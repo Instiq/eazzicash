@@ -269,7 +269,7 @@ export default {
     if(navigator.msSaveOrOpenBlob ){
         navigator.msSaveOrOpenBlob(blob, filename);
     }else{
-        // Create a link to the file
+        // Create a link to the saved file
         downloadLink.href = url;
         
         // Setting the file name
