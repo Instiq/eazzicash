@@ -16,6 +16,7 @@ export default new Vuex.Store({
   state: {
     //http://localhost:3000/api
     //https://still-bastion-19162.herokuapp.com/api
+    //https://eazzi-server.herokuapp.com/api
     api_url : 'https://still-bastion-19162.herokuapp.com/api',
     name:"",
     userFirstname:'',
@@ -706,7 +707,7 @@ export default new Vuex.Store({
           personalDetails : {
             idCard:rootState.loan.loanId,
             signature:rootState.loan.loanSign,
-            address:rootState.loan.address,
+            address:rootState.loan.currentAddress,
             busstop:rootState.loan.busstop,
             state:rootState.loan.statee,
             yearsInAddress:rootState.loan.yearsInAddress,
@@ -758,7 +759,7 @@ export default new Vuex.Store({
           personalDetails : {
             idCard:rootState.loan.loanId,
             signature:rootState.loan.loanSign,
-            address:rootState.loan.address,
+            address:rootState.loan.currentAddress,
             state:rootState.loan.statee,
             occupation:rootState.loan.occupation,
             meansOfId:rootState.loan.meansOfId,
