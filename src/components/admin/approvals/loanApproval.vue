@@ -38,7 +38,7 @@
                       <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
                       <td class="text-center"> {{item.approved}} </td>
                       <td class="text-center"> {{moment(item.createdAt)}} </td>
-                      <td @click="userDetailsAdmin(index); deleteLoan()" class="text-center text-danger" style="cursor:pointer">   Delete </td>
+                      <td  class="text-center text-danger" @click="userDetailsAdmin(index); modal=true" style="cursor:pointer"> Delete </td>
                     </tr>
                   </tbody>
                 </table>
@@ -46,6 +46,25 @@
         </div>
       </div>
    </div>
+
+   <div class="modal-window">
+    <mdb-modal :show="modal" @close="modal = false">
+      <mdb-modal-header>
+        <mdb-modal-title class="text-center font-weight-bold">Delete Request</mdb-modal-title>
+      </mdb-modal-header>
+      <mdb-modal-body>
+        <div>
+          <p>Are you sure? <span class="font-weight-bold "> This action cannot be reversed</span></p>
+          <p>Enter the text <span class="text-danger" aria-placeholder="enter text">'delete'</span> to confirm delete</p>
+          <input type="text" class="form-control" v-model="confirm_delete">
+        </div>
+      </mdb-modal-body>
+      <mdb-modal-footer>
+        <mdb-btn color="secondary" @click.native="modal = false; confirm_delete=''">cancel</mdb-btn>
+        <button class="btn bg-danger text-white" @click="deleteLoan" v-show="confirm_delete == 'delete'" >Delete <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button>
+      </mdb-modal-footer>
+    </mdb-modal>
+  </div>
 
    <div class="row d-flex justify-content-around">
       <div>Page {{pageNumberr}} of {{pageCount}}</div>
@@ -60,39 +79,28 @@
 
 <script>
 import moment from 'moment';
-import Datepicker from 'vuejs-datepicker';
-import{ mdbTbl, mdbModal, mdbBtn, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbTblHead, mdbTblBody,mdbListGroup, mdbListGroupItem, mdbBadge,mdbNavbar, mdbContainer,mdbCard, mdbRow,mdbCardBody, mdbCardTitle, mdbCardText, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
-import html2pdf from 'html2pdf.js'
+import { mdbModal, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbBtn } from 'mdbvue';
+
 
 export default {
  name:'approvals',
  components :{
-    mdbIcon,
-    mdbRow,
-    mdbCol,
-    mdbCard,
-    mdbCardTitle,
-    mdbCardText,
-    mdbCardBody,
-    mdbListGroup,
-    mdbListGroupItem,
-    mdbBadge,
-    mdbModal, 
-    mdbModalHeader, 
-    mdbModalTitle, 
-    mdbModalBody, 
+    mdbModal,
+    mdbModalHeader,
+    mdbModalTitle,
+    mdbModalBody,
     mdbModalFooter,
-    mdbTbl,
-    mdbTblHead,
-    mdbTblBody,
-    Datepicker
+    mdbBtn
  },
 
  data () {
    return {
      name:"",
      pageNumber:0,
-     size:5
+     size:5,
+     modal: false,
+     confirm_delete:"",
+     isLoading:false
    }
  },
 
@@ -106,7 +114,6 @@ export default {
     moment (x) {
         return moment(x).format("DD/MM/YYYY")
      },
-
      
    //function to update current loan details by admin
     userDetailsAdmin(n) {
@@ -123,8 +130,14 @@ export default {
 
     //delete loan request
     deleteLoan () {
-       this.$store.commit('setLoading', true)
-        this.$store.dispatch('deleteLoan')
+      this.isLoading = true
+      this.$store.commit('setLoading', true)
+      this.$store.dispatch('deleteLoan')
+      .then(_ => {
+        this.isLoading = false;
+        this.modal = false
+      })
+      .catch(_ => this.isLoading = false)
     },
 
    // change first letter of search input to uppercase
@@ -221,5 +234,6 @@ export default {
  ::placeholder {
    font-size: 13px
  }
+
 
 </style>

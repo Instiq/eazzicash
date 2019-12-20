@@ -154,23 +154,39 @@
               </div>
 
               <div class="col-md-3">
-                  <button @click="updateInvestAdmin"  class="btn btn-info" style="margin-left:30px; padding:10px 20px; font-size:15px; margin-top:25px"> Update  <span v-if="isLoading3"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
+                  <button @click="modal=true; confirm_update=true"  class="btn btn-info" style="margin-left:30px; padding:10px 20px; font-size:15px; margin-top:25px"> Update  <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
 
               </div>
-          </div>
+        </div>
      
+         <div class="modal-window">
+          <mdb-modal removeBackdrop :show="modal" @close="modal = false;confirm_confirmation=false; confirm_decline=false; confirm_approve=false; confirm_update=false">
+            <mdb-modal-header>
+              <div class="text-center font-weight-bold" v-show="confirm_approve">Approve Request</div>
+              <div class="text-center font-weight-bold" v-show="confirm_decline">Decline Request</div>
+              <div class="text-center font-weight-bold" v-show="confirm_update">Update Request</div>
+            </mdb-modal-header>
+      
+            <mdb-modal-footer>
+              <mdb-btn color="secondary" @click.native="modal = false; confirm_decline=false; confirm_approve=false; confirm_update=false">cancel</mdb-btn>
+              <button class="btn bg-success text-white" @click="updateInvestStatusApprove" v-show="confirm_approve" >Confirm Approval <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button>
+              <button class="btn bg-danger text-white" @click="updateInvestStatusDecline" v-show="confirm_decline" >Confirm Rejection <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button>
+              <button class="btn bg-info text-white" @click="updateInvestAdmin" v-show="confirm_update" >Confirm Update <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button>
+            </mdb-modal-footer>
+          </mdb-modal>
+        </div>
       
 
-      <div class="form-group">
-          <textarea type="text" placeholder="comment...." class="form-control"></textarea>
-      </div>
+        <div class="form-group">
+            <textarea type="text" placeholder="comment...." class="form-control"></textarea>
+        </div>
 
-      <div class="text-center">
-          <!-- <button  class="btn btn-success mr-5" ><span style="font-size:15px;  padding:10px 20px;">Approve</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
-          <!-- <button  class="btn btn-danger "><span style="font-size:15px;  padding:10px 20px;">Decline</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
-           <button @click="updateInvestStatusApprove" class="btn btn-success ml-n2" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Approve  <span v-if="isLoading1"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
-           <button @click="updateInvestStatusDecline"  class="btn btn-danger" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Decline  <span v-if="isLoading2"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
-      </div>
+        <div class="text-center"> 
+            <!-- <button  class="btn btn-success mr-5" ><span style="font-size:15px;  padding:10px 20px;">Approve</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
+            <!-- <button  class="btn btn-danger "><span style="font-size:15px;  padding:10px 20px;">Decline</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
+            <button @click="modal=true; confirm_approve=true" class="btn btn-success ml-n2" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Approve  <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
+            <button @click="modal=true; confirm_decline=true"  class="btn btn-danger" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Decline  <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
+        </div>
 
     </div>
   </div>
@@ -185,36 +201,28 @@
 </template>
 
 <script>
-import{ mdbTbl, mdbModal, mdbBtn, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbTblHead, mdbTblBody,mdbListGroup, mdbListGroupItem, mdbBadge,mdbNavbar, mdbContainer,mdbCard, mdbRow,mdbCardBody, mdbCardTitle, mdbCardText, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue'
+import{ mdbTbl, mdbModal, mdbBtn, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbTblHead, mdbTblBody,mdbListGroup, mdbListGroupItem, mdbBadge,mdbNavbar, mdbContainer,mdbCard, mdbRow,mdbCardBody, mdbCardTitle, mdbCardText, mdbCol, mdbNavItem,mdbIcon, mdbNavbarNav,  mdbDropdown,mdbDropdownItem,mdbDropdownMenu, mdbDropdownToggle,mdbNavbarToggler, mdbNavbarBrand, } from 'mdbvue';
+import {mapState} from 'vuex'
+
 export default {
  name:'userDetails',
  components :{
-    mdbIcon,
-    mdbRow,
-    mdbCol,
-    mdbCard,
-    mdbCardTitle,
-    mdbCardText,
-    mdbCardBody,
-    mdbListGroup,
-    mdbListGroupItem,
-    mdbBadge,
-    mdbModal, 
-    mdbModalHeader, 
-    mdbModalTitle, 
-    mdbModalBody, 
+    mdbModal,
+    mdbModalHeader,
+    mdbModalTitle,
+    mdbModalBody,
     mdbModalFooter,
-    mdbTbl,
-    mdbTblHead,
-    mdbTblBody,
+    mdbBtn
 
  },
 
  data () {
      return {
-         isLoading1:false,
-         isLoading2:false,
-         isLoading3:false
+         modal: false,
+         confirm_approve:"",
+         confirm_decline:"",
+         confirm_update:"",
+         isLoading:false,
      }
  },
 
@@ -223,30 +231,60 @@ export default {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
     },
     updateInvestAdmin () {
-         this.isLoading3= true;
+         this.isLoading= true;
         this.$store.dispatch('updateInvestAdmin')
-            .then(_ => this.isLoading3=false)
-            .catch(_ => this.isLoading3=false)
+            .then(_ =>  {
+              this.isLoading=false;
+              this.modal = false;
+              })
+            .catch(_ => {
+              this.isLoading=false;
+              this.modal = false;
+              })
     },
     updateInvestStatusApprove() {
-        this.isLoading1= true;
+        this.isLoading= true;
          this.$store.commit('setLoading', true)
         this.$store.dispatch('updateInvestStatusApprove')
-            .then(_ => this.isLoading1=false)
-            .catch(_ => this.isLoading1=false)
+            .then(_ =>  {
+              this.isLoading=false;
+              this.modal = false;
+              })
+            .catch(_ => {
+              this.isLoading=false;
+              this.modal = false;
+              })
     },
     updateInvestStatusDecline() {
-         this.isLoading2= true;
+         this.isLoading= true;
          this.$store.dispatch('updateInvestStatusDecline')
-            .then(_ => this.isLoading2=false)
-            .catch(_ => this.isLoading2=false)
-    }
+            .then(_ =>  {
+              this.isLoading=false;
+              this.modal = false;
+              })
+            .catch(_ => {
+              this.isLoading=false;
+              this.modal = false;
+              })
+    },
+    showToastrSuccess () {
+        this.$toastr.defaultProgressBar = false;
+        this.$toastr.defaultStyle = { "background-color": "limegreen" };
+        this.$toastr.s( `<strong class='h6'>Success</strong> <br> ${this.successMsg}`);
+        this.$store.commit('setIsSuccess', false)
+     },
+    showToastrError () {
+        this.$toastr.defaultProgressBar = false;
+        this.$toastr.defaultStyle = { "background-color": "firebrick" };
+        this.$toastr.e(`<strong class='h6'>Error</strong><br>${this.errorMsg}`);
+        this.$store.commit('setIsError', false)
+     },
  },
 
  computed : {
-     userDetails () {
-        return this.$store.state.userDetails
-     },
+
+    ...mapState(['isSuccess', 'isError', "errorMsg", 'successMsg', 'userDetails' ]),
+
     investTenor : {
         get () {
             return this.$store.getters.investTenor
@@ -264,6 +302,16 @@ export default {
         }
     },
     
+ },
+
+  watch : {
+     isSuccess (newval) {
+        if(newval==true) return this.showToastrSuccess()
+     },
+    
+    isError (newval) {
+        if(newval==true) return this.showToastrError()
+    }
  },
 
  mounted () {

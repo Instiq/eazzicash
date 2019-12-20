@@ -170,24 +170,24 @@ export default {
         return moment(date).format('MMMM Do YYYY');
     },
 
-   //function to update current loan details by admin
-    userDetailsAdmin(n) {
-        let newObject  = this.filteredLoanRequests[n]
-        this.$store.commit('setUserDetails', newObject);
-    }, 
+  //  //function to update current loan details by admin
+  //   userDetailsAdmin(n) {
+  //       let newObject  = this.filteredLoanRequests[n]
+  //       this.$store.commit('setUserDetails', newObject);
+  //   }, 
 
-    //function to conditionally show loan details for a particulasr user
-    async userDetails(n) {
-        let newObject  = this.filteredLoanRequests[n]
-        this.$store.commit('setUserDetails', newObject);
-        this.$router.push('/adminProfile/approvals/loanDetails')  
-    }, 
+  //   //function to conditionally show loan details for a particulasr user
+  //   async userDetails(n) {
+  //       let newObject  = this.filteredLoanRequests[n]
+  //       this.$store.commit('setUserDetails', newObject);
+  //       this.$router.push('/adminProfile/approvals/loanDetails')  
+  //   }, 
 
     //delete loan request
-    deleteLoan () {
-       this.$store.commit('setLoading', true)
-        this.$store.dispatch('deleteLoan')
-    },
+    // deleteLoan () {
+    //    this.$store.commit('setLoading', true)
+    //     this.$store.dispatch('deleteLoan')
+    // },
 
    // change first letter of search input to uppercase
     toUpperCase (name) {
@@ -233,7 +233,8 @@ export default {
             type: dataType
         });
         navigator.msSaveOrOpenBlob( blob, filename);
-    }else{
+    }
+    else{
         // Create a link to the file
         downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
     
@@ -268,7 +269,8 @@ export default {
     
     if(navigator.msSaveOrOpenBlob ){
         navigator.msSaveOrOpenBlob(blob, filename);
-    }else{
+    }
+    else{
         // Create a link to the saved file
         downloadLink.href = url;
         

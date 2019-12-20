@@ -51,6 +51,7 @@ export default new Vuex.Store({
     errorMsg:"Something failed",
      //state to show success message on put update profile
     isSuccess:false,
+    successMsg : "",
     //state to get user profile
     userProfile : {}
   },
@@ -148,6 +149,9 @@ export default new Vuex.Store({
     //mutation to show success message on update user profile
     setIsSuccess (state, payload) {
       state.isSuccess=payload
+    },
+    setSuccessMsg (state, payload) {
+      state.successMsg=payload
     },
 
     //mutation to get user profile
@@ -550,7 +554,8 @@ export default new Vuex.Store({
       })
 
       .then(_  => {
-        commit('setIsSuccess', true)
+        commit('setIsSuccess', true);
+        commit('setSuccessMsg', 'Resent Successfully!')
       })
       .catch (({response}) => {
         console.error(response.data);
@@ -1070,9 +1075,9 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
-            alert('updated succesfully')
-            router.push('/adminProfile/approvals/loan')
-            
+            commit('setIsSuccess', true)
+            commit('setSuccessMsg', 'Updated Successfully!')
+            setTimeout (_ =>  router.push('/adminProfile/approvals/loan'), 1000 )
           })
           .catch (err => {
             console.log(err.response.data);
@@ -1094,8 +1099,9 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
-            alert('approved succesfully') ;
-            router.push('/adminProfile/approvals/loan')
+            commit('setIsSuccess', true);
+            commit('setSuccessMsg', 'Approved Successfully!')
+            setTimeout (_ =>  router.push('/adminProfile/approvals/loan'), 1000 )
           })
           .catch (err => {
             console.log(err.response.data);
@@ -1117,9 +1123,9 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
-            alert('declined succesfully')   
-            router.push('/adminProfile/approvals/loan')
-            
+            commit('setIsSuccess', true);
+            commit('setSuccessMsg', 'Declined Successfully!')
+            setTimeout (_ =>  router.push('/adminProfile/approvals/loan'), 1000 ) 
           })
           .catch (err => {;
             console.log(err.response.data);
@@ -1168,8 +1174,9 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
-            alert('updated succesfully')
-            router.push('/adminProfile/approvals/investment')
+            commit('setIsSuccess', true);
+            commit('setSuccessMsg', 'Updated Successfully!')
+            setTimeout (_ =>  router.push('/adminProfile/approvals/investment'), 1000 )
             
           })
           .catch (err => {
@@ -1192,8 +1199,9 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
-            alert('approved succesfully') ;
-            router.push('/adminProfile/approvals/investment')
+            commit('setIsSuccess', true);
+            commit('setSuccessMsg', 'Approved Successfully!')
+            setTimeout (_ =>  router.push('/adminProfile/approvals/investment'), 1000 )
           })
           .catch (err => {
             console.log(err.response.data);
@@ -1214,8 +1222,9 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
-            alert('declined succesfully') ;
-            router.push('/adminProfile/approvals/investment')
+            commit('setIsSuccess', true);
+            commit('setSuccessMsg', 'Declined Successfully!')
+            setTimeout (_ =>  router.push('/adminProfile/approvals/investment'), 1000 )
           })
           .catch (err => {
             console.log(err.response.data);
@@ -1263,8 +1272,9 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
-            alert('updated succesfully')
-            router.push('/adminProfile/approvals/finance')
+            commit('setIsSuccess', true);
+            commit('setSuccessMsg', 'Updated Successfully!')
+            setTimeout (_ =>  router.push('/adminProfile/approvals/finance'), 1000 )
             
           })
           .catch (err => {
@@ -1287,8 +1297,9 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
-            alert('approved succesfully') ;
-            router.push('/adminProfile/approvals/finance')
+            commit('setIsSuccess', true);
+            commit('setSuccessMsg', 'Approved Successfully!')
+            setTimeout (_ =>  router.push('/adminProfile/approvals/finance'), 1000 )
           })
           .catch (err => {
             console.log(err.response.data);
@@ -1310,9 +1321,9 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
-            alert('declined succesfully')   
-            router.push('/adminProfile/approvals/finance')
-            
+            commit('setIsSuccess', true);
+            commit('setSuccessMsg', 'Declined Successfully!')
+            setTimeout (_ =>  router.push('/adminProfile/approvals/finance'), 1000 )
           })
           .catch (err => {;
             console.log(err.response.data);
@@ -1360,8 +1371,9 @@ export default new Vuex.Store({
             }
           })
           .then(({data}) => {
-            alert('updated succesfully')
-            router.push('/adminProfile/approvals/pawn')
+            commit('setIsSuccess', true);
+            commit('setSuccessMsg', 'Updated Successfully!')
+            setTimeout (_ =>  router.push('/adminProfile/approvals/pawn'), 1000 )
             
           })
           .catch (err => {
@@ -1384,8 +1396,9 @@ export default new Vuex.Store({
               }
             })
             .then(({data}) => {
-              alert('approved succesfully') ;
-              router.push('/adminProfile/approvals/pawn')
+              commit('setIsSuccess', true);
+              commit('setSuccessMsg', 'Approved Successfully!')
+              setTimeout (_ =>  router.push('/adminProfile/approvals/pawn'), 1000 )
             })
             .catch (err => {
               console.log(err.response.data);
@@ -1407,8 +1420,9 @@ export default new Vuex.Store({
               }
             })
             .then(({data}) => {
-              alert('declined succesfully') ;
-              router.push('/adminProfile/approvals/pawn')
+              commit('setIsSuccess', true);
+              commit('setSuccessMsg', 'Declined Successfully!')
+              setTimeout (_ =>  router.push('/adminProfile/approvals/pawn'), 1000 )
             })
             .catch (err => {
               console.log(err.response.data);
@@ -1441,13 +1455,7 @@ export default new Vuex.Store({
               router.push('/signin')
             }
           })
-        },
-
-        
-  
-
-
-    
+        },    
   },
 
   getters : {

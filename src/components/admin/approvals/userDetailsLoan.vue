@@ -7,7 +7,7 @@
     <div class="col">
      <div class="d-flex justify-content-between">
         <p><router-link to="/adminProfile/approvals/loan"><i style='font-size:24px' class='fas'>&#xf060;</i></router-link></p>
-        <button @click="resendConfirmation" class="btn btn-info">Resend Confirmation  <span v-if="isLoading4"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span> </button>
+        <button @click="modal=true; confirm_confirmation=true" class="btn btn-info">Resend Confirmation </button>
      </div>
       
        <p class="text-success font-weight-bold">Personal Details</p>
@@ -214,10 +214,29 @@
               </div>
 
               <div class="col-md-3">
-                  <button @click="updateLoanAdmin"  class="btn btn-info" style="margin-left:30px; padding:10px 20px; font-size:15px; margin-top:25px"> Update  <span v-if="isLoading3"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
+                  <button @click="modal=true; confirm_update=true"  class="btn btn-info" style="margin-left:30px; padding:10px 20px; font-size:15px; margin-top:25px"> Update   </button>
 
               </div>
           </div>
+
+        <div class="modal-window">
+          <mdb-modal removeBackdrop :show="modal" @close="modal = false;confirm_confirmation=false; confirm_decline=false; confirm_approve=false; confirm_update=false">
+            <mdb-modal-header>
+              <div class="text-center font-weight-bold" v-show="confirm_approve">Approve Request</div>
+              <div class="text-center font-weight-bold" v-show="confirm_decline">Decline Request</div>
+              <div class="text-center font-weight-bold" v-show="confirm_update">Update Request</div>
+               <div class="text-center font-weight-bold" v-show="confirm_confirmation">Resend  Confirmation</div>
+            </mdb-modal-header>
+      
+            <mdb-modal-footer>
+              <mdb-btn color="secondary" @click.native="modal = false; confirm_decline=false; confirm_approve=false; confirm_update=false">cancel</mdb-btn>
+              <button class="btn bg-success text-white" @click="updateLoanStatusApprove" v-show="confirm_approve" >Confirm Approval <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button>
+              <button class="btn bg-danger text-white" @click="updateLoanStatusDecline" v-show="confirm_decline" >Confirm Rejection <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button>
+              <button class="btn bg-info text-white" @click="updateLoanAdmin" v-show="confirm_update" >Confirm Update <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button>
+               <button class="btn bg-info text-white" @click="resendConfirmation" v-show="confirm_confirmation" >Send Email<span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button>
+            </mdb-modal-footer>
+          </mdb-modal>
+        </div>
      
       
 
@@ -226,10 +245,8 @@
       </div>
 
       <div class="text-center">
-          <!-- <button  class="btn btn-success mr-5" ><span style="font-size:15px;  padding:10px 20px;">Approve</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
-          <!-- <button  class="btn btn-danger "><span style="font-size:15px;  padding:10px 20px;">Decline</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
-           <button @click="updateLoanStatusApprove" class="btn btn-success ml-n2" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Approve  <span v-if="isLoading1"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
-           <button @click="updateLoanStatusDecline"  class="btn btn-danger" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Decline  <span v-if="isLoading2"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
+           <button @click="modal=true; confirm_approve=true"  class="btn btn-success ml-n2" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Approve   </button>
+           <button @click="modal=true; confirm_decline=true"  class="btn btn-danger" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Decline</button>
       </div>
 
     </div>
@@ -252,33 +269,24 @@ import {mapState} from 'vuex'
 export default {
  name:'userDetails',
  components :{
-    mdbIcon,
-    mdbRow,
-    mdbCol,
-    mdbCard,
-    mdbCardTitle,
-    mdbCardText,
-    mdbCardBody,
-    mdbListGroup,
-    mdbListGroupItem,
-    mdbBadge,
-    mdbModal, 
-    mdbModalHeader, 
-    mdbModalTitle, 
-    mdbModalBody, 
+    mdbModal,
+    mdbModalHeader,
+    mdbModalTitle,
+    mdbModalBody,
     mdbModalFooter,
-    mdbTbl,
-    mdbTblHead,
-    mdbTblBody,
+    mdbBtn
 
  },
 
  data () {
      return {
-         isLoading1:false,
-         isLoading2:false,
-         isLoading3:false,
-         isLoading4:false
+         modal: false,
+         confirm_approve:"",
+         confirm_decline:"",
+         confirm_update:"",
+         confirm_confirmation:"",
+         isLoading:false,
+
      }
  },
 
@@ -293,37 +301,66 @@ export default {
            this.$store.dispatch('decrement')
     },
     updateLoanAdmin () {
-        this.isLoading3= true;
+        this.isLoading= true;
         this.$store.dispatch('updateLoanAdmin')
-            .then(_ => this.isLoading3=false)
-            .catch(_ => this.isLoading3=false)
+            .then(_ => {
+              this.successMsg = "Updated Successfully!"
+              this.isLoading=false;
+              this.modal = false;
+              })
+            .catch(_ => {
+              this.isLoading=false;
+              this.modal = false
+              })
     },
     updateLoanStatusApprove() {
-        this.isLoading1= true;
+        this.isLoading= true;
         this.$store.commit('setLoading', true)
         this.$store.dispatch('updateLoanStatusApprove')
-            .then(_ => this.isLoading1=false)
-            .catch(_ => this.isLoading1=false)
+            .then(_ => {
+              this.isLoading=false;
+              this.modal = false;
+              this.successMsg = "Approved Successfully!"
+              })
+            .catch(_ => {
+              this.isLoading=false;
+              this.modal = false
+              })
     },
     updateLoanStatusDecline() {
-         this.isLoading2= true;
+         this.isLoading= true;
          this.$store.dispatch('updateLoanStatusDecline')
-            .then(_ => this.isLoading2=false)
-            .catch(_ => this.isLoading2=false)
+            .then(_ => {
+              this.isLoading=false;
+              this.modal = false;
+              this.successMsg = "DEclined Successfully!"
+            })
+            .catch(_ => {
+              this.isLoading=false;
+              this.modal = false
+            })
     },
     moment (date) {
             return moment(date).format('MMMM Do YYYY');
     },
     resendConfirmation () {
-      this.isLoading4 = true;
+      this.isLoading = true;
       this.$store.dispatch('resendConfirmationLoan', this.userDetails._id)
-      .then(_ => this.isLoading4=false)
-      .catch(_ => this.isLoading4=false)
+      .then(_ =>  {
+        this.isLoading=false;
+        this.modal = false;
+        this.confirm_confirmation=false;
+        this.successMsg = "Resent Successfully!"
+        })
+      .catch(_ => {
+        this.isLoading=false;
+        this.modal = false
+        })
     },
     showToastrSuccess () {
         this.$toastr.defaultProgressBar = false;
         this.$toastr.defaultStyle = { "background-color": "limegreen" };
-        this.$toastr.s( "<strong class='h6'>Success</strong> <br> Resent Sucessfully!");
+        this.$toastr.s( `<strong class='h6'>Success</strong> <br> ${this.successMsg}`);
         this.$store.commit('setIsSuccess', false)
      },
     showToastrError () {
@@ -337,7 +374,7 @@ export default {
 
  computed : {
 
-     ...mapState(['isSuccess', 'isError', "errorMsg", 'userDetails' ]),
+     ...mapState(['isSuccess', 'isError', "errorMsg", 'successMsg', 'userDetails' ]),
 
      tenor : {
           get () {
