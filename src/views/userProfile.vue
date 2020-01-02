@@ -113,17 +113,17 @@
                                             <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider> 
                                     </div> -->
-                                    
-                                <span class="h6"> Account Details</span>
+<!--                                     
+                                <span class="h6"> Account Details</span> -->
 
-                                    <div class="form-group mt-3">
+                                    <!-- <div class="form-group mt-3">
                                          <ValidationProvider name="Account_Name" rules="required" v-slot="{ errors }">
                                             <label for="" class="d-inline">Name</label>
                                             <input v-model="Account_Name" v-validate="'min:3'" name="Account_Name" type="text" class="form-control">
                                             <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider> 
-                                    </div>
-                                    <div class="form-group">
+                                    </div> -->
+                                    <!-- <div class="form-group">
                                         <ValidationProvider name="Bank_Name" rules="required" v-slot="{ errors }">
                                             <label for="" class="d-inline">Bank</label>
                                             <select  class="browser-default custom-select" name="Bank_Name"  v-model="Bank_Name">
@@ -150,24 +150,22 @@
                                             <option value="zenith">Zenith Bank</option>
                                             </select>
                                         </ValidationProvider>
-
-                                        <!-- Selected : {{Bank_Name}} -->
                                         
-                                    </div>
-                                    <div class="form-group">
+                                    </div> -->
+                                    <!-- <div class="form-group">
                                          <ValidationProvider name="Account_Number" rules="required|numeric|min:10|max:10" v-slot="{ errors }">
                                             <label for="" class="d-inline">Number</label>
                                             <input name="Account_Number" v-model="Account_Number" type="text" class="form-control">
                                             <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                          </ValidationProvider>
-                                    </div>
-                                    <div class="form-group">
+                                    </div> -->
+                                    <!-- <div class="form-group">
                                          <ValidationProvider name="Account_Type" rules="" v-slot="{ errors }">
                                             <label for="" class="d-inline">Type</label>
                                             <input  name="Account_Type" v-model="Account_Type" type="text" placeholder="e.g savings, current...." class="form-control">
                                             <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                         </ValidationProvider>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group  float-right">
                                         <button type="submit" class="btn btn-primary">Save Changes  <span v-if="isLoading1"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button>
                                     </div> <br> <br> <br> 
