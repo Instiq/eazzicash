@@ -13,7 +13,7 @@ const state = {
 };
 
 const mutations = {
-  setCollateralType(state, payload) {
+  setCollateralType(state, payload){
     state.collateralType = payload;
   },
   setCollateralDescription(state, payload) {

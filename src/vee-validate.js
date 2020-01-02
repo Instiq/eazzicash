@@ -15,7 +15,6 @@ extend("size", size ),
 extend("image", image )
 extend("alpha", alpha )
 
-let sizee = size/1000
 //Ovewrite some default error messages
 en.messages.confirmed='The {_field_} does not match'
 en.messages.required = 'This field is required';
