@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <div class="main-container">
-          <section class="container main-container" style="height:auto; width:75vw">
+          <section class="container main-containerr" style="height:auto; width:75vw">
             <div class="container ">
                 <div class="row  p-1 mb-5" style="margin-top:-30px">
                     <div class="col">
@@ -120,11 +120,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .main-container {
     border:2px solid blac;
     margin-left:3vw;
-    height: auto;
+     max-height: 520px;
+    overflow-y: auto;
     overflow-x: hidden
  }
 </style>

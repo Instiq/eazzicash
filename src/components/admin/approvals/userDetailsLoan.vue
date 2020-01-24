@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container wrapper">
       <section class="container main-container " style="height:auto">
 
-<div class="container p-3 mb-5" style="margin-top:30px;margin-bottom:30px">
-  <div class="row" style="margin-left:5%;margin-right:5%;">
+<div class="container p-3 mb-3" style="margin-top:30px;margin-bottom:30px">
+  <div class="\" style="margin-left:5%;margin-right:5%;">
     <div class="col">
      <div class="d-flex justify-content-between">
         <p><router-link to="/adminProfile/approvals/loan"><i style='font-size:24px' class='fas'>&#xf060;</i></router-link></p>
@@ -15,48 +15,52 @@
         <table class="table table-striped table-bordered">
           <tbody>
              <tr class="row">
-              <td class="col-sm-3">Customer Firstname</td>
-              <td class="col-sm-3 text-success"> {{userDetails.userDetails.firstName}}</td>
-              <td class="col-sm-3">Customer Lastname</td>
-              <td class="col-sm-3 text-success"> {{userDetails.userDetails.lastName}}</td>
-            </tr>
-             <tr class="row">
-              <td class="col-sm-2">Customer Email</td>
-              <td class="col-sm-5 text-success"> {{userDetails.userDetails.email}}</td>
-              <td class="col-sm-3">Customer Phone</td>
+              <td class="col-sm-2">First Name</td>
+              <td class="col-sm-2 text-success"> {{userDetails.userDetails.firstName}}</td>
+              <td class="col-sm-2">Last Name</td>
+              <td class="col-sm-2 text-success"> {{userDetails.userDetails.lastName}}</td>
+              <td class="col-sm-2">Phone Number</td>
               <td class="col-sm-2 text-success"> {{userDetails.userDetails.phoneNumber}}</td>
             </tr>
-            <tr class="row">
-              <td class="col-sm-3">Address</td>
-              <td class="text-success col-sm-3"> {{userDetails.personalDetails.address}}</td>
-              <td class="col-sm-3">Years Lived in Address</td>
-              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.yearsInAddress}}</td>
+             <tr class="row">
+              <td class="col-sm-2">Email</td>
+              <td class="col-sm-5 text-success"> {{userDetails.userDetails.email}}</td>
+               <td class="col-sm-3">Years Lived in Address</td>
+              <td class="col-sm-2 text-success"> {{userDetails.personalDetails.yearsInAddress}}</td>
             </tr>
             <tr class="row">
-              <td class="col-sm-3">Bus Stop</td>
+              <td class="col-sm-1">Address</td>
+              <td class="text-success col-sm-4"> {{userDetails.personalDetails.address}}</td>
+               <td class="col-sm-1">BusStop</td>
               <td class="text-success col-sm-3">{{userDetails.personalDetails.busstop}}</td>
-               <td class="col-sm-3">State</td>
-              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.state}} </td>
+              <td class="col-sm-1">State</td>
+              <td class="col-sm-2 text-success"> {{userDetails.personalDetails.state}} </td>
             </tr>
             <tr class="row">
-              <td class="col-sm-3">Means of Identification</td>
+               <td class="col-sm-3">Means of Identification</td>
               <td class="col-sm-3 text-success"> {{userDetails.personalDetails.meansOfId}} </td>
-              <td class="col-sm-2">ID Card</td>
+               <td class="col-sm-2">ID Card</td>
               <td class="col-sm-4">
                   <form action="/action_page.php">
-                    <div class="form-group" style= "width:auto; height:auto">
-                    <a :href="userDetails.personalDetails.idCard" download=""><img class="img-fluid" :src="userDetails.personalDetails.idCard" alt="id"></a>
+                    <div class="form-group" style= "width:auto; height:80px">
+                    <a :href="userDetails.personalDetails.idCard" download><img class="img-fluid"  :src="userDetails.personalDetails.idCard" alt="id"></a>
                     </div>
                 </form>
               </td>
             </tr>
             <tr class="row">
-              <td class="col-sm-3">Other ID</td>
-              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.otherId}}  </td>
+              <td class="col-sm-2" v-if="userDetails.personalDetails.otherId">Other ID</td>
+              <td class="col-sm-4 text-success" v-if="userDetails.personalDetails.otherId"> 
+                <form action="/action_page.php">
+                    <div class="form-group" style= "width:auto; height:80px">
+                    <a :href="userDetails.personalDetails.otherId" download><img class="img-fluid"  :src="userDetails.personalDetails.otherId" alt="id"></a>
+                    </div>
+                </form> 
+              </td>
               <td class="col-sm-2">Signature</td>
               <td class="col-sm-4">
                  <form action="/action_page.php">
-                    <div class="form-group" style= "width:auto; height:auto">
+                    <div class="form-group" style= "width:auto; height:80px">
                     <a :href="userDetails.personalDetails.signature" download><img class="img-fluid" :src="userDetails.personalDetails.signature" alt="id"></a>
                     </div>
                 </form>
@@ -72,22 +76,20 @@
         <table class="table table-striped table-bordered">
           <tbody>
             <tr class="row">
-              <td class="col-sm-3">Loan Purpose</td>
-              <td class="col-sm-3 text-success"> {{userDetails.loanPurpose}}</td>
-              <td class="col-sm-3">Loan Tenor</td>
-              <td class="col-sm-3 text-success"> {{userDetails.loanTenor}}</td>
+               <td class="col-sm-2">Loan Amount</td>
+              <td class="text-success col-sm-2"> &#8358; {{formatAmount(userDetails.loanAmount)}}</td>
+              <td class="col-sm-2">Loan Purpose</td>
+              <td class="col-sm-2 text-success"> {{userDetails.loanPurpose}}</td>
+              <td class="col-sm-2">Loan Tenor</td>
+              <td class="col-sm-2 text-success"> {{userDetails.loanTenor}}</td>
             </tr>
             <tr class="row">
-              <td class="col-sm-3">Loan Amount</td>
-              <td class="text-success col-sm-3"> &#8358; {{formatAmount(userDetails.loanAmount)}}</td>
-               <td class="col-sm-3">Other Comments</td>
-              <td class="col-sm-3 text-success"> {{userDetails.workInformation.otherComments}} </td>
-            </tr>
-            <tr class="row">
-              <td class="col-sm-3">Any indebtedness?</td>
-              <td class="col-sm-3 text-success"> {{userDetails.indebtedness}}  </td>
-              <td class="col-sm-3">List indebtedness</td>
-              <td class="col-sm-3"><b class="text-success">{{userDetails.listIndebtedness}}</b></td>
+               <td class="col-sm-2">Other Comments</td>
+              <td class="col-sm-2 text-success"> {{userDetails.workInformation.otherComments}} </td>
+               <td class="col-sm-2">Any indebtedness?</td>
+              <td class="col-sm-2 text-success"> {{userDetails.indebtedness}}  </td>
+              <td class="col-sm-2">List indebtedness</td>
+              <td class="col-sm-2"><b class="text-success">{{userDetails.listIndebtedness}}</b></td>
             </tr>
             <tr class="row">
               <td class="col-sm-2">Repayment Mode</td>
@@ -106,29 +108,28 @@
         <table class="table table-striped table-bordered">
             <tbody>
             <tr class="row">
-                <td class="col-sm-3">Employment Type</td>
-                <td class="col-sm-3"><b class="text-success"> {{userDetails.workInformation.employmentType}}</b></td>
-                <td class="col-sm-3">Company Name</td>
-                <td class="col-sm-3 text-success"> {{userDetails.workInformation.companyName}} </td>
+                <td class="col-sm-2">Employment Type</td>
+                <td class="col-sm-2"><b class="text-success"> {{userDetails.workInformation.employmentType}}</b></td>
+                <td class="col-sm-2">Company Name</td>
+                <td class="col-sm-2 text-success"> {{userDetails.workInformation.companyName}} </td>
+                <td class="col-sm-2">Phone Number</td>
+                <td class="col-sm-2 text-success"> {{userDetails.workInformation.companyPhone}} </td>
             </tr>
              <tr class="row">
-                <td class="col-sm-3">Phone Number</td>
-                <td class="col-sm-2 text-success"> {{userDetails.workInformation.companyPhone}} </td>
                 <td class="col-sm-2">Official Email</td>
                 <td class="col-sm-5 text-success"> {{userDetails.workInformation.officialEmail}} </td>
-            </tr>
-             <tr class="row">
-                <td class="col-sm-3">Company Address</td>
+                <td class="col-sm-2">Company Address</td>
                 <td class="col-sm-3 text-success"> {{userDetails.workInformation.companyAddress}} </td>
-                <td class="col-sm-3">Position</td>
-                <td class="col-sm-3 text-success"> {{userDetails.workInformation.position}} </td>
+               
             </tr>
              <tr class="row">
-                <td class="col-sm-3">Salary Date</td>
-                <td class="col-sm-3 text-success"> {{moment(userDetails.workInformation.salaryDate)}} </td>
-                <td class="col-sm-3">Quarterly Date</td>
-                <td class="col-sm-3 text-success" v-if="userDetails.workInformation.quarterlyDate"> {{moment(userDetails.workInformation.quarterlyDate)}} </td>
-                <td class="col-sm-3" v-else></td>
+                 <td class="col-sm-2">Position</td>
+                <td class="col-sm-2 text-success"> {{userDetails.workInformation.position}} </td>
+                 <td class="col-sm-2">Salary Date</td>
+                <td class="col-sm-2 text-success"> {{moment(userDetails.workInformation.salaryDate)}} </td>
+                <td class="col-sm-2">Quarterly Date</td>
+                <td class="col-sm-2 text-success" v-if="userDetails.workInformation.quarterlyDate"> {{moment(userDetails.workInformation.quarterlyDate)}} </td>
+                <td class="col-sm-2" v-else></td>
             </tr>
              <tr class="row">
                 <td class="col-sm-3">Monthly Income</td>
@@ -145,28 +146,26 @@
          <table class="table table-striped table-bordered">
             <tbody>
                 <tr class="row">
-                  <td class="col-sm-3">Status</td>
-                  <td class="col-sm-3 text-success">{{userDetails.guarantors[0].status}}</td>
-                  <td class="col-sm-3">Name</td>
-                  <td class="col-sm-3 text-success"> {{userDetails.guarantors[0].firstName}} {{userDetails.guarantors[0].lastName}}</td>
+                  <td class="col-sm-2">Status</td>
+                  <td class="col-sm-2 text-success">{{userDetails.guarantors[0].status}}</td>
+                  <td class="col-sm-2">Name</td>
+                  <td class="col-sm-2 text-success"> {{userDetails.guarantors[0].firstName}} {{userDetails.guarantors[0].lastName}}</td>
+                   <td class="col-sm-2">Phone Number</td>
+                  <td class="col-sm-2 text-success"> {{userDetails.guarantors[0].phoneNumber}}</td>
                 </tr>
 
                 <tr class="row">
                   <td class="col-sm-2">Email</td>
                   <td class="col-sm-5 text-success">{{userDetails.guarantors[0].email}}</td>
-                  <td class="col-sm-2">Phone Number</td>
-                  <td class="col-sm-3 text-success"> {{userDetails.guarantors[0].phoneNumber}}</td>
-                </tr>
-
-                <tr class="row">
-                  <td class="col-sm-3">Address</td>
-                  <td class="col-sm-9 text-success"> {{userDetails.guarantors[0].address}}</td>
+                  <td class="col-sm-2">Address</td>
+                  <td class="col-sm-3 text-success"> {{userDetails.guarantors[0].address}}</td>
+                 
                 </tr>
                 <tr class="row">
                   <td class="col-sm-3">ID Card</td>
                   <td class="col-sm-3 text-success">
                       <form action="/action_page.php">
-                        <div class="form-group" style= "width:auto; height:auto">
+                        <div class="form-group" style= "width:auto; height:80px">
                         <a :href="userDetails.guarantors[0].idCard" download><img class="img-fluid" :src="userDetails.guarantors[0].idCard" alt="id"></a>
                         </div>
                       </form>
@@ -174,7 +173,7 @@
                   <td class="col-sm-3">Signature</td>
                   <td class="col-sm-3 text-success">
                       <form action="/action_page.php">
-                        <div class="form-group" style= "width:auto; height:auto">
+                        <div class="form-group" style= "width:auto; height:80px">
                         <a :href="userDetails.guarantors[0].signature" download><img class="img-fluid" :src="userDetails.guarantors[0].signature" alt="id"></a>
                         </div>
                       </form>
@@ -244,20 +243,15 @@
           <textarea type="text" placeholder="comment...." class="form-control"></textarea>
       </div>
 
-      <div class="text-center">
-           <button @click="modal=true; confirm_approve=true"  class="btn btn-success ml-n2" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Approve   </button>
-           <button @click="modal=true; confirm_decline=true"  class="btn btn-danger" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Decline</button>
-      </div>
-
     </div>
   </div>
 </div>
-
-
-
-          
-               
+           
       </section>
+       <div class="text-center">
+           <button @click="modal=true; confirm_approve=true"  class="btn btn-success ml-n2" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Approve   </button>
+           <button @click="modal=true; confirm_decline=true"  class="btn btn-danger" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Decline</button>
+      </div>
   </div>
 </template>
 
@@ -414,10 +408,18 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+  border: 2px solid blu;
+  padding: 0px
+}
+.img-fluid {
+  height: 80px;
+}
 .main-container {
     border:2px solid blac;
     margin-left:-3vw;
-    height: auto;
+    max-height: 390px;
+    overflow-y: auto;
     overflow-x: hidden
  }
   textarea:focus, select:focus {

@@ -10,7 +10,7 @@
                     </div>
                 </div>
 
-                <mdb-jumbotron class="jumbotron-flui" style="height:auto; width:auto">
+                <mdb-jumbotron class="jumbotron-fluid">
     
                 <div class="containr">
                     <div class="router-div" style="">
@@ -93,11 +93,22 @@ computed : {
     overflow-x: hidden
  }
 
+.jumbotron-fluid {
+     height:auto; 
+     width:auto; 
+     overflow-x:hidden;
+      margin-top:-20px;
+      /* padding: 30px; */
+      padding: 0px 0px;
+      padding-top:50px ;
+      padding-bottom: 8vh;
+      border: 2px solid re
+ }
   .jumbotron-head {
-     height:8vh;
+     height:60px;
      /* margin-top:20vh; */
      width:auto;
-     margin:0vh 00px
+     margin:0vh 0px
      /* background:rgb(208, 216, 224); */
 
   }
@@ -114,7 +125,7 @@ computed : {
  .router-div {
      border:2px solid gree;
      height:auto;
-     margin:-7vh 0vw;
+     margin:-50px 0vw;
      width: auto
  }
 
@@ -122,7 +133,7 @@ computed : {
      /* width:auto; */
      margin:1vw 0px;
      cursor:pointer;
-     height:4vh;
+     height:30px;
      text-align: center;
      /* font-weight: 400; */
      color: rgb(19, 95, 195);

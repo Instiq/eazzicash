@@ -1,7 +1,7 @@
 <template>
-    <div class="">
+    <div class="main-wrapper">
 
-        <section  class="mb-5 d-flex position-fixed " style="height:10vh;width:100%;z-index:1; box-shadow:20px 20px blur; background:#424242; justify-content:space-between" >
+        <section  class="mb-5 d-flex  position-fixed header-nav" style="" >
           <p v-if="['dashboard'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold;   margin-left:25%">Dashboard</p>
           <p v-if="['loan'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Loan</p>
           <p v-if="['pawn'].includes($route.name)" class="text-white  profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Pawn</p>
@@ -12,13 +12,7 @@
             <!-- <span class="text-white" @click="openNav" style="font-size:22px; position:absolute; margin-left:55px; margin-top:18px; cursor:pointer">Dashboard</span>    -->
           </div>
   
-          <div icon='envelope' right class="float-right py-4 px-5 d-flex" style="border:2px solid blu;flex-direction:row">
-            <!-- <a href="#" icon='envelope' class="mr-5 text-white"> <i class="fas fa-envelope mr-1"></i> <span class="d-none d-sm-inline-block" >Contact</span></a> -->
-            
-            <!-- <a  @click="userSignOut" class="mr-5  text-white"><i class="fas fa-sign-out-alt mr-1"></i><span class="d-none d-sm-inline-block">Logout</span></a>
-            
-            <a href="#" class="mr-5   text-white" ><i class="fas fa-user mr-1"></i><span class="d-none d-sm-inline-block"> Account</span></a>  -->
-             
+          <div icon='envelope' right class="float-right py-4 px-5 d-flex" style="border:2px solid re;flex-direction:row">
             <mdb-dropdown>
               <mdb-dropdown-toggle slot="toggle" class="text-white mt-n2 small-screen-acc"><i class="fas fa-user mr-1"></i> <span class="d-none d-md-inline-block"> Account</span></mdb-dropdown-toggle>
               <mdb-dropdown-menu class="small-screen-menu mt-sm-1 mt-xl-3">
@@ -27,7 +21,6 @@
                 <mdb-dropdown-item  @click="userSignOut"> Signout</mdb-dropdown-item>
               </mdb-dropdown-menu>
             </mdb-dropdown>
-
           </div>       
         </section>
 
@@ -42,7 +35,7 @@
           <!-- avatar image -->
             <div class="row mt-n4 avatar-main">
                 <div class="col-6" >
-                   <div >
+                   <div class="">
                        <img v-if="profilePicture" :src="profilePicture" class="avatar rounded-pill" alt="">
                         <img v-if="!profilePicture" src="../assets/avatar2.jpg" class="avatar rounded-pill" alt="">
                    </div>
@@ -147,7 +140,7 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
 
 ::-webkit-scrollbar {
     width: 12px;
@@ -211,7 +204,6 @@ export default {
 }
 
 /* my custom styles */
-
 .hambger{
     font-size: 30px;
     top: 15px;
@@ -226,6 +218,14 @@ export default {
   position: relative;
 }
 
+.header-nav{
+  height:70px;
+  width:100%;
+  z-index:1; 
+  box-shadow:20px 20px blur; 
+  background:#424242; 
+  justify-content:space-between
+}
 .navheader {
   position: relative;
   color:white;
@@ -286,10 +286,11 @@ export default {
 .children-routes {
   position: absolute;
   left:15vw;
-  border:2px solid blac;
+  /* border:2px solid black; */
   top:20vh;
   height:auto; 
   width:auto;
+  margin-top: -50px;
   display: inline-block;
   /* margin: 0px 60vw; */
 }

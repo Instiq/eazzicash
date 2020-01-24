@@ -1,7 +1,7 @@
 <template>
     <div class="">
 
-        <section class="mb-5 d-flex position-fixed" style="height:10vh;width:100%;z-index:1; box-shadow:20px 20px blur; background:#424242; justify-content:space-between" >
+        <section class="mb-5 d-flex position-fixed header-nav" style="" >
              <p v-if="['adminDashboard'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold;   margin-left:25%">Dashboard</p>
             <p v-if="['approvals'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">Approvals</p>
             <p v-if="['userManagement'].includes($route.name)" class="text-white profileItems" style="font-size:19px; margin-top:24px;  font-weight:bold; margin-left:25%">User Management</p>
@@ -118,11 +118,34 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
     body {
   font-family: "Lato", sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background:green;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+.header-nav{
+  height:70px;
+  width:100%;
+  z-index:1; 
+  box-shadow:20px 20px blur; 
+  background:#424242; 
+  justify-content:space-between
+}
 .sidenav {
   height: 100%;
   width: 0;
@@ -195,7 +218,7 @@ export default {
   border: 2px solid gree;
   position: relative;
   top:-60px;
-  height: 10.05vh;
+  height: 70px;
   padding-top: 10px;
   background:rgb(6, 58, 6);
 }
@@ -216,7 +239,7 @@ export default {
 
 .avatar-main {
   border-bottom: 1px solid gainsboro;
-  height:20vh;
+  height:110px;
   margin-bottom: 12px
 }
 
@@ -243,10 +266,11 @@ export default {
   position: absolute;
   /* border:2px solid balck; */
   left:15vw;
-  top:20vh;
+  top:130px;
   height:auto; 
   width:auto;
   display: inline-block;
+  overflow-x: hidden
   /* margin: 0px 60vw; */
 }
 

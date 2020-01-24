@@ -96,11 +96,11 @@ export default {
 
 
  .main-container {
-    border:2px solid bla;
+    border:2px solid blac;
     /* margin-left:3vw; */
     height: auto;
     width:auto;
-    margin:0px 5vw
+    margin:70px 5vw
  }
  .jumbotron-head {
      height: auto;
@@ -115,7 +115,7 @@ export default {
  .loan-navigation {
      border-bottom : 2px solid gainsboro;
      position: relative;
-     height: 6vh;
+     height:45px;
      margin:0px 8vw;
      margin-left: 7vw;
      width:auto
@@ -131,7 +131,7 @@ export default {
      border-radius:60px;
      text-align: center;
      padding:-7vh;
-     top:6vh
+     top:40px
      
  }
 
@@ -139,7 +139,8 @@ export default {
      width:10.7vw;
      margin:1vw 0px;
      cursor:pointer;
-     height:4vh
+     /* height:4vh; */
+     /* border:2px solid black */
 
  }
 

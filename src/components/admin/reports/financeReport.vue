@@ -3,7 +3,7 @@
       <section class="container main-container " style="height:auto">
 
     <div class="container ">
-      <div class="row  p-1 mb-5" style="margin-top:-30px">
+      <div class="row" style="margin-top:-30px">
         <div class="col">
           <!-- for Reports -->
           <div class="row mt-5">
@@ -74,7 +74,9 @@
       </div>
    </div>
 
-   <div class="row d-flex justify-content-around">
+   
+  </section>  
+   <div class="row mt-3 d-flex justify-content-around">
       <!-- <div>Page {{pageNumberr}} of {{pageCount}}</div>
       <div class="btn btn-success" v-show='backward' @click="prevPage"> <i class="fas fa-angle-double-left"></i> Prev </div>
       
@@ -82,8 +84,7 @@
       <div class="btn btn-primary float-right" v-show="pageCount>0"  @click="exportTableToExcel('html')"> Download excel <i class="fa fa-download"></i></div>
      <div class="btn btn-primary float-right" v-show="pageCount>0"  @click="exportToWord('html')"> Download Word <i class="fa fa-download"></i></div>
       <div class="btn btn-primary float-right" v-show="pageCount>0"  @click="exportToPDF"> Download pdf <i class="fa fa-download"></i></div>
-   </div>   
-  </section>  
+   </div>  
   </div>
 
 
@@ -374,11 +375,25 @@ export default {
 
 <style scoped>
 .main-container {
-    border:2px solid blac;
+  border:2px solid blac;
     margin-left:0vw;
-    height: auto;
+     max-height: 390px;
+    overflow-y: auto;
     overflow-x: hidden
  }
+
+  .jumbotron-fluid {
+     height:auto; 
+     width:auto; 
+     overflow-x:hidden;
+      margin-top:-20px;
+      /* padding: 30px; */
+      padding: 0px 0px;
+      padding-top:7vh ;
+      padding-bottom: 7vh;
+      border: 2px solid re
+ }
+
 
  ::placeholder {
    font-size: 13px

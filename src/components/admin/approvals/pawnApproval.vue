@@ -2,7 +2,7 @@
     <div class="container">
       <section class="container main-container " style="height:auto">
           <div class="container ">
-            <div class="row  p-1 mb-5" style="margin-top:-30px">
+            <div class="row " style="margin-top:-30px">
               <div class="col">
                 <div class="row mt-5">
                     <p class="text-success col-md-2 mt- h6 font-weight-bold">Pawn Requests</p>
@@ -65,14 +65,13 @@
               </mdb-modal-footer>
             </mdb-modal>
           </div>
-
-          <div class="row d-flex justify-content-around">
+          
+        </section>
+          <div class="row d-flex mt-4 justify-content-around">
               <div>Page {{pageNumberr}} of {{pageCount}}</div>
               <div class="btn btn-success" v-show='backward' @click="prevPage"> <i class="fas fa-angle-double-left"></i> Prev </div>
               <div class="btn btn-success" v-show='forward' @click="nextPage">Next <i class="fas fa-angle-double-right"></i> </div>
           </div>
-          
-        </section>
      </div>
 </template>
 
@@ -96,7 +95,7 @@ export default {
    return {
      name:"",
      pageNumber:0,
-     size:5,
+     size:10,
      modal: false,
      confirm_delete:"",
      isLoading:false
@@ -226,8 +225,9 @@ export default {
 .main-container {
     border:2px solid blac;
     margin-left:0vw;
-    height: auto;
-    overflow-x: hidden
+    overflow-x: hidden;
+     max-height: 390px;
+    overflow-y: auto;
  }
 
  ::placeholder {

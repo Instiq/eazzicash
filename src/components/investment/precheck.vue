@@ -4,7 +4,7 @@
           <div class="container main-container">
 
               <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
-                  <div class="border py-4 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Returns Calculator</span></div>
+                  <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Returns Calculator</span></div>
 
                     <section class="container  mt-3">
                        <div class="row">
@@ -180,7 +180,9 @@ export default {
 
  .main-container {
     border:2px solid blac;
-    margin-left:3vw;
+    margin-left:200px;
+     margin-top: 70px;
+    padding:0px 50px;
     height:auto
  }
 
@@ -204,7 +206,7 @@ export default {
  @media (max-width:1200px){ 
     .main-container {
     border:2px solid blac;
-    margin-left:7vw;
+    margin-left:80px;
     height: auto;
     width:auto
  }
@@ -219,7 +221,7 @@ export default {
  @media (min-width:1200px){ 
     .main-container {
     border:2px solid blac;
-    margin-left:15vw !important;;
+    margin-left:100px !important;;
     height: auto;
     width:auto
  }

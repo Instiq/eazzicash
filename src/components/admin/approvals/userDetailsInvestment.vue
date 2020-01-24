@@ -12,47 +12,49 @@
        <div class="container table-responsive">            
         <table class="table table-striped table-bordered">
           <tbody>
-              <tr class="row">
-                <td class="col-sm-3">Customer Firstname</td>
-                <td class="col-sm-3 text-success"> {{userDetails.userDetails.firstName}}</td>
-                <td class="col-sm-3">Customer Lastname</td>
-                <td class="col-sm-3 text-success"> {{userDetails.userDetails.lastName}}</td>
-             </tr>
              <tr class="row">
-              <td class="col-sm-2">Customer Email</td>
-              <td class="col-sm-5 text-success"> {{userDetails.userDetails.email}}</td>
-              <td class="col-sm-3">Customer Phone</td>
+              <td class="col-sm-2">First Name</td>
+              <td class="col-sm-2 text-success"> {{userDetails.userDetails.firstName}}</td>
+              <td class="col-sm-2">Last Name</td>
+              <td class="col-sm-2 text-success"> {{userDetails.userDetails.lastName}}</td>
+              <td class="col-sm-2">Phone Number</td>
               <td class="col-sm-2 text-success"> {{userDetails.userDetails.phoneNumber}}</td>
             </tr>
-            <tr class="row">
-              <td class="col-sm-3">Address</td>
-              <td class="text-success col-sm-3"> {{userDetails.personalDetails.address}}</td>
+             <tr class="row">
+              <td class="col-sm-2">Email</td>
+              <td class="col-sm-5 text-success"> {{userDetails.userDetails.email}}</td>
+               <td class="col-sm-3">Years Lived in Address</td>
+              <td class="col-sm-2 text-success"> {{userDetails.personalDetails.yearsInAddress}}</td>
             </tr>
             <tr class="row">
-              <td class="col-sm-3">Occupation</td>
-              <td class="text-success col-sm-3">{{userDetails.personalDetails.occupation}}</td>
-               <td class="col-sm-3">State</td>
-              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.state}} </td>
+              <td class="col-sm-1">Address</td>
+              <td class="text-success col-sm-4"> {{userDetails.personalDetails.address}}</td>
+              <td class="col-sm-1">State</td>
+              <td class="col-sm-2 text-success"> {{userDetails.personalDetails.state}} </td>
+               <td class="col-sm-2">Means of Identification</td>
+              <td class="col-sm-2 text-success"> {{userDetails.personalDetails.meansOfId}} </td>
             </tr>
             <tr class="row">
-              <td class="col-sm-3">Means of Identification</td>
-              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.meansOfId}} </td>
-              <td class="col-sm-2">ID Card</td>
+               <td class="col-sm-2">ID Card</td>
               <td class="col-sm-4">
                   <form action="/action_page.php">
-                    <div class="form-group" style= "width:auto; height:auto">
-                    <a :href="userDetails.personalDetails.idCard" download=""><img class="img-fluid" :src="userDetails.personalDetails.idCard" alt="id"></a>
+                    <div class="form-group" style= "width:auto; height:80px">
+                    <a :href="userDetails.personalDetails.idCard" download><img class="img-fluid"  :src="userDetails.personalDetails.idCard" alt="id"></a>
                     </div>
                 </form>
               </td>
-            </tr>
-            <tr class="row">
-              <td class="col-sm-3">Other ID</td>
-              <td class="col-sm-3 text-success"> {{userDetails.personalDetails.otherId}}  </td>
+               <td class="col-sm-2" v-if="userDetails.personalDetails.otherId">Other ID</td>
+              <td class="col-sm-4 text-success" v-if="userDetails.personalDetails.otherId"> 
+                <form action="/action_page.php">
+                    <div class="form-group" style= "width:auto; height:80px">
+                    <a :href="userDetails.personalDetails.otherId" download><img class="img-fluid"  :src="userDetails.personalDetails.otherId" alt="id"></a>
+                    </div>
+                </form> 
+              </td>
               <td class="col-sm-2">Signature</td>
               <td class="col-sm-4">
                  <form action="/action_page.php">
-                    <div class="form-group" style= "width:auto; height:auto">
+                    <div class="form-group" style= "width:auto; height:80px">
                     <a :href="userDetails.personalDetails.signature" download><img class="img-fluid" :src="userDetails.personalDetails.signature" alt="id"></a>
                     </div>
                 </form>
@@ -72,22 +74,20 @@
         <table class="table table-striped table-bordered">
           <tbody>
             <tr class="row">
-              <td class="col-sm-3">Investment Amount</td>
-              <td class="col-sm-3 text-success"> &#8358; {{formatAmount(userDetails.investmentAmount)}}</td>
-              <td class="col-sm-3">Investment Tenor</td>
-              <td class="col-sm-3 text-success"> {{userDetails.investmentTenor}}</td>
+              <td class="col-sm-2">Investment Amount</td>
+              <td class="col-sm-2 text-success"> &#8358; {{formatAmount(userDetails.investmentAmount)}}</td>
+              <td class="col-sm-2">Investment Tenor</td>
+              <td class="col-sm-2 text-success"> {{userDetails.investmentTenor}}</td>
+               <td class="col-sm-2">Source of Income</td>
+              <td class="text-success col-sm-2">{{userDetails.incomeSource}}</td>
             </tr>
             <tr class="row">
-              <td class="col-sm-3">Source of Income</td>
-              <td class="text-success col-sm-3">{{userDetails.incomeSource}}</td>
                <td class="col-sm-3">OtherInformation</td>
               <td class="col-sm-3 text-success"> {{userDetails.otherInformation}} </td>
-            </tr>
-            <tr class="row">
-               <td class="col-sm-6">Payment Evidence</td>
-              <td class="col-sm-6">
+               <td class="col-sm-3">Payment Evidence</td>
+              <td class="col-sm-3">
                 <form action="">
-                  <div class="form-group" style= "width:auto; height:auto">
+                  <div class="form-group" style= "width:auto; height:80px">
                   <a :href="userDetails.paymentEvidence" download> <img class="img-fluid" :src="userDetails.paymentEvidence" alt="id"></a>
                   </div>
                 </form>
@@ -180,14 +180,6 @@
         <div class="form-group">
             <textarea type="text" placeholder="comment...." class="form-control"></textarea>
         </div>
-
-        <div class="text-center"> 
-            <!-- <button  class="btn btn-success mr-5" ><span style="font-size:15px;  padding:10px 20px;">Approve</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
-            <!-- <button  class="btn btn-danger "><span style="font-size:15px;  padding:10px 20px;">Decline</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
-            <button @click="modal=true; confirm_approve=true" class="btn btn-success ml-n2" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Approve  <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
-            <button @click="modal=true; confirm_decline=true"  class="btn btn-danger" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Decline  <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
-        </div>
-
     </div>
   </div>
 </div>
@@ -197,6 +189,12 @@
           
                
       </section>
+       <div class="text-center"> 
+            <!-- <button  class="btn btn-success mr-5" ><span style="font-size:15px;  padding:10px 20px;">Approve</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
+            <!-- <button  class="btn btn-danger "><span style="font-size:15px;  padding:10px 20px;">Decline</span> <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button> -->
+            <button @click="modal=true; confirm_approve=true" class="btn btn-success ml-n2" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Approve  <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
+            <button @click="modal=true; confirm_decline=true"  class="btn btn-danger" style="margin-left:100px; padding:10px 20px; font-size:15px; margin-top:25px"> Decline  <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span>   </button>
+        </div>
   </div>
 </template>
 
@@ -329,9 +327,14 @@ export default {
 .main-container {
     border:2px solid blac;
     margin-left:-3vw;
-    height: auto;
-    overflow-x: hidden
+    overflow-x: hidden;
+     max-height: 390px;
+    overflow-y: auto;
  }
+
+ .img-fluid {
+  height: 80px;
+}
   textarea:focus, select:focus {
      border-color: rgba(75, 148, 8, 0.8);
      box-shadow: 0 0 5px rgb(75, 148, 8, 1);

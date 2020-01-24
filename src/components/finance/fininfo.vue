@@ -127,6 +127,7 @@
                                 <option value="citibank">Citibank</option>
                                 <option value="ecobank">Ecobank</option>
                                 <option value="fidelity">Fidelity Bank</option>
+                                 <option value="first bank">First Bank </option>
                                 <option value="fcmb">First City Monument Bank (FCMB)</option>
                                 <option value="fsdh">FSDH Merchant Bank</option>
                                 <option value="gtb">Guarantee Trust Bank (GTB)</option>

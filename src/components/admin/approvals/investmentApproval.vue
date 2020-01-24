@@ -2,7 +2,7 @@
   <div class="container">
       <section class="container main-container " style="height:auto">
         <div class="container ">
-          <div class="row  p-1 mb-5" style="margin-top:-30px">
+          <div class="row" style="margin-top:-30px">
             <div class="col">
               <div class="row mt-5">
                   <p class="text-success col-md-3 mt- h6 font-weight-bold">Investment Requests</p>
@@ -66,14 +66,13 @@
               <button class="btn bg-danger text-white" @click="deleteInvestment" v-show="confirm_delete == 'delete'" >Delete <span v-if="isLoading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button>
             </mdb-modal-footer>
           </mdb-modal>
-        </div>
-
-        <div class="row d-flex justify-content-around">
+        </div> 
+      </section>
+       <div class="row mt-4 d-flex justify-content-around">
             <div>Page {{pageNumberr}} of {{pageCount}}</div>
             <div class="btn btn-success" v-show='backward' @click="prevPage"> <i class="fas fa-angle-double-left"></i> Prev </div>
             <div class="btn btn-success" v-show='forward' @click="nextPage">Next <i class="fas fa-angle-double-right"></i> </div>
-        </div>      
-      </section>
+        </div>     
   </div>
 </template>
 
@@ -97,7 +96,7 @@ data () {
    return {
      name:"",
      pageNumber:0,
-     size:5,
+     size:10,
      modal: false,
      confirm_delete:"",
      isLoading:false
@@ -227,7 +226,8 @@ data () {
 .main-container {
     border:2px solid blac;
     margin-left:0vw;
-    height: auto;
+    max-height: 390px;
+    overflow-y: auto;
     overflow-x: hidden
  }
 

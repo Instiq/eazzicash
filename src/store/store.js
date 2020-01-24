@@ -15,7 +15,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     //http://localhost:3000/api
-    //https://still-bastion-19162.herokuapp.com/api
+    ////////https://still-bastion-19162.herokuapp.com/api
     //https://eazzi-server.herokuapp.com/api
     api_url : 'https://eazzi-server.herokuapp.com/api',
     name:"",
@@ -1434,7 +1434,7 @@ export default new Vuex.Store({
             })
           },
 
-          //delete finance request by admin
+          //delete Pawn request by admin
          async deletePawn({commit, state, rootState}, ) {
           await axios({
             method:'delete',

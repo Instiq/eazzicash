@@ -3,7 +3,7 @@
       <div class="container">
           <div class="container main-container">
                <mdb-jumbotron class="jumbotron-fluid small-screen-jumbo" style="height:auto; width:auto">
-                   <div class="border py-4 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Investment Application Form</span></div>
+                   <div class="border py-3 px-3 text-muted jumbotron-head"> <span class="jumbotron-head-text h6 py-3">Investment Application Form</span></div>
                    <router-link to="/profile/investment/precheck">
                        <div class="back-arrow-div ml-lg-4 ml-xl-5 ml-md-4 small-screen-nav">
                          <i class="fas fa-arrow-left text-white"></i>   
@@ -96,7 +96,7 @@ export default {
     /* margin-left:3vw; */
     height: auto;
     width:auto;
-    margin:0px 5vw
+    margin:70px 5vw
  }
  .jumbotron-head {
      height: auto;
@@ -111,7 +111,7 @@ export default {
  .loan-navigation {
      border-bottom : 2px solid gainsboro;
      position: relative;
-     height: 6vh;
+     height: 45px;
      margin:0px 9vw;
      /* width:50vw; */
      margin-left: 7vw;
@@ -128,7 +128,7 @@ export default {
      border-radius:60px;
      text-align: center;
      padding:-7vh;
-     top:6vh
+     top:40px
      
  }
 
@@ -136,7 +136,7 @@ export default {
      width:10.7vw;
      margin:1vw 0px;
      cursor:pointer;
-     height:4vh
+     /* height:4vh */
 
  }
 

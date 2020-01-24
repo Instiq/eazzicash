@@ -187,8 +187,9 @@ export default {
 
  .main-container {
     border:2px solid blac;
-    margin-left:3vw;
+    /* margin-left:3vw; */
     height:auto;
+    margin-top: 70px 5vw
  }
 
  .jumbotron-head {
@@ -251,6 +252,7 @@ export default {
     border:2px solid blac;
     margin-left:15vw;
     height: auto;
+    padding:0px 0px;
     width:120vw;
     max-width:120vw
  }
@@ -272,6 +274,7 @@ export default {
     margin-left:15vw;
     height: auto;
     width:120vw;
+    padding:0px 00px;
     max-width:120vw
  }
 .small-screen-jumbo {

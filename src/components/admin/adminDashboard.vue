@@ -5,7 +5,7 @@
                       <div class="row">
                           <div class="col-md-6 entities-card ">
                             
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:auto">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:150px">
                                   <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:orange">
 
@@ -16,17 +16,17 @@
                                       </mdb-card-title>
                                      
                                       <mdb-card-text>
-                                         <span class="mt h5" v-if="loanEntities" style="font-weight:bold">{{loanEntities.length}} <span v-if="loanEntities.length==1">request </span><span v-if="loanEntities.length>1"> requests </span> </span> 
-                                         <span class="mt h5" v-else  style="font-weight:bold">0.00</span> 
+                                         <span class="mt-5 h5" v-if="loanEntities" style="font-weight:bold">{{loanEntities.length}} <span v-if="loanEntities.length==1">request </span><span v-if="loanEntities.length>1"> requests </span> </span> 
+                                         <span class="mt-5 h5" v-else  style="font-weight:bold">0.00</span> 
                                       </mdb-card-text>
                                      
                                       </mdb-card-body>
-                                       <div class="mt-5" style="border:2px solid orange"></div>
+                                       <div class="line" style="border:2px solid orange"></div>
                                       
                               </mdb-card>
                           </div>
                           <div class="col-md-6 entities-card">
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:auto">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:150px">
                                     <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:mediumseagreen">
                                          Total  Investment Requests
@@ -37,12 +37,12 @@
                                          <span v-else class="mt-5 h5">0.00</span>
                                       </mdb-card-text>
                                       </mdb-card-body>
-                                       <div class="mt-5" style="border:2px solid mediumseagreen"></div>
+                                       <div class="line" style="border:2px solid mediumseagreen"></div>
                               </mdb-card>
                               
                           </div>  
                           <div class="col-md-6 entities-card">
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:auto">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:150px">
                                    <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:deepskyblue">
                                         Total Finance Requests
@@ -53,12 +53,12 @@
                                          <span v-else class="mt-5 h5">0.00</span>
                                       </mdb-card-text>
                                       </mdb-card-body>
-                                       <div class="mt-5" style="border:2px solid deepskyblue"></div>
+                                       <div class="line" style="border:2px solid deepskyblue"></div>
                               </mdb-card>
                               
                           </div>
                           <div class="col-md-6 entities-card">
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:27vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:150px">
                                    <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:orangered">
                                        Total Pawn Requests
@@ -71,7 +71,7 @@
                                       </mdb-card-text>
                                       
                                       </mdb-card-body>
-                                        <div class="" style="border:2px solid orangered"></div>
+                                        <div class="line" style="border:2px solid orangered"></div>
                               </mdb-card>
                               
                           </div>
@@ -150,7 +150,7 @@ export default {
     overflow-x: hidden
  }
  .col-one-title {
-     margin-bottom: 6vh;
+     margin-bottom: 20px;
      font-size:18px;
      font-weight: bold!important
  }

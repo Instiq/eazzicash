@@ -9,7 +9,7 @@
                       <div class="row">
                           <div class="col-md-6 entities-card ">
                             
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:200px">
                                   <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:orange">
                                          Loan Running
@@ -27,7 +27,7 @@
                               </mdb-card>
                           </div>
                           <div class="col-md-6 entities-card">
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:200px">
                                     <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:mediumseagreen">
                                           Investment Running
@@ -42,7 +42,7 @@
                               
                           </div>  
                           <div class="col-md-6 entities-card">
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:200px">
                                    <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:deepskyblue">
                                          Finance
@@ -57,7 +57,7 @@
                               
                           </div>
                           <div class="col-md-6 entities-card">
-                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:26vh">
+                              <mdb-card class="borde mb-5 small-screen-entities-card" style="height:200px">
                                    <mdb-card-body class="col-one" >
                                       <mdb-card-title class="col-one-title" style="color:orangered; margin-bottom:20px">
                                         Pawn

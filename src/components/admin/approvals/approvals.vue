@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <section class="container main-container " style="height:auto">
+      <section class="container main-container" style="height:auto">
                 <div class="card mb-5  text-muted jumbotron-head">
                     <div class="loan-navigation container row small-screen-nav">
                          <router-link   class="col-md-3 ml-n1 text-dark  loan-nav " to="/adminProfile/approvals/loan" ><div class="nav-items small-screen-nav text-center"  style="width: 142px" @click="isActiveOne" :class="{ active: isActive1 }" >Loan Approvals</div></router-link>
@@ -10,7 +10,7 @@
                     </div>
                 </div>
 
-                <mdb-jumbotron class="jumbotron-flui" style="height:auto; width:auto">
+                <mdb-jumbotron class="jumbotron-fluid ">
     
                 <div class="containr">
                     <div class="router-div" style="">
@@ -93,8 +93,20 @@ computed : {
     overflow-x: hidden
  }
 
+ .jumbotron-fluid {
+     height:auto; 
+     width:auto; 
+     overflow-x:hidden;
+      margin-top:-20px;
+      /* padding: 30px; */
+      padding: 0px 0px;
+      padding-top:7vh ;
+      padding-bottom: 7vh;
+      border: 2px solid re
+ }
+
   .jumbotron-head {
-     height:8vh;
+     height:60px;
      /* margin-top:20vh; */
      width:auto;
      margin:0vh 00px
@@ -122,7 +134,7 @@ computed : {
      /* width:auto; */
      margin:1vw 0px;
      cursor:pointer;
-     height:4vh;
+     height:30px;
      text-align: center;
      /* font-weight: 400; */
      color: rgb(19, 95, 195);
