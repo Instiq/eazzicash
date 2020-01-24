@@ -104,7 +104,7 @@ export default {
  .loan-navigation {
      border-bottom : 2px solid gainsboro;
      position: relative;
-     height: 45px;
+     height: 43px;
      margin:0px 9vw;
      /* width:50vw; */
      margin-left: 7vw;
