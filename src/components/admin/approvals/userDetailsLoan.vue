@@ -215,7 +215,7 @@
               </div>
 
               <div class="col-md-3">
-                  <button @click="modal=true; confirm_update=true"  class="btn btn-info" style="margin-left:30px; padding:10px 20px; font-size:15px; margin-top:25px"> Update   </button>
+                  <button @click="modal=true; confirm_update=true; confirm_approve=false;"  class="btn btn-info" style="margin-left:30px; padding:10px 20px; font-size:15px; margin-top:25px"> Update   </button>
 
               </div>
           </div>
