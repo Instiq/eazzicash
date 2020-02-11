@@ -87,7 +87,7 @@ export default {
     
             this.toUpperCase();
 
-            let result = this.$store.state.users.sort().reverse();
+            let result = this.$store.state.users.sort().reverse()
            return  result.filter(value=> {
                 let fullName = value.firstName + " " +  value.lastName;
                 let fullNameReverse = value.lastName + " " +  value.firstName;

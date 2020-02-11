@@ -77,11 +77,13 @@
           <tbody>
             <tr class="row">
                <td class="col-sm-2">Loan Amount</td>
-              <td class="text-success col-sm-2"> &#8358; {{formatAmount(userDetails.loanAmount)}}</td>
+               <td class="text-success col-sm-2" v-if="!userDetails.updates.updatedLoanAmount"> &#8358; {{formatAmount(userDetails.loanAmount)}}</td>
+              <td class="text-success col-sm-2" v-else> &#8358; {{formatAmount(userDetails.updates.updatedLoanAmount)}}</td>
               <td class="col-sm-2">Loan Purpose</td>
               <td class="col-sm-2 text-success"> {{userDetails.loanPurpose}}</td>
               <td class="col-sm-2">Loan Tenor</td>
-              <td class="col-sm-2 text-success"> {{userDetails.loanTenor}}</td>
+              <td class="col-sm-2 text-success" v-if="!userDetails.updates.updatedLoanTenor"> {{userDetails.loanTenor}}</td>
+              <td class="col-sm-2 text-success" v-else> {{userDetails.updates.updatedLoanTenor}}</td>
             </tr>
             <tr class="row">
                <td class="col-sm-2">Other Comments</td>
@@ -399,8 +401,18 @@ export default {
  },
 
  mounted () {
-    this.$store.commit('setPrincipal', (this.userDetails.loanAmount))
-    this.$store.commit('setTenor', this.userDetails.loanTenor);
+    if(!this.userDetails.updates.updatedLoanAmount) {
+      this.$store.commit('setPrincipal', (this.userDetails.loanAmount))
+    }
+    else {
+      this.$store.commit('setPrincipal', (this.userDetails.updates.updatedLoanAmount))
+    }
+    if(!this.userDetails.updates.updatedLoanTenor) {
+       this.$store.commit('setTenor', this.userDetails.loanTenor);
+    }
+    else {
+      this.$store.commit('setTenor', (this.userDetails.updates.updatedLoanTenor))
+    }
     this.$store.dispatch('updateIsActive1')
 
  }
@@ -418,7 +430,7 @@ export default {
 .main-container {
     border:2px solid blac;
     margin-left:-3vw;
-    max-height: 390px;
+    max-height: 490px;
     overflow-y: auto;
     overflow-x: hidden
  }

@@ -73,7 +73,8 @@
                   <tbody>
                     <tr class="row">
                       <td class="col-sm-2">Pawn Amount</td>
-                      <td class="text-success col-sm-2"> &#8358; {{formatAmount(userDetails.pawnAmount)}}</td>
+                      <td class="text-success col-sm-2" v-if="!userDetails.updates.updatedPawnAmount"> &#8358; {{formatAmount(userDetails.pawnAmount)}}</td>
+                       <td class="text-success col-sm-2" v-else> &#8358; {{formatAmount(userDetails.updates.updatedPawnAmount)}}</td>
                       <td class="col-sm-2">Pawn Tenor</td>
                       <td class="col-sm-2 text-success"> {{userDetails.pawnTenor}}</td>
                       <td class="col-sm-2">Item category</td>
@@ -280,7 +281,12 @@ export default {
  },
 
  mounted () {
-     this.$store.commit('setPawnAmount', (this.userDetails.pawnAmount))
+     if(!this.userDetails.updates.updatedPawnAmount) {
+      this.$store.commit('setPawnAmount', (this.userDetails.pawnAmount))
+    }
+    else {
+      this.$store.commit('setPawnAmount', (this.userDetails.updates.updatedPawnAmount))
+    }
  }
 }
 </script>

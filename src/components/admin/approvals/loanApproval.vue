@@ -37,7 +37,7 @@
                       <td class="text-center"> &#8358; {{formatAmount(item.loanAmount)}}  </td>
                       <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
                       <td class="text-center"> {{item.approved}} </td>
-                      <td class="text-center"> {{moment(item.createdAt)}} </td>
+                      <td class="text-center"> {{moments(item.createdAt)}} </td>
                       <td  class="text-center text-danger" @click="userDetailsAdmin(index); modal=true" style="cursor:pointer"> Delete </td>
                     </tr>
                   </tbody>
@@ -114,6 +114,10 @@ export default {
     },
     moment (x) {
         return moment(x).format("DD/MM/YYYY")
+     },
+    moments (x) {
+        let date = moment(x)
+        return date.toString().substring(0,25)
      },
      
    //function to update current loan details by admin
@@ -216,7 +220,7 @@ export default {
   }
  },
 
-  created () {
+  mounted () {
       this.$store.dispatch('getAllEntitiesAll');
       this.isActiveOne();
       // setTimeout(_ => this.pageNumber=1, 3000)

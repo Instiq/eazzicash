@@ -1049,7 +1049,10 @@ export default new Vuex.Store({
          async getAllEntitiesAll ({commit, state}) {
           await axios({
             method:'get',
-            url:`${state.api_url}/entities`
+            url:`${state.api_url}/entities`,
+            headers:{
+              'x-auth-token': state.token
+            }
           })
           .then(({data}) => {
             commit('setUserEntitiesAll', data)
@@ -1107,8 +1110,11 @@ export default new Vuex.Store({
             console.log(err.response.data);
             if (err.response.data == 'Invalid Token') {
               alert('Token expired....kindly re-login');
-              router.push('/signin')
+              router.push('/signin');
+              return
             }
+            commit('setIsError', true);
+            commit('setErrorMsg', err.response.data)
             
           })
         },

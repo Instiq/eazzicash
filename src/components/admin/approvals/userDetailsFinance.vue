@@ -367,6 +367,7 @@ export default {
      moment (date) {
             return moment(date).format('MMMM Do YYYY');
     },
+    
      resendConfirmation () {
       this.isLoading = true;
       this.$store.dispatch('resendConfirmationFinance', this.userDetails._id)

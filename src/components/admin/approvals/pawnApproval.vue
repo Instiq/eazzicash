@@ -37,7 +37,7 @@
                             <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
                             <td v-if="currentRoute == 'Pawn Report'" class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >Download</span></td>
                             <td class="text-center"> {{item.approved}} </td>
-                            <td class="text-center"> {{moment(item.createdAt)}} </td>
+                            <td class="text-center"> {{moments(item.createdAt)}} </td>
                             <td v-if="currentRoute == 'Pawn Approval'"  @click="userDetailsAdmin(index); modal=true" class="text-center text-danger" style="cursor:pointer">   Delete </td>
                           </tr>
                         </tbody>
@@ -111,6 +111,10 @@ export default {
     },
     moment (x) {
         return moment(x).format("DD/MM/YYYY")
+     },
+    moments (x) {
+        let date = moment(x)
+        return date.toString().substring(0,25)
      },
 //function to update current pawn details by admin
     userDetailsAdmin(n) {

@@ -39,7 +39,7 @@
                           <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td>
                           <td v-if="currentRoute == 'Investment Report'" class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >Download</span></td>
                           <td class="text-center"> {{item.approved}} </td>
-                          <td class="text-center"> {{moment(item.createdAt)}} </td>
+                          <td class="text-center"> {{moments(item.createdAt)}} </td>
                           <td v-if="currentRoute == 'Investment Approval'" @click="userDetailsAdmin(index); modal=true" class="text-center text-danger" disabled style="cursor:pointer">   Delete </td>
                         </tr>
                       </tbody>
@@ -110,9 +110,12 @@ data () {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
     },
     moment (x) {
-        return moment(x).format("DD/MM/YYYY")
+        return moment(x)
      },
-
+    moments (x) {
+        let date = moment(x)
+        return date.toString().substring(0,25)
+     },
     //function to update current investment details by admin
     userDetailsAdmin(n) {
         let newObject  = this.filteredInvestmentRequests[n]
