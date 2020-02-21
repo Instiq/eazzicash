@@ -229,7 +229,7 @@ data () {
 .main-container {
     border:2px solid blac;
     margin-left:0vw;
-    max-height: 390px;
+    max-height: 520px;
     overflow-y: auto;
     overflow-x: hidden
  }

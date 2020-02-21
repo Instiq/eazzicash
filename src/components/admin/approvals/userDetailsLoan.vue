@@ -430,7 +430,7 @@ export default {
 .main-container {
     border:2px solid blac;
     margin-left:-3vw;
-    max-height: 490px;
+    max-height: 520px;
     overflow-y: auto;
     overflow-x: hidden
  }

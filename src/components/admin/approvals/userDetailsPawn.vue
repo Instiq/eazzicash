@@ -296,7 +296,7 @@ export default {
     border:2px solid blac;
     margin-left:-3vw;
     overflow-x: hidden;
-     max-height: 390px;
+     max-height: 520px;
     overflow-y: auto;
  }
  .img-fluid {

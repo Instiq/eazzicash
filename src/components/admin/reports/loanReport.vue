@@ -52,8 +52,8 @@
                     <tr>
                       <th scope="col">Name</th>
                       <th scope="col" class="text-center">Amount</th>
-                      <!-- <th scope="col" class="text-center">Details</th> -->
-                      <!-- <th scope="col" class="text-center">Print</th> -->
+                      <th scope="col" class="text-center">Email</th>
+                      <th scope="col" class="text-center">Phone</th>
                       <th scope="col" class="text-center">Status</th>
                       <th scope="col" class="text-center">Date Applied</th>
                     </tr>
@@ -62,7 +62,8 @@
                     <tr v-for="(item, index) in downloadLoanRequests" :key="'a' + index">
                       <th scope="row" class="text-success">{{item.userDetails.firstName}} {{item.userDetails.lastName}}</th>
                       <td class="text-center"> &#8358; {{formatAmount(item.loanAmount)}}  </td>
-                      <!-- <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >View Details</span></td> -->
+                      <td class="text-center"> {{item.userDetails.email}}  </td>
+                      <td class="text-center">{{formatNumber(item.userDetails.phoneNumber)}}</td>
                       <!-- <td class="text-center"><span class="text-primary" @click="userDetails(index)" style="cursor:pointer" >Download</span></td> -->
                       <td class="text-center"> {{item.approved}} </td>
                       <td class="text-center"> {{moment(item.createdAt)}} </td>
@@ -160,6 +161,10 @@ export default {
     },
     formatAmount (x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //this function automatically adds commas to the value where necessary
+    },
+    formatNumber (str) {
+       str = str.toString()
+       return str.substring(0, 4) + " " + str.substring(4,7) + " " + str.substring(7)
     },
     moment (x) {
        return moment(x).format("YYYY-MM-DD")
@@ -307,7 +312,7 @@ export default {
    reset () {
      this.fromDate = "";
      this.toDate = "";
-   }
+   },
    
  },
 
@@ -405,9 +410,8 @@ export default {
                       // day.indexOf(this.name) == 0 ||
                       monthAndYear.indexOf(this.name) == 0
             } )
-        }
-        
-    }
+        } 
+    },
  },
 
   created () {
@@ -422,7 +426,7 @@ export default {
 .main-container {
     border:2px solid blac;
     margin-left:0vw;
-     max-height: 390px;
+     max-height: 530px;
     overflow-y: auto;
     overflow-x: hidden
  }
