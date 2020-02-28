@@ -145,10 +145,10 @@ export default {
       .catch(_ => this.isLoading = false)
     },
 
-   // change first letter of search input to uppercase
-    toUpperCase (name) {
-        this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
-    },
+  //  // change first letter of search input to uppercase
+  //   toUpperCase (name) {
+  //       this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
+  //   },
 
     //pagination
     nextPage(){
@@ -191,8 +191,8 @@ export default {
       }
 
       else {
-          this.toUpperCase()
-          let result = this.paginatedData;
+          //this.toUpperCase()
+          let result = this.$store.state.userEntitiesAll.loan.sort((a, b) => moment(b.createdAt) - moment (a.createdAt));
           
           return result.filter(value=> {
             let fullName = value.userDetails.firstName + " " +  value.userDetails.lastName;
@@ -206,15 +206,15 @@ export default {
 
             return  value.userDetails.firstName.indexOf(this.name)==0 ||
                     value.userDetails.lastName.indexOf(this.name)==0 ||
-                    value.approved.indexOf(this.name)==0 || 
-                    fullName.indexOf(this.name) == 0 || 
-                    fullNameReverse.indexOf(this.name) == 0 ||
-                    formattedTime.indexOf(this.name) == 0 ||
+                    value.approved.toLowerCase().indexOf(this.name)==0 || 
+                    fullName.toLowerCase().indexOf(this.name) == 0 || 
+                    fullNameReverse.toLowerCase().indexOf(this.name) == 0 ||
+                    formattedTime.toString().toLowerCase().indexOf(this.name) == 0 ||
                     year.indexOf(this.name) == 0 ||
-                    month.indexOf(this.name) == 0 ||
-                    // day.indexOf(this.name) == 0 ||
+                    month.toLowerCase().indexOf(this.name) == 0 ||
+                    // day.indexOf(this.name) == 0 || 
                     monthAndYear.indexOf(this.name) == 0
-          } )
+          })
       }
       
   }

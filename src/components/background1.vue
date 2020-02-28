@@ -22,7 +22,7 @@
                                                     <mdb-col class="col-md-1 d-sm-none d-none d-lg-block "></mdb-col>
                                                     <mdb-col class="col-md-12 col-lg-6">
                                                         <mdb-card-body>
-                                                            <mdb-card-text class="text-white text-left item-text" style="height:60px; width:50vw">Pawn your valuable items for exchange to secure your loan.  </mdb-card-text>
+                                                            <mdb-card-text class="text-white card-content text-left item-text" style="height:60px; width:50vw">Pawn your valuable items for exchange to secure your loan.  </mdb-card-text>
                                                         </mdb-card-body>
                                                     </mdb-col>  
                                                 </mdb-row>   
@@ -44,7 +44,7 @@
                                                     <mdb-col class="col-md-1 d-sm-block d-none d-xl-block"></mdb-col>
                                                     <mdb-col class="col-md-12 col-lg-6">
                                                         <mdb-card-body>
-                                                            <mdb-card-text class="text-white item-text2 text-left" style="height:60px; width:50vw">Get quick Financial support for your personal and business needs at competitive interest rate. </mdb-card-text>
+                                                            <mdb-card-text class="text-white card-content item-text2 text-left" style="height:60px; width:50vw">Get quick Financial support for your personal and business needs at competitive interest rate. </mdb-card-text>
                                                         </mdb-card-body>
                                                     </mdb-col> 
                                                 </mdb-row>  
@@ -64,7 +64,7 @@
                                                      <mdb-col class="col-md-1 d-sm-block d-none d-xl-block"></mdb-col>
                                                     <mdb-col class="col-md-12 col-lg-6">
                                                         <mdb-card-body>
-                                                            <mdb-card-text class="text-white item-text3 text-left" style="height:60px; width:50vw">Get the loan with the best interest rate and convenient repayment plan.</mdb-card-text>
+                                                            <mdb-card-text class="text-white card-content item-text3 text-left" style="height:60px; width:50vw">Get the loan with the best interest rate and convenient repayment plan.</mdb-card-text>
                                                         </mdb-card-body>
                                                     </mdb-col>  
                                                 </mdb-row>   
@@ -104,8 +104,10 @@ export default {
         mdbCard,
         mdbCardBody,
         mdbCardText
-    },
-    
+    }, 
+    // mounted () {
+    //     alert(screen.availHeight)
+    // }
 }
 </script>
 
@@ -246,6 +248,13 @@ export default {
     .item-text3 {
         width: 50vw !important
     }
+}
+
+@media (min-width: 1400px) {
+  
+  .card-content {
+    width: 175px !important;
+  }
 }
 
 

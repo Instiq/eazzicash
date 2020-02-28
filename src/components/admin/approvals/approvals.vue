@@ -102,7 +102,7 @@ computed : {
       padding: 0px 0px;
       padding-top:7vh ;
       padding-bottom: 7vh;
-      border: 2px solid re
+      border: 2px solid none
  }
 
   .jumbotron-head {
