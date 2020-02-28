@@ -194,9 +194,9 @@ export default {
     // },
 
    // change first letter of search input to uppercase
-    toUpperCase (name) {
-        this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
-    },
+    // toUpperCase (name) {
+    //     this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
+    // },
 
     //pagination
     nextPage(){
@@ -344,14 +344,14 @@ export default {
 // });
       return order.slice(start, end)
    },
-  
+  //to get the data paginated
     filteredLoanRequests () {
        if (this.name=='') {
             return this.paginatedData
        }
 
         else {
-           this.toUpperCase()
+           //this.toUpperCase()
             let result = this.paginatedData
             
             return result.filter(value=> {
@@ -365,15 +365,15 @@ export default {
               let monthAndYear = month + "/" + year
 
               return  value.userDetails.firstName.indexOf(this.name)==0 ||
-                      value.userDetails.lastName.indexOf(this.name)==0 ||
-                      value.approved.indexOf(this.name)==0 || 
-                      fullName.indexOf(this.name) == 0 || 
-                      fullNameReverse.indexOf(this.name) == 0 ||
-                      formattedTime.indexOf(this.name) == 0 ||
-                      year.indexOf(this.name) == 0 ||
-                      month.indexOf(this.name) == 0 ||
-                      // day.indexOf(this.name) == 0 ||
-                      monthAndYear.indexOf(this.name) == 0
+                    value.userDetails.lastName.indexOf(this.name)==0 ||
+                    value.approved.toLowerCase().indexOf(this.name)==0 || 
+                    fullName.toLowerCase().indexOf(this.name) == 0 || 
+                    fullNameReverse.toLowerCase().indexOf(this.name) == 0 ||
+                    formattedTime.toString().toLowerCase().indexOf(this.name) == 0 ||
+                    year.indexOf(this.name) == 0 ||
+                    month.toLowerCase().indexOf(this.name) == 0 ||
+                    // day.indexOf(this.name) == 0 || 
+                    monthAndYear.indexOf(this.name) == 0
             } )
         }
         
@@ -386,7 +386,7 @@ export default {
        }
 
         else {
-           this.toUpperCase()
+           //this.toUpperCase()
             let result = this.sortedDataByDate().sort((a, b) => moment(b.createdAt) - moment (a.createdAt));
             
             return result.filter(value=> {
@@ -400,15 +400,15 @@ export default {
               let monthAndYear = month + "/" + year
 
               return  value.userDetails.firstName.indexOf(this.name)==0 ||
-                      value.userDetails.lastName.indexOf(this.name)==0 ||
-                      value.approved.indexOf(this.name)==0 || 
-                      fullName.indexOf(this.name) == 0 || 
-                      fullNameReverse.indexOf(this.name) == 0 ||
-                      formattedTime.indexOf(this.name) == 0 ||
-                      year.indexOf(this.name) == 0 ||
-                      month.indexOf(this.name) == 0 ||
-                      // day.indexOf(this.name) == 0 ||
-                      monthAndYear.indexOf(this.name) == 0
+                    value.userDetails.lastName.indexOf(this.name)==0 ||
+                    value.approved.toLowerCase().indexOf(this.name)==0 || 
+                    fullName.toLowerCase().indexOf(this.name) == 0 || 
+                    fullNameReverse.toLowerCase().indexOf(this.name) == 0 ||
+                    formattedTime.toString().toLowerCase().indexOf(this.name) == 0 ||
+                    year.indexOf(this.name) == 0 ||
+                    month.toLowerCase().indexOf(this.name) == 0 ||
+                    // day.indexOf(this.name) == 0 || 
+                    monthAndYear.indexOf(this.name) == 0
             } )
         } 
     },

@@ -336,7 +336,7 @@ export default {
        }
 
         else {
-           this.toUpperCase()
+           //this.toUpperCase()
             let result = this.sortedDataByDate().sort((a, b) => moment(b.createdAt) - moment (a.createdAt));
             
             return result.filter(value=> {
@@ -350,15 +350,15 @@ export default {
               let monthAndYear = month + "/" + year
 
               return  value.userDetails.firstName.indexOf(this.name)==0 ||
-                      value.userDetails.lastName.indexOf(this.name)==0 ||
-                      value.approved.indexOf(this.name)==0 || 
-                      fullName.indexOf(this.name) == 0 || 
-                      fullNameReverse.indexOf(this.name) == 0 ||
-                      formattedTime.indexOf(this.name) == 0 ||
-                      year.indexOf(this.name) == 0 ||
-                      month.indexOf(this.name) == 0 ||
-                      // day.indexOf(this.name) == 0 ||
-                      monthAndYear.indexOf(this.name) == 0
+                    value.userDetails.lastName.indexOf(this.name)==0 ||
+                    value.approved.toLowerCase().indexOf(this.name)==0 || 
+                    fullName.toLowerCase().indexOf(this.name) == 0 || 
+                    fullNameReverse.toLowerCase().indexOf(this.name) == 0 ||
+                    formattedTime.toString().toLowerCase().indexOf(this.name) == 0 ||
+                    year.indexOf(this.name) == 0 ||
+                    month.toLowerCase().indexOf(this.name) == 0 ||
+                    // day.indexOf(this.name) == 0 || 
+                    monthAndYear.indexOf(this.name) == 0
             } )
         }
         
