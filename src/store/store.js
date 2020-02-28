@@ -17,7 +17,7 @@ export default new Vuex.Store({
     //http://localhost:3000/api
     ////////https://still-bastion-19162.herokuapp.com/api
     //https://eazzi-server.herokuapp.com/api
-    api_url : 'https://eazzi-server.herokuapp.com/api',
+    api_url : 'http://localhost:3000/api',
     name:"",
     userFirstname:'',
     userLastname:'',

@@ -16,13 +16,22 @@
                                         
                                       </mdb-card-title>
                                      
-                                      <mdb-card-text>
-                                         <span class="mt h5" v-if="filteredLoanApproved()[0]" style="font-weight:bold">&#8358; {{formatAmount(filteredLoanApproved()[0].loanAmount)}}</span> 
-                                         <span class="mt h5" v-else  style="font-weight:bold">0.00</span> 
+                                      <mdb-card-text  v-if="filteredLoanApproved()[0]">
+                                         <span class="mt h5" v-if="filteredLoanApproved()[0].updates.updatedLoanAmount" style="font-weight:bold">&#8358; {{formatAmount(filteredLoanApproved()[filteredLoanApproved().length - 1].updates.updatedLoanAmount)}}</span> 
+                                         <span class="mt h5" v-else style="font-weight:bold">&#8358; {{formatAmount(filteredLoanApproved()[filteredLoanApproved().length - 1].loanAmount)}}</span> 
                                       </mdb-card-text>
+                                      <mdb-card-text v-else>
+                                           <span class="mt h5" style="font-weight:bold">0.00</span> 
+                                      </mdb-card-text>
+
                                      
                                       </mdb-card-body>
-                                       <div class="mx-4 pt-1 h6 text-muted"  v-if="filteredLoanApproved()[0]" style="height:25px; font-size:13.5px">Repayment Duration: {{filteredLoanApproved()[0].loanTenor}} months</div>
+                                      <div v-if="filteredLoanApproved()[0]" >
+                                           <div class="mx-4 pt-1 h6 text-muted"  v-if="filteredLoanApproved()[0].updates.updatedLoanTenor" style="height:25px; font-size:13.5px">Repayment Duration: {{filteredLoanApproved()[filteredLoanApproved().length - 1].updates.updatedLoanTenor}} month(s)</div>
+                                           <div class="mx-4 pt-1 h6 text-muted"  v-else style="height:25px; font-size:13.5px">Repayment Duration: {{filteredLoanApproved()[filteredLoanApproved().length - 1].loanTenor}} months(s) </div>
+                                      </div>
+                                      
+                                     <div class="mx-4 pt-1 h6 text-muted"  v-else style="height:25px; font-size:13.5px">Repayment Duration: 0</div>
                                       
                               </mdb-card>
                           </div>
@@ -63,7 +72,7 @@
                                         Pawn
                                       </mdb-card-title>
                                       <mdb-card-text>
-                                         <span class="h6" v-if="filteredPawnApproved()[0]" style="font-weight:500">Item : <span style="font-weight:300">{{filteredPawnApproved()[0].itemDescription}}</span></span> 
+                                         <span class="h6" v-if="filteredPawnApproved()[0]" style="font-weight:500">Item : <span style="font-weight:300">{{filteredPawnApproved()[filteredPawnApproved().length - 1].itemDescription}}</span></span> 
                                          <span class="h6" v-else style="font-weight:500">Item : <span style="font-weight:300">0.00</span></span> 
                                       </mdb-card-text>
                                       <mdb-card-text>
@@ -84,8 +93,18 @@
                             <div class=" " >
                                 <mdb-list-group>
                                 <mdb-list-group-item class="text-white h6 list-group-header" >Transaction History <mdb-badge class="trans-history-badge" style="" :pill="true" > {{checkTransactionHistory()}} </mdb-badge></mdb-list-group-item>
-                                <mdb-list-group-item   v-for="(item, index) in filteredPawnApproved()" :key=" 'a' + index"><span>{{item.type}}</span>     <mdb-badge :pill="true" class='badges' style="margin-left:15px" color="default-color">&#8358; {{formatAmount(item.pawnAmount)}} </mdb-badge>     <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
-                                <mdb-list-group-item   v-for="(item, index) in filteredLoanApproved()" :key="'b' + index"><span>{{item.type}}</span>     <mdb-badge :pill="true" class='badges' color="default-color">&#8358; {{formatAmount(item.loanAmount)}} </mdb-badge>     <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
+                                <mdb-list-group-item   v-for="(item, index) in filteredPawnApproved()" :key=" 'a' + index">
+                                    <span>{{item.type}}</span>     
+                                    <mdb-badge :pill="true" class='badges' style="margin-left:15px" color="default-color" v-if="item.updates.updatedPawnAmount">&#8358; {{formatAmount(item.updates.updatedPawnAmount)}} </mdb-badge>     
+                                    <mdb-badge :pill="true" class='badges' style="margin-left:15px" color="default-color" v-else>&#8358; {{formatAmount(item.pawnAmount)}} </mdb-badge>   
+                                    <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge>
+                                </mdb-list-group-item>
+                                <mdb-list-group-item   v-for="(item, index) in filteredLoanApproved()" :key="'b' + index">
+                                    <span>{{item.type}}</span>    
+                                    <mdb-badge :pill="true" class='badges' color="default-color" v-if="item.updates.updatedLoanAmount">&#8358; {{formatAmount(item.updates.updatedLoanAmount)}} </mdb-badge>    
+                                    <mdb-badge :pill="true" class='badges' color="default-color" v-else>&#8358; {{formatAmount(item.loanAmount)}} </mdb-badge>     
+                                    <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge>
+                                </mdb-list-group-item>
                                 <mdb-list-group-item   v-for="(item, index) in filteredInvestmentApproved()" :key=" 'c' + index"><span class="small-screen-type">{{item.type}}</span>    <mdb-badge :pill="true" class='badges ml-n4 small-screen-history' style="margin-left" color="default-color">&#8358; {{formatAmount(item.investmentAmount)}} </mdb-badge>     <mdb-badge :pill="true" class="small-screen-history-date" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
                                 <mdb-list-group-item   v-for="(item, index) in filteredFinanceApproved()" :key=" 'd' + index"><span class="small-screen-type-finance">{{item.type}}</span>     <mdb-badge :pill="true" class='badges' style="margin-left:-3px" color="default-color">&#8358; {{formatAmount(item.financeAmount)}} </mdb-badge>     <mdb-badge :pill="true" color="default-color">{{moment(item.createdAt)}}</mdb-badge></mdb-list-group-item>
                                 </mdb-list-group>
@@ -489,7 +508,7 @@ export default {
         },
 
         remainderDays () {
-            let maturity = this.filteredPawnApproved()[0].maturity;
+            let maturity = this.filteredPawnApproved()[this.filteredPawnApproved().length - 1].maturity;
             let given = moment(maturity, "YYYY-MM-DD");
             let current = moment().startOf('day');
             let daysLeft =  moment.duration(given.diff(current)).asDays();
