@@ -431,8 +431,10 @@ export default new Vuex.Store({
           if (err.response.data == 'expired token') {
             router.push('/changePassword?path=expiredPasswordResetToken')
             commit('setIsTokenExpired', true)
-            setTimeout(_ => router.push('/passwordResetLink'), 5000)
+            setTimeout(_ => router.push('/passwordResetLink'), 5000);
+            return;
           }
+          alert(err.response.data)
         })
     },
 

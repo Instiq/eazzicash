@@ -11,19 +11,13 @@
             <div class="text-center row mb-3"> 
                <div class="col-md-3"></div>
                <div class="col-md-6">
-                   <form action=""  @submit.prevent='validateBeforeSubmit'>
+                   <form action=""  @submit.prevent='changePassword'>
                        <div class="form-group">
-                            <input v-validate="'required|min:5'" name="password" type="password" class="mb-3 form-control" placeholder="enter new password" ref="password">
-                                <div class="alert alert-danger" v-if="errors.has('password')">
-                                <i  class="fa fa-exclamation-triangle text-danger ml-2 mr-2"></i>  {{ errors.first('password') }}
-                                </div>
-                            <input v-model="password" v-validate="'required|confirmed:password'" name="password_confirmation" class="mb-2 form-control" type="password" placeholder="confirm new password" data-vv-as="password">
-                                <div class="alert alert-danger" v-if="errors.has('password_confirmation')">
-                                <i  class="fa fa-exclamation-triangle text-danger ml-2 mr-2"></i> {{ errors.first('password_confirmation') }}
-                                </div>    
+                            <input name="password" v-model="password1" type="password" class="mb-3 form-control" placeholder="enter new password">
+                            <input v-model="password" name="password_confirmation" class="mb-2 form-control" type="password" placeholder="confirm new password">
                        </div>
 
-                        <p class="text-center"> <button type="submit" style="font-size:17px" class="btn btn-primary">Change Password <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button></p>
+                        <p class="text-center"> <button type="submit" :disabled="isDisabled" style="font-size:17px" class="btn btn-primary">Change Password <span v-if="loading"> <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> </span></button></p>
                    </form>
                </div>
                <div class="col-md-3"></div>
@@ -40,7 +34,9 @@ export default {
     data () {
        return {
           loading:false,
+          password1:'',
           password:'',
+          isDisabled:true,
           count:5
        }
     },
@@ -68,17 +64,19 @@ export default {
            })
           .then(_ => this.loading=false)
         },
-        validateBeforeSubmit() {
-            this.$validator.validateAll().then((result) => {
-            if (result) {
-              this.changePassword() 
-            }
-          })
-       },
     },
     watch : {
         isTokenExpired (newval) {
           setInterval(_ => this.timer(), 1000)
+        },
+        password (newval) {
+            if(newval == this.password1) {
+             this.isDisabled = false;
+            }
+
+            else {
+                this.isDisabled = true;
+            }
         }
     }
 //    mounted () {
