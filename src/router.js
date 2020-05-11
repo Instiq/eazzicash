@@ -16,6 +16,7 @@ import approveFinance from "./views/approveFinance.vue";
 import declineFinance from "./views/declineFinance.vue";
 import passwordResetLink from "./views/forgotPassword/passwordResetLink.vue";
 import changePassword from "./views/forgotPassword/changePassword.vue"
+import changePassword1 from "./views/forgotPassword/changePassword1.vue"
 import profile from "./views/profile.vue";
 import dashboard from "./components/dashboard.vue";
 import userProfile from "./views/userProfile.vue";
@@ -147,6 +148,11 @@ const router = new Router({
       name: "changePassword",
       component: changePassword
     },
+    // {
+    //   path: "/changePassword1",
+    //   name: "changePassword1",
+    //   component: changePassword1
+    // },
     {
       path: "/profile",
       name: "profile",

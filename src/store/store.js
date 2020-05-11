@@ -438,6 +438,33 @@ export default new Vuex.Store({
         })
     },
 
+    //Change Password
+    async changePassword1({ commit, state }, { password, newPassword }) {
+      await axios({
+        method: 'put',
+        url: `${state.api_url}/auth/changePassword`,
+        data: {
+          password,
+          newPassword
+        },
+        headers: {
+          'x-auth-token': state.token
+        }
+      })
+        .then(_ => {
+          router.push('/passwordResetLink?path=passwordChangeSuccess')
+        })
+        .catch(err => {
+          console.error(err.response.data);
+          if (err.response.data == 'User not found') {
+            alert('User not Found');
+            router.push('/signup');
+            return;
+          }
+          alert(err.response.data)
+        })
+    },
+
     //get all users admin
     async getAllUsers({ commit, state }) {
       await axios({

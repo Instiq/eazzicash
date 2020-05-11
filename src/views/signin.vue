@@ -39,12 +39,12 @@
                                                     <section>
                                                         <mdb-row>
                                                             <mdb-col >
-                                                                <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                                                                <ValidationProvider name="email" rules="required" v-slot="{ errors }">
                                                                      <mdb-input type="text" name ='email' v-model="email" label="Email" bg size="lg" />
                                                                     <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                                                 </ValidationProvider> 
 
-                                                                 <ValidationProvider name="password" rules="required|min:6" v-slot="{ errors }">
+                                                                 <ValidationProvider name="password" rules="required" v-slot="{ errors }">
                                                                       <mdb-input type="password" name ='password' v-model="password" label="Password" bg size="lg" />
                                                                      <span style="font-size:13px; color:red"> <span v-if="errors[0]"><i class="fas fa-ban"></i></span> {{ errors[0] }}</span>
                                                                 </ValidationProvider> 
